@@ -5,7 +5,6 @@
  */
 
 import { Content } from '@google/genai';
-import { DEFAULT_GEMINI_FLASH_MODEL } from '../config/models.js';
 import { GeminiClient } from '../core/client.js';
 import { GeminiChat } from '../core/geminiChat.js';
 import { isFunctionResponse } from './messageInspectors.js';
@@ -112,7 +111,8 @@ export async function checkNextSpeaker(
       contents,
       RESPONSE_SCHEMA,
       abortSignal,
-      DEFAULT_GEMINI_FLASH_MODEL,
+      // Use the currently configured model (Gemini, OpenAI-compatible, etc.)
+      undefined,
     )) as unknown as NextSpeakerResponse;
 
     if (
