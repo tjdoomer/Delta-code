@@ -22,12 +22,6 @@ npm install -g .
 delta
 ```
 
-```bash
-npm i -g github:tjdoomer/Delta-code#main
-delta
-
-```
-
 ## Quick start
 
 ```bash
