@@ -44,15 +44,17 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "preflight": "npm run clean && npm ci && npm run format && npm run lint:ci && npm run build && npm run typecheck && npm run test:ci",
     "prepack": "npm run bundle",
+    "prepare": "node scripts/prepare-install.js",
     "prepare:package": "node scripts/prepare-package.js",
     "release:version": "node scripts/version.js",
     "telemetry": "node scripts/telemetry.js",
     "clean": "node scripts/clean.js"
   },
   "bin": {
-    "delta": "bundle/gemini.js"
+    "delta": "bin/delta"
   },
   "files": [
+    "bin/",
     "bundle/",
     "README.md",
     "LICENSE"
@@ -69,14 +71,13 @@
     "@vitest/coverage-v8": "^3.1.1",
     "concurrently": "^9.2.0",
     "cross-env": "^7.0.3",
-    "esbuild": "^0.25.0",
     "eslint": "^9.24.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-license-header": "^0.8.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "glob": "^10.4.5",
+    
     "globals": "^16.0.0",
     "json": "^11.0.0",
     "lodash": "^4.17.21",
@@ -93,6 +94,8 @@
     "yargs": "^17.7.2"
   },
   "dependencies": {
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "esbuild": "^0.25.0",
+    "glob": "^10.4.5"
   }
 }

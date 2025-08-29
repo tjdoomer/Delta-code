@@ -29,7 +29,9 @@ dist
 # Docker folder to help skip auth refreshes
 .docker
 
-bundle
+# Keep bundle in git so GitHub installs have the CLI entrypoint
+# (npm installs from GitHub do not run dev builds)
+# bundle
 
 # Test report files
 junit.xml
