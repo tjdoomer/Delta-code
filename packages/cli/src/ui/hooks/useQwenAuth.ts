@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,9 +8,9 @@ import { useState, useCallback, useEffect } from 'react';
 import { LoadedSettings } from '../../config/settings.js';
 import {
   AuthType,
-  qwenOAuth2Events,
-  QwenOAuth2Event,
-} from '@qwen-code/qwen-code-core';
+  deltaOAuth2Events,
+  DeltaOAuth2Event,
+} from '@delta-code/delta-code-core';
 
 export interface DeviceAuthorizationInfo {
   verification_uri: string;
@@ -19,8 +19,8 @@ export interface DeviceAuthorizationInfo {
   expires_in: number;
 }
 
-interface QwenAuthState {
-  isQwenAuthenticating: boolean;
+interface DeltaAuthState {
+  isDeltaAuthenticating: boolean;
   deviceAuth: DeviceAuthorizationInfo | null;
   authStatus:
     | 'idle'
@@ -32,25 +32,25 @@ interface QwenAuthState {
   authMessage: string | null;
 }
 
-export const useQwenAuth = (
+export const useDeltaAuth = (
   settings: LoadedSettings,
   isAuthenticating: boolean,
 ) => {
-  const [qwenAuthState, setQwenAuthState] = useState<QwenAuthState>({
-    isQwenAuthenticating: false,
+  const [deltaAuthState, setDeltaAuthState] = useState<DeltaAuthState>({
+    isDeltaAuthenticating: false,
     deviceAuth: null,
     authStatus: 'idle',
     authMessage: null,
   });
 
-  const isQwenAuth = settings.merged.selectedAuthType === AuthType.QWEN_OAUTH;
+  const isDeltaAuth = settings.merged.selectedAuthType === AuthType.QWEN_OAUTH;
 
   // Set up event listeners when authentication starts
   useEffect(() => {
-    if (!isQwenAuth || !isAuthenticating) {
-      // Reset state when not authenticating or not Qwen auth
-      setQwenAuthState({
-        isQwenAuthenticating: false,
+    if (!isDeltaAuth || !isAuthenticating) {
+      // Reset state when not authenticating or not Delta auth
+      setDeltaAuthState({
+        isDeltaAuthenticating: false,
         deviceAuth: null,
         authStatus: 'idle',
         authMessage: null,
@@ -58,15 +58,15 @@ export const useQwenAuth = (
       return;
     }
 
-    setQwenAuthState((prev) => ({
+    setDeltaAuthState((prev) => ({
       ...prev,
-      isQwenAuthenticating: true,
+      isDeltaAuthenticating: true,
       authStatus: 'idle',
     }));
 
     // Set up event listeners
     const handleDeviceAuth = (deviceAuth: DeviceAuthorizationInfo) => {
-      setQwenAuthState((prev) => ({
+      setDeltaAuthState((prev) => ({
         ...prev,
         deviceAuth: {
           verification_uri: deviceAuth.verification_uri,
@@ -82,7 +82,7 @@ export const useQwenAuth = (
       status: 'success' | 'error' | 'polling' | 'timeout' | 'rate_limit',
       message?: string,
     ) => {
-      setQwenAuthState((prev) => ({
+      setDeltaAuthState((prev) => ({
         ...prev,
         authStatus: status,
         authMessage: message || null,
@@ -90,22 +90,22 @@ export const useQwenAuth = (
     };
 
     // Add event listeners
-    qwenOAuth2Events.on(QwenOAuth2Event.AuthUri, handleDeviceAuth);
-    qwenOAuth2Events.on(QwenOAuth2Event.AuthProgress, handleAuthProgress);
+    deltaOAuth2Events.on(DeltaOAuth2Event.AuthUri, handleDeviceAuth);
+    deltaOAuth2Events.on(DeltaOAuth2Event.AuthProgress, handleAuthProgress);
 
     // Cleanup event listeners when component unmounts or auth finishes
     return () => {
-      qwenOAuth2Events.off(QwenOAuth2Event.AuthUri, handleDeviceAuth);
-      qwenOAuth2Events.off(QwenOAuth2Event.AuthProgress, handleAuthProgress);
+      deltaOAuth2Events.off(DeltaOAuth2Event.AuthUri, handleDeviceAuth);
+      deltaOAuth2Events.off(DeltaOAuth2Event.AuthProgress, handleAuthProgress);
     };
-  }, [isQwenAuth, isAuthenticating]);
+  }, [isDeltaAuth, isAuthenticating]);
 
-  const cancelQwenAuth = useCallback(() => {
+  const cancelDeltaAuth = useCallback(() => {
     // Emit cancel event to stop polling
-    qwenOAuth2Events.emit(QwenOAuth2Event.AuthCancel);
+    deltaOAuth2Events.emit(DeltaOAuth2Event.AuthCancel);
 
-    setQwenAuthState({
-      isQwenAuthenticating: false,
+    setDeltaAuthState({
+      isDeltaAuthenticating: false,
       deviceAuth: null,
       authStatus: 'idle',
       authMessage: null,
@@ -113,8 +113,8 @@ export const useQwenAuth = (
   }, []);
 
   return {
-    ...qwenAuthState,
-    isQwenAuth,
-    cancelQwenAuth,
+    ...deltaAuthState,
+    isDeltaAuth,
+    cancelDeltaAuth,
   };
 };

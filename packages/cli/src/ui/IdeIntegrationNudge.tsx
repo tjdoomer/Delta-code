@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { DetectedIde, getIdeInfo } from '@qwen-code/qwen-code-core';
+import { DetectedIde, getIdeInfo } from '@delta-code/delta-code-core';
 import { Box, Text } from 'ink';
 import {
   RadioButtonSelect,
@@ -88,7 +88,7 @@ export function IdeIntegrationNudge({
       <Box marginBottom={1} flexDirection="column">
         <Text>
           <Text color="yellow">{'> '}</Text>
-          {`Do you want to connect ${ideName ?? 'your'} editor to Qwen Code?`}
+          {`Do you want to connect ${ideName ?? 'your'} editor to Delta Code?`}
         </Text>
         <Text dimColor>{installText}</Text>
       </Box>

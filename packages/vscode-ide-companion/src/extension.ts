@@ -9,9 +9,9 @@ import { IDEServer } from './ide-server.js';
 import { DiffContentProvider, DiffManager } from './diff-manager.js';
 import { createLogger } from './utils/logger.js';
 
-const INFO_MESSAGE_SHOWN_KEY = 'qwenCodeInfoMessageShown';
+const INFO_MESSAGE_SHOWN_KEY = 'deltaCodeInfoMessageShown';
 const IDE_WORKSPACE_PATH_ENV_VAR = 'QWEN_CODE_IDE_WORKSPACE_PATH';
-export const DIFF_SCHEME = 'qwen-diff';
+export const DIFF_SCHEME = 'delta-diff';
 
 let ideServer: IDEServer;
 let logger: vscode.OutputChannel;
@@ -35,7 +35,7 @@ function updateWorkspacePath(context: vscode.ExtensionContext) {
 }
 
 export async function activate(context: vscode.ExtensionContext) {
-  logger = vscode.window.createOutputChannel('Qwen Code Companion');
+  logger = vscode.window.createOutputChannel('Delta Code Companion');
   log = createLogger(context, logger);
   log('Extension activated');
 
@@ -54,13 +54,13 @@ export async function activate(context: vscode.ExtensionContext) {
       DIFF_SCHEME,
       diffContentProvider,
     ),
-    vscode.commands.registerCommand('qwen.diff.accept', (uri?: vscode.Uri) => {
+    vscode.commands.registerCommand('delta.diff.accept', (uri?: vscode.Uri) => {
       const docUri = uri ?? vscode.window.activeTextEditor?.document.uri;
       if (docUri && docUri.scheme === DIFF_SCHEME) {
         diffManager.acceptDiff(docUri);
       }
     }),
-    vscode.commands.registerCommand('qwen.diff.cancel', (uri?: vscode.Uri) => {
+    vscode.commands.registerCommand('delta.diff.cancel', (uri?: vscode.Uri) => {
       const docUri = uri ?? vscode.window.activeTextEditor?.document.uri;
       if (docUri && docUri.scheme === DIFF_SCHEME) {
         diffManager.cancelDiff(docUri);
@@ -79,13 +79,13 @@ export async function activate(context: vscode.ExtensionContext) {
   if (!context.globalState.get(INFO_MESSAGE_SHOWN_KEY)) {
     void vscode.window
       .showInformationMessage(
-        'Qwen Code Companion extension successfully installed. Please restart your terminal to enable full IDE integration.',
-        'Run Qwen Code',
+        'Delta Code Companion extension successfully installed. Please restart your terminal to enable full IDE integration.',
+        'Run Delta Code',
       )
       .then(
         (selection) => {
-          if (selection === 'Run Qwen Code') {
-            void vscode.commands.executeCommand('qwen-code.runQwenCode');
+          if (selection === 'Run Delta Code') {
+            void vscode.commands.executeCommand('delta-code.runDeltaCode');
           }
         },
         (err) => {
@@ -99,13 +99,13 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeWorkspaceFolders(() => {
       updateWorkspacePath(context);
     }),
-    vscode.commands.registerCommand('qwen-code.runQwenCode', () => {
-      const qwenCmd = 'qwen';
-      const terminal = vscode.window.createTerminal(`Qwen Code`);
+    vscode.commands.registerCommand('delta-code.runDeltaCode', () => {
+      const deltaCmd = 'delta';
+      const terminal = vscode.window.createTerminal(`Delta Code`);
       terminal.show();
-      terminal.sendText(qwenCmd);
+      terminal.sendText(deltaCmd);
     }),
-    vscode.commands.registerCommand('qwen-code.showNotices', async () => {
+    vscode.commands.registerCommand('delta-code.showNotices', async () => {
       const noticePath = vscode.Uri.joinPath(
         context.extensionUri,
         'NOTICES.txt',

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -10,15 +10,15 @@ import * as os from 'os';
 import { randomUUID } from 'node:crypto';
 
 import {
-  IQwenOAuth2Client,
-  type QwenCredentials,
+  IDeltaOAuth2Client,
+  type DeltaCredentials,
   type TokenRefreshData,
   type ErrorData,
   isErrorResponse,
-} from './qwenOAuth2.js';
+} from './deltaOAuth2.js';
 
 // File System Configuration
-const QWEN_DIR = '.qwen';
+const QWEN_DIR = '.delta';
 const QWEN_CREDENTIAL_FILENAME = 'oauth_creds.json';
 const QWEN_LOCK_FILENAME = 'oauth_creds.lock';
 
@@ -67,24 +67,24 @@ export class TokenManagerError extends Error {
  * Interface for the memory cache state
  */
 interface MemoryCache {
-  credentials: QwenCredentials | null;
+  credentials: DeltaCredentials | null;
   fileModTime: number;
   lastCheck: number;
 }
 
 /**
- * Validates that the given data is a valid QwenCredentials object
+ * Validates that the given data is a valid DeltaCredentials object
  *
  * @param data - The data to validate
  * @returns The validated credentials object
  * @throws Error if the data is invalid
  */
-function validateCredentials(data: unknown): QwenCredentials {
+function validateCredentials(data: unknown): DeltaCredentials {
   if (!data || typeof data !== 'object') {
     throw new Error('Invalid credentials format');
   }
 
-  const creds = data as Partial<QwenCredentials>;
+  const creds = data as Partial<DeltaCredentials>;
   const requiredFields = [
     'access_token',
     'refresh_token',
@@ -103,7 +103,7 @@ function validateCredentials(data: unknown): QwenCredentials {
     throw new Error('Invalid credentials: missing expiry_date');
   }
 
-  return creds as QwenCredentials;
+  return creds as DeltaCredentials;
 }
 
 /**
@@ -124,7 +124,7 @@ export class SharedTokenManager {
   /**
    * Promise tracking any ongoing token refresh operation
    */
-  private refreshPromise: Promise<QwenCredentials> | null = null;
+  private refreshPromise: Promise<DeltaCredentials> | null = null;
 
   /**
    * Whether cleanup handlers have been registered
@@ -189,15 +189,15 @@ export class SharedTokenManager {
   /**
    * Get valid OAuth credentials, refreshing them if necessary
    *
-   * @param qwenClient - The OAuth2 client instance
+   * @param deltaClient - The OAuth2 client instance
    * @param forceRefresh - If true, refresh token even if current one is still valid
    * @returns Promise resolving to valid credentials
    * @throws TokenManagerError if unable to obtain valid credentials
    */
   async getValidCredentials(
-    qwenClient: IQwenOAuth2Client,
+    deltaClient: IDeltaOAuth2Client,
     forceRefresh = false,
-  ): Promise<QwenCredentials> {
+  ): Promise<DeltaCredentials> {
     try {
       // Check if credentials file has been updated by other sessions
       await this.checkAndReloadIfNeeded();
@@ -217,7 +217,7 @@ export class SharedTokenManager {
       }
 
       // Start new refresh operation with distributed locking
-      this.refreshPromise = this.performTokenRefresh(qwenClient, forceRefresh);
+      this.refreshPromise = this.performTokenRefresh(deltaClient, forceRefresh);
 
       try {
         const credentials = await this.refreshPromise;
@@ -315,20 +315,20 @@ export class SharedTokenManager {
   /**
    * Refresh the OAuth token using file locking to prevent concurrent refreshes
    *
-   * @param qwenClient - The OAuth2 client instance
+   * @param deltaClient - The OAuth2 client instance
    * @param forceRefresh - If true, skip checking if token is already valid after getting lock
    * @returns Promise resolving to refreshed credentials
    * @throws TokenManagerError if refresh fails or lock cannot be acquired
    */
   private async performTokenRefresh(
-    qwenClient: IQwenOAuth2Client,
+    deltaClient: IDeltaOAuth2Client,
     forceRefresh = false,
-  ): Promise<QwenCredentials> {
+  ): Promise<DeltaCredentials> {
     const lockPath = this.getLockFilePath();
 
     try {
       // Check if we have a refresh token before attempting refresh
-      const currentCredentials = qwenClient.getCredentials();
+      const currentCredentials = deltaClient.getCredentials();
       if (!currentCredentials.refresh_token) {
         throw new TokenManagerError(
           TokenError.NO_REFRESH_TOKEN,
@@ -348,12 +348,12 @@ export class SharedTokenManager {
         this.memoryCache.credentials &&
         this.isTokenValid(this.memoryCache.credentials)
       ) {
-        qwenClient.setCredentials(this.memoryCache.credentials);
+        deltaClient.setCredentials(this.memoryCache.credentials);
         return this.memoryCache.credentials;
       }
 
       // Perform the actual token refresh
-      const response = await qwenClient.refreshAccessToken();
+      const response = await deltaClient.refreshAccessToken();
 
       if (!response || isErrorResponse(response)) {
         const errorData = response as ErrorData;
@@ -373,7 +373,7 @@ export class SharedTokenManager {
       }
 
       // Create updated credentials object
-      const credentials: QwenCredentials = {
+      const credentials: DeltaCredentials = {
         access_token: tokenData.access_token,
         token_type: tokenData.token_type,
         refresh_token:
@@ -384,7 +384,7 @@ export class SharedTokenManager {
 
       // Update memory cache and client credentials
       this.memoryCache.credentials = credentials;
-      qwenClient.setCredentials(credentials);
+      deltaClient.setCredentials(credentials);
 
       // Persist to file and update modification time
       await this.saveCredentialsToFile(credentials);
@@ -426,7 +426,7 @@ export class SharedTokenManager {
    * @param credentials - The credentials to save
    */
   private async saveCredentialsToFile(
-    credentials: QwenCredentials,
+    credentials: DeltaCredentials,
   ): Promise<void> {
     const filePath = this.getCredentialFilePath();
     const dirPath = path.dirname(filePath);
@@ -473,7 +473,7 @@ export class SharedTokenManager {
    * @param credentials - The credentials to validate
    * @returns true if token is valid and not expired, false otherwise
    */
-  private isTokenValid(credentials: QwenCredentials): boolean {
+  private isTokenValid(credentials: DeltaCredentials): boolean {
     if (!credentials.expiry_date || !credentials.access_token) {
       return false;
     }
@@ -597,7 +597,7 @@ export class SharedTokenManager {
    *
    * @returns The currently cached credentials or null
    */
-  getCurrentCredentials(): QwenCredentials | null {
+  getCurrentCredentials(): DeltaCredentials | null {
     return this.memoryCache.credentials;
   }
 

@@ -262,5 +262,79 @@ describe('useKeypress', () => {
         sequence: pasteText,
       });
     });
+
+    it('ignores focus sequences ESC [ I and ESC [ O (single chunk)', () => {
+      renderHook(() => useKeypress(onKeypress, { isActive: true }));
+      if (isLegacy) {
+        // Raw data path
+        // Send: "a" + FOCUS_IN + "b" + FOCUS_OUT + "c"
+        const buf = Buffer.concat([
+          Buffer.from('a'),
+          Buffer.from('\x1b[I', 'utf-8'),
+          Buffer.from('b'),
+          Buffer.from('\x1b[O', 'utf-8'),
+          Buffer.from('c'),
+        ]);
+        stdin.emit('data', buf);
+      } else {
+        // Keypress path: focus should be ignored in handleKeypress already
+        stdin.pressKey({ name: 'a', sequence: 'a' });
+        stdin.pressKey({ name: '', sequence: '\x1b[I' as unknown as string });
+        stdin.pressKey({ name: 'b', sequence: 'b' });
+        stdin.pressKey({ name: '', sequence: '\x1b[O' as unknown as string });
+        stdin.pressKey({ name: 'c', sequence: 'c' });
+      }
+
+      // Should only receive a, b, c
+      const received = (onKeypress.mock.calls as Array<[Key]>).map(
+        ([k]) => k.sequence,
+      );
+      expect(received.join('')).toBe('abc');
+    });
+
+    it('ignores focus sequences across chunk boundaries', () => {
+      renderHook(() => useKeypress(onKeypress, { isActive: true }));
+      if (isLegacy) {
+        // Send ESC, then '[' in next chunk, then 'I' in next -> should drop
+        stdin.emit('data', Buffer.from([0x1b]));
+        stdin.emit('data', Buffer.from('['));
+        stdin.emit('data', Buffer.from('I'));
+        // Then send visible chars
+        stdin.emit('data', Buffer.from('x'));
+        // And ESC '[' 'O' across chunks too
+        stdin.emit('data', Buffer.from([0x1b]));
+        stdin.emit('data', Buffer.from('['));
+        stdin.emit('data', Buffer.from('O'));
+        stdin.emit('data', Buffer.from('y'));
+      } else {
+        // In keypress path, ESC [ I / O are already ignored in handleKeypress
+        stdin.pressKey({ name: 'x', sequence: 'x' });
+        stdin.pressKey({ name: 'y', sequence: 'y' });
+      }
+      const received = (onKeypress.mock.calls as Array<[Key]>).map(
+        ([k]) => k.sequence,
+      );
+      expect(received.join('')).toMatch(/xy$/);
+    });
+
+    it('ignores focus sequences split across keypress events (modern path)', () => {
+      if (isLegacy) return; // only relevant for keypress path
+      renderHook(() => useKeypress(onKeypress, { isActive: true }));
+
+      // Simulate ESC, then '[', then 'I' arriving as three separate keypress events
+      act(() => stdin.pressKey({ name: 'escape', sequence: '\x1b' as unknown as string }));
+      act(() => stdin.pressKey({ name: '', sequence: '[' }));
+      act(() => stdin.pressKey({ name: '', sequence: 'I' }));
+
+      // Then regular characters
+      act(() => stdin.pressKey({ name: '', sequence: '1' }));
+      act(() => stdin.pressKey({ name: '', sequence: '2' }));
+
+      const received = (onKeypress.mock.calls as Array<[Key]>).map(([k]) => k.sequence).join('');
+      expect(received.endsWith('12')).toBe(true);
+      // Ensure no stray ESC or '[' leaked
+      expect(received.includes('\x1b')).toBe(false);
+      expect(received.includes('[')).toBe(false);
+    });
   });
 });

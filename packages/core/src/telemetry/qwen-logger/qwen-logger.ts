@@ -68,8 +68,8 @@ export interface LogResponse {
 
 // Singleton class for batch posting log events to RUM. When a new event comes in, the elapsed time
 // is checked and events are flushed to RUM if at least a minute has passed since the last flush.
-export class QwenLogger {
-  private static instance: QwenLogger;
+export class DeltaLogger {
+  private static instance: DeltaLogger;
   private config?: Config;
 
   /**
@@ -114,18 +114,18 @@ export class QwenLogger {
     return `user-${getInstallationId()}`;
   }
 
-  static getInstance(config?: Config): QwenLogger | undefined {
+  static getInstance(config?: Config): DeltaLogger | undefined {
     if (config === undefined || !config?.getUsageStatisticsEnabled())
       return undefined;
-    if (!QwenLogger.instance) {
-      QwenLogger.instance = new QwenLogger(config);
+    if (!DeltaLogger.instance) {
+      DeltaLogger.instance = new DeltaLogger(config);
       process.on(
         'exit',
-        QwenLogger.instance.shutdown.bind(QwenLogger.instance),
+        DeltaLogger.instance.shutdown.bind(DeltaLogger.instance),
       );
     }
 
-    return QwenLogger.instance;
+    return DeltaLogger.instance;
   }
 
   enqueueLogEvent(event: RumEvent): void {
@@ -141,12 +141,12 @@ export class QwenLogger {
 
       if (wasAtCapacity && this.config?.getDebugMode()) {
         console.debug(
-          `QwenLogger: Dropped old event to prevent memory leak (queue size: ${this.events.size})`,
+          `DeltaLogger: Dropped old event to prevent memory leak (queue size: ${this.events.size})`,
         );
       }
     } catch (error) {
       if (this.config?.getDebugMode()) {
-        console.error('QwenLogger: Failed to enqueue log event.', error);
+        console.error('DeltaLogger: Failed to enqueue log event.', error);
       }
     }
   }
@@ -217,7 +217,7 @@ export class QwenLogger {
       },
       view: {
         id: this.sessionId,
-        name: 'qwen-code-cli',
+        name: 'delta-code-cli',
       },
 
       events: this.events.toArray() as RumEvent[],
@@ -227,7 +227,7 @@ export class QwenLogger {
         base_url:
           authType === AuthType.USE_OPENAI ? process.env.OPENAI_BASE_URL : '',
       },
-      _v: `qwen-code@${version}`,
+      _v: `delta-code@${version}`,
     };
   }
 
@@ -247,7 +247,7 @@ export class QwenLogger {
     if (this.isFlushInProgress) {
       if (this.config?.getDebugMode()) {
         console.debug(
-          'QwenLogger: Flush already in progress, marking pending flush.',
+          'DeltaLogger: Flush already in progress, marking pending flush.',
         );
       }
       this.pendingFlush = true;
@@ -607,7 +607,7 @@ export class QwenLogger {
     // Log a warning if we're dropping events
     if (eventsToSend.length > MAX_RETRY_EVENTS && this.config?.getDebugMode()) {
       console.warn(
-        `QwenLogger: Dropping ${
+        `DeltaLogger: Dropping ${
           eventsToSend.length - MAX_RETRY_EVENTS
         } events due to retry queue limit. Total events: ${
           eventsToSend.length
@@ -622,7 +622,7 @@ export class QwenLogger {
     if (numEventsToRequeue === 0) {
       if (this.config?.getDebugMode()) {
         console.debug(
-          `QwenLogger: No events re-queued (queue size: ${this.events.size})`,
+          `DeltaLogger: No events re-queued (queue size: ${this.events.size})`,
         );
       }
       return;
@@ -645,7 +645,7 @@ export class QwenLogger {
 
     if (this.config?.getDebugMode()) {
       console.debug(
-        `QwenLogger: Re-queued ${numEventsToRequeue} events for retry (queue size: ${this.events.size})`,
+        `DeltaLogger: Re-queued ${numEventsToRequeue} events for retry (queue size: ${this.events.size})`,
       );
     }
   }

@@ -9,23 +9,23 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { QwenLogger } from './qwen-logger/qwen-logger.js';
-import { RumEvent } from './qwen-logger/event-types.js';
+import { DeltaLogger } from './delta-logger.js';
+import { RumEvent } from './event-types.js';
 import { Config } from '../config/config.js';
 
 describe('Circular Reference Integration Test', () => {
   beforeEach(() => {
     // Clear singleton instance before each test
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (QwenLogger as any).instance = undefined;
+    (DeltaLogger as any).instance = undefined;
   });
 
   afterEach(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (QwenLogger as any).instance = undefined;
+    (DeltaLogger as any).instance = undefined;
   });
 
-  it('should handle HttpsProxyAgent-like circular references in qwen logging', () => {
+  it('should handle HttpsProxyAgent-like circular references in delta logging', () => {
     // Create a mock config with proxy
     const mockConfig = {
       getTelemetryEnabled: () => true,
@@ -68,8 +68,8 @@ describe('Circular Reference Integration Test', () => {
       },
     } as RumEvent;
 
-    // Test that QwenLogger can handle this
-    const logger = QwenLogger.getInstance(mockConfig);
+    // Test that DeltaLogger can handle this
+    const logger = DeltaLogger.getInstance(mockConfig);
 
     expect(() => {
       logger?.enqueueLogEvent(problematicEvent);
@@ -84,7 +84,7 @@ describe('Circular Reference Integration Test', () => {
       getDebugMode: () => true,
     } as unknown as Config;
 
-    const logger = QwenLogger.getInstance(mockConfig);
+    const logger = DeltaLogger.getInstance(mockConfig);
 
     // Add more events than the maximum capacity
     for (let i = 0; i < 1100; i++) {

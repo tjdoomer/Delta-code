@@ -80,8 +80,8 @@ describe('activate', () => {
     vi.mocked(context.globalState.get).mockReturnValue(undefined);
     await activate(context);
     expect(showInformationMessageMock).toHaveBeenCalledWith(
-      'Qwen Code Companion extension successfully installed. Please restart your terminal to enable full IDE integration.',
-      'Run Qwen Code',
+      'Delta Code Companion extension successfully installed. Please restart your terminal to enable full IDE integration.',
+      'Run Delta Code',
     );
   });
 
@@ -91,16 +91,16 @@ describe('activate', () => {
     expect(vscode.window.showInformationMessage).not.toHaveBeenCalled();
   });
 
-  it('should launch Qwen Code when the user clicks the button', async () => {
+  it('should launch Delta Code when the user clicks the button', async () => {
     const showInformationMessageMock = vi
       .mocked(vscode.window.showInformationMessage)
-      .mockResolvedValue('Run Qwen Code' as never);
+      .mockResolvedValue('Run Delta Code' as never);
     vi.mocked(context.globalState.get).mockReturnValue(undefined);
     await activate(context);
     expect(showInformationMessageMock).toHaveBeenCalled();
     await new Promise(process.nextTick); // Wait for the promise to resolve
     expect(vscode.commands.executeCommand).toHaveBeenCalledWith(
-      'qwen-code.runQwenCode',
+      'delta-code.runDeltaCode',
     );
   });
 });

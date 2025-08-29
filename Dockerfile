@@ -22,13 +22,13 @@ WORKDIR /home/node/app
 # Install dependencies and build packages
 RUN npm ci \
   && npm run build --workspaces \
-  && npm pack -w @qwen-code/qwen-code --pack-destination ./packages/cli/dist \
-  && npm pack -w @qwen-code/qwen-code-core --pack-destination ./packages/core/dist
+  && npm pack -w @delta-code/delta-code --pack-destination ./packages/cli/dist \
+  && npm pack -w @delta-code/delta-code-core --pack-destination ./packages/core/dist
 
 # Runtime stage
 FROM docker.io/library/node:20-slim
 
-ARG SANDBOX_NAME="qwen-code-sandbox"
+ARG SANDBOX_NAME="delta-code-sandbox"
 ARG CLI_VERSION_ARG
 ENV SANDBOX="$SANDBOX_NAME"
 ENV CLI_VERSION=$CLI_VERSION_ARG
@@ -70,4 +70,4 @@ RUN npm install -g /tmp/*.tgz \
   && rm -rf /tmp/*.tgz
 
 # Default entrypoint when none specified
-CMD ["qwen"]
+CMD ["delta"]

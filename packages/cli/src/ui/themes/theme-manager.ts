@@ -15,8 +15,8 @@ import { DefaultLight } from './default-light.js';
 import { DefaultDark } from './default.js';
 import { ShadesOfPurple } from './shades-of-purple.js';
 import { XCode } from './xcode.js';
-import { QwenLight } from './qwen-light.js';
-import { QwenDark } from './qwen-dark.js';
+import { DeltaLight } from './delta-light.js';
+import { DeltaDark } from './delta-dark.js';
 import {
   Theme,
   ThemeType,
@@ -36,7 +36,7 @@ export interface ThemeDisplay {
   isCustom?: boolean;
 }
 
-export const DEFAULT_THEME: Theme = QwenDark;
+export const DEFAULT_THEME: Theme = DeltaDark;
 
 class ThemeManager {
   private readonly availableThemes: Theme[];
@@ -54,8 +54,8 @@ class ThemeManager {
       GitHubDark,
       GitHubLight,
       GoogleCode,
-      QwenLight,
-      QwenDark,
+      DeltaLight,
+      DeltaDark,
       ShadesOfPurple,
       XCode,
       ANSI,
@@ -182,12 +182,12 @@ class ThemeManager {
       }),
     );
 
-    // Separate Qwen themes
-    const qwenThemes = builtInThemes.filter(
-      (theme) => theme.name === QwenLight.name || theme.name === QwenDark.name,
+    // Separate Delta themes
+    const deltaThemes = builtInThemes.filter(
+      (theme) => theme.name === DeltaLight.name || theme.name === DeltaDark.name,
     );
     const otherBuiltInThemes = builtInThemes.filter(
-      (theme) => theme.name !== QwenLight.name && theme.name !== QwenDark.name,
+      (theme) => theme.name !== DeltaLight.name && theme.name !== DeltaDark.name,
     );
 
     // Sort other themes by type and then name
@@ -216,8 +216,8 @@ class ThemeManager {
       },
     );
 
-    // Combine Qwen themes first, then sorted others
-    return [...qwenThemes, ...sortedOtherThemes];
+    // Combine Delta themes first, then sorted others
+    return [...deltaThemes, ...sortedOtherThemes];
   }
 
   /**

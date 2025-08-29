@@ -1,22 +1,22 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useQwenAuth, DeviceAuthorizationInfo } from './useQwenAuth.js';
+import { useDeltaAuth, DeviceAuthorizationInfo } from './useDeltaAuth.js';
 import {
   AuthType,
-  qwenOAuth2Events,
-  QwenOAuth2Event,
-} from '@qwen-code/qwen-code-core';
+  deltaOAuth2Events,
+  DeltaOAuth2Event,
+} from '@delta-code/delta-code-core';
 import { LoadedSettings } from '../../config/settings.js';
 
-// Mock the qwenOAuth2Events
-vi.mock('@qwen-code/qwen-code-core', async () => {
-  const actual = await vi.importActual('@qwen-code/qwen-code-core');
+// Mock the deltaOAuth2Events
+vi.mock('@delta-code/delta-code-core', async () => {
+  const actual = await vi.importActual('@delta-code/delta-code-core');
   const mockEmitter = {
     on: vi.fn().mockReturnThis(),
     off: vi.fn().mockReturnThis(),
@@ -24,20 +24,20 @@ vi.mock('@qwen-code/qwen-code-core', async () => {
   };
   return {
     ...actual,
-    qwenOAuth2Events: mockEmitter,
-    QwenOAuth2Event: {
+    deltaOAuth2Events: mockEmitter,
+    DeltaOAuth2Event: {
       AuthUri: 'authUri',
       AuthProgress: 'authProgress',
     },
   };
 });
 
-const mockQwenOAuth2Events = vi.mocked(qwenOAuth2Events);
+const mockDeltaOAuth2Events = vi.mocked(deltaOAuth2Events);
 
-describe('useQwenAuth', () => {
+describe('useDeltaAuth', () => {
   const mockDeviceAuth: DeviceAuthorizationInfo = {
-    verification_uri: 'https://oauth.qwen.com/device',
-    verification_uri_complete: 'https://oauth.qwen.com/device?user_code=ABC123',
+    verification_uri: 'https://oauth.delta.com/device',
+    verification_uri_complete: 'https://oauth.delta.com/device?user_code=ABC123',
     user_code: 'ABC123',
     expires_in: 1800,
   };
@@ -57,44 +57,44 @@ describe('useQwenAuth', () => {
     vi.clearAllMocks();
   });
 
-  it('should initialize with default state when not Qwen auth', () => {
+  it('should initialize with default state when not Delta auth', () => {
     const settings = createMockSettings(AuthType.USE_GEMINI);
-    const { result } = renderHook(() => useQwenAuth(settings, false));
+    const { result } = renderHook(() => useDeltaAuth(settings, false));
 
     expect(result.current).toEqual({
-      isQwenAuthenticating: false,
+      isDeltaAuthenticating: false,
       deviceAuth: null,
       authStatus: 'idle',
       authMessage: null,
-      isQwenAuth: false,
-      cancelQwenAuth: expect.any(Function),
+      isDeltaAuth: false,
+      cancelDeltaAuth: expect.any(Function),
     });
   });
 
-  it('should initialize with default state when Qwen auth but not authenticating', () => {
+  it('should initialize with default state when Delta auth but not authenticating', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
-    const { result } = renderHook(() => useQwenAuth(settings, false));
+    const { result } = renderHook(() => useDeltaAuth(settings, false));
 
     expect(result.current).toEqual({
-      isQwenAuthenticating: false,
+      isDeltaAuthenticating: false,
       deviceAuth: null,
       authStatus: 'idle',
       authMessage: null,
-      isQwenAuth: true,
-      cancelQwenAuth: expect.any(Function),
+      isDeltaAuth: true,
+      cancelDeltaAuth: expect.any(Function),
     });
   });
 
-  it('should set up event listeners when Qwen auth and authenticating', () => {
+  it('should set up event listeners when Delta auth and authenticating', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
-    renderHook(() => useQwenAuth(settings, true));
+    renderHook(() => useDeltaAuth(settings, true));
 
-    expect(mockQwenOAuth2Events.on).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthUri,
+    expect(mockDeltaOAuth2Events.on).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthUri,
       expect.any(Function),
     );
-    expect(mockQwenOAuth2Events.on).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthProgress,
+    expect(mockDeltaOAuth2Events.on).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthProgress,
       expect.any(Function),
     );
   });
@@ -103,14 +103,14 @@ describe('useQwenAuth', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
     let handleDeviceAuth: (deviceAuth: DeviceAuthorizationInfo) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthUri) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthUri) {
         handleDeviceAuth = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     act(() => {
       handleDeviceAuth!(mockDeviceAuth);
@@ -118,7 +118,7 @@ describe('useQwenAuth', () => {
 
     expect(result.current.deviceAuth).toEqual(mockDeviceAuth);
     expect(result.current.authStatus).toBe('polling');
-    expect(result.current.isQwenAuthenticating).toBe(true);
+    expect(result.current.isDeltaAuthenticating).toBe(true);
   });
 
   it('should handle auth progress event - success', () => {
@@ -128,14 +128,14 @@ describe('useQwenAuth', () => {
       message?: string,
     ) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthProgress) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthProgress) {
         handleAuthProgress = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     act(() => {
       handleAuthProgress!('success', 'Authentication successful!');
@@ -152,14 +152,14 @@ describe('useQwenAuth', () => {
       message?: string,
     ) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthProgress) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthProgress) {
         handleAuthProgress = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     act(() => {
       handleAuthProgress!('error', 'Authentication failed');
@@ -176,14 +176,14 @@ describe('useQwenAuth', () => {
       message?: string,
     ) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthProgress) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthProgress) {
         handleAuthProgress = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     act(() => {
       handleAuthProgress!('polling', 'Waiting for user authorization...');
@@ -202,14 +202,14 @@ describe('useQwenAuth', () => {
       message?: string,
     ) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthProgress) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthProgress) {
         handleAuthProgress = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     act(() => {
       handleAuthProgress!(
@@ -231,14 +231,14 @@ describe('useQwenAuth', () => {
       message?: string,
     ) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthProgress) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthProgress) {
         handleAuthProgress = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     act(() => {
       handleAuthProgress!('success');
@@ -249,23 +249,23 @@ describe('useQwenAuth', () => {
   });
 
   it('should clean up event listeners when auth type changes', () => {
-    const qwenSettings = createMockSettings(AuthType.QWEN_OAUTH);
+    const deltaSettings = createMockSettings(AuthType.QWEN_OAUTH);
     const { rerender } = renderHook(
       ({ settings, isAuthenticating }) =>
-        useQwenAuth(settings, isAuthenticating),
-      { initialProps: { settings: qwenSettings, isAuthenticating: true } },
+        useDeltaAuth(settings, isAuthenticating),
+      { initialProps: { settings: deltaSettings, isAuthenticating: true } },
     );
 
-    // Change to non-Qwen auth
+    // Change to non-Delta auth
     const geminiSettings = createMockSettings(AuthType.USE_GEMINI);
     rerender({ settings: geminiSettings, isAuthenticating: true });
 
-    expect(mockQwenOAuth2Events.off).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthUri,
+    expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthUri,
       expect.any(Function),
     );
-    expect(mockQwenOAuth2Events.off).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthProgress,
+    expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthProgress,
       expect.any(Function),
     );
   });
@@ -273,54 +273,54 @@ describe('useQwenAuth', () => {
   it('should clean up event listeners when authentication stops', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
     const { rerender } = renderHook(
-      ({ isAuthenticating }) => useQwenAuth(settings, isAuthenticating),
+      ({ isAuthenticating }) => useDeltaAuth(settings, isAuthenticating),
       { initialProps: { isAuthenticating: true } },
     );
 
     // Stop authentication
     rerender({ isAuthenticating: false });
 
-    expect(mockQwenOAuth2Events.off).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthUri,
+    expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthUri,
       expect.any(Function),
     );
-    expect(mockQwenOAuth2Events.off).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthProgress,
+    expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthProgress,
       expect.any(Function),
     );
   });
 
   it('should clean up event listeners on unmount', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
-    const { unmount } = renderHook(() => useQwenAuth(settings, true));
+    const { unmount } = renderHook(() => useDeltaAuth(settings, true));
 
     unmount();
 
-    expect(mockQwenOAuth2Events.off).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthUri,
+    expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthUri,
       expect.any(Function),
     );
-    expect(mockQwenOAuth2Events.off).toHaveBeenCalledWith(
-      QwenOAuth2Event.AuthProgress,
+    expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
+      DeltaOAuth2Event.AuthProgress,
       expect.any(Function),
     );
   });
 
-  it('should reset state when switching from Qwen auth to another auth type', () => {
-    const qwenSettings = createMockSettings(AuthType.QWEN_OAUTH);
+  it('should reset state when switching from Delta auth to another auth type', () => {
+    const deltaSettings = createMockSettings(AuthType.QWEN_OAUTH);
     let handleDeviceAuth: (deviceAuth: DeviceAuthorizationInfo) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthUri) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthUri) {
         handleDeviceAuth = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
     const { result, rerender } = renderHook(
       ({ settings, isAuthenticating }) =>
-        useQwenAuth(settings, isAuthenticating),
-      { initialProps: { settings: qwenSettings, isAuthenticating: true } },
+        useDeltaAuth(settings, isAuthenticating),
+      { initialProps: { settings: deltaSettings, isAuthenticating: true } },
     );
 
     // Simulate device auth
@@ -335,7 +335,7 @@ describe('useQwenAuth', () => {
     const geminiSettings = createMockSettings(AuthType.USE_GEMINI);
     rerender({ settings: geminiSettings, isAuthenticating: true });
 
-    expect(result.current.isQwenAuthenticating).toBe(false);
+    expect(result.current.isDeltaAuthenticating).toBe(false);
     expect(result.current.deviceAuth).toBe(null);
     expect(result.current.authStatus).toBe('idle');
     expect(result.current.authMessage).toBe(null);
@@ -345,15 +345,15 @@ describe('useQwenAuth', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
     let handleDeviceAuth: (deviceAuth: DeviceAuthorizationInfo) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthUri) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthUri) {
         handleDeviceAuth = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
     const { result, rerender } = renderHook(
-      ({ isAuthenticating }) => useQwenAuth(settings, isAuthenticating),
+      ({ isAuthenticating }) => useDeltaAuth(settings, isAuthenticating),
       { initialProps: { isAuthenticating: true } },
     );
 
@@ -368,24 +368,24 @@ describe('useQwenAuth', () => {
     // Stop authentication
     rerender({ isAuthenticating: false });
 
-    expect(result.current.isQwenAuthenticating).toBe(false);
+    expect(result.current.isDeltaAuthenticating).toBe(false);
     expect(result.current.deviceAuth).toBe(null);
     expect(result.current.authStatus).toBe('idle');
     expect(result.current.authMessage).toBe(null);
   });
 
-  it('should handle cancelQwenAuth function', () => {
+  it('should handle cancelDeltaAuth function', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
     let handleDeviceAuth: (deviceAuth: DeviceAuthorizationInfo) => void;
 
-    mockQwenOAuth2Events.on.mockImplementation((event, handler) => {
-      if (event === QwenOAuth2Event.AuthUri) {
+    mockDeltaOAuth2Events.on.mockImplementation((event, handler) => {
+      if (event === DeltaOAuth2Event.AuthUri) {
         handleDeviceAuth = handler;
       }
-      return mockQwenOAuth2Events;
+      return mockDeltaOAuth2Events;
     });
 
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
     // Set up some state
     act(() => {
@@ -396,42 +396,42 @@ describe('useQwenAuth', () => {
 
     // Cancel auth
     act(() => {
-      result.current.cancelQwenAuth();
+      result.current.cancelDeltaAuth();
     });
 
-    expect(result.current.isQwenAuthenticating).toBe(false);
+    expect(result.current.isDeltaAuthenticating).toBe(false);
     expect(result.current.deviceAuth).toBe(null);
     expect(result.current.authStatus).toBe('idle');
     expect(result.current.authMessage).toBe(null);
   });
 
-  it('should maintain isQwenAuth flag correctly', () => {
-    // Test with Qwen OAuth
-    const qwenSettings = createMockSettings(AuthType.QWEN_OAUTH);
-    const { result: qwenResult } = renderHook(() =>
-      useQwenAuth(qwenSettings, false),
+  it('should maintain isDeltaAuth flag correctly', () => {
+    // Test with Delta OAuth
+    const deltaSettings = createMockSettings(AuthType.QWEN_OAUTH);
+    const { result: deltaResult } = renderHook(() =>
+      useDeltaAuth(deltaSettings, false),
     );
-    expect(qwenResult.current.isQwenAuth).toBe(true);
+    expect(deltaResult.current.isDeltaAuth).toBe(true);
 
     // Test with other auth types
     const geminiSettings = createMockSettings(AuthType.USE_GEMINI);
     const { result: geminiResult } = renderHook(() =>
-      useQwenAuth(geminiSettings, false),
+      useDeltaAuth(geminiSettings, false),
     );
-    expect(geminiResult.current.isQwenAuth).toBe(false);
+    expect(geminiResult.current.isDeltaAuth).toBe(false);
 
     const oauthSettings = createMockSettings(AuthType.LOGIN_WITH_GOOGLE);
     const { result: oauthResult } = renderHook(() =>
-      useQwenAuth(oauthSettings, false),
+      useDeltaAuth(oauthSettings, false),
     );
-    expect(oauthResult.current.isQwenAuth).toBe(false);
+    expect(oauthResult.current.isDeltaAuth).toBe(false);
   });
 
-  it('should set isQwenAuthenticating to true when starting authentication with Qwen auth', () => {
+  it('should set isDeltaAuthenticating to true when starting authentication with Delta auth', () => {
     const settings = createMockSettings(AuthType.QWEN_OAUTH);
-    const { result } = renderHook(() => useQwenAuth(settings, true));
+    const { result } = renderHook(() => useDeltaAuth(settings, true));
 
-    expect(result.current.isQwenAuthenticating).toBe(true);
+    expect(result.current.isDeltaAuthenticating).toBe(true);
     expect(result.current.authStatus).toBe('idle');
   });
 });

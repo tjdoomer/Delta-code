@@ -11,7 +11,7 @@ import {
   MCPServerConfig,
   MCPServerStatus,
   createTransport,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { loadExtensions } from '../../config/extension.js';
 

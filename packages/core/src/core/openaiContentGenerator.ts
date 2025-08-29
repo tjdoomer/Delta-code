@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -113,7 +113,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
     this.config = gcConfig;
 
     const version = gcConfig.getCliVersion() || 'unknown';
-    const userAgent = `QwenCode/${version} (${process.platform}; ${process.arch})`;
+    const userAgent = `DeltaCode/${version} (${process.platform}; ${process.arch})`;
 
     // Check if using OpenRouter and add required headers
     const isOpenRouterProvider = this.isOpenRouterProvider();
@@ -123,8 +123,8 @@ export class OpenAIContentGenerator implements ContentGenerator {
       'User-Agent': userAgent,
       ...(isOpenRouterProvider
         ? {
-            'HTTP-Referer': 'https://github.com/QwenLM/qwen-code.git',
-            'X-Title': 'Qwen Code',
+            'HTTP-Referer': 'https://github.com/DeltaLM/delta-code.git',
+            'X-Title': 'Delta Code',
           }
         : isDashScopeProvider
           ? {
@@ -618,7 +618,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
 
     try {
       const { get_encoding } = await import('tiktoken');
-      const encoding = get_encoding('cl100k_base'); // GPT-4 encoding, but estimate for qwen
+      const encoding = get_encoding('cl100k_base'); // GPT-4 encoding, but estimate for delta
       totalTokens = encoding.encode(content).length;
       encoding.free();
     } catch (error) {

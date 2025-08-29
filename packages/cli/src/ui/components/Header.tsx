@@ -8,7 +8,7 @@ import React from 'react';
 import { Box, Text } from 'ink';
 import Gradient from 'ink-gradient';
 import { Colors } from '../colors.js';
-import { shortAsciiLogo, longAsciiLogo, tinyAsciiLogo } from './AsciiArt.js';
+import { shortAsciiLogo, longAsciiLogo, tinyAsciiLogo, asciiGradientColors } from './AsciiArt.js';
 import { getAsciiArtWidth } from '../utils/textUtils.js';
 import { useTerminalSize } from '../hooks/useTerminalSize.js';
 
@@ -48,11 +48,11 @@ export const Header: React.FC<HeaderProps> = ({
       flexDirection="column"
     >
       {Colors.GradientColors ? (
-        <Gradient colors={Colors.GradientColors}>
-          <Text>{displayTitle}</Text>
+        <Gradient colors={asciiGradientColors}>
+          <Text>{displayTitle}{' '}* * * the modest worker</Text>
         </Gradient>
       ) : (
-        <Text>{displayTitle}</Text>
+        <Text>{displayTitle}{' '}* * * the modest worker</Text>
       )}
       {nightly && (
         <Box width="100%" flexDirection="row" justifyContent="flex-end">

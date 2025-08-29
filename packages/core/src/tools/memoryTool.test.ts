@@ -21,7 +21,7 @@ import { ToolConfirmationOutcome } from './tools.js';
 vi.mock('fs/promises');
 vi.mock('os');
 
-const MEMORY_SECTION_HEADER = '## Qwen Added Memories';
+const MEMORY_SECTION_HEADER = '## Delta Added Memories';
 
 // Define a type for our fsAdapter to ensure consistency
 interface FsAdapter {
@@ -89,7 +89,7 @@ describe('MemoryTool', () => {
     let testFilePath: string;
 
     beforeEach(() => {
-      testFilePath = path.join(os.homedir(), '.qwen', DEFAULT_CONTEXT_FILENAME);
+      testFilePath = path.join(os.homedir(), '.delta', DEFAULT_CONTEXT_FILENAME);
     });
 
     it('should create section and save a fact if file does not exist', async () => {
@@ -210,7 +210,7 @@ describe('MemoryTool', () => {
       // Use getCurrentGeminiMdFilename for the default expectation before any setGeminiMdFilename calls in a test
       const expectedFilePath = path.join(
         os.homedir(),
-        '.qwen',
+        '.delta',
         getCurrentGeminiMdFilename(), // This will be DEFAULT_CONTEXT_FILENAME unless changed by a test
       );
 
@@ -330,17 +330,17 @@ describe('MemoryTool', () => {
       expect(result).not.toBe(false);
 
       if (result && result.type === 'edit') {
-        const expectedPath = path.join('~', '.qwen', 'QWEN.md');
+        const expectedPath = path.join('~', '.delta', 'QWEN.md');
         expect(result.title).toBe(
           `Confirm Memory Save: ${expectedPath} (global)`,
         );
-        expect(result.fileName).toContain(path.join('mock', 'home', '.qwen'));
+        expect(result.fileName).toContain(path.join('mock', 'home', '.delta'));
         expect(result.fileName).toContain('QWEN.md');
         expect(result.fileDiff).toContain('Index: QWEN.md');
-        expect(result.fileDiff).toContain('+## Qwen Added Memories');
+        expect(result.fileDiff).toContain('+## Delta Added Memories');
         expect(result.fileDiff).toContain('+- Test fact');
         expect(result.originalContent).toBe('');
-        expect(result.newContent).toContain('## Qwen Added Memories');
+        expect(result.newContent).toContain('## Delta Added Memories');
         expect(result.newContent).toContain('- Test fact');
       }
     });
@@ -360,10 +360,10 @@ describe('MemoryTool', () => {
         );
         expect(result.fileName).toBe(expectedPath);
         expect(result.fileDiff).toContain('Index: QWEN.md');
-        expect(result.fileDiff).toContain('+## Qwen Added Memories');
+        expect(result.fileDiff).toContain('+## Delta Added Memories');
         expect(result.fileDiff).toContain('+- Test fact');
         expect(result.originalContent).toBe('');
-        expect(result.newContent).toContain('## Qwen Added Memories');
+        expect(result.newContent).toContain('## Delta Added Memories');
         expect(result.newContent).toContain('- Test fact');
       }
     });
@@ -372,7 +372,7 @@ describe('MemoryTool', () => {
       const params = { fact: 'Test fact', scope: 'global' as const };
       const memoryFilePath = path.join(
         os.homedir(),
-        '.qwen',
+        '.delta',
         getCurrentGeminiMdFilename(),
       );
 
@@ -409,7 +409,7 @@ describe('MemoryTool', () => {
       const params = { fact: 'Test fact', scope: 'global' as const };
       const memoryFilePath = path.join(
         os.homedir(),
-        '.qwen',
+        '.delta',
         getCurrentGeminiMdFilename(),
       );
 
@@ -464,7 +464,7 @@ describe('MemoryTool', () => {
       const params = { fact: 'Test fact', scope: 'global' as const };
       const memoryFilePath = path.join(
         os.homedir(),
-        '.qwen',
+        '.delta',
         getCurrentGeminiMdFilename(),
       );
 
@@ -489,7 +489,7 @@ describe('MemoryTool', () => {
     it('should handle existing memory file with content for global scope', async () => {
       const params = { fact: 'New fact', scope: 'global' as const };
       const existingContent =
-        'Some existing content.\n\n## Qwen Added Memories\n- Old fact\n';
+        'Some existing content.\n\n## Delta Added Memories\n- Old fact\n';
 
       // Mock fs.readFile to return existing content
       vi.mocked(fs.readFile).mockResolvedValue(existingContent);
@@ -501,7 +501,7 @@ describe('MemoryTool', () => {
       expect(result).not.toBe(false);
 
       if (result && result.type === 'edit') {
-        const expectedPath = path.join('~', '.qwen', 'QWEN.md');
+        const expectedPath = path.join('~', '.delta', 'QWEN.md');
         expect(result.title).toBe(
           `Confirm Memory Save: ${expectedPath} (global)`,
         );
@@ -544,7 +544,7 @@ describe('MemoryTool', () => {
       expect(result).not.toBe(false);
 
       if (result && result.type === 'edit') {
-        const globalPath = path.join('~', '.qwen', 'QWEN.md');
+        const globalPath = path.join('~', '.delta', 'QWEN.md');
         const projectPath = path.join(process.cwd(), 'QWEN.md');
 
         expect(result.fileDiff).toContain(`Global: ${globalPath}`);
@@ -567,7 +567,7 @@ describe('MemoryTool', () => {
       const invocation = memoryTool.build(params);
       const description = invocation.getDescription();
 
-      const expectedPath = path.join('~', '.qwen', 'QWEN.md');
+      const expectedPath = path.join('~', '.delta', 'QWEN.md');
       expect(description).toBe(`${expectedPath} (global)`);
     });
 
@@ -585,7 +585,7 @@ describe('MemoryTool', () => {
       const invocation = memoryTool.build(params);
       const description = invocation.getDescription();
 
-      const globalPath = path.join('~', '.qwen', 'QWEN.md');
+      const globalPath = path.join('~', '.delta', 'QWEN.md');
       const projectPath = path.join(process.cwd(), 'QWEN.md');
       expect(description).toBe(
         `CHOOSE: ${globalPath} (global) OR ${projectPath} (project)`,

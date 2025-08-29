@@ -9,12 +9,12 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { useAtCompletion } from './useAtCompletion.js';
-import { Config, FileSearch } from '@qwen-code/qwen-code-core';
+import { Config, FileSearch } from '@delta-code/delta-code-core';
 import {
   createTmpDir,
   cleanupTmpDir,
   FileSystemStructure,
-} from '@qwen-code/qwen-code-test-utils';
+} from '@delta-code/delta-code-test-utils';
 import { useState } from 'react';
 import { Suggestion } from '../components/SuggestionsDisplay.js';
 

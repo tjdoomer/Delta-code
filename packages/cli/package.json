@@ -1,15 +1,15 @@
 {
-  "name": "@qwen-code/qwen-code",
+  "name": "@delta-code/delta-code",
   "version": "0.0.9",
-  "description": "Qwen Code",
+  "description": "Delta Code",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/QwenLM/qwen-code.git"
+    "url": "git+https://github.com/DeltaLM/delta-code.git"
   },
   "type": "module",
   "main": "dist/index.js",
   "bin": {
-    "qwen": "dist/index.js"
+    "delta": "dist/index.js"
   },
   "scripts": {
     "build": "node ../../scripts/build_package.js",
@@ -25,12 +25,12 @@
     "dist"
   ],
   "config": {
-    "sandboxImageUri": "ghcr.io/qwenlm/qwen-code:0.0.9"
+    "sandboxImageUri": "ghcr.io/deltalm/delta-code:0.0.9"
   },
   "dependencies": {
+    "@delta-code/delta-code-core": "file:../core",
     "@google/genai": "1.9.0",
     "@iarna/toml": "^2.2.5",
-    "@qwen-code/qwen-code-core": "file:../core",
     "@modelcontextprotocol/sdk": "^1.15.1",
     "@types/update-notifier": "^6.0.8",
     "command-exists": "^1.2.9",
@@ -48,7 +48,8 @@
     "mime-types": "^3.0.1",
     "open": "^10.1.2",
     "qrcode-terminal": "^0.12.0",
-    "react": "^19.1.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "read-package-up": "^11.0.0",
     "shell-quote": "^1.8.3",
     "string-width": "^7.1.0",
@@ -61,6 +62,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.27.6",
+    "@delta-code/delta-code-test-utils": "file:../test-utils",
     "@testing-library/react": "^16.3.0",
     "@types/command-exists": "^1.2.3",
     "@types/diff": "^7.0.2",
@@ -74,10 +76,8 @@
     "ink-testing-library": "^4.0.0",
     "jsdom": "^26.1.0",
     "pretty-format": "^30.0.2",
-    "react-dom": "^19.1.0",
     "typescript": "^5.3.3",
-    "vitest": "^3.1.1",
-    "@qwen-code/qwen-code-test-utils": "file:../test-utils"
+    "vitest": "^3.1.1"
   },
   "engines": {
     "node": ">=20"

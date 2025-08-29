@@ -1,11 +1,11 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { OpenAIContentGenerator } from '../core/openaiContentGenerator.js';
-import { IQwenOAuth2Client } from './qwenOAuth2.js';
+import { IDeltaOAuth2Client } from './deltaOAuth2.js';
 import { SharedTokenManager } from './sharedTokenManager.js';
 import { Config } from '../config/config.js';
 import {
@@ -23,21 +23,21 @@ const DEFAULT_QWEN_BASE_URL =
   'https://dashscope.aliyuncs.com/compatible-mode/v1';
 
 /**
- * Qwen Content Generator that uses Qwen OAuth tokens with automatic refresh
+ * Delta Content Generator that uses Delta OAuth tokens with automatic refresh
  */
-export class QwenContentGenerator extends OpenAIContentGenerator {
-  private qwenClient: IQwenOAuth2Client;
+export class DeltaContentGenerator extends OpenAIContentGenerator {
+  private deltaClient: IDeltaOAuth2Client;
   private sharedManager: SharedTokenManager;
   private currentToken?: string;
 
   constructor(
-    qwenClient: IQwenOAuth2Client,
+    deltaClient: IDeltaOAuth2Client,
     contentGeneratorConfig: ContentGeneratorConfig,
     config: Config,
   ) {
     // Initialize with empty API key, we'll override it dynamically
     super(contentGeneratorConfig, config);
-    this.qwenClient = qwenClient;
+    this.deltaClient = deltaClient;
     this.sharedManager = SharedTokenManager.getInstance();
 
     // Set default base URL, will be updated dynamically
@@ -79,7 +79,7 @@ export class QwenContentGenerator extends OpenAIContentGenerator {
     try {
       // Use SharedTokenManager for consistent token/endpoint pairing and automatic refresh
       const credentials = await this.sharedManager.getValidCredentials(
-        this.qwenClient,
+        this.deltaClient,
       );
 
       if (!credentials.access_token) {
@@ -97,7 +97,7 @@ export class QwenContentGenerator extends OpenAIContentGenerator {
       }
       console.warn('Failed to get token from shared manager:', error);
       throw new Error(
-        'Failed to obtain valid Qwen access token. Please re-authenticate.',
+        'Failed to obtain valid Delta access token. Please re-authenticate.',
       );
     }
   }
@@ -156,12 +156,12 @@ export class QwenContentGenerator extends OpenAIContentGenerator {
         try {
           // Use SharedTokenManager to properly refresh and persist the token
           // This ensures the refreshed token is saved to oauth_creds.json
-          await this.sharedManager.getValidCredentials(this.qwenClient, true);
+          await this.sharedManager.getValidCredentials(this.deltaClient, true);
           // Retry the operation once with fresh credentials
           return await attemptOperation();
         } catch (_refreshError) {
           throw new Error(
-            'Failed to obtain valid Qwen access token. Please re-authenticate.',
+            'Failed to obtain valid Delta access token. Please re-authenticate.',
           );
         }
       }

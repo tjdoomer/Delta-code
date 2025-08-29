@@ -23,7 +23,7 @@ import {
   ToolConfirmationOutcome,
   ToolRegistry,
   ToolResult,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import * as fs from 'fs/promises';
 import { Readable, Writable } from 'node:stream';
 import * as path from 'path';

@@ -5,7 +5,7 @@
  */
 
 import * as vscode from 'vscode';
-import { IdeContextNotificationSchema } from '@qwen-code/qwen-code-core';
+import { IdeContextNotificationSchema } from '@delta-code/delta-code-core';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
@@ -225,7 +225,7 @@ export class IDEServer {
 const createMcpServer = (diffManager: DiffManager) => {
   const server = new McpServer(
     {
-      name: 'qwen-code-companion-mcp-server',
+      name: 'delta-code-companion-mcp-server',
       version: '1.0.0',
     },
     { capabilities: { logging: {} } },

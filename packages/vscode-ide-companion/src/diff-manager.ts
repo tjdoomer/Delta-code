@@ -7,7 +7,7 @@
 import {
   IdeDiffAcceptedNotificationSchema,
   IdeDiffClosedNotificationSchema,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import { type JSONRPCNotification } from '@modelcontextprotocol/sdk/types.js';
 import * as path from 'node:path';
 import * as vscode from 'vscode';
@@ -97,7 +97,7 @@ export class DiffManager {
     const diffTitle = `${path.basename(filePath)} ↔ Modified`;
     await vscode.commands.executeCommand(
       'setContext',
-      'qwen.diff.isVisible',
+      'delta.diff.isVisible',
       true,
     );
 
@@ -228,7 +228,7 @@ export class DiffManager {
     }
     await vscode.commands.executeCommand(
       'setContext',
-      'qwen.diff.isVisible',
+      'delta.diff.isVisible',
       isVisible,
     );
   }
@@ -241,7 +241,7 @@ export class DiffManager {
     const diffInfo = this.diffDocuments.get(rightDocUri.toString());
     await vscode.commands.executeCommand(
       'setContext',
-      'qwen.diff.isVisible',
+      'delta.diff.isVisible',
       false,
     );
 

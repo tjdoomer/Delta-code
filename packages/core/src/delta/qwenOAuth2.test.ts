@@ -16,12 +16,12 @@ import {
   isDeviceTokenPending,
   isDeviceTokenSuccess,
   isErrorResponse,
-  QwenOAuth2Client,
+  DeltaOAuth2Client,
   type DeviceAuthorizationResponse,
   type DeviceTokenResponse,
   type ErrorData,
-  type QwenCredentials,
-} from './qwenOAuth2.js';
+  type DeltaCredentials,
+} from './deltaOAuth2.js';
 import {
   SharedTokenManager,
   TokenManagerError,
@@ -29,8 +29,8 @@ import {
 } from './sharedTokenManager.js';
 
 interface MockSharedTokenManager {
-  getValidCredentials(qwenClient: QwenOAuth2Client): Promise<QwenCredentials>;
-  getCurrentCredentials(): QwenCredentials | null;
+  getValidCredentials(deltaClient: DeltaOAuth2Client): Promise<DeltaCredentials>;
+  getCurrentCredentials(): DeltaCredentials | null;
   clearCache(): void;
 }
 
@@ -47,10 +47,10 @@ vi.mock('./sharedTokenManager.js', () => ({
     }
 
     async getValidCredentials(
-      qwenClient: QwenOAuth2Client,
-    ): Promise<QwenCredentials> {
+      deltaClient: DeltaOAuth2Client,
+    ): Promise<DeltaCredentials> {
       // Try to get credentials from the client first
-      const clientCredentials = qwenClient.getCredentials();
+      const clientCredentials = deltaClient.getCredentials();
       if (clientCredentials && clientCredentials.access_token) {
         return clientCredentials;
       }
@@ -65,7 +65,7 @@ vi.mock('./sharedTokenManager.js', () => ({
       };
     }
 
-    getCurrentCredentials(): QwenCredentials | null {
+    getCurrentCredentials(): DeltaCredentials | null {
       // Return null to let the client manage its own credentials
       return null;
     }
@@ -158,8 +158,8 @@ describe('Type Guards', () => {
   describe('isDeviceAuthorizationSuccess', () => {
     it('should return true for successful authorization response', () => {
       const expectedBaseUrl = process.env.DEBUG
-        ? 'https://pre4-chat.qwen.ai'
-        : 'https://chat.qwen.ai';
+        ? 'https://pre4-chat.delta.ai'
+        : 'https://chat.delta.ai';
 
       const successResponse: DeviceAuthorizationResponse = {
         device_code: 'test-device-code',
@@ -278,8 +278,8 @@ describe('Type Guards', () => {
       const successResponse: DeviceAuthorizationResponse = {
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       };
 
@@ -288,13 +288,13 @@ describe('Type Guards', () => {
   });
 });
 
-describe('QwenOAuth2Client', () => {
-  let client: QwenOAuth2Client;
+describe('DeltaOAuth2Client', () => {
+  let client: DeltaOAuth2Client;
   let originalFetch: typeof global.fetch;
 
   beforeEach(() => {
     // Create client instance
-    client = new QwenOAuth2Client();
+    client = new DeltaOAuth2Client();
 
     // Mock fetch
     originalFetch = global.fetch;
@@ -313,8 +313,8 @@ describe('QwenOAuth2Client', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -330,8 +330,8 @@ describe('QwenOAuth2Client', () => {
       expect(result).toEqual({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       });
     });
@@ -498,7 +498,7 @@ describe('QwenOAuth2Client', () => {
       (
         client as unknown as {
           sharedManager: {
-            getValidCredentials: () => Promise<QwenCredentials>;
+            getValidCredentials: () => Promise<DeltaCredentials>;
           };
         }
       ).sharedManager = {
@@ -521,7 +521,7 @@ describe('QwenOAuth2Client', () => {
       (
         client as unknown as {
           sharedManager: {
-            getValidCredentials: () => Promise<QwenCredentials>;
+            getValidCredentials: () => Promise<DeltaCredentials>;
           };
         }
       ).sharedManager = {
@@ -738,7 +738,7 @@ describe('QwenOAuth2Client', () => {
   });
 });
 
-describe('getQwenOAuthClient', () => {
+describe('getDeltaOAuthClient', () => {
   let mockConfig: Config;
   let originalFetch: typeof global.fetch;
 
@@ -777,8 +777,8 @@ describe('getQwenOAuthClient', () => {
     const originalGetInstance = SharedTokenManager.getInstance;
     SharedTokenManager.getInstance = vi.fn().mockReturnValue(mockTokenManager);
 
-    const client = await import('./qwenOAuth2.js').then((module) =>
-      module.getQwenOAuthClient(mockConfig),
+    const client = await import('./deltaOAuth2.js').then((module) =>
+      module.getDeltaOAuthClient(mockConfig),
     );
 
     expect(client).toBeInstanceOf(Object);
@@ -793,7 +793,7 @@ describe('getQwenOAuthClient', () => {
       access_token: 'cached-token',
       refresh_token: 'expired-refresh',
       token_type: 'Bearer',
-      expiry_date: Date.now() + 3600000, // Valid expiry time so loadCachedQwenCredentials returns true
+      expiry_date: Date.now() + 3600000, // Valid expiry time so loadCachedDeltaCredentials returns true
     };
 
     vi.mocked(fs.promises.readFile).mockResolvedValue(
@@ -822,55 +822,55 @@ describe('getQwenOAuthClient', () => {
 
     // The function should handle the invalid cached credentials and throw the expected error
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
-    ).rejects.toThrow('Qwen OAuth authentication failed');
+    ).rejects.toThrow('Delta OAuth authentication failed');
 
     SharedTokenManager.getInstance = originalGetInstance;
   });
 });
 
-describe('clearQwenCredentials', () => {
+describe('clearDeltaCredentials', () => {
   it('should successfully clear credentials file', async () => {
     const { promises: fs } = await import('node:fs');
-    const { clearQwenCredentials } = await import('./qwenOAuth2.js');
+    const { clearDeltaCredentials } = await import('./deltaOAuth2.js');
 
     vi.mocked(fs.unlink).mockResolvedValue(undefined);
 
-    await expect(clearQwenCredentials()).resolves.not.toThrow();
+    await expect(clearDeltaCredentials()).resolves.not.toThrow();
     expect(fs.unlink).toHaveBeenCalled();
   });
 
   it('should handle file not found error gracefully', async () => {
     const { promises: fs } = await import('node:fs');
-    const { clearQwenCredentials } = await import('./qwenOAuth2.js');
+    const { clearDeltaCredentials } = await import('./deltaOAuth2.js');
 
     const notFoundError = new Error('File not found');
     (notFoundError as Error & { code: string }).code = 'ENOENT';
     vi.mocked(fs.unlink).mockRejectedValue(notFoundError);
 
-    await expect(clearQwenCredentials()).resolves.not.toThrow();
+    await expect(clearDeltaCredentials()).resolves.not.toThrow();
   });
 
   it('should handle other file system errors gracefully', async () => {
     const { promises: fs } = await import('node:fs');
-    const { clearQwenCredentials } = await import('./qwenOAuth2.js');
+    const { clearDeltaCredentials } = await import('./deltaOAuth2.js');
 
     const permissionError = new Error('Permission denied');
     vi.mocked(fs.unlink).mockRejectedValue(permissionError);
 
     // Should not throw but may log warning
-    await expect(clearQwenCredentials()).resolves.not.toThrow();
+    await expect(clearDeltaCredentials()).resolves.not.toThrow();
   });
 });
 
-describe('QwenOAuth2Client - Additional Error Scenarios', () => {
-  let client: QwenOAuth2Client;
+describe('DeltaOAuth2Client - Additional Error Scenarios', () => {
+  let client: DeltaOAuth2Client;
   let originalFetch: typeof global.fetch;
 
   beforeEach(() => {
-    client = new QwenOAuth2Client();
+    client = new DeltaOAuth2Client();
     originalFetch = global.fetch;
     global.fetch = vi.fn();
   });
@@ -919,7 +919,7 @@ describe('QwenOAuth2Client - Additional Error Scenarios', () => {
   });
 });
 
-describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
+describe('getDeltaOAuthClient - Enhanced Error Scenarios', () => {
   let mockConfig: Config;
   let originalFetch: typeof global.fetch;
 
@@ -969,10 +969,10 @@ describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
     vi.mocked(global.fetch).mockResolvedValue(mockAuthResponse as Response);
 
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
-    ).rejects.toThrow('Qwen OAuth authentication failed');
+    ).rejects.toThrow('Delta OAuth authentication failed');
 
     SharedTokenManager.getInstance = originalGetInstance;
   });
@@ -999,8 +999,8 @@ describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 0.1, // Very short timeout for testing
       }),
     };
@@ -1018,10 +1018,10 @@ describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
       .mockResolvedValue(mockPendingResponse as Response);
 
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
-    ).rejects.toThrow('Qwen OAuth authentication timed out');
+    ).rejects.toThrow('Delta OAuth authentication timed out');
 
     SharedTokenManager.getInstance = originalGetInstance;
   });
@@ -1048,8 +1048,8 @@ describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -1067,11 +1067,11 @@ describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
       .mockResolvedValue(mockRateLimitResponse as Response);
 
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
     ).rejects.toThrow(
-      'Too many request for Qwen OAuth authentication, please try again later.',
+      'Too many request for Delta OAuth authentication, please try again later.',
     );
 
     SharedTokenManager.getInstance = originalGetInstance;
@@ -1105,16 +1105,16 @@ describe('getQwenOAuthClient - Enhanced Error Scenarios', () => {
     global.fetch = vi.fn().mockResolvedValue(mockAuthResponse as Response);
 
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
-    ).rejects.toThrow('Qwen OAuth authentication failed');
+    ).rejects.toThrow('Delta OAuth authentication failed');
 
     SharedTokenManager.getInstance = originalGetInstance;
   });
 });
 
-describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
+describe('authWithDeltaDeviceFlow - Comprehensive Testing', () => {
   let mockConfig: Config;
   let originalFetch: typeof global.fetch;
 
@@ -1163,10 +1163,10 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
     global.fetch = vi.fn().mockResolvedValue(mockAuthResponse as Response);
 
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
-    ).rejects.toThrow('Qwen OAuth authentication failed');
+    ).rejects.toThrow('Delta OAuth authentication failed');
 
     SharedTokenManager.getInstance = originalGetInstance;
   });
@@ -1182,8 +1182,8 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -1203,8 +1203,8 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
       .mockResolvedValueOnce(mockAuthResponse as Response)
       .mockResolvedValue(mockTokenResponse as Response);
 
-    const client = await import('./qwenOAuth2.js').then((module) =>
-      module.getQwenOAuthClient(mockConfig),
+    const client = await import('./deltaOAuth2.js').then((module) =>
+      module.getDeltaOAuthClient(mockConfig),
     );
 
     expect(client).toBeInstanceOf(Object);
@@ -1231,8 +1231,8 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -1250,10 +1250,10 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
       .mockResolvedValue(mock401Response as Response);
 
     await expect(
-      import('./qwenOAuth2.js').then((module) =>
-        module.getQwenOAuthClient(mockConfig),
+      import('./deltaOAuth2.js').then((module) =>
+        module.getDeltaOAuthClient(mockConfig),
       ),
-    ).rejects.toThrow('Qwen OAuth authentication failed');
+    ).rejects.toThrow('Delta OAuth authentication failed');
 
     SharedTokenManager.getInstance = originalGetInstance;
   });
@@ -1282,8 +1282,8 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -1304,8 +1304,8 @@ describe('authWithQwenDeviceFlow - Comprehensive Testing', () => {
       .mockResolvedValueOnce(mockAuthResponse as Response)
       .mockResolvedValue(mockTokenResponse as Response);
 
-    const client = await import('./qwenOAuth2.js').then((module) =>
-      module.getQwenOAuthClient(mockConfig),
+    const client = await import('./deltaOAuth2.js').then((module) =>
+      module.getDeltaOAuthClient(mockConfig),
     );
 
     expect(client).toBeInstanceOf(Object);
@@ -1350,8 +1350,8 @@ describe('Browser Launch and Error Handling', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -1371,8 +1371,8 @@ describe('Browser Launch and Error Handling', () => {
       .mockResolvedValueOnce(mockAuthResponse as Response)
       .mockResolvedValue(mockTokenResponse as Response);
 
-    const client = await import('./qwenOAuth2.js').then((module) =>
-      module.getQwenOAuthClient(mockConfig),
+    const client = await import('./deltaOAuth2.js').then((module) =>
+      module.getDeltaOAuthClient(mockConfig),
     );
 
     expect(client).toBeInstanceOf(Object);
@@ -1403,8 +1403,8 @@ describe('Browser Launch and Error Handling', () => {
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -1424,8 +1424,8 @@ describe('Browser Launch and Error Handling', () => {
       .mockResolvedValueOnce(mockAuthResponse as Response)
       .mockResolvedValue(mockTokenResponse as Response);
 
-    const client = await import('./qwenOAuth2.js').then((module) =>
-      module.getQwenOAuthClient(mockConfig),
+    const client = await import('./deltaOAuth2.js').then((module) =>
+      module.getDeltaOAuthClient(mockConfig),
     );
 
     expect(client).toBeInstanceOf(Object);
@@ -1433,16 +1433,16 @@ describe('Browser Launch and Error Handling', () => {
 });
 
 describe('Event Emitter Integration', () => {
-  it('should export qwenOAuth2Events as EventEmitter', async () => {
-    const { qwenOAuth2Events } = await import('./qwenOAuth2.js');
-    expect(qwenOAuth2Events).toBeInstanceOf(EventEmitter);
+  it('should export deltaOAuth2Events as EventEmitter', async () => {
+    const { deltaOAuth2Events } = await import('./deltaOAuth2.js');
+    expect(deltaOAuth2Events).toBeInstanceOf(EventEmitter);
   });
 
   it('should define correct event enum values', async () => {
-    const { QwenOAuth2Event } = await import('./qwenOAuth2.js');
-    expect(QwenOAuth2Event.AuthUri).toBe('auth-uri');
-    expect(QwenOAuth2Event.AuthProgress).toBe('auth-progress');
-    expect(QwenOAuth2Event.AuthCancel).toBe('auth-cancel');
+    const { DeltaOAuth2Event } = await import('./deltaOAuth2.js');
+    expect(DeltaOAuth2Event.AuthUri).toBe('auth-uri');
+    expect(DeltaOAuth2Event.AuthProgress).toBe('auth-progress');
+    expect(DeltaOAuth2Event.AuthCancel).toBe('auth-cancel');
   });
 });
 
@@ -1509,20 +1509,20 @@ describe('Utility Functions', () => {
     });
   });
 
-  describe('getQwenCachedCredentialPath', () => {
+  describe('getDeltaCachedCredentialPath', () => {
     it('should return correct path to cached credentials', async () => {
       const os = await import('os');
       const path = await import('path');
 
-      const expectedPath = path.join(os.homedir(), '.qwen', 'oauth_creds.json');
+      const expectedPath = path.join(os.homedir(), '.delta', 'oauth_creds.json');
 
-      // Since this is a private function, we test it indirectly through clearQwenCredentials
+      // Since this is a private function, we test it indirectly through clearDeltaCredentials
       const { promises: fs } = await import('node:fs');
-      const { clearQwenCredentials } = await import('./qwenOAuth2.js');
+      const { clearDeltaCredentials } = await import('./deltaOAuth2.js');
 
       vi.mocked(fs.unlink).mockResolvedValue(undefined);
 
-      await clearQwenCredentials();
+      await clearDeltaCredentials();
 
       expect(fs.unlink).toHaveBeenCalledWith(expectedPath);
     });
@@ -1530,10 +1530,10 @@ describe('Utility Functions', () => {
 });
 
 describe('Credential Caching Functions', () => {
-  describe('cacheQwenCredentials', () => {
+  describe('cacheDeltaCredentials', () => {
     it('should create directory and write credentials to file', async () => {
-      // Mock the internal cacheQwenCredentials function by creating client and calling refresh
-      const client = new QwenOAuth2Client();
+      // Mock the internal cacheDeltaCredentials function by creating client and calling refresh
+      const client = new DeltaOAuth2Client();
       client.setCredentials({
         refresh_token: 'test-refresh',
       });
@@ -1558,7 +1558,7 @@ describe('Credential Caching Functions', () => {
     });
   });
 
-  describe('loadCachedQwenCredentials', () => {
+  describe('loadCachedDeltaCredentials', () => {
     it('should load and validate cached credentials successfully', async () => {
       const { promises: fs } = await import('node:fs');
       const mockCredentials = {
@@ -1570,7 +1570,7 @@ describe('Credential Caching Functions', () => {
 
       vi.mocked(fs.readFile).mockResolvedValue(JSON.stringify(mockCredentials));
 
-      // Test through getQwenOAuthClient which calls loadCachedQwenCredentials
+      // Test through getDeltaOAuthClient which calls loadCachedDeltaCredentials
       const mockConfig = {
         isBrowserLaunchSuppressed: vi.fn().mockReturnValue(true),
       } as unknown as Config;
@@ -1593,8 +1593,8 @@ describe('Credential Caching Functions', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -1616,8 +1616,8 @@ describe('Credential Caching Functions', () => {
         .mockResolvedValue(mockTokenResponse as Response);
 
       try {
-        await import('./qwenOAuth2.js').then((module) =>
-          module.getQwenOAuthClient(mockConfig),
+        await import('./deltaOAuth2.js').then((module) =>
+          module.getDeltaOAuthClient(mockConfig),
         );
       } catch {
         // Expected to fail in test environment
@@ -1654,8 +1654,8 @@ describe('Credential Caching Functions', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -1676,8 +1676,8 @@ describe('Credential Caching Functions', () => {
         .mockResolvedValue(mockTokenResponse as Response);
 
       try {
-        await import('./qwenOAuth2.js').then((module) =>
-          module.getQwenOAuthClient(mockConfig),
+        await import('./deltaOAuth2.js').then((module) =>
+          module.getDeltaOAuthClient(mockConfig),
         );
       } catch {
         // Expected to fail in test environment
@@ -1719,8 +1719,8 @@ describe('Credential Caching Functions', () => {
 
       // Should proceed to device flow when cache loading fails
       try {
-        await import('./qwenOAuth2.js').then((module) =>
-          module.getQwenOAuthClient(mockConfig),
+        await import('./deltaOAuth2.js').then((module) =>
+          module.getDeltaOAuthClient(mockConfig),
         );
       } catch {
         // Expected to fail in test environment
@@ -1732,11 +1732,11 @@ describe('Credential Caching Functions', () => {
 });
 
 describe('Enhanced Error Handling and Edge Cases', () => {
-  let client: QwenOAuth2Client;
+  let client: DeltaOAuth2Client;
   let originalFetch: typeof global.fetch;
 
   beforeEach(() => {
-    client = new QwenOAuth2Client();
+    client = new DeltaOAuth2Client();
     originalFetch = global.fetch;
     global.fetch = vi.fn();
   });
@@ -1746,7 +1746,7 @@ describe('Enhanced Error Handling and Edge Cases', () => {
     vi.clearAllMocks();
   });
 
-  describe('QwenOAuth2Client getAccessToken enhanced scenarios', () => {
+  describe('DeltaOAuth2Client getAccessToken enhanced scenarios', () => {
     it('should handle SharedTokenManager failure and fall back to cached token', async () => {
       // Set up client with valid credentials
       client.setCredentials({
@@ -1758,7 +1758,7 @@ describe('Enhanced Error Handling and Edge Cases', () => {
       (
         client as unknown as {
           sharedManager: {
-            getValidCredentials: () => Promise<QwenCredentials>;
+            getValidCredentials: () => Promise<DeltaCredentials>;
           };
         }
       ).sharedManager = {
@@ -1792,7 +1792,7 @@ describe('Enhanced Error Handling and Edge Cases', () => {
       (
         client as unknown as {
           sharedManager: {
-            getValidCredentials: () => Promise<QwenCredentials>;
+            getValidCredentials: () => Promise<DeltaCredentials>;
           };
         }
       ).sharedManager = {
@@ -1818,7 +1818,7 @@ describe('Enhanced Error Handling and Edge Cases', () => {
       (
         client as unknown as {
           sharedManager: {
-            getValidCredentials: () => Promise<QwenCredentials>;
+            getValidCredentials: () => Promise<DeltaCredentials>;
           };
         }
       ).sharedManager = {
@@ -1844,8 +1844,8 @@ describe('Enhanced Error Handling and Edge Cases', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -1874,8 +1874,8 @@ describe('Enhanced Error Handling and Edge Cases', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -1905,8 +1905,8 @@ describe('Enhanced Error Handling and Edge Cases', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -2002,7 +2002,7 @@ describe('Enhanced Error Handling and Edge Cases', () => {
   });
 
   describe('Enhanced refreshAccessToken scenarios', () => {
-    it('should call clearQwenCredentials on 400 error', async () => {
+    it('should call clearDeltaCredentials on 400 error', async () => {
       client.setCredentials({
         refresh_token: 'expired-refresh',
       });
@@ -2104,11 +2104,11 @@ describe('Enhanced Error Handling and Edge Cases', () => {
   });
 });
 
-describe('SharedTokenManager Integration in QwenOAuth2Client', () => {
-  let client: QwenOAuth2Client;
+describe('SharedTokenManager Integration in DeltaOAuth2Client', () => {
+  let client: DeltaOAuth2Client;
 
   beforeEach(() => {
-    client = new QwenOAuth2Client();
+    client = new DeltaOAuth2Client();
   });
 
   it('should use SharedTokenManager instance in constructor', () => {
@@ -2118,7 +2118,7 @@ describe('SharedTokenManager Integration in QwenOAuth2Client', () => {
     expect(sharedManager).toBeDefined();
   });
 
-  it('should handle TokenManagerError types correctly in getQwenOAuthClient', async () => {
+  it('should handle TokenManagerError types correctly in getDeltaOAuthClient', async () => {
     const mockConfig = {
       isBrowserLaunchSuppressed: vi.fn().mockReturnValue(true),
     } as unknown as Config;
@@ -2155,8 +2155,8 @@ describe('SharedTokenManager Integration in QwenOAuth2Client', () => {
         json: async () => ({
           device_code: 'test-device-code',
           user_code: 'TEST123',
-          verification_uri: 'https://chat.qwen.ai/device',
-          verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+          verification_uri: 'https://chat.delta.ai/device',
+          verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
           expires_in: 1800,
         }),
       };
@@ -2177,8 +2177,8 @@ describe('SharedTokenManager Integration in QwenOAuth2Client', () => {
         .mockResolvedValue(mockTokenResponse as Response);
 
       try {
-        await import('./qwenOAuth2.js').then((module) =>
-          module.getQwenOAuthClient(mockConfig),
+        await import('./deltaOAuth2.js').then((module) =>
+          module.getDeltaOAuthClient(mockConfig),
         );
       } catch {
         // Expected to fail in test environment
@@ -2193,15 +2193,15 @@ describe('SharedTokenManager Integration in QwenOAuth2Client', () => {
 describe('Constants and Configuration', () => {
   it('should have correct OAuth endpoints', async () => {
     // Test that the constants are properly defined by checking they're used in requests
-    const client = new QwenOAuth2Client();
+    const client = new DeltaOAuth2Client();
 
     const mockResponse = {
       ok: true,
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -2215,19 +2215,19 @@ describe('Constants and Configuration', () => {
     });
 
     const [url] = vi.mocked(global.fetch).mock.calls[0];
-    expect(url).toBe('https://chat.qwen.ai/api/v1/oauth2/device/code');
+    expect(url).toBe('https://chat.delta.ai/api/v1/oauth2/device/code');
   });
 
   it('should use correct client ID in requests', async () => {
-    const client = new QwenOAuth2Client();
+    const client = new DeltaOAuth2Client();
 
     const mockResponse = {
       ok: true,
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };
@@ -2248,15 +2248,15 @@ describe('Constants and Configuration', () => {
 
   it('should use correct default scope', async () => {
     // Test the default scope constant by checking it's used in device flow
-    const client = new QwenOAuth2Client();
+    const client = new DeltaOAuth2Client();
 
     const mockResponse = {
       ok: true,
       json: async () => ({
         device_code: 'test-device-code',
         user_code: 'TEST123',
-        verification_uri: 'https://chat.qwen.ai/device',
-        verification_uri_complete: 'https://chat.qwen.ai/device?code=TEST123',
+        verification_uri: 'https://chat.delta.ai/device',
+        verification_uri_complete: 'https://chat.delta.ai/device?code=TEST123',
         expires_in: 1800,
       }),
     };

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -20,7 +20,7 @@ import {
 } from './sharedTokenManager.js';
 
 // OAuth Endpoints
-const QWEN_OAUTH_BASE_URL = 'https://chat.qwen.ai';
+const QWEN_OAUTH_BASE_URL = 'https://chat.delta.ai';
 
 const QWEN_OAUTH_DEVICE_CODE_ENDPOINT = `${QWEN_OAUTH_BASE_URL}/api/v1/oauth2/device/code`;
 const QWEN_OAUTH_TOKEN_ENDPOINT = `${QWEN_OAUTH_BASE_URL}/api/v1/oauth2/token`;
@@ -32,7 +32,7 @@ const QWEN_OAUTH_SCOPE = 'openid profile email model.completion';
 const QWEN_OAUTH_GRANT_TYPE = 'urn:ietf:params:oauth:grant-type:device_code';
 
 // File System Configuration
-const QWEN_DIR = '.qwen';
+const QWEN_DIR = '.delta';
 const QWEN_CREDENTIAL_FILENAME = 'oauth_creds.json';
 
 // Token Configuration
@@ -95,9 +95,9 @@ export interface ErrorData {
 }
 
 /**
- * Qwen OAuth2 credentials interface
+ * Delta OAuth2 credentials interface
  */
-export interface QwenCredentials {
+export interface DeltaCredentials {
   access_token?: string;
   refresh_token?: string;
   id_token?: string;
@@ -216,11 +216,11 @@ export interface TokenRefreshData {
 export type TokenRefreshResponse = TokenRefreshData | ErrorData;
 
 /**
- * Qwen OAuth2 client interface
+ * Delta OAuth2 client interface
  */
-export interface IQwenOAuth2Client {
-  setCredentials(credentials: QwenCredentials): void;
-  getCredentials(): QwenCredentials;
+export interface IDeltaOAuth2Client {
+  setCredentials(credentials: DeltaCredentials): void;
+  getCredentials(): DeltaCredentials;
   getAccessToken(): Promise<{ token?: string }>;
   requestDeviceAuthorization(options: {
     scope: string;
@@ -235,21 +235,21 @@ export interface IQwenOAuth2Client {
 }
 
 /**
- * Qwen OAuth2 client implementation
+ * Delta OAuth2 client implementation
  */
-export class QwenOAuth2Client implements IQwenOAuth2Client {
-  private credentials: QwenCredentials = {};
+export class DeltaOAuth2Client implements IDeltaOAuth2Client {
+  private credentials: DeltaCredentials = {};
   private sharedManager: SharedTokenManager;
 
   constructor() {
     this.sharedManager = SharedTokenManager.getInstance();
   }
 
-  setCredentials(credentials: QwenCredentials): void {
+  setCredentials(credentials: DeltaCredentials): void {
     this.credentials = credentials;
   }
 
-  getCredentials(): QwenCredentials {
+  getCredentials(): DeltaCredentials {
     return this.credentials;
   }
 
@@ -404,7 +404,7 @@ export class QwenOAuth2Client implements IQwenOAuth2Client {
       const errorData = await response.text();
       // Handle 401 errors which might indicate refresh token expiry
       if (response.status === 400) {
-        await clearQwenCredentials();
+        await clearDeltaCredentials();
         throw new Error(
           "Refresh token expired or invalid. Please use '/auth' to re-authenticate.",
         );
@@ -426,7 +426,7 @@ export class QwenOAuth2Client implements IQwenOAuth2Client {
 
     // Handle successful response
     const tokenData = responseData as TokenRefreshData;
-    const tokens: QwenCredentials = {
+    const tokens: DeltaCredentials = {
       access_token: tokenData.access_token,
       token_type: tokenData.token_type,
       // Use new refresh token if provided, otherwise preserve existing one
@@ -452,7 +452,7 @@ export class QwenOAuth2Client implements IQwenOAuth2Client {
   }
 }
 
-export enum QwenOAuth2Event {
+export enum DeltaOAuth2Event {
   AuthUri = 'auth-uri',
   AuthProgress = 'auth-progress',
   AuthCancel = 'auth-cancel',
@@ -469,14 +469,14 @@ export type AuthResult =
     };
 
 /**
- * Global event emitter instance for QwenOAuth2 authentication events
+ * Global event emitter instance for DeltaOAuth2 authentication events
  */
-export const qwenOAuth2Events = new EventEmitter();
+export const deltaOAuth2Events = new EventEmitter();
 
-export async function getQwenOAuthClient(
+export async function getDeltaOAuthClient(
   config: Config,
-): Promise<QwenOAuth2Client> {
-  const client = new QwenOAuth2Client();
+): Promise<DeltaOAuth2Client> {
+  const client = new DeltaOAuth2Client();
 
   // Use shared token manager to get valid credentials with cross-session synchronization
   const sharedManager = SharedTokenManager.getInstance();
@@ -514,24 +514,24 @@ export async function getQwenOAuthClient(
     }
 
     // If shared manager fails, check if we have cached credentials for device flow
-    if (await loadCachedQwenCredentials(client)) {
+    if (await loadCachedDeltaCredentials(client)) {
       // We have cached credentials but they might be expired
       // Try device flow instead of forcing refresh
-      const result = await authWithQwenDeviceFlow(client, config);
+      const result = await authWithDeltaDeviceFlow(client, config);
       if (!result.success) {
-        throw new Error('Qwen OAuth authentication failed');
+        throw new Error('Delta OAuth authentication failed');
       }
       return client;
     }
 
     // No cached credentials, use device authorization flow for authentication
-    const result = await authWithQwenDeviceFlow(client, config);
+    const result = await authWithDeltaDeviceFlow(client, config);
     if (!result.success) {
       // Only emit timeout event if the failure reason is actually timeout
       // Other error types (401, 429, etc.) have already emitted their specific events
       if (result.reason === 'timeout') {
-        qwenOAuth2Events.emit(
-          QwenOAuth2Event.AuthProgress,
+        deltaOAuth2Events.emit(
+          DeltaOAuth2Event.AuthProgress,
           'timeout',
           'Authentication timed out. Please try again or select a different authentication method.',
         );
@@ -540,16 +540,16 @@ export async function getQwenOAuthClient(
       // Throw error with appropriate message based on failure reason
       switch (result.reason) {
         case 'timeout':
-          throw new Error('Qwen OAuth authentication timed out');
+          throw new Error('Delta OAuth authentication timed out');
         case 'cancelled':
-          throw new Error('Qwen OAuth authentication was cancelled by user');
+          throw new Error('Delta OAuth authentication was cancelled by user');
         case 'rate_limit':
           throw new Error(
-            'Too many request for Qwen OAuth authentication, please try again later.',
+            'Too many request for Delta OAuth authentication, please try again later.',
           );
         case 'error':
         default:
-          throw new Error('Qwen OAuth authentication failed');
+          throw new Error('Delta OAuth authentication failed');
       }
     }
 
@@ -557,8 +557,8 @@ export async function getQwenOAuthClient(
   }
 }
 
-async function authWithQwenDeviceFlow(
-  client: QwenOAuth2Client,
+async function authWithDeltaDeviceFlow(
+  client: DeltaOAuth2Client,
   config: Config,
 ): Promise<AuthResult> {
   let isCancelled = false;
@@ -567,7 +567,7 @@ async function authWithQwenDeviceFlow(
   const cancelHandler = () => {
     isCancelled = true;
   };
-  qwenOAuth2Events.once(QwenOAuth2Event.AuthCancel, cancelHandler);
+  deltaOAuth2Events.once(DeltaOAuth2Event.AuthCancel, cancelHandler);
 
   try {
     // Generate PKCE code verifier and challenge
@@ -589,10 +589,10 @@ async function authWithQwenDeviceFlow(
     }
 
     // Emit device authorization event for UI integration immediately
-    qwenOAuth2Events.emit(QwenOAuth2Event.AuthUri, deviceAuth);
+    deltaOAuth2Events.emit(DeltaOAuth2Event.AuthUri, deviceAuth);
 
     const showFallbackMessage = () => {
-      console.log('\n=== Qwen OAuth Device Authorization ===');
+      console.log('\n=== Delta OAuth Device Authorization ===');
       console.log(
         'Please visit the following URL in your browser to authorize:',
       );
@@ -626,8 +626,8 @@ async function authWithQwenDeviceFlow(
     }
 
     // Emit auth progress event
-    qwenOAuth2Events.emit(
-      QwenOAuth2Event.AuthProgress,
+    deltaOAuth2Events.emit(
+      DeltaOAuth2Event.AuthProgress,
       'polling',
       'Waiting for authorization...',
     );
@@ -644,8 +644,8 @@ async function authWithQwenDeviceFlow(
       // Check if authentication was cancelled
       if (isCancelled) {
         console.debug('\nAuthentication cancelled by user.');
-        qwenOAuth2Events.emit(
-          QwenOAuth2Event.AuthProgress,
+        deltaOAuth2Events.emit(
+          DeltaOAuth2Event.AuthProgress,
           'error',
           'Authentication cancelled by user.',
         );
@@ -663,8 +663,8 @@ async function authWithQwenDeviceFlow(
         if (isDeviceTokenSuccess(tokenResponse)) {
           const tokenData = tokenResponse as DeviceTokenData;
 
-          // Convert to QwenCredentials format
-          const credentials: QwenCredentials = {
+          // Convert to DeltaCredentials format
+          const credentials: DeltaCredentials = {
             access_token: tokenData.access_token!, // Safe to assert as non-null due to isDeviceTokenSuccess check
             refresh_token: tokenData.refresh_token || undefined,
             token_type: tokenData.token_type,
@@ -677,11 +677,11 @@ async function authWithQwenDeviceFlow(
           client.setCredentials(credentials);
 
           // Cache the new tokens
-          await cacheQwenCredentials(credentials);
+          await cacheDeltaCredentials(credentials);
 
           // Emit auth progress success event
-          qwenOAuth2Events.emit(
-            QwenOAuth2Event.AuthProgress,
+          deltaOAuth2Events.emit(
+            DeltaOAuth2Event.AuthProgress,
             'success',
             'Authentication successful! Access token obtained.',
           );
@@ -705,8 +705,8 @@ async function authWithQwenDeviceFlow(
           }
 
           // Emit polling progress event
-          qwenOAuth2Events.emit(
-            QwenOAuth2Event.AuthProgress,
+          deltaOAuth2Events.emit(
+            DeltaOAuth2Event.AuthProgress,
             'polling',
             `Polling... (attempt ${attempt + 1}/${maxAttempts})`,
           );
@@ -740,8 +740,8 @@ async function authWithQwenDeviceFlow(
           // Check for cancellation after waiting
           if (isCancelled) {
             console.debug('\nAuthentication cancelled by user.');
-            qwenOAuth2Events.emit(
-              QwenOAuth2Event.AuthProgress,
+            deltaOAuth2Events.emit(
+              DeltaOAuth2Event.AuthProgress,
               'error',
               'Authentication cancelled by user.',
             );
@@ -772,7 +772,7 @@ async function authWithQwenDeviceFlow(
             'Device code expired or invalid, please restart the authorization process.';
 
           // Emit error event
-          qwenOAuth2Events.emit(QwenOAuth2Event.AuthProgress, 'error', message);
+          deltaOAuth2Events.emit(DeltaOAuth2Event.AuthProgress, 'error', message);
 
           return { success: false, reason: 'error' };
         }
@@ -783,8 +783,8 @@ async function authWithQwenDeviceFlow(
             'Too many requests. The server is rate limiting our requests. Please select a different authentication method or try again later.';
 
           // Emit rate limit event to notify user
-          qwenOAuth2Events.emit(
-            QwenOAuth2Event.AuthProgress,
+          deltaOAuth2Events.emit(
+            DeltaOAuth2Event.AuthProgress,
             'rate_limit',
             message,
           );
@@ -798,7 +798,7 @@ async function authWithQwenDeviceFlow(
         const message = `Error polling for token: ${errorMessage}`;
 
         // Emit error event
-        qwenOAuth2Events.emit(QwenOAuth2Event.AuthProgress, 'error', message);
+        deltaOAuth2Events.emit(DeltaOAuth2Event.AuthProgress, 'error', message);
 
         // Check for cancellation before waiting
         if (isCancelled) {
@@ -812,8 +812,8 @@ async function authWithQwenDeviceFlow(
     const timeoutMessage = 'Authorization timeout, please restart the process.';
 
     // Emit timeout error event
-    qwenOAuth2Events.emit(
-      QwenOAuth2Event.AuthProgress,
+    deltaOAuth2Events.emit(
+      DeltaOAuth2Event.AuthProgress,
       'timeout',
       timeoutMessage,
     );
@@ -826,17 +826,17 @@ async function authWithQwenDeviceFlow(
     return { success: false, reason: 'error' };
   } finally {
     // Clean up event listener
-    qwenOAuth2Events.off(QwenOAuth2Event.AuthCancel, cancelHandler);
+    deltaOAuth2Events.off(DeltaOAuth2Event.AuthCancel, cancelHandler);
   }
 }
 
-async function loadCachedQwenCredentials(
-  client: QwenOAuth2Client,
+async function loadCachedDeltaCredentials(
+  client: DeltaOAuth2Client,
 ): Promise<boolean> {
   try {
-    const keyFile = getQwenCachedCredentialPath();
+    const keyFile = getDeltaCachedCredentialPath();
     const creds = await fs.readFile(keyFile, 'utf-8');
-    const credentials = JSON.parse(creds) as QwenCredentials;
+    const credentials = JSON.parse(creds) as DeltaCredentials;
     client.setCredentials(credentials);
 
     // Verify that the credentials are still valid
@@ -851,8 +851,8 @@ async function loadCachedQwenCredentials(
   }
 }
 
-async function cacheQwenCredentials(credentials: QwenCredentials) {
-  const filePath = getQwenCachedCredentialPath();
+async function cacheDeltaCredentials(credentials: DeltaCredentials) {
+  const filePath = getDeltaCachedCredentialPath();
   await fs.mkdir(path.dirname(filePath), { recursive: true });
 
   const credString = JSON.stringify(credentials, null, 2);
@@ -860,14 +860,14 @@ async function cacheQwenCredentials(credentials: QwenCredentials) {
 }
 
 /**
- * Clear cached Qwen credentials from disk
+ * Clear cached Delta credentials from disk
  * This is useful when credentials have expired or need to be reset
  */
-export async function clearQwenCredentials(): Promise<void> {
+export async function clearDeltaCredentials(): Promise<void> {
   try {
-    const filePath = getQwenCachedCredentialPath();
+    const filePath = getDeltaCachedCredentialPath();
     await fs.unlink(filePath);
-    console.debug('Cached Qwen credentials cleared successfully.');
+    console.debug('Cached Delta credentials cleared successfully.');
   } catch (error: unknown) {
     // If file doesn't exist or can't be deleted, we consider it cleared
     if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
@@ -875,10 +875,10 @@ export async function clearQwenCredentials(): Promise<void> {
       return;
     }
     // Log other errors but don't throw - clearing credentials should be non-critical
-    console.warn('Warning: Failed to clear cached Qwen credentials:', error);
+    console.warn('Warning: Failed to clear cached Delta credentials:', error);
   }
 }
 
-function getQwenCachedCredentialPath(): string {
+function getDeltaCachedCredentialPath(): string {
   return path.join(os.homedir(), QWEN_DIR, QWEN_CREDENTIAL_FILENAME);
 }

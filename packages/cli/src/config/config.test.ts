@@ -8,11 +8,11 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
-import { ShellTool, EditTool, WriteFileTool } from '@qwen-code/qwen-code-core';
+import { ShellTool, EditTool, WriteFileTool } from '@delta-code/delta-code-core';
 import { loadCliConfig, parseArguments, CliArgs } from './config.js';
 import { Settings } from './settings.js';
 import { Extension } from './extension.js';
-import * as ServerConfig from '@qwen-code/qwen-code-core';
+import * as ServerConfig from '@delta-code/delta-code-core';
 import { isWorkspaceTrusted } from './trustedFolders.js';
 
 vi.mock('./trustedFolders.js', () => ({
@@ -37,9 +37,9 @@ vi.mock('read-package-up', () => ({
   ),
 }));
 
-vi.mock('@qwen-code/qwen-code-core', async () => {
+vi.mock('@delta-code/delta-code-core', async () => {
   const actualServer = await vi.importActual<typeof ServerConfig>(
-    '@qwen-code/qwen-code-core',
+    '@delta-code/delta-code-core',
   );
   return {
     ...actualServer,
@@ -624,7 +624,7 @@ describe('Hierarchical Memory Loading (config.ts) - Placeholder Suite', () => {
   // Example of a previously failing test structure:
   /*
   it('should correctly use mocked homedir for global path', async () => {
-    const MOCK_GEMINI_DIR_LOCAL = path.join('/mock/home/user', '.qwen');
+    const MOCK_GEMINI_DIR_LOCAL = path.join('/mock/home/user', '.delta');
     const MOCK_GLOBAL_PATH_LOCAL = path.join(MOCK_GEMINI_DIR_LOCAL, 'QWEN.md');
     mockFs({
       [MOCK_GLOBAL_PATH_LOCAL]: { type: 'file', content: 'GlobalContentOnly' }
@@ -693,9 +693,9 @@ describe('loadCliConfig systemPromptMappings', () => {
           'https://dashscope.aliyuncs.com/compatible-mode/v1/',
           'https://dashscope-intl.aliyuncs.com/compatible-mode/v1/',
         ],
-        modelNames: ['qwen3-coder-plus'],
+        modelNames: ['delta3-coder-plus'],
         template:
-          'SYSTEM_TEMPLATE:{"name":"qwen3_coder","params":{"is_git_repository":{RUNTIME_VARS_IS_GIT_REPO},"sandbox":"{RUNTIME_VARS_SANDBOX}"}}',
+          'SYSTEM_TEMPLATE:{"name":"delta3_coder","params":{"is_git_repository":{RUNTIME_VARS_IS_GIT_REPO},"sandbox":"{RUNTIME_VARS_SANDBOX}"}}',
       },
     ]);
   });
@@ -1332,14 +1332,14 @@ describe('loadCliConfig model selection', () => {
     const argv = await parseArguments();
     const config = await loadCliConfig(
       {
-        model: 'qwen3-coder-plus',
+        model: 'delta3-coder-plus',
       },
       [],
       'test-session',
       argv,
     );
 
-    expect(config.getModel()).toBe('qwen3-coder-plus');
+    expect(config.getModel()).toBe('delta3-coder-plus');
   });
 
   it('uses the default gemini model if nothing is set', async () => {
@@ -1354,26 +1354,26 @@ describe('loadCliConfig model selection', () => {
       argv,
     );
 
-    expect(config.getModel()).toBe('qwen3-coder-plus');
+    expect(config.getModel()).toBe('delta3-coder-plus');
   });
 
   it('always prefers model from argvs', async () => {
-    process.argv = ['node', 'script.js', '--model', 'qwen3-coder-plus'];
+    process.argv = ['node', 'script.js', '--model', 'delta3-coder-plus'];
     const argv = await parseArguments();
     const config = await loadCliConfig(
       {
-        model: 'qwen3-coder-plus',
+        model: 'delta3-coder-plus',
       },
       [],
       'test-session',
       argv,
     );
 
-    expect(config.getModel()).toBe('qwen3-coder-plus');
+    expect(config.getModel()).toBe('delta3-coder-plus');
   });
 
   it('selects the model from argvs if provided', async () => {
-    process.argv = ['node', 'script.js', '--model', 'qwen3-coder-plus'];
+    process.argv = ['node', 'script.js', '--model', 'delta3-coder-plus'];
     const argv = await parseArguments();
     const config = await loadCliConfig(
       {
@@ -1384,7 +1384,7 @@ describe('loadCliConfig model selection', () => {
       argv,
     );
 
-    expect(config.getModel()).toBe('qwen3-coder-plus');
+    expect(config.getModel()).toBe('delta3-coder-plus');
   });
 });
 

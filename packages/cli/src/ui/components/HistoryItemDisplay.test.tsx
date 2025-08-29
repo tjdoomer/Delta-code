@@ -75,7 +75,7 @@ describe('<HistoryItemDisplay />', () => {
     const { lastFrame } = render(
       <HistoryItemDisplay {...baseItem} item={item} />,
     );
-    expect(lastFrame()).toContain('About Qwen Code');
+    expect(lastFrame()).toContain('About Delta Code');
   });
 
   it('renders ModelStatsDisplay for "model_stats" type', () => {

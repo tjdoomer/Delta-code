@@ -4,13 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MCPServerConfig, GeminiCLIExtension } from '@qwen-code/qwen-code-core';
+import { MCPServerConfig, GeminiCLIExtension } from '@delta-code/delta-code-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
 
-export const EXTENSIONS_DIRECTORY_NAME = path.join('.qwen', 'extensions');
-export const EXTENSIONS_CONFIG_FILENAME = 'qwen-extension.json';
+export const EXTENSIONS_DIRECTORY_NAME = path.join('.delta', 'extensions');
+export const EXTENSIONS_CONFIG_FILENAME = 'delta-extension.json';
 export const EXTENSIONS_CONFIG_FILENAME_OLD = 'gemini-extension.json';
 
 export interface Extension {

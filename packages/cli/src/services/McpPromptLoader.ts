@@ -8,7 +8,7 @@ import {
   Config,
   getErrorMessage,
   getMCPServerPrompts,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import {
   CommandContext,
   CommandKind,

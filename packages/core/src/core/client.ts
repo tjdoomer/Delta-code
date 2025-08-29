@@ -510,7 +510,7 @@ export class GeminiClient {
     }
 
     // Prevent context updates from being sent while a tool call is
-    // waiting for a response. The Qwen API requires that a functionResponse
+    // waiting for a response. The Delta API requires that a functionResponse
     // part from the user immediately follows a functionCall part from the model
     // in the conversation history . The IDE context is not discarded; it will
     // be included in the next regular message sent to the model.
@@ -873,7 +873,7 @@ export class GeminiClient {
   ): Promise<string | null> {
     // Handle different auth types
     if (authType === AuthType.QWEN_OAUTH) {
-      return this.handleQwenOAuthError(error);
+      return this.handleDeltaOAuthError(error);
     }
 
     // Only handle fallback for OAuth users
@@ -916,9 +916,9 @@ export class GeminiClient {
   }
 
   /**
-   * Handles Qwen OAuth authentication errors and rate limiting
+   * Handles Delta OAuth authentication errors and rate limiting
    */
-  private async handleQwenOAuthError(error?: unknown): Promise<string | null> {
+  private async handleDeltaOAuthError(error?: unknown): Promise<string | null> {
     if (!error) {
       return null;
     }
@@ -950,17 +950,17 @@ export class GeminiClient {
       errorMessage.includes('too many requests');
 
     if (isAuthError) {
-      console.warn('Qwen OAuth authentication error detected:', errorMessage);
-      // The QwenContentGenerator should automatically handle token refresh
+      console.warn('Delta OAuth authentication error detected:', errorMessage);
+      // The DeltaContentGenerator should automatically handle token refresh
       // If it still fails, it likely means the refresh token is also expired
       console.log(
-        'Note: If this persists, you may need to re-authenticate with Qwen OAuth',
+        'Note: If this persists, you may need to re-authenticate with Delta OAuth',
       );
       return null;
     }
 
     if (isRateLimitError) {
-      console.warn('Qwen API rate limit encountered:', errorMessage);
+      console.warn('Delta API rate limit encountered:', errorMessage);
       // For rate limiting, we don't need to do anything special
       // The retry mechanism will handle the backoff
       return null;

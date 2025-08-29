@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 Qwen
+ * Copyright 2025 Delta
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -113,7 +113,7 @@ describe('OpenAIContentGenerator', () => {
         timeout: 120000,
         maxRetries: 3,
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
         },
       });
     });
@@ -136,7 +136,7 @@ describe('OpenAIContentGenerator', () => {
         timeout: 120000,
         maxRetries: 3,
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
         },
       });
     });
@@ -159,9 +159,9 @@ describe('OpenAIContentGenerator', () => {
         timeout: 120000,
         maxRetries: 3,
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
-          'HTTP-Referer': 'https://github.com/QwenLM/qwen-code.git',
-          'X-Title': 'Qwen Code',
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
+          'HTTP-Referer': 'https://github.com/DeltaLM/delta-code.git',
+          'X-Title': 'Delta Code',
         },
       });
     });
@@ -190,7 +190,7 @@ describe('OpenAIContentGenerator', () => {
         timeout: 300000,
         maxRetries: 5,
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
         },
       });
     });
@@ -2577,9 +2577,9 @@ describe('OpenAIContentGenerator', () => {
 
   describe('metadata control', () => {
     it('should include metadata when authType is QWEN_OAUTH', async () => {
-      const qwenConfig = {
+      const deltaConfig = {
         getContentGeneratorConfig: vi.fn().mockReturnValue({
-          authType: 'qwen-oauth',
+          authType: 'delta-oauth',
           enableOpenAILogging: false,
         }),
         getSessionId: vi.fn().mockReturnValue('test-session-id'),
@@ -2587,14 +2587,14 @@ describe('OpenAIContentGenerator', () => {
       } as unknown as Config;
 
       const contentGeneratorConfig = {
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
         apiKey: 'test-key',
         authType: AuthType.QWEN_OAUTH,
         enableOpenAILogging: false,
       };
-      const qwenGenerator = new OpenAIContentGenerator(
+      const deltaGenerator = new OpenAIContentGenerator(
         contentGeneratorConfig,
-        qwenConfig,
+        deltaConfig,
       );
 
       const mockResponse = {
@@ -2607,17 +2607,17 @@ describe('OpenAIContentGenerator', () => {
           },
         ],
         created: 1677652288,
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
 
       const request: GenerateContentParameters = {
         contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
-      await qwenGenerator.generateContent(request, 'test-prompt-id');
+      await deltaGenerator.generateContent(request, 'test-prompt-id');
 
       expect(mockOpenAIClient.chat.completions.create).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -2640,7 +2640,7 @@ describe('OpenAIContentGenerator', () => {
       } as unknown as Config;
 
       const contentGeneratorConfig = {
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
         apiKey: 'test-key',
         baseUrl: 'https://dashscope.aliyuncs.com/compatible-mode/v1',
         authType: AuthType.USE_OPENAI,
@@ -2674,14 +2674,14 @@ describe('OpenAIContentGenerator', () => {
           },
         ],
         created: 1677652288,
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
 
       const request: GenerateContentParameters = {
         contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       await dashscopeGenerator.generateContent(request, 'dashscope-prompt-id');
@@ -2868,9 +2868,9 @@ describe('OpenAIContentGenerator', () => {
     });
 
     it('should include metadata in streaming requests when conditions are met', async () => {
-      const qwenConfig = {
+      const deltaConfig = {
         getContentGeneratorConfig: vi.fn().mockReturnValue({
-          authType: 'qwen-oauth',
+          authType: 'delta-oauth',
           enableOpenAILogging: false,
         }),
         getSessionId: vi.fn().mockReturnValue('streaming-session-id'),
@@ -2878,7 +2878,7 @@ describe('OpenAIContentGenerator', () => {
       } as unknown as Config;
 
       const contentGeneratorConfig = {
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
 
         apiKey: 'test-key',
 
@@ -2887,9 +2887,9 @@ describe('OpenAIContentGenerator', () => {
         enableOpenAILogging: false,
       };
 
-      const qwenGenerator = new OpenAIContentGenerator(
+      const deltaGenerator = new OpenAIContentGenerator(
         contentGeneratorConfig,
-        qwenConfig,
+        deltaConfig,
       );
 
       const mockStream = [
@@ -2927,10 +2927,10 @@ describe('OpenAIContentGenerator', () => {
 
       const request: GenerateContentParameters = {
         contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
-      const stream = await qwenGenerator.generateContentStream(
+      const stream = await deltaGenerator.generateContentStream(
         request,
         'streaming-prompt-id',
       );
@@ -3037,9 +3037,9 @@ describe('OpenAIContentGenerator', () => {
     });
 
     it('should handle undefined sessionId gracefully', async () => {
-      const qwenConfig = {
+      const deltaConfig = {
         getContentGeneratorConfig: vi.fn().mockReturnValue({
-          authType: 'qwen-oauth',
+          authType: 'delta-oauth',
           enableOpenAILogging: false,
         }),
         getSessionId: vi.fn().mockReturnValue(undefined), // Undefined session ID
@@ -3047,7 +3047,7 @@ describe('OpenAIContentGenerator', () => {
       } as unknown as Config;
 
       const contentGeneratorConfig = {
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
 
         apiKey: 'test-key',
 
@@ -3056,9 +3056,9 @@ describe('OpenAIContentGenerator', () => {
         enableOpenAILogging: false,
       };
 
-      const qwenGenerator = new OpenAIContentGenerator(
+      const deltaGenerator = new OpenAIContentGenerator(
         contentGeneratorConfig,
-        qwenConfig,
+        deltaConfig,
       );
 
       const mockResponse = {
@@ -3071,17 +3071,17 @@ describe('OpenAIContentGenerator', () => {
           },
         ],
         created: 1677652288,
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
 
       const request: GenerateContentParameters = {
         contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
-      await qwenGenerator.generateContent(
+      await deltaGenerator.generateContent(
         request,
         'undefined-session-prompt-id',
       );
@@ -3289,7 +3289,7 @@ describe('OpenAIContentGenerator', () => {
       } as unknown as Config;
 
       const contentGeneratorConfig = {
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
 
         apiKey: 'test-key',
 
@@ -3319,7 +3319,7 @@ describe('OpenAIContentGenerator', () => {
           },
         ],
         created: 1677652288,
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
@@ -3329,7 +3329,7 @@ describe('OpenAIContentGenerator', () => {
         config: {
           systemInstruction: 'You are a helpful assistant.',
         },
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       await dashscopeGenerator.generateContent(request, 'dashscope-prompt-id');
@@ -3370,7 +3370,7 @@ describe('OpenAIContentGenerator', () => {
       } as unknown as Config;
 
       const contentGeneratorConfig = {
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
 
         apiKey: 'test-key',
 
@@ -3400,14 +3400,14 @@ describe('OpenAIContentGenerator', () => {
           },
         ],
         created: 1677652288,
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
 
       const request: GenerateContentParameters = {
         contents: [{ role: 'user', parts: [{ text: 'Hello, how are you?' }] }],
-        model: 'qwen-turbo',
+        model: 'delta-turbo',
       };
 
       await dashscopeGenerator.generateContentStream(

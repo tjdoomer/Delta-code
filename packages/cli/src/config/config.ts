@@ -28,7 +28,7 @@ import {
   WriteFileTool,
   MCPServerConfig,
   ConfigParameters,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import { Settings } from './settings.js';
 
 import { Extension, annotateActiveExtensions } from './extension.js';
@@ -83,11 +83,11 @@ export async function parseArguments(): Promise<CliArgs> {
   const yargsInstance = yargs(hideBin(process.argv))
     // Set locale to English for consistent output, especially in tests
     .locale('en')
-    .scriptName('qwen')
+    .scriptName('delta')
     .usage(
-      'Usage: qwen [options] [command]\n\nQwen Code - Launch an interactive CLI, use -p/--prompt for non-interactive mode',
+      'Usage: delta [options] [command]\n\nDelta Code - Launch an interactive CLI, use -p/--prompt for non-interactive mode',
     )
-    .command('$0', 'Launch Qwen Code', (yargsInstance) =>
+    .command('$0', 'Launch Delta Code', (yargsInstance) =>
       yargsInstance
         .option('model', {
           alias: 'm',
@@ -218,7 +218,7 @@ export async function parseArguments(): Promise<CliArgs> {
         .option('proxy', {
           type: 'string',
           description:
-            'Proxy for qwen client, like schema://user:password@host:port',
+            'Proxy for delta client, like schema://user:password@host:port',
         })
         .option('include-directories', {
           type: 'array',
@@ -572,9 +572,9 @@ export async function loadCliConfig(
           'https://dashscope.aliyuncs.com/compatible-mode/v1/',
           'https://dashscope-intl.aliyuncs.com/compatible-mode/v1/',
         ],
-        modelNames: ['qwen3-coder-plus'],
+        modelNames: ['delta3-coder-plus'],
         template:
-          'SYSTEM_TEMPLATE:{"name":"qwen3_coder","params":{"is_git_repository":{RUNTIME_VARS_IS_GIT_REPO},"sandbox":"{RUNTIME_VARS_SANDBOX}"}}',
+          'SYSTEM_TEMPLATE:{"name":"delta3_coder","params":{"is_git_repository":{RUNTIME_VARS_IS_GIT_REPO},"sandbox":"{RUNTIME_VARS_SANDBOX}"}}',
       },
     ]) as ConfigParameters['systemPromptMappings'],
     authType: settings.selectedAuthType,

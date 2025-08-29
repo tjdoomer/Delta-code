@@ -20,7 +20,7 @@ import { useGeminiStream } from './hooks/useGeminiStream.js';
 import { useLoadingIndicator } from './hooks/useLoadingIndicator.js';
 import { useThemeCommand } from './hooks/useThemeCommand.js';
 import { useAuthCommand } from './hooks/useAuthCommand.js';
-import { useQwenAuth } from './hooks/useQwenAuth.js';
+import { useDeltaAuth } from './hooks/useDeltaAuth.js';
 import { useFolderTrust } from './hooks/useFolderTrust.js';
 import { useEditorSettings } from './hooks/useEditorSettings.js';
 import { useSlashCommandProcessor } from './hooks/slashCommandProcessor.js';
@@ -35,7 +35,7 @@ import { Footer } from './components/Footer.js';
 import { ThemeDialog } from './components/ThemeDialog.js';
 import { AuthDialog } from './components/AuthDialog.js';
 import { AuthInProgress } from './components/AuthInProgress.js';
-import { QwenOAuthProgress } from './components/QwenOAuthProgress.js';
+import { DeltaOAuthProgress } from './components/DeltaOAuthProgress.js';
 import { EditorSettingsDialog } from './components/EditorSettingsDialog.js';
 import { FolderTrustDialog } from './components/FolderTrustDialog.js';
 import { ShellConfirmationDialog } from './components/ShellConfirmationDialog.js';
@@ -63,7 +63,7 @@ import {
   AuthType,
   type IdeContext,
   ideContext,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import {
   IdeIntegrationNudge,
   IdeIntegrationNudgeResult,
@@ -90,7 +90,7 @@ import {
   isProQuotaExceededError,
   isGenericQuotaExceededError,
   UserTierId,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import { UpdateObject } from './utils/updateCheck.js';
 import ansiEscapes from 'ansi-escapes';
 import { OverflowProvider } from './contexts/OverflowContext.js';
@@ -268,13 +268,13 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
   } = useAuthCommand(settings, setAuthError, config);
 
   const {
-    isQwenAuthenticating,
+    isDeltaAuthenticating,
     deviceAuth,
-    isQwenAuth,
-    cancelQwenAuth,
+    isDeltaAuth,
+    cancelDeltaAuth,
     authStatus,
     authMessage,
-  } = useQwenAuth(settings, isAuthenticating);
+  } = useDeltaAuth(settings, isAuthenticating);
 
   useEffect(() => {
     if (settings.merged.selectedAuthType && !settings.merged.useExternalAuth) {
@@ -299,22 +299,22 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     }
   }, [config, isAuthenticating]);
 
-  // Handle Qwen OAuth timeout
+  // Handle Delta OAuth timeout
   useEffect(() => {
-    if (isQwenAuth && authStatus === 'timeout') {
+    if (isDeltaAuth && authStatus === 'timeout') {
       setAuthError(
         authMessage ||
-          'Qwen OAuth authentication timed out. Please try again or select a different authentication method.',
+          'Delta OAuth authentication timed out. Please try again or select a different authentication method.',
       );
-      cancelQwenAuth();
+      cancelDeltaAuth();
       cancelAuthentication();
       openAuthDialog();
     }
   }, [
-    isQwenAuth,
+    isDeltaAuth,
     authStatus,
     authMessage,
-    cancelQwenAuth,
+    cancelDeltaAuth,
     cancelAuthentication,
     openAuthDialog,
     setAuthError,
@@ -1038,22 +1038,22 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
             </Box>
           ) : isAuthenticating ? (
             <>
-              {isQwenAuth && isQwenAuthenticating ? (
-                <QwenOAuthProgress
+              {isDeltaAuth && isDeltaAuthenticating ? (
+                <DeltaOAuthProgress
                   deviceAuth={deviceAuth || undefined}
                   authStatus={authStatus}
                   authMessage={authMessage}
                   onTimeout={() => {
                     setAuthError(
-                      'Qwen OAuth authentication timed out. Please try again.',
+                      'Delta OAuth authentication timed out. Please try again.',
                     );
-                    cancelQwenAuth();
+                    cancelDeltaAuth();
                     cancelAuthentication();
                     openAuthDialog();
                   }}
                   onCancel={() => {
-                    setAuthError('Qwen OAuth authentication cancelled.');
-                    cancelQwenAuth();
+                    setAuthError('Delta OAuth authentication cancelled.');
+                    cancelDeltaAuth();
                     cancelAuthentication();
                     openAuthDialog();
                   }}

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { AuthType } from '@qwen-code/qwen-code-core';
+import { AuthType } from '@delta-code/delta-code-core';
 import { Box, Text } from 'ink';
 import React, { useState } from 'react';
 import {
@@ -25,18 +25,6 @@ interface AuthDialogProps {
   initialErrorMessage?: string | null;
 }
 
-function parseDefaultAuthType(
-  defaultAuthType: string | undefined,
-): AuthType | null {
-  if (
-    defaultAuthType &&
-    Object.values(AuthType).includes(defaultAuthType as AuthType)
-  ) {
-    return defaultAuthType as AuthType;
-  }
-  return null;
-}
-
 export function AuthDialog({
   onSelect,
   settings,
@@ -46,32 +34,12 @@ export function AuthDialog({
     initialErrorMessage || null,
   );
   const [showOpenAIKeyPrompt, setShowOpenAIKeyPrompt] = useState(false);
-  const items = [
-    { label: 'Qwen OAuth', value: AuthType.QWEN_OAUTH },
-    { label: 'OpenAI', value: AuthType.USE_OPENAI },
-  ];
 
-  const initialAuthIndex = Math.max(
-    0,
-    items.findIndex((item) => {
-      if (settings.merged.selectedAuthType) {
-        return item.value === settings.merged.selectedAuthType;
-      }
+  // Only one option: generic provider path
+  const items = [{ label: 'Choose your Path', value: AuthType.USE_OPENAI }];
 
-      const defaultAuthType = parseDefaultAuthType(
-        process.env.GEMINI_DEFAULT_AUTH_TYPE,
-      );
-      if (defaultAuthType) {
-        return item.value === defaultAuthType;
-      }
-
-      if (process.env.GEMINI_API_KEY) {
-        return item.value === AuthType.USE_GEMINI;
-      }
-
-      return item.value === AuthType.LOGIN_WITH_GOOGLE;
-    }),
-  );
+  // Always default to the single option (index 0)
+  const initialAuthIndex = 0;
 
   const handleAuthSelect = (authMethod: AuthType) => {
     const error = validateAuthMethod(authMethod);
@@ -168,11 +136,11 @@ export function AuthDialog({
         <Text color={Colors.AccentPurple}>(Use Enter to Set Auth)</Text>
       </Box>
       <Box marginTop={1}>
-        <Text>Terms of Services and Privacy Notice for Qwen Code</Text>
+        <Text>Terms of Services and Privacy Notice for Delta Code</Text>
       </Box>
       <Box marginTop={1}>
         <Text color={Colors.AccentBlue}>
-          {'https://github.com/QwenLM/Qwen3-Coder/blob/main/README.md'}
+          {'https://github.com/DeltaLM/Delta3-Coder/blob/main/README.md'}
         </Text>
       </Box>
     </Box>

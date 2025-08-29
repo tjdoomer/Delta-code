@@ -44,7 +44,7 @@ import {
   DEFAULT_GEMINI_EMBEDDING_MODEL,
   DEFAULT_GEMINI_FLASH_MODEL,
 } from './models.js';
-import { QwenLogger } from '../telemetry/qwen-logger/qwen-logger.js';
+import { DeltaLogger } from '../telemetry/delta-logger/delta-logger.js';
 import { shouldAttemptBrowserLaunch } from '../utils/browser.js';
 import { MCPOAuthConfig } from '../mcp/oauth-provider.js';
 import { IdeClient } from '../ide/ide-client.js';
@@ -339,8 +339,8 @@ export class Config {
     };
     this.gitCoAuthor = {
       enabled: params.gitCoAuthor?.enabled ?? true,
-      name: params.gitCoAuthor?.name ?? 'Qwen-Coder',
-      email: params.gitCoAuthor?.email ?? 'qwen-coder@alibabacloud.com',
+      name: params.gitCoAuthor?.name ?? 'Delta-Coder',
+      email: params.gitCoAuthor?.email ?? 'delta-coder@alibabacloud.com',
     };
     this.usageStatisticsEnabled = params.usageStatisticsEnabled ?? true;
 
@@ -394,7 +394,7 @@ export class Config {
     }
 
     if (this.getUsageStatisticsEnabled()) {
-      QwenLogger.getInstance(this)?.logStartSessionEvent(
+      DeltaLogger.getInstance(this)?.logStartSessionEvent(
         new StartSessionEvent(this),
       );
     } else {

@@ -255,7 +255,7 @@ describe('OpenAIContentGenerator Timeout Handling', () => {
         timeout: 120000,
         maxRetries: 3,
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
         },
       });
     });
@@ -282,7 +282,7 @@ describe('OpenAIContentGenerator Timeout Handling', () => {
         timeout: 300000,
         maxRetries: 5,
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
         },
       });
     });
@@ -307,7 +307,7 @@ describe('OpenAIContentGenerator Timeout Handling', () => {
         timeout: 120000, // default
         maxRetries: 3, // default
         defaultHeaders: {
-          'User-Agent': expect.stringMatching(/^QwenCode/),
+          'User-Agent': expect.stringMatching(/^DeltaCode/),
         },
       });
     });

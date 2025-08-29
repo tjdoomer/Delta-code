@@ -24,11 +24,11 @@ const projectHash = crypto
   .digest('hex');
 
 // User-level .gemini directory in home
-const USER_GEMINI_DIR = path.join(os.homedir(), '.qwen');
+const USER_GEMINI_DIR = path.join(os.homedir(), '.delta');
 // Project-level .gemini directory in the workspace
-const WORKSPACE_GEMINI_DIR = path.join(projectRoot, '.qwen');
+const WORKSPACE_GEMINI_DIR = path.join(projectRoot, '.delta');
 
-// Telemetry artifacts are stored in a hashed directory under the user's ~/.qwen/tmp
+// Telemetry artifacts are stored in a hashed directory under the user's ~/.delta/tmp
 export const OTEL_DIR = path.join(USER_GEMINI_DIR, 'tmp', projectHash, 'otel');
 export const BIN_DIR = path.join(OTEL_DIR, 'bin');
 
@@ -41,11 +41,11 @@ export const WORKSPACE_SETTINGS_FILE = path.join(
 export function getJson(url) {
   const tmpFile = path.join(
     os.tmpdir(),
-    `qwen-code-releases-${Date.now()}.json`,
+    `delta-code-releases-${Date.now()}.json`,
   );
   try {
     execSync(
-      `curl -sL -H "User-Agent: qwen-code-dev-script" -o "${tmpFile}" "${url}"`,
+      `curl -sL -H "User-Agent: delta-code-dev-script" -o "${tmpFile}" "${url}"`,
       { stdio: 'pipe' },
     );
     const content = fs.readFileSync(tmpFile, 'utf-8');
@@ -242,7 +242,7 @@ export async function ensureBinary(
   }
 
   const downloadUrl = asset.browser_download_url;
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'qwen-code-telemetry-'));
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'delta-code-telemetry-'));
   const archivePath = path.join(tmpDir, asset.name);
 
   try {

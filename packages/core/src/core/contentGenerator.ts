@@ -47,7 +47,7 @@ export enum AuthType {
   USE_VERTEX_AI = 'vertex-ai',
   CLOUD_SHELL = 'cloud-shell',
   USE_OPENAI = 'openai',
-  QWEN_OAUTH = 'qwen-oauth',
+  QWEN_OAUTH = 'delta-oauth',
 }
 
 export type ContentGeneratorConfig = {
@@ -136,11 +136,11 @@ export function createContentGeneratorConfig(
   }
 
   if (authType === AuthType.QWEN_OAUTH) {
-    // For Qwen OAuth, we'll handle the API key dynamically in createContentGenerator
-    // Set a special marker to indicate this is Qwen OAuth
+    // For Delta OAuth, we'll handle the API key dynamically in createContentGenerator
+    // Set a special marker to indicate this is Delta OAuth
     contentGeneratorConfig.apiKey = 'QWEN_OAUTH_DYNAMIC_TOKEN';
 
-    // Prefer to use qwen3-coder-plus as the default Qwen model if QWEN_MODEL is not set.
+    // Prefer to use delta3-coder-plus as the default Delta model if QWEN_MODEL is not set.
     contentGeneratorConfig.model = process.env.QWEN_MODEL || DEFAULT_QWEN_MODEL;
 
     return contentGeneratorConfig;
@@ -203,26 +203,26 @@ export async function createContentGenerator(
 
   if (config.authType === AuthType.QWEN_OAUTH) {
     if (config.apiKey !== 'QWEN_OAUTH_DYNAMIC_TOKEN') {
-      throw new Error('Invalid Qwen OAuth configuration');
+      throw new Error('Invalid Delta OAuth configuration');
     }
 
     // Import required classes dynamically
-    const { getQwenOAuthClient: getQwenOauthClient } = await import(
-      '../qwen/qwenOAuth2.js'
+    const { getDeltaOAuthClient: getDeltaOauthClient } = await import(
+      '../delta/deltaOAuth2.js'
     );
-    const { QwenContentGenerator } = await import(
-      '../qwen/qwenContentGenerator.js'
+    const { DeltaContentGenerator } = await import(
+      '../delta/deltaContentGenerator.js'
     );
 
     try {
-      // Get the Qwen OAuth client (now includes integrated token management)
-      const qwenClient = await getQwenOauthClient(gcConfig);
+      // Get the Delta OAuth client (now includes integrated token management)
+      const deltaClient = await getDeltaOauthClient(gcConfig);
 
       // Create the content generator with dynamic token management
-      return new QwenContentGenerator(qwenClient, config, gcConfig);
+      return new DeltaContentGenerator(deltaClient, config, gcConfig);
     } catch (error) {
       throw new Error(
-        `Failed to initialize Qwen: ${error instanceof Error ? error.message : String(error)}`,
+        `Failed to initialize Delta: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }

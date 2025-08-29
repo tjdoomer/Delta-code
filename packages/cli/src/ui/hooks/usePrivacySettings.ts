@@ -9,7 +9,7 @@ import {
   Config,
   CodeAssistServer,
   UserTierId,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 
 export interface PrivacyState {
   isLoading: boolean;

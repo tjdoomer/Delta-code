@@ -30,7 +30,7 @@ describe('bugCommand', () => {
   beforeEach(() => {
     vi.mocked(getCliVersion).mockResolvedValue('0.1.0');
     vi.mocked(formatMemoryUsage).mockReturnValue('100 MB');
-    vi.stubEnv('SANDBOX', 'qwen-test');
+    vi.stubEnv('SANDBOX', 'delta-test');
   });
 
   afterEach(() => {
@@ -42,7 +42,7 @@ describe('bugCommand', () => {
     const mockContext = createMockCommandContext({
       services: {
         config: {
-          getModel: () => 'qwen3-coder-plus',
+          getModel: () => 'delta3-coder-plus',
           getBugCommand: () => undefined,
         },
       },
@@ -56,11 +56,11 @@ describe('bugCommand', () => {
 * **Git Commit:** ${GIT_COMMIT_INFO}
 * **Operating System:** test-platform v20.0.0
 * **Sandbox Environment:** test
-* **Model Version:** qwen3-coder-plus
+* **Model Version:** delta3-coder-plus
 * **Memory Usage:** 100 MB
 `;
     const expectedUrl =
-      'https://github.com/QwenLM/qwen-code/issues/new?template=bug_report.yml&title=A%20test%20bug&info=' +
+      'https://github.com/DeltaLM/delta-code/issues/new?template=bug_report.yml&title=A%20test%20bug&info=' +
       encodeURIComponent(expectedInfo);
 
     expect(open).toHaveBeenCalledWith(expectedUrl);
@@ -72,7 +72,7 @@ describe('bugCommand', () => {
     const mockContext = createMockCommandContext({
       services: {
         config: {
-          getModel: () => 'qwen3-coder-plus',
+          getModel: () => 'delta3-coder-plus',
           getBugCommand: () => ({ urlTemplate: customTemplate }),
         },
       },
@@ -86,7 +86,7 @@ describe('bugCommand', () => {
 * **Git Commit:** ${GIT_COMMIT_INFO}
 * **Operating System:** test-platform v20.0.0
 * **Sandbox Environment:** test
-* **Model Version:** qwen3-coder-plus
+* **Model Version:** delta3-coder-plus
 * **Memory Usage:** 100 MB
 `;
     const expectedUrl = customTemplate

@@ -24,7 +24,7 @@ export interface LogEntry {
 }
 
 export class Logger {
-  private qwenDir: string | undefined;
+  private deltaDir: string | undefined;
   private logFilePath: string | undefined;
   private sessionId: string | undefined;
   private messageId = 0; // Instance-specific counter for the next messageId
@@ -94,11 +94,11 @@ export class Logger {
       return;
     }
 
-    this.qwenDir = getProjectTempDir(process.cwd());
-    this.logFilePath = path.join(this.qwenDir, LOG_FILE_NAME);
+    this.deltaDir = getProjectTempDir(process.cwd());
+    this.logFilePath = path.join(this.deltaDir, LOG_FILE_NAME);
 
     try {
-      await fs.mkdir(this.qwenDir, { recursive: true });
+      await fs.mkdir(this.deltaDir, { recursive: true });
       let fileExisted = true;
       try {
         await fs.access(this.logFilePath);
@@ -235,7 +235,7 @@ export class Logger {
     if (!tag.length) {
       throw new Error('No checkpoint tag specified.');
     }
-    if (!this.qwenDir) {
+    if (!this.deltaDir) {
       throw new Error('Checkpoint file path not set.');
     }
     // Sanitize tag to prevent directory traversal attacks
@@ -243,7 +243,7 @@ export class Logger {
     if (!sanitizedTag) {
       sanitizedTag = 'default';
     }
-    return path.join(this.qwenDir, `checkpoint-${sanitizedTag}.json`);
+    return path.join(this.deltaDir, `checkpoint-${sanitizedTag}.json`);
   }
 
   async saveCheckpoint(conversation: Content[], tag: string): Promise<void> {
@@ -287,7 +287,7 @@ export class Logger {
   }
 
   async deleteCheckpoint(tag: string): Promise<boolean> {
-    if (!this.initialized || !this.qwenDir) {
+    if (!this.initialized || !this.deltaDir) {
       console.error(
         'Logger not initialized or checkpoint file path not set. Cannot delete checkpoint.',
       );

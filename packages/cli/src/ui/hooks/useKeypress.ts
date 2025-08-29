@@ -17,7 +17,7 @@ import {
   KittySequenceOverflowEvent,
   logKittySequenceOverflow,
   Config,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import { FOCUS_IN, FOCUS_OUT } from './useFocus.js';
 
 const ESC = '\u001B';
@@ -89,6 +89,16 @@ export function useKeypress(
     let kittySequenceBuffer = '';
     let backslashTimeout: NodeJS.Timeout | null = null;
     let waitingForEnterAfterBackslash = false;
+    // Track partial focus sequences across raw data chunks:
+    // 0 = none, 1 = saw ESC, 2 = saw ESC followed by '['
+    let focusSeqState: 0 | 1 | 2 = 0;
+    // Track partial focus sequences across keypress events (modern path)
+    let focusKeypressState: 0 | 1 | 2 = 0;
+    let focusKeypressTimer: NodeJS.Timeout | null = null;
+    let heldFocusPrefix: string = '';
+    // When readline collapses ESC [ I/O into plain 'I'/'O' keypress events,
+    // use this counter to suppress those next key events after detection in raw data
+    let suppressFocusIOCount = 0;
 
     // Parse Kitty protocol sequences
     const parseKittySequence = (sequence: string): Key | null => {
@@ -153,6 +163,141 @@ export function useKeypress(
     };
 
     const handleKeypress = (_: unknown, key: Key) => {
+      // Keypress-path filter for ESC [ I / ESC [ O sequences possibly split
+      // across multiple keypress events by readline.
+      const flushHeldFocusPrefix = () => {
+        if (!heldFocusPrefix) return;
+        if (heldFocusPrefix === ESC) {
+          onKeypressRef.current({
+            name: 'escape',
+            ctrl: false,
+            meta: false,
+            shift: false,
+            paste: false,
+            sequence: ESC,
+          });
+        } else if (heldFocusPrefix === `${ESC}[`) {
+          // Emit ESC then '[' as two separate basic keys
+          onKeypressRef.current({
+            name: 'escape',
+            ctrl: false,
+            meta: false,
+            shift: false,
+            paste: false,
+            sequence: ESC,
+          });
+          onKeypressRef.current({
+            name: '',
+            ctrl: false,
+            meta: false,
+            shift: false,
+            paste: false,
+            sequence: '[',
+          });
+        }
+        heldFocusPrefix = '';
+      };
+
+      // Suppress plain 'I'/'O' immediately if raw-data watcher detected focus sequence
+      if (suppressFocusIOCount > 0 && (key.sequence === 'I' || key.sequence === 'O')) {
+        suppressFocusIOCount--;
+        return;
+      }
+
+      // Update focus sequence state for keypress path
+      if (focusKeypressState === 0) {
+        if (key.name === 'escape' || key.sequence === ESC) {
+          focusKeypressState = 1;
+          heldFocusPrefix = ESC;
+          if (focusKeypressTimer) clearTimeout(focusKeypressTimer);
+          // Flush ESC shortly if it is not a focus sequence
+          focusKeypressTimer = setTimeout(() => {
+            if (focusKeypressState === 1) {
+              // Timed out waiting for '['; flush ESC
+              focusKeypressState = 0;
+              const escKey: Key = {
+                name: 'escape',
+                ctrl: false,
+                meta: false,
+                shift: false,
+                paste: false,
+                sequence: ESC,
+              };
+              onKeypressRef.current(escKey);
+              heldFocusPrefix = '';
+            }
+          }, 25);
+          return; // hold for potential focus sequence
+        }
+      } else if (focusKeypressState === 1) {
+        if (key.sequence === '[') {
+          focusKeypressState = 2;
+          heldFocusPrefix = `${ESC}[`;
+          if (focusKeypressTimer) clearTimeout(focusKeypressTimer);
+          // Wait briefly for the final 'I' or 'O'
+          focusKeypressTimer = setTimeout(() => {
+            if (focusKeypressState === 2) {
+              // Not a focus sequence, flush ESC and '['
+              focusKeypressState = 0;
+              const escKey: Key = {
+                name: 'escape',
+                ctrl: false,
+                meta: false,
+                shift: false,
+                paste: false,
+                sequence: ESC,
+              };
+              onKeypressRef.current(escKey);
+              onKeypressRef.current({
+                name: '',
+                ctrl: false,
+                meta: false,
+                shift: false,
+                paste: false,
+                sequence: '[',
+              });
+              heldFocusPrefix = '';
+            }
+          }, 25);
+          return;
+        }
+        // Not a focus sequence; flush held ESC and continue processing current key
+        focusKeypressState = 0;
+        if (focusKeypressTimer) {
+          clearTimeout(focusKeypressTimer);
+          focusKeypressTimer = null;
+        }
+        flushHeldFocusPrefix();
+        // fall through to regular handling of current key
+      } else if (focusKeypressState === 2) {
+        if (key.sequence === 'I' || key.sequence === 'O') {
+          // Detected focus in/out. Drop entire sequence.
+          focusKeypressState = 0;
+          if (focusKeypressTimer) {
+            clearTimeout(focusKeypressTimer);
+            focusKeypressTimer = null;
+          }
+          heldFocusPrefix = '';
+          return;
+        }
+        // Not focus sequence; flush ESC '[' then continue
+        focusKeypressState = 0;
+        if (focusKeypressTimer) {
+          clearTimeout(focusKeypressTimer);
+          focusKeypressTimer = null;
+        }
+        flushHeldFocusPrefix();
+        // fall through to regular handling
+      }
+      // Ignore terminal focus in/out sequences (ESC [ I / ESC [ O)
+      if (
+        key.sequence === FOCUS_IN ||
+        key.sequence === FOCUS_OUT ||
+        key.sequence === `${ESC}[I` ||
+        key.sequence === `${ESC}[O`
+      ) {
+        return;
+      }
       // Handle VS Code's backslash+return pattern (Shift+Enter)
       if (key.name === 'return' && waitingForEnterAfterBackslash) {
         // Cancel the timeout since we got the Enter
@@ -317,13 +462,64 @@ export function useKeypress(
     };
 
     const handleRawKeypress = (data: Buffer) => {
+      // First, strip terminal focus in/out sequences (ESC [ I / ESC [ O)
+      // even if they span multiple chunks.
+      const sanitizedBytes: number[] = [];
+      for (let i = 0; i < data.length; i++) {
+        const byte = data[i];
+        if (focusSeqState === 0) {
+          if (byte === 0x1b) {
+            // ESC
+            focusSeqState = 1;
+            continue; // hold, do not emit yet
+          }
+          sanitizedBytes.push(byte);
+          continue;
+        }
+
+        if (focusSeqState === 1) {
+          if (byte === 0x5b) {
+            // '[' following ESC
+            focusSeqState = 2;
+            continue; // still hold
+          }
+          // Not a focus sequence; flush held ESC then process current byte
+          sanitizedBytes.push(0x1b); // ESC
+          focusSeqState = 0;
+          // Re-process this byte in state 0 logic
+          if (byte === 0x1b) {
+            focusSeqState = 1;
+          } else {
+            sanitizedBytes.push(byte);
+          }
+          continue;
+        }
+
+        // focusSeqState === 2 (we have ESC '[')
+        if (byte === 0x49 || byte === 0x4f) {
+          // 'I' or 'O' -> this is a focus sequence; drop it entirely
+          suppressFocusIOCount++;
+          focusSeqState = 0;
+          continue;
+        }
+        // Not a focus sequence; flush ESC '[' then process current byte
+        sanitizedBytes.push(0x1b, 0x5b);
+        focusSeqState = 0;
+        if (byte === 0x1b) {
+          focusSeqState = 1;
+        } else {
+          sanitizedBytes.push(byte);
+        }
+      }
+
+      const sanitizedData = Buffer.from(Uint8Array.from(sanitizedBytes));
       const pasteModePrefixBuffer = Buffer.from(PASTE_MODE_PREFIX);
       const pasteModeSuffixBuffer = Buffer.from(PASTE_MODE_SUFFIX);
 
       let pos = 0;
-      while (pos < data.length) {
-        const prefixPos = data.indexOf(pasteModePrefixBuffer, pos);
-        const suffixPos = data.indexOf(pasteModeSuffixBuffer, pos);
+      while (pos < sanitizedData.length) {
+        const prefixPos = sanitizedData.indexOf(pasteModePrefixBuffer, pos);
+        const suffixPos = sanitizedData.indexOf(pasteModeSuffixBuffer, pos);
 
         // Determine which marker comes first, if any.
         const isPrefixNext =
@@ -342,11 +538,11 @@ export function useKeypress(
         markerLength = pasteModeSuffixBuffer.length;
 
         if (nextMarkerPos === -1) {
-          keypressStream.write(data.slice(pos));
+          keypressStream.write(sanitizedData.slice(pos));
           return;
         }
 
-        const nextData = data.slice(pos, nextMarkerPos);
+        const nextData = sanitizedData.slice(pos, nextMarkerPos);
         if (nextData.length > 0) {
           keypressStream.write(nextData);
         }

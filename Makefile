@@ -53,7 +53,7 @@ debug:
 
 
 run-npx:
-	npx https://github.com/QwenLM/qwen-code
+	npx https://github.com/DeltaLM/delta-code
 
 create-alias:
 	scripts/create_alias.sh

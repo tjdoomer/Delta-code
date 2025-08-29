@@ -138,7 +138,7 @@ export class GeminiChat {
   ): Promise<string | null> {
     // Handle different auth types
     if (authType === AuthType.QWEN_OAUTH) {
-      return this.handleQwenOAuthError(error);
+      return this.handleDeltaOAuthError(error);
     }
 
     // Only handle fallback for OAuth users
@@ -606,9 +606,9 @@ export class GeminiChat {
   }
 
   /**
-   * Handles Qwen OAuth authentication errors and rate limiting
+   * Handles Delta OAuth authentication errors and rate limiting
    */
-  private async handleQwenOAuthError(error?: unknown): Promise<string | null> {
+  private async handleDeltaOAuthError(error?: unknown): Promise<string | null> {
     if (!error) {
       return null;
     }
@@ -640,17 +640,17 @@ export class GeminiChat {
       errorMessage.includes('too many requests');
 
     if (isAuthError) {
-      console.warn('Qwen OAuth authentication error detected:', errorMessage);
-      // The QwenContentGenerator should automatically handle token refresh
+      console.warn('Delta OAuth authentication error detected:', errorMessage);
+      // The DeltaContentGenerator should automatically handle token refresh
       // If it still fails, it likely means the refresh token is also expired
       console.log(
-        'Note: If this persists, you may need to re-authenticate with Qwen OAuth',
+        'Note: If this persists, you may need to re-authenticate with Delta OAuth',
       );
       return null;
     }
 
     if (isRateLimitError) {
-      console.warn('Qwen API rate limit encountered:', errorMessage);
+      console.warn('Delta API rate limit encountered:', errorMessage);
       // For rate limiting, we don't need to do anything special
       // The retry mechanism will handle the backoff
       return null;

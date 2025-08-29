@@ -17,7 +17,7 @@ import {
   GeminiClient,
   ideContext,
   type AuthType,
-} from '@qwen-code/qwen-code-core';
+} from '@delta-code/delta-code-core';
 import { LoadedSettings, SettingsFile, Settings } from '../config/settings.js';
 import process from 'node:process';
 import { useGeminiStream } from './hooks/useGeminiStream.js';
@@ -89,10 +89,10 @@ interface MockServerConfig {
   getIdeClient: Mock<() => { getCurrentIde: Mock<() => string | undefined> }>;
 }
 
-// Mock @qwen-code/qwen-code-core and its Config class
-vi.mock('@qwen-code/qwen-code-core', async (importOriginal) => {
+// Mock @delta-code/delta-code-core and its Config class
+vi.mock('@delta-code/delta-code-core', async (importOriginal) => {
   const actualCore =
-    await importOriginal<typeof import('@qwen-code/qwen-code-core')>();
+    await importOriginal<typeof import('@delta-code/delta-code-core')>();
   const ConfigClassMock = vi
     .fn()
     .mockImplementation((optionsPassedToConstructor) => {
@@ -257,7 +257,7 @@ vi.mock('../hooks/useTerminalSize.js', () => ({
 
 const mockedCheckForUpdates = vi.mocked(checkForUpdates);
 const { isGitRepository: mockedIsGitRepository } = vi.mocked(
-  await import('@qwen-code/qwen-code-core'),
+  await import('@delta-code/delta-code-core'),
 );
 
 vi.mock('node:child_process');
@@ -361,11 +361,11 @@ describe('App UI', () => {
       mockedIsGitRepository.mockResolvedValue(true);
       const info: UpdateObject = {
         update: {
-          name: '@qwen-code/qwen-code',
+          name: '@delta-code/delta-code',
           latest: '1.1.0',
           current: '1.0.0',
         },
-        message: 'Qwen Code update available!',
+        message: 'Delta Code update available!',
       };
       mockedCheckForUpdates.mockResolvedValue(info);
       const { spawn } = await import('node:child_process');
@@ -388,7 +388,7 @@ describe('App UI', () => {
       mockedIsGitRepository.mockResolvedValue(false);
       const info: UpdateObject = {
         update: {
-          name: '@qwen-code/qwen-code',
+          name: '@delta-code/delta-code',
           latest: '1.1.0',
           current: '1.0.0',
         },
@@ -418,7 +418,7 @@ describe('App UI', () => {
       mockedIsGitRepository.mockResolvedValue(false);
       const info: UpdateObject = {
         update: {
-          name: '@qwen-code/qwen-code',
+          name: '@delta-code/delta-code',
           latest: '1.1.0',
           current: '1.0.0',
         },
@@ -448,7 +448,7 @@ describe('App UI', () => {
       mockedIsGitRepository.mockResolvedValue(false);
       const info: UpdateObject = {
         update: {
-          name: '@qwen-code/qwen-code',
+          name: '@delta-code/delta-code',
           latest: '1.1.0',
           current: '1.0.0',
         },
@@ -481,7 +481,7 @@ describe('App UI', () => {
       process.env.GEMINI_CLI_DISABLE_AUTOUPDATER = 'true';
       const info: UpdateObject = {
         update: {
-          name: '@qwen-code/qwen-code',
+          name: '@delta-code/delta-code',
           latest: '1.1.0',
           current: '1.0.0',
         },
