@@ -9,7 +9,24 @@ AI-powered CLI for developers, adapted from Gemini CLI and optimized for Delta3â
 Requires Node.js â‰¥ 20.
 
 ```bash
-npm install -g @delta-code/delta-code
+# Clone and enter the repo
+git clone https://github.com/DeltaLM/delta-code.git
+cd delta-code/Delta-code
+
+# Build everything
+npm ci
+npm run build
+
+# Install the CLI globally from the repo root
+npm install -g .
+# Now run:
+delta
+```
+
+```bash
+npm i -g github:DeltaLM/delta-code#main
+# Then:
+delta
 
 ```
 
