@@ -33,15 +33,19 @@ if (!existsSync(generatedDir)) {
   mkdirSync(generatedDir, { recursive: true });
 }
 
-try {
-  const gitHash = execSync('git rev-parse --short HEAD', {
-    encoding: 'utf-8',
-  }).trim();
-  if (gitHash) {
-    gitCommitInfo = gitHash;
+// Only attempt git lookup if this is a real git checkout
+if (existsSync(join(root, '.git'))) {
+  try {
+    const gitHash = execSync('git rev-parse --short HEAD', {
+      encoding: 'utf-8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }).trim();
+    if (gitHash) {
+      gitCommitInfo = gitHash;
+    }
+  } catch {
+    // ignore; fall back to default
   }
-} catch {
-  // ignore
 }
 
 const fileContent = `/**
