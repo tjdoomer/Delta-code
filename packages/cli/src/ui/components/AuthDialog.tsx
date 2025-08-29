@@ -11,6 +11,9 @@ import {
   setOpenAIApiKey,
   setOpenAIBaseUrl,
   setOpenAIModel,
+  setGeminiApiKey,
+  setAzureOpenAIConfig,
+  setAwsBedrockConfig,
   validateAuthMethod,
 } from '../../config/auth.js';
 import { LoadedSettings, SettingScope } from '../../config/settings.js';
@@ -34,14 +37,29 @@ export function AuthDialog({
     initialErrorMessage || null,
   );
   const [showOpenAIKeyPrompt, setShowOpenAIKeyPrompt] = useState(false);
+  const [providerMode, setProviderMode] = useState<
+    'openai' | 'anthropic' | 'google' | 'azure' | 'bedrock'
+  >('openai');
 
-  // Only one option: generic provider path
-  const items = [{ label: 'Choose your Path', value: AuthType.USE_OPENAI }];
+  // Two options: OpenAI-compatible or Anthropic via OpenAI-compatible provider
+  type ProviderChoice = {
+    provider: 'openai' | 'anthropic' | 'google' | 'azure' | 'bedrock';
+    authType: AuthType;
+  };
+  const items: Array<{ label: string; value: ProviderChoice }> = [
+    { label: '1. Choose your Path - OpenAI', value: { provider: 'openai', authType: AuthType.USE_OPENAI } },
+    { label: '2. Choose your Path - Anthropic', value: { provider: 'anthropic', authType: AuthType.USE_OPENAI } },
+    { label: '3. Choose your Path - Google (Gemini API key)', value: { provider: 'google', authType: AuthType.USE_GEMINI } },
+    { label: '4. Choose your Path - Azure OpenAI', value: { provider: 'azure', authType: AuthType.USE_OPENAI } },
+    { label: '5. Choose your Path - AWS Bedrock (Claude)', value: { provider: 'bedrock', authType: AuthType.USE_OPENAI } },
+  ];
 
   // Always default to the single option (index 0)
   const initialAuthIndex = 0;
 
-  const handleAuthSelect = (authMethod: AuthType) => {
+  const handleAuthSelect = (choice: ProviderChoice) => {
+    setProviderMode(choice.provider);
+    const authMethod = choice.authType;
     const error = validateAuthMethod(authMethod);
     if (error) {
       if (authMethod === AuthType.USE_OPENAI && !process.env.OPENAI_API_KEY) {
@@ -61,6 +79,32 @@ export function AuthDialog({
     baseUrl: string,
     model: string,
   ) => {
+    if (providerMode === 'google') {
+      setGeminiApiKey(apiKey);
+      setShowOpenAIKeyPrompt(false);
+      onSelect(AuthType.USE_GEMINI, SettingScope.User);
+      return;
+    }
+
+    if (providerMode === 'azure') {
+      // For Azure, baseUrl = https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-08-01-preview
+      // We just store baseUrl and deployment name (model field) for OpenAI-compatible client
+      setAzureOpenAIConfig(baseUrl, model, apiKey);
+      setShowOpenAIKeyPrompt(false);
+      onSelect(AuthType.USE_OPENAI, SettingScope.User);
+      return;
+    }
+
+    if (providerMode === 'bedrock') {
+      // Model selection will still flow via OPENAI_MODEL for routing in our OpenAI adapter
+      // but credentials come from AWS env vars
+      setAwsBedrockConfig(apiKey /* accessKeyId */, baseUrl /* secretKey */, model /* region */);
+      setShowOpenAIKeyPrompt(false);
+      onSelect(AuthType.USE_OPENAI, SettingScope.User);
+      return;
+    }
+
+    // Default OpenAI-compatible, including Anthropic via OpenRouter
     setOpenAIApiKey(apiKey);
     setOpenAIBaseUrl(baseUrl);
     setOpenAIModel(model);
@@ -101,6 +145,7 @@ export function AuthDialog({
   if (showOpenAIKeyPrompt) {
     return (
       <OpenAIKeyPrompt
+        mode={providerMode}
         onSubmit={handleOpenAIKeySubmit}
         onCancel={handleOpenAIKeyCancel}
       />

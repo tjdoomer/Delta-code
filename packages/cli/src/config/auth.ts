@@ -65,3 +65,30 @@ export const setOpenAIBaseUrl = (baseUrl: string): void => {
 export const setOpenAIModel = (model: string): void => {
   process.env.OPENAI_MODEL = model;
 };
+
+// Google AI Studio (Gemini) key
+export const setGeminiApiKey = (apiKey: string): void => {
+  process.env.GEMINI_API_KEY = apiKey;
+};
+
+// Azure OpenAI config: Use OpenAI-compatible client
+export const setAzureOpenAIConfig = (
+  baseUrl: string,
+  deploymentName: string,
+  apiKey: string,
+): void => {
+  process.env.OPENAI_BASE_URL = baseUrl;
+  process.env.OPENAI_MODEL = deploymentName; // Azure uses deployment name as model identifier
+  process.env.OPENAI_API_KEY = apiKey;
+};
+
+// AWS Bedrock placeholders (not yet wired to a content generator)
+export const setAwsBedrockConfig = (
+  accessKeyId: string,
+  secretAccessKey: string,
+  region: string,
+): void => {
+  process.env.AWS_ACCESS_KEY_ID = accessKeyId;
+  process.env.AWS_SECRET_ACCESS_KEY = secretAccessKey;
+  process.env.AWS_REGION = region;
+};

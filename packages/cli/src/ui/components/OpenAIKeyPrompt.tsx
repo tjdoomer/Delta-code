@@ -11,32 +11,43 @@ import { Colors } from '../colors.js';
 interface OpenAIKeyPromptProps {
   onSubmit: (apiKey: string, baseUrl: string, model: string) => void;
   onCancel: () => void;
+  mode?: 'openai' | 'anthropic' | 'google' | 'azure' | 'bedrock';
 }
 
 export function OpenAIKeyPrompt({
   onSubmit,
   onCancel,
+  mode = 'openai',
 }: OpenAIKeyPromptProps): React.JSX.Element {
   const [apiKey, setApiKey] = useState('');
-  const [baseUrl, setBaseUrl] = useState('');
-  const [model, setModel] = useState('');
+  const [baseUrl, setBaseUrl] = useState(() => {
+    if (mode === 'anthropic') return 'https://openrouter.ai/api/v1';
+    if (mode === 'azure') return 'https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-08-01-preview';
+    return '';
+  });
+  const [model, setModel] = useState(() => {
+    if (mode === 'anthropic') return 'anthropic/claude-3.5-sonnet';
+    if (mode === 'azure') return '{deployment-name}';
+    if (mode === 'bedrock') return 'us-east-1'; // region in model field for our handler
+    return '';
+  });
   const [currentField, setCurrentField] = useState<
     'apiKey' | 'baseUrl' | 'model'
   >('apiKey');
 
   useInput((input, key) => {
-    // 过滤粘贴相关的控制序列
+    // Filter paste-related control sequences
     let cleanInput = (input || '')
-      // 过滤 ESC 开头的控制序列（如 \u001b[200~、\u001b[201~ 等）
+      // Filter ESC-led control sequences (e.g., \u001b[200~, \u001b[201~)
       .replace(/\u001b\[[0-9;]*[a-zA-Z]/g, '') // eslint-disable-line no-control-regex
-      // 过滤粘贴开始标记 [200~
+      // Filter paste start marker [200~
       .replace(/\[200~/g, '')
-      // 过滤粘贴结束标记 [201~
+      // Filter paste end marker [201~
       .replace(/\[201~/g, '')
-      // 过滤单独的 [ 和 ~ 字符（可能是粘贴标记的残留）
+      // Filter stray '[' and '~' characters (leftover paste markers)
       .replace(/^\[|~$/g, '');
 
-    // 再过滤所有不可见字符（ASCII < 32，除了回车换行）
+    // Then filter all non-printable ASCII (< 32), except carriage return/newline
     cleanInput = cleanInput
       .split('')
       .filter((ch) => ch.charCodeAt(0) >= 32)
@@ -53,21 +64,21 @@ export function OpenAIKeyPrompt({
       return;
     }
 
-    // 检查是否是 Enter 键（通过检查输入是否包含换行符）
+    // Check for Enter (by detecting newline characters)
     if (input.includes('\n') || input.includes('\r')) {
       if (currentField === 'apiKey') {
-        // 允许空 API key 跳转到下一个字段，让用户稍后可以返回修改
+        // Allow empty API key to advance; user can return later to edit
         setCurrentField('baseUrl');
         return;
       } else if (currentField === 'baseUrl') {
         setCurrentField('model');
         return;
       } else if (currentField === 'model') {
-        // 只有在提交时才检查 API key 是否为空
+        // Validate API key only on final submit
         if (apiKey.trim()) {
           onSubmit(apiKey.trim(), baseUrl.trim(), model.trim());
         } else {
-          // 如果 API key 为空，回到 API key 字段
+          // If API key is empty, return focus to the API key field
           setCurrentField('apiKey');
         }
       }
@@ -132,14 +143,35 @@ export function OpenAIKeyPrompt({
       width="100%"
     >
       <Text bold color={Colors.AccentBlue}>
-        OpenAI Configuration Required
+        {mode === 'anthropic'
+          ? 'Anthropic (via OpenAI-compatible) Configuration'
+          : mode === 'google'
+            ? 'Google (Gemini API Key) Configuration'
+            : mode === 'azure'
+              ? 'Azure OpenAI Configuration'
+              : mode === 'bedrock'
+                ? 'AWS Bedrock (Claude) Configuration'
+                : 'OpenAI Configuration Required'}
       </Text>
       <Box marginTop={1}>
         <Text>
-          Please enter your OpenAI configuration. You can get an API key from{' '}
-          <Text color={Colors.AccentBlue}>
-            https://platform.openai.com/api-keys
-          </Text>
+          {mode === 'anthropic' ? (
+            <>
+              Enter your OpenAI-compatible config for Anthropic. You can use OpenRouter as a gateway:
+              <Text color={Colors.AccentBlue}> https://openrouter.ai/</Text>
+            </>
+          ) : mode === 'google' ? (
+            <>Enter your Google AI Studio API key (GEMINI_API_KEY).</>
+          ) : mode === 'azure' ? (
+            <>Enter Azure OpenAI details: API Key, full base URL, and deployment name.</>
+          ) : mode === 'bedrock' ? (
+            <>Enter AWS Bedrock credentials: Access Key ID (API Key), Secret (Base URL field), and Region (Model field).</>
+          ) : (
+            <>
+              Please enter your OpenAI configuration. You can get an API key from{' '}
+              <Text color={Colors.AccentBlue}>https://platform.openai.com/api-keys</Text>
+            </>
+          )}
         </Text>
       </Box>
       <Box marginTop={1} flexDirection="row">
