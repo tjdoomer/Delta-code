@@ -47,7 +47,7 @@
 ## 0.0.6
 
 - Added usage statistics logging for Delta integration.
-- Made `/init` respect the configured context filename and aligned docs with `QWEN.md`.
+- Made `/init` respect the configured context filename and aligned docs with `DELTA.md`.
 - Fixed `EPERM` error when running `delta --sandbox` on macOS.
 - Fixed terminal flicker while waiting for login.
 - Fixed `glm-4.5` model request error.

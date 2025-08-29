@@ -37,7 +37,7 @@ const memoryToolSchemaData: FunctionDeclaration = {
       scope: {
         type: 'string',
         description:
-          'Where to save the memory: "global" saves to user-level ~/.delta/QWEN.md (shared across all projects), "project" saves to current project\'s QWEN.md (project-specific). If not specified, will prompt user to choose.',
+          'Where to save the memory: "global" saves to user-level ~/.delta/DELTA.md (shared across all projects), "project" saves to current project\'s DELTA.md (project-specific). If not specified, will prompt user to choose.',
         enum: ['global', 'project'],
       },
     },
@@ -63,16 +63,16 @@ Do NOT use this tool:
 
 - \`fact\` (string, required): The specific fact or piece of information to remember. This should be a clear, self-contained statement. For example, if the user says "My favorite color is blue", the fact would be "My favorite color is blue".
 - \`scope\` (string, optional): Where to save the memory:
-  - "global": Saves to user-level ~/.delta/QWEN.md (shared across all projects)
-  - "project": Saves to current project's QWEN.md (project-specific)
+  - "global": Saves to user-level ~/.delta/DELTA.md (shared across all projects)
+  - "project": Saves to current project's DELTA.md (project-specific)
   - If not specified, the tool will ask the user where they want to save the memory.
 `;
 
 export const GEMINI_CONFIG_DIR = '.delta';
-export const DEFAULT_CONTEXT_FILENAME = 'QWEN.md';
+export const DEFAULT_CONTEXT_FILENAME = 'DELTA.md';
 export const MEMORY_SECTION_HEADER = '## Delta Added Memories';
 
-// This variable will hold the currently configured filename for QWEN.md context files.
+// This variable will hold the currently configured filename for DELTA.md context files.
 // It defaults to DEFAULT_CONTEXT_FILENAME but can be overridden by setGeminiMdFilename.
 let currentGeminiMdFilename: string | string[] = DEFAULT_CONTEXT_FILENAME;
 

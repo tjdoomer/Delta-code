@@ -95,7 +95,7 @@ export function useKeypress(
     // Track partial focus sequences across keypress events (modern path)
     let focusKeypressState: 0 | 1 | 2 = 0;
     let focusKeypressTimer: NodeJS.Timeout | null = null;
-    let heldFocusPrefix: string = '';
+    let heldFocusPrefix = '';
     // When readline collapses ESC [ I/O into plain 'I'/'O' keypress events,
     // use this counter to suppress those next key events after detection in raw data
     let suppressFocusIOCount = 0;
