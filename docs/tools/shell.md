@@ -1,6 +1,6 @@
 # Shell Tool (`run_shell_command`)
 
-This document describes the `run_shell_command` tool for Qwen Code.
+This document describes the `run_shell_command` tool for Delta Code.
 
 ## Description
 
@@ -15,7 +15,7 @@ Use `run_shell_command` to interact with the underlying system, run scripts, or 
 - `directory` (string, optional): The directory (relative to the project root) in which to execute the command. If not provided, the command runs in the project root.
 - `is_background` (boolean, required): Whether to run the command in background. This parameter is required to ensure explicit decision-making about command execution mode. Set to true for long-running processes like development servers, watchers, or daemons that should continue running without blocking further commands. Set to false for one-time commands that should complete before proceeding.
 
-## How to use `run_shell_command` with Qwen Code
+## How to use `run_shell_command` with Delta Code
 
 When using `run_shell_command`, the command is executed as a subprocess. You can control whether commands run in background or foreground using the `is_background` parameter, or by explicitly adding `&` to commands. The tool returns detailed information about the execution, including:
 

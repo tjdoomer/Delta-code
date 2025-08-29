@@ -11,7 +11,7 @@ import { Colors } from '../colors.js';
 interface OpenAIKeyPromptProps {
   onSubmit: (apiKey: string, baseUrl: string, model: string) => void;
   onCancel: () => void;
-  mode?: 'openai' | 'anthropic' | 'google' | 'azure' | 'bedrock';
+  mode?: 'openai' | 'google' | 'azure' | 'bedrock' | 'claude';
 }
 
 export function OpenAIKeyPrompt({
@@ -21,14 +21,14 @@ export function OpenAIKeyPrompt({
 }: OpenAIKeyPromptProps): React.JSX.Element {
   const [apiKey, setApiKey] = useState('');
   const [baseUrl, setBaseUrl] = useState(() => {
-    if (mode === 'anthropic') return 'https://openrouter.ai/api/v1';
     if (mode === 'azure') return 'https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-08-01-preview';
+    if (mode === 'claude') return 'https://api.anthropic.com/v1/messages';
     return '';
   });
   const [model, setModel] = useState(() => {
-    if (mode === 'anthropic') return 'anthropic/claude-3.5-sonnet';
     if (mode === 'azure') return '{deployment-name}';
     if (mode === 'bedrock') return 'us-east-1'; // region in model field for our handler
+    if (mode === 'claude') return 'claude-3-sonnet';
     return '';
   });
   const [currentField, setCurrentField] = useState<
@@ -143,29 +143,29 @@ export function OpenAIKeyPrompt({
       width="100%"
     >
       <Text bold color={Colors.AccentBlue}>
-        {mode === 'anthropic'
-          ? 'Anthropic (via OpenAI-compatible) Configuration'
-          : mode === 'google'
+        {mode === 'google'
             ? 'Google (Gemini API Key) Configuration'
             : mode === 'azure'
               ? 'Azure OpenAI Configuration'
               : mode === 'bedrock'
                 ? 'AWS Bedrock (Claude) Configuration'
-                : 'OpenAI Configuration Required'}
+                : mode === 'claude'
+                  ? 'Anthropic Claude Configuration'
+                  : 'OpenAI Configuration Required'}
       </Text>
       <Box marginTop={1}>
         <Text>
-          {mode === 'anthropic' ? (
-            <>
-              Enter your OpenAI-compatible config for Anthropic. You can use OpenRouter as a gateway:
-              <Text color={Colors.AccentBlue}> https://openrouter.ai/</Text>
-            </>
-          ) : mode === 'google' ? (
+          {mode === 'google' ? (
             <>Enter your Google AI Studio API key (GEMINI_API_KEY).</>
           ) : mode === 'azure' ? (
             <>Enter Azure OpenAI details: API Key, full base URL, and deployment name.</>
           ) : mode === 'bedrock' ? (
             <>Enter AWS Bedrock credentials: Access Key ID (API Key), Secret (Base URL field), and Region (Model field).</>
+          ) : mode === 'claude' ? (
+            <>
+              Enter your Anthropic Claude API key. You can get one from{' '}
+              <Text color={Colors.AccentBlue}>https://console.anthropic.com/</Text>
+            </>
           ) : (
             <>
               Please enter your OpenAI configuration. You can get an API key from{' '}

@@ -1,6 +1,6 @@
 # CLI Commands
 
-Qwen Code supports several built-in commands to help you manage your session, customize the interface, and control its behavior. These commands are prefixed with a forward slash (`/`), an at symbol (`@`), or an exclamation mark (`!`).
+Delta Code supports several built-in commands to help you manage your session, customize the interface, and control its behavior. These commands are prefixed with a forward slash (`/`), an at symbol (`@`), or an exclamation mark (`!`).
 
 ## Slash commands (`/`)
 
@@ -9,7 +9,7 @@ Slash commands provide meta-level control over the CLI itself.
 ### Built-in Commands
 
 - **`/bug`**
-  - **Description:** File an issue about Qwen Code. By default, the issue is filed within the GitHub repository for Qwen Code. The string you enter after `/bug` will become the headline for the bug being filed. The default `/bug` behavior can be modified using the `bugCommand` setting in your `.qwen/settings.json` files.
+  - **Description:** File an issue about Delta Code. By default, the issue is filed within the GitHub repository for Delta Code. The string you enter after `/bug` will become the headline for the bug being filed. The default `/bug` behavior can be modified using the `bugCommand` setting in your `.delta/settings.json` files.
 
 - **`/chat`**
   - **Description:** Save and resume conversation history for branching conversation state interactively, or resuming a previous state from a later session.
@@ -39,7 +39,7 @@ Slash commands provide meta-level control over the CLI itself.
   - **Description:** Replace the entire chat context with a summary. This saves on tokens used for future tasks while retaining a high level summary of what has happened.
 
 - **`/copy`**
-  - **Description:** Copies the last output produced by Qwen Code to your clipboard, for easy sharing or reuse.
+  - **Description:** Copies the last output produced by Delta Code to your clipboard, for easy sharing or reuse.
 
 - **`/directory`** (or **`/dir`**)
   - **Description:** Manage workspace directories for multi-directory support.
@@ -67,10 +67,10 @@ Slash commands provide meta-level control over the CLI itself.
   - **Description:** Open a dialog for selecting supported editors.
 
 - **`/extensions`**
-  - **Description:** Lists all active extensions in the current Qwen Code session. See [Qwen Code Extensions](../extension.md).
+  - **Description:** Lists all active extensions in the current Delta Code session. See [Delta Code Extensions](../extension.md).
 
 - **`/help`** (or **`/?`**)
-  - **Description:** Display help information about the Qwen Code, including available commands and their usage.
+  - **Description:** Display help information about the Delta Code, including available commands and their usage.
 
 - **`/mcp`**
   - **Description:** List configured Model Context Protocol (MCP) servers, their connection status, server details, and available tools.
@@ -100,15 +100,15 @@ Slash commands provide meta-level control over the CLI itself.
   - **Note:** Only available if the CLI is invoked with the `--checkpointing` option or configured via [settings](./configuration.md). See [Checkpointing documentation](../checkpointing.md) for more details.
 
 - **`/settings`**
-  - **Description:** Open the settings editor to view and modify Qwen Code settings.
-  - **Details:** This command provides a user-friendly interface for changing settings that control the behavior and appearance of Qwen Code. It is equivalent to manually editing the `.qwen/settings.json` file, but with validation and guidance to prevent errors.
+  - **Description:** Open the settings editor to view and modify Delta Code settings.
+  - **Details:** This command provides a user-friendly interface for changing settings that control the behavior and appearance of Delta Code. It is equivalent to manually editing the `.delta/settings.json` file, but with validation and guidance to prevent errors.
   - **Usage:** Simply run `/settings` and the editor will open. You can then browse or search for specific settings, view their current values, and modify them as desired. Changes to some settings are applied immediately, while others require a restart.
 
 - **`/stats`**
-  - **Description:** Display detailed statistics for the current Qwen Code session, including token usage, cached token savings (when available), and session duration. Note: Cached token information is only displayed when cached tokens are being used, which occurs with API key authentication but not with OAuth authentication at this time.
+  - **Description:** Display detailed statistics for the current Delta Code session, including token usage, cached token savings (when available), and session duration. Note: Cached token information is only displayed when cached tokens are being used, which occurs with API key authentication but not with OAuth authentication at this time.
 
 - [**`/theme`**](./themes.md)
-  - **Description:** Open a dialog that lets you change the visual theme of Qwen Code.
+  - **Description:** Open a dialog that lets you change the visual theme of Delta Code.
 
 - **`/auth`**
   - **Description:** Open a dialog that lets you change the authentication method.
@@ -117,7 +117,7 @@ Slash commands provide meta-level control over the CLI itself.
   - **Description:** Show version info. Please share this information when filing issues.
 
 - [**`/tools`**](../tools/index.md)
-  - **Description:** Display a list of tools that are currently available within Qwen Code.
+  - **Description:** Display a list of tools that are currently available within Delta Code.
   - **Sub-commands:**
     - **`desc`** or **`descriptions`**:
       - **Description:** Show detailed descriptions of each tool, including each tool's name with its full description as provided to the model.
@@ -128,7 +128,7 @@ Slash commands provide meta-level control over the CLI itself.
   - **Description:** Display the Privacy Notice and allow users to select whether they consent to the collection of their data for service improvement purposes.
 
 - **`/quit`** (or **`/exit`**)
-  - **Description:** Exit Qwen Code.
+  - **Description:** Exit Delta Code.
 
 - **`/vim`**
   - **Description:** Toggle vim mode on or off. When vim mode is enabled, the input area supports vim-style navigation and editing commands in both NORMAL and INSERT modes.
@@ -138,7 +138,7 @@ Slash commands provide meta-level control over the CLI itself.
     - **Editing commands:** Delete with `x`, change with `c`, insert with `i`, `a`, `o`, `O`; complex operations like `dd`, `cc`, `dw`, `cw`
     - **Count support:** Prefix commands with numbers (e.g., `3h`, `5w`, `10G`)
     - **Repeat last command:** Use `.` to repeat the last editing operation
-    - **Persistent setting:** Vim mode preference is saved to `~/.qwen/settings.json` and restored between sessions
+    - **Persistent setting:** Vim mode preference is saved to `~/.delta/settings.json` and restored between sessions
   - **Status indicator:** When enabled, shows `[NORMAL]` or `[INSERT]` in the footer
 
 - **`/init`**
@@ -148,14 +148,14 @@ Slash commands provide meta-level control over the CLI itself.
 
 For a quick start, see the [example](#example-a-pure-function-refactoring-command) below.
 
-Custom commands allow you to save and reuse your favorite or most frequently used prompts as personal shortcuts within Qwen Code. You can create commands that are specific to a single project or commands that are available globally across all your projects, streamlining your workflow and ensuring consistency.
+Custom commands allow you to save and reuse your favorite or most frequently used prompts as personal shortcuts within Delta Code. You can create commands that are specific to a single project or commands that are available globally across all your projects, streamlining your workflow and ensuring consistency.
 
 #### File Locations & Precedence
 
-Qwen Code discovers commands from two locations, loaded in a specific order:
+Delta Code discovers commands from two locations, loaded in a specific order:
 
-1.  **User Commands (Global):** Located in `~/.qwen/commands/`. These commands are available in any project you are working on.
-2.  **Project Commands (Local):** Located in `<your-project-root>/.qwen/commands/`. These commands are specific to the current project and can be checked into version control to be shared with your team.
+1.  **User Commands (Global):** Located in `~/.delta/commands/`. These commands are available in any project you are working on.
+2.  **Project Commands (Local):** Located in `<your-project-root>/.delta/commands/`. These commands are specific to the current project and can be checked into version control to be shared with your team.
 
 If a command in the project directory has the same name as a command in the user directory, the **project command will always be used.** This allows projects to override global commands with project-specific versions.
 
@@ -163,8 +163,8 @@ If a command in the project directory has the same name as a command in the user
 
 The name of a command is determined by its file path relative to its `commands` directory. Subdirectories are used to create namespaced commands, with the path separator (`/` or `\`) being converted to a colon (`:`).
 
-- A file at `~/.qwen/commands/test.toml` becomes the command `/test`.
-- A file at `<project>/.qwen/commands/git/commit.toml` becomes the namespaced command `/git:commit`.
+- A file at `~/.delta/commands/test.toml` becomes the command `/test`.
+- A file at `<project>/.delta/commands/git/commit.toml` becomes the namespaced command `/git:commit`.
 
 #### TOML File Format (v1)
 
@@ -189,7 +189,7 @@ If your `prompt` contains the special placeholder `{{args}}`, the CLI will repla
 **Example (`git/fix.toml`):**
 
 ```toml
-# In: ~/.qwen/commands/git/fix.toml
+# In: ~/.delta/commands/git/fix.toml
 # Invoked via: /git:fix "Button is misaligned on mobile"
 
 description = "Generates a fix for a given GitHub issue."
@@ -211,7 +211,7 @@ If you do **not** provide any arguments (e.g., `/mycommand`), the prompt is sent
 This example shows how to create a robust command by defining a role for the model, explaining where to find the user's input, and specifying the expected format and behavior.
 
 ```toml
-# In: <project>/.qwen/commands/changelog.toml
+# In: <project>/.delta/commands/changelog.toml
 # Invoked via: /changelog 1.2.0 added "Support for default argument parsing."
 
 description = "Adds a new entry to the project's CHANGELOG.md file."
@@ -243,7 +243,7 @@ When you run `/changelog 1.2.0 added "New feature"`, the final text sent to the 
 
 You can make your commands dynamic by executing shell commands directly within your `prompt` and injecting their output. This is ideal for gathering context from your local environment, like reading file content or checking the status of Git.
 
-When a custom command attempts to execute a shell command, Qwen Code will now prompt you for confirmation before proceeding. This is a security measure to ensure that only intended commands can be run.
+When a custom command attempts to execute a shell command, Delta Code will now prompt you for confirmation before proceeding. This is a security measure to ensure that only intended commands can be run.
 
 **How It Works:**
 
@@ -261,7 +261,7 @@ The CLI still respects the global `excludeTools` and `coreTools` settings. A com
 This command gets the staged git diff and uses it to ask the model to write a commit message.
 
 ````toml
-# In: <project>/.qwen/commands/git/commit.toml
+# In: <project>/.delta/commands/git/commit.toml
 # Invoked via: /git:commit
 
 description = "Generates a Git commit message based on staged changes."
@@ -291,16 +291,16 @@ Let's create a global command that asks the model to refactor a piece of code.
 First, ensure the user commands directory exists, then create a `refactor` subdirectory for organization and the final TOML file.
 
 ```bash
-mkdir -p ~/.qwen/commands/refactor
-touch ~/.qwen/commands/refactor/pure.toml
+mkdir -p ~/.delta/commands/refactor
+touch ~/.delta/commands/refactor/pure.toml
 ```
 
 **2. Add the content to the file:**
 
-Open `~/.qwen/commands/refactor/pure.toml` in your editor and add the following content. We are including the optional `description` for best practice.
+Open `~/.delta/commands/refactor/pure.toml` in your editor and add the following content. We are including the optional `description` for best practice.
 
 ```toml
-# In: ~/.qwen/commands/refactor/pure.toml
+# In: ~/.delta/commands/refactor/pure.toml
 # This command will be invoked via: /refactor:pure
 
 description = "Asks the model to refactor the current context into a pure function."
@@ -324,7 +324,7 @@ That's it! You can now run your command in the CLI. First, you might add a file 
 > /refactor:pure
 ```
 
-Qwen Code will then execute the multi-line prompt defined in your TOML file.
+Delta Code will then execute the multi-line prompt defined in your TOML file.
 
 ## At commands (`@`)
 
@@ -355,13 +355,13 @@ At commands are used to include the content of files or directories as part of y
 
 ## Shell mode & passthrough commands (`!`)
 
-The `!` prefix lets you interact with your system's shell directly from within Qwen Code.
+The `!` prefix lets you interact with your system's shell directly from within Delta Code.
 
 - **`!<shell_command>`**
   - **Description:** Execute the given `<shell_command>` using `bash` on Linux/macOS or `cmd.exe` on Windows. Any output or errors from the command are displayed in the terminal.
   - **Examples:**
-    - `!ls -la` (executes `ls -la` and returns to Qwen Code)
-    - `!git status` (executes `git status` and returns to Qwen Code)
+    - `!ls -la` (executes `ls -la` and returns to Delta Code)
+    - `!git status` (executes `git status` and returns to Delta Code)
 
 - **`!` (Toggle shell mode)**
   - **Description:** Typing `!` on its own toggles shell mode.
@@ -369,7 +369,7 @@ The `!` prefix lets you interact with your system's shell directly from within Q
       - When active, shell mode uses a different coloring and a "Shell Mode Indicator".
       - While in shell mode, text you type is interpreted directly as a shell command.
     - **Exiting shell mode:**
-      - When exited, the UI reverts to its standard appearance and normal Qwen Code behavior resumes.
+      - When exited, the UI reverts to its standard appearance and normal Delta Code behavior resumes.
 
 - **Caution for all `!` usage:** Commands you execute in shell mode have the same permissions and impact as if you ran them directly in your terminal.
 

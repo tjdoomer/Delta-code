@@ -14,6 +14,7 @@ import {
   setGeminiApiKey,
   setAzureOpenAIConfig,
   setAwsBedrockConfig,
+  setAnthropicApiKey,
   validateAuthMethod,
 } from '../../config/auth.js';
 import { LoadedSettings, SettingScope } from '../../config/settings.js';
@@ -38,20 +39,20 @@ export function AuthDialog({
   );
   const [showOpenAIKeyPrompt, setShowOpenAIKeyPrompt] = useState(false);
   const [providerMode, setProviderMode] = useState<
-    'openai' | 'anthropic' | 'google' | 'azure' | 'bedrock'
+    'openai' | 'google' | 'azure' | 'bedrock' | 'claude'
   >('openai');
 
   // Two options: OpenAI-compatible or Anthropic via OpenAI-compatible provider
   type ProviderChoice = {
-    provider: 'openai' | 'anthropic' | 'google' | 'azure' | 'bedrock';
+    provider: 'openai' | 'google' | 'azure' | 'bedrock' | 'claude';
     authType: AuthType;
   };
   const items: Array<{ label: string; value: ProviderChoice }> = [
-    { label: '1. Choose your Path - OpenAI', value: { provider: 'openai', authType: AuthType.USE_OPENAI } },
-    { label: '2. Choose your Path - Anthropic', value: { provider: 'anthropic', authType: AuthType.USE_OPENAI } },
-    { label: '3. Choose your Path - Google (Gemini API key)', value: { provider: 'google', authType: AuthType.USE_GEMINI } },
-    { label: '4. Choose your Path - Azure OpenAI', value: { provider: 'azure', authType: AuthType.USE_OPENAI } },
-    { label: '5. Choose your Path - AWS Bedrock (Claude)', value: { provider: 'bedrock', authType: AuthType.USE_OPENAI } },
+    { label: 'Choose your Path - OpenAI', value: { provider: 'openai', authType: AuthType.USE_OPENAI } },
+    { label: 'Choose your Path - Google (Gemini API key)', value: { provider: 'google', authType: AuthType.USE_GEMINI } },
+    { label: 'Choose your Path - Azure OpenAI', value: { provider: 'azure', authType: AuthType.USE_OPENAI } },
+    { label: 'Choose your Path - AWS Bedrock (Claude)', value: { provider: 'bedrock', authType: AuthType.USE_OPENAI } },
+    { label: 'Choose your Path - Claude', value: { provider: 'claude', authType: AuthType.USE_CLAUDE } },
   ];
 
   // Always default to the single option (index 0)
@@ -101,6 +102,13 @@ export function AuthDialog({
       setAwsBedrockConfig(apiKey /* accessKeyId */, baseUrl /* secretKey */, model /* region */);
       setShowOpenAIKeyPrompt(false);
       onSelect(AuthType.USE_OPENAI, SettingScope.User);
+      return;
+    }
+
+    if (providerMode === 'claude') {
+      setAnthropicApiKey(apiKey);
+      setShowOpenAIKeyPrompt(false);
+      onSelect(AuthType.USE_CLAUDE, SettingScope.User);
       return;
     }
 

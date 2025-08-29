@@ -1,6 +1,6 @@
 # Todo Write Tool (`todo_write`)
 
-This document describes the `todo_write` tool for Qwen Code.
+This document describes the `todo_write` tool for Delta Code.
 
 ## Description
 
@@ -15,11 +15,11 @@ Use `todo_write` to create and manage a structured task list for your current co
   - `content` (string, required): The description of the task.
   - `status` (string, required): The current status (`pending`, `in_progress`, or `completed`).
 
-## How to use `todo_write` with Qwen Code
+## How to use `todo_write` with Delta Code
 
 The AI assistant will automatically use this tool when working on complex, multi-step tasks. You don't need to explicitly request it, but you can ask the assistant to create a todo list if you want to see the planned approach for your request.
 
-The tool stores todo lists in your home directory (`~/.qwen/todos/`) with session-specific files, so each coding session maintains its own task list.
+The tool stores todo lists in your home directory (`~/.delta/todos/`) with session-specific files, so each coding session maintains its own task list.
 
 ## When the AI uses this tool
 

@@ -45,6 +45,13 @@ export const validateAuthMethod = (authMethod: string): string | null => {
     return null;
   }
 
+  if (authMethod === AuthType.USE_CLAUDE) {
+    if (!process.env.ANTHROPIC_API_KEY) {
+      return 'ANTHROPIC_API_KEY environment variable not found. You can enter it interactively or add it to your .env file.';
+    }
+    return null;
+  }
+
   if (authMethod === AuthType.QWEN_OAUTH) {
     // Delta OAuth doesn't require any environment variables for basic setup
     // The OAuth flow will handle authentication
@@ -56,6 +63,10 @@ export const validateAuthMethod = (authMethod: string): string | null => {
 
 export const setOpenAIApiKey = (apiKey: string): void => {
   process.env.OPENAI_API_KEY = apiKey;
+};
+
+export const setAnthropicApiKey = (apiKey: string): void => {
+  process.env.ANTHROPIC_API_KEY = apiKey;
 };
 
 export const setOpenAIBaseUrl = (baseUrl: string): void => {

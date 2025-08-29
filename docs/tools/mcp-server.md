@@ -1,6 +1,6 @@
-# MCP servers with Qwen Code
+# MCP servers with Delta Code
 
-This document provides a guide to configuring and using Model Context Protocol (MCP) servers with Qwen Code.
+This document provides a guide to configuring and using Model Context Protocol (MCP) servers with Delta Code.
 
 ## What is an MCP server?
 
@@ -16,7 +16,7 @@ With an MCP server, you can extend the CLI's capabilities to perform actions bey
 
 ## Core Integration Architecture
 
-Qwen Code integrates with MCP servers through a sophisticated discovery and execution system built into the core package (`packages/core/src/tools/`):
+Delta Code integrates with MCP servers through a sophisticated discovery and execution system built into the core package (`packages/core/src/tools/`):
 
 ### Discovery Layer (`mcp-client.ts`)
 
@@ -47,11 +47,11 @@ The CLI supports three MCP transport types:
 
 ## How to set up your MCP server
 
-Qwen Code uses the `mcpServers` configuration in your `settings.json` file to locate and connect to MCP servers. This configuration supports multiple servers with different transport mechanisms.
+Delta Code uses the `mcpServers` configuration in your `settings.json` file to locate and connect to MCP servers. This configuration supports multiple servers with different transport mechanisms.
 
 ### Configure the MCP server in settings.json
 
-You can configure MCP servers at the global level in the `~/.qwen/settings.json` file or in your project's root directory, create or open the `.qwen/settings.json` file. Within the file, add the `mcpServers` configuration block.
+You can configure MCP servers at the global level in the `~/.delta/settings.json` file or in your project's root directory, create or open the `.delta/settings.json` file. Within the file, add the `mcpServers` configuration block.
 
 ### Configuration Structure
 
@@ -97,7 +97,7 @@ Each server configuration supports the following properties:
 
 ### OAuth Support for Remote MCP Servers
 
-Qwen Code supports OAuth 2.0 authentication for remote MCP servers using SSE or HTTP transports. This enables secure access to MCP servers that require authentication.
+Delta Code supports OAuth 2.0 authentication for remote MCP servers using SSE or HTTP transports. This enables secure access to MCP servers that require authentication.
 
 #### Automatic OAuth Discovery
 
@@ -175,7 +175,7 @@ Use the `/mcp auth` command to manage OAuth authentication:
 
 OAuth tokens are automatically:
 
-- **Stored securely** in `~/.qwen/mcp-oauth-tokens.json`
+- **Stored securely** in `~/.delta/mcp-oauth-tokens.json`
 - **Refreshed** when expired (if refresh tokens are available)
 - **Validated** before each connection attempt
 - **Cleaned up** when invalid or expired
@@ -312,7 +312,7 @@ You can specify the authentication provider type using the `authProviderType` pr
 
 ## Discovery Process Deep Dive
 
-When Qwen Code starts, it performs MCP server discovery through the following detailed process:
+When Delta Code starts, it performs MCP server discovery through the following detailed process:
 
 ### 1. Server Iteration and Connection
 
@@ -614,7 +614,7 @@ Here is an example of a valid JSON response from an MCP tool that returns both a
 }
 ```
 
-When Qwen Code receives this response, it will:
+When Delta Code receives this response, it will:
 
 1.  Extract all the text and combine it into a single `functionResponse` part for the model.
 2.  Present the image data as a separate `inlineData` part.
@@ -624,7 +624,7 @@ This enables you to build sophisticated tools that can provide rich, multi-modal
 
 ## MCP Prompts as Slash Commands
 
-In addition to tools, MCP servers can expose predefined prompts that can be executed as slash commands within Qwen Code. This allows you to create shortcuts for common or complex queries that can be easily invoked by name.
+In addition to tools, MCP servers can expose predefined prompts that can be executed as slash commands within Delta Code. This allows you to create shortcuts for common or complex queries that can be easily invoked by name.
 
 ### Defining Prompts on the Server
 
@@ -678,29 +678,29 @@ This can be included in `settings.json` under `mcpServers` with:
 Once a prompt is discovered, you can invoke it using its name as a slash command. The CLI will automatically handle parsing arguments.
 
 ```bash
-/poem-writer --title="Qwen Code" --mood="reverent"
+/poem-writer --title="Delta Code" --mood="reverent"
 ```
 
 or, using positional arguments:
 
 ```bash
-/poem-writer "Qwen Code" reverent
+/poem-writer "Delta Code" reverent
 ```
 
 When you run this command, the CLI executes the `prompts/get` method on the MCP server with the provided arguments. The server is responsible for substituting the arguments into the prompt template and returning the final prompt text. The CLI then sends this prompt to the model for execution. This provides a convenient way to automate and share common workflows.
 
-## Managing MCP Servers with `qwen mcp`
+## Managing MCP Servers with `delta mcp`
 
 While you can always configure MCP servers by manually editing your `settings.json` file, the CLI provides a convenient set of commands to manage your server configurations programmatically. These commands streamline the process of adding, listing, and removing MCP servers without needing to directly edit JSON files.
 
-### Adding a Server (`qwen mcp add`)
+### Adding a Server (`delta mcp add`)
 
-The `add` command configures a new MCP server in your `settings.json`. Based on the scope (`-s, --scope`), it will be added to either the user config `~/.qwen/settings.json` or the project config `.qwen/settings.json` file.
+The `add` command configures a new MCP server in your `settings.json`. Based on the scope (`-s, --scope`), it will be added to either the user config `~/.delta/settings.json` or the project config `.delta/settings.json` file.
 
 **Command:**
 
 ```bash
-qwen mcp add [options] <name> <commandOrUrl> [args...]
+delta mcp add [options] <name> <commandOrUrl> [args...]
 ```
 
 - `<name>`: A unique name for the server.
@@ -725,13 +725,13 @@ This is the default transport for running local servers.
 
 ```bash
 # Basic syntax
-qwen mcp add <name> <command> [args...]
+delta mcp add <name> <command> [args...]
 
 # Example: Adding a local server
-qwen mcp add my-stdio-server -e API_KEY=123 /path/to/server arg1 arg2 arg3
+delta mcp add my-stdio-server -e API_KEY=123 /path/to/server arg1 arg2 arg3
 
 # Example: Adding a local python server
-qwen mcp add python-server python server.py --port 8080
+delta mcp add python-server python server.py --port 8080
 ```
 
 #### Adding an HTTP server
@@ -740,13 +740,13 @@ This transport is for servers that use the streamable HTTP transport.
 
 ```bash
 # Basic syntax
-qwen mcp add --transport http <name> <url>
+delta mcp add --transport http <name> <url>
 
 # Example: Adding an HTTP server
-qwen mcp add --transport http http-server https://api.example.com/mcp/
+delta mcp add --transport http http-server https://api.example.com/mcp/
 
 # Example: Adding an HTTP server with an authentication header
-qwen mcp add --transport http secure-http https://api.example.com/mcp/ --header "Authorization: Bearer abc123"
+delta mcp add --transport http secure-http https://api.example.com/mcp/ --header "Authorization: Bearer abc123"
 ```
 
 #### Adding an SSE server
@@ -755,23 +755,23 @@ This transport is for servers that use Server-Sent Events (SSE).
 
 ```bash
 # Basic syntax
-qwen mcp add --transport sse <name> <url>
+delta mcp add --transport sse <name> <url>
 
 # Example: Adding an SSE server
-qwen mcp add --transport sse sse-server https://api.example.com/sse/
+delta mcp add --transport sse sse-server https://api.example.com/sse/
 
 # Example: Adding an SSE server with an authentication header
-qwen mcp add --transport sse secure-sse https://api.example.com/sse/ --header "Authorization: Bearer abc123"
+delta mcp add --transport sse secure-sse https://api.example.com/sse/ --header "Authorization: Bearer abc123"
 ```
 
-### Listing Servers (`qwen mcp list`)
+### Listing Servers (`delta mcp list`)
 
 To view all MCP servers currently configured, use the `list` command. It displays each server's name, configuration details, and connection status.
 
 **Command:**
 
 ```bash
-qwen mcp list
+delta mcp list
 ```
 
 **Example Output:**
@@ -782,20 +782,20 @@ qwen mcp list
 ✗ sse-server: https://api.example.com/sse (sse) - Disconnected
 ```
 
-### Removing a Server (`qwen mcp remove`)
+### Removing a Server (`delta mcp remove`)
 
 To delete a server from your configuration, use the `remove` command with the server's name.
 
 **Command:**
 
 ```bash
-qwen mcp remove <name>
+delta mcp remove <name>
 ```
 
 **Example:**
 
 ```bash
-qwen mcp remove my-server
+delta mcp remove my-server
 ```
 
 This will find and delete the "my-server" entry from the `mcpServers` object in the appropriate `settings.json` file based on the scope (`-s, --scope`).

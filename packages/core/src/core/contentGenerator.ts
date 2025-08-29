@@ -47,6 +47,7 @@ export enum AuthType {
   USE_VERTEX_AI = 'vertex-ai',
   CLOUD_SHELL = 'cloud-shell',
   USE_OPENAI = 'openai',
+  USE_CLAUDE = 'claude',
   QWEN_OAUTH = 'delta-oauth',
 }
 

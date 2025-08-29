@@ -1,23 +1,23 @@
-# Qwen Code Extensions
+# Delta Code Extensions
 
-Qwen Code supports extensions that can be used to configure and extend its functionality.
+Delta Code supports extensions that can be used to configure and extend its functionality.
 
 ## How it works
 
-On startup, Qwen Code looks for extensions in two locations:
+On startup, Delta Code looks for extensions in two locations:
 
-1.  `<workspace>/.qwen/extensions`
-2.  `<home>/.qwen/extensions`
+1.  `<workspace>/.delta/extensions`
+2.  `<home>/.delta/extensions`
 
-Qwen Code loads all extensions from both locations. If an extension with the same name exists in both locations, the extension in the workspace directory takes precedence.
+Delta Code loads all extensions from both locations. If an extension with the same name exists in both locations, the extension in the workspace directory takes precedence.
 
-Within each location, individual extensions exist as a directory that contains a `qwen-extension.json` file. For example:
+Within each location, individual extensions exist as a directory that contains a `delta-extension.json` file. For example:
 
-`<workspace>/.qwen/extensions/my-extension/qwen-extension.json`
+`<workspace>/.delta/extensions/my-extension/delta-extension.json`
 
-### `qwen-extension.json`
+### `delta-extension.json`
 
-The `qwen-extension.json` file contains the configuration for the extension. The file has the following structure:
+The `delta-extension.json` file contains the configuration for the extension. The file has the following structure:
 
 ```json
 {
@@ -39,7 +39,7 @@ The `qwen-extension.json` file contains the configuration for the extension. The
 - `contextFileName`: The name of the file that contains the context for the extension. This will be used to load the context from the workspace. If this property is not used but a `QWEN.md` file is present in your extension directory, then that file will be loaded.
 - `excludeTools`: An array of tool names to exclude from the model. You can also specify command-specific restrictions for tools that support it, like the `run_shell_command` tool. For example, `"excludeTools": ["run_shell_command(rm -rf)"]` will block the `rm -rf` command.
 
-When Qwen Code starts, it loads all the extensions and merges their configurations. If there are any conflicts, the workspace configuration takes precedence.
+When Delta Code starts, it loads all the extensions and merges their configurations. If there are any conflicts, the workspace configuration takes precedence.
 
 ## Extension Commands
 
@@ -50,8 +50,8 @@ Extensions can provide [custom commands](./cli/commands.md#custom-commands) by p
 An extension named `gcp` with the following structure:
 
 ```
-.qwen/extensions/gcp/
-├── qwen-extension.json
+.delta/extensions/gcp/
+├── delta-extension.json
 └── commands/
     ├── deploy.toml
     └── gcs/

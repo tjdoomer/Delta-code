@@ -209,7 +209,7 @@ npm run lint
 ### Coding Conventions
 
 - Please adhere to the coding style, patterns, and conventions used throughout the existing codebase.
-- Consult [QWEN.md](https://github.com/QwenLM/qwen-code/blob/main/QWEN.md) (typically found in the project root) for specific instructions related to AI-assisted development, including conventions for React, comments, and Git usage.
+- Consult [QWEN.md](https://github.com/DeltaLM/delta-code/blob/main/QWEN.md) (typically found in the project root) for specific instructions related to AI-assisted development, including conventions for React, comments, and Git usage.
 - **Imports:** Pay special attention to import paths. The project uses ESLint to enforce restrictions on relative imports between packages.
 
 ### Project Structure
@@ -276,13 +276,13 @@ To debug the CLI's React-based UI, you can use React DevTools. Ink, the library 
 
 ### macOS Seatbelt
 
-On macOS, `qwen` uses Seatbelt (`sandbox-exec`) under a `permissive-open` profile (see `packages/cli/src/utils/sandbox-macos-permissive-open.sb`) that restricts writes to the project folder but otherwise allows all other operations and outbound network traffic ("open") by default. You can switch to a `restrictive-closed` profile (see `packages/cli/src/utils/sandbox-macos-restrictive-closed.sb`) that declines all operations and outbound network traffic ("closed") by default by setting `SEATBELT_PROFILE=restrictive-closed` in your environment or `.env` file. Available built-in profiles are `{permissive,restrictive}-{open,closed,proxied}` (see below for proxied networking). You can also switch to a custom profile `SEATBELT_PROFILE=<profile>` if you also create a file `.qwen/sandbox-macos-<profile>.sb` under your project settings directory `.qwen`.
+On macOS, `delta` uses Seatbelt (`sandbox-exec`) under a `permissive-open` profile (see `packages/cli/src/utils/sandbox-macos-permissive-open.sb`) that restricts writes to the project folder but otherwise allows all other operations and outbound network traffic ("open") by default. You can switch to a `restrictive-closed` profile (see `packages/cli/src/utils/sandbox-macos-restrictive-closed.sb`) that declines all operations and outbound network traffic ("closed") by default by setting `SEATBELT_PROFILE=restrictive-closed` in your environment or `.env` file. Available built-in profiles are `{permissive,restrictive}-{open,closed,proxied}` (see below for proxied networking). You can also switch to a custom profile `SEATBELT_PROFILE=<profile>` if you also create a file `.delta/sandbox-macos-<profile>.sb` under your project settings directory `.delta`.
 
 ### Container-based Sandboxing (All Platforms)
 
 For stronger container-based sandboxing on macOS or other platforms, you can set `GEMINI_SANDBOX=true|docker|podman|<command>` in your environment or `.env` file. The specified command (or if `true` then either `docker` or `podman`) must be installed on the host machine. Once enabled, `npm run build:all` will build a minimal container ("sandbox") image and `npm start` will launch inside a fresh instance of that container. The first build can take 20-30s (mostly due to downloading of the base image) but after that both build and start overhead should be minimal. Default builds (`npm run build`) will not rebuild the sandbox.
 
-Container-based sandboxing mounts the project directory (and system temp directory) with read-write access and is started/stopped/removed automatically as you start/stop Gemini CLI. Files created within the sandbox should be automatically mapped to your user/group on host machine. You can easily specify additional mounts, ports, or environment variables by setting `SANDBOX_{MOUNTS,PORTS,ENV}` as needed. You can also fully customize the sandbox for your projects by creating the files `.qwen/sandbox.Dockerfile` and/or `.qwen/sandbox.bashrc` under your project settings directory (`.qwen`) and running `qwen` with `BUILD_SANDBOX=1` to trigger building of your custom sandbox.
+Container-based sandboxing mounts the project directory (and system temp directory) with read-write access and is started/stopped/removed automatically as you start/stop Gemini CLI. Files created within the sandbox should be automatically mapped to your user/group on host machine. You can easily specify additional mounts, ports, or environment variables by setting `SANDBOX_{MOUNTS,PORTS,ENV}` as needed. You can also fully customize the sandbox for your projects by creating the files `.delta/sandbox.Dockerfile` and/or `.delta/sandbox.bashrc` under your project settings directory (`.delta`) and running `delta` with `BUILD_SANDBOX=1` to trigger building of your custom sandbox.
 
 #### Proxied Networking
 

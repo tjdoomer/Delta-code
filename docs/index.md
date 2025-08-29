@@ -1,17 +1,17 @@
-# Welcome to Qwen Code documentation
+# Welcome to Delta Code documentation
 
-This documentation provides a comprehensive guide to installing, using, and developing Qwen Code. This tool lets you interact with AI models through a command-line interface.
+This documentation provides a comprehensive guide to installing, using, and developing Delta Code. This tool lets you interact with AI models through a command-line interface.
 
 ## Overview
 
-Qwen Code brings the capabilities of advanced code models to your terminal in an interactive Read-Eval-Print Loop (REPL) environment. Qwen Code consists of a client-side application (`packages/cli`) that communicates with a local server (`packages/core`). Qwen Code also contains a variety of tools for tasks such as performing file system operations, running shells, and web fetching, which are managed by `packages/core`.
+Delta Code brings the capabilities of advanced code models to your terminal in an interactive Read-Eval-Print Loop (REPL) environment. Delta Code consists of a client-side application (`packages/cli`) that communicates with a local server (`packages/core`). Delta Code also contains a variety of tools for tasks such as performing file system operations, running shells, and web fetching, which are managed by `packages/core`.
 
 ## Navigating the documentation
 
 This documentation is organized into the following sections:
 
-- **[Execution and Deployment](./deployment.md):** Information for running Qwen Code.
-- **[Architecture Overview](./architecture.md):** Understand the high-level design of Qwen Code, including its components and how they interact.
+- **[Execution and Deployment](./deployment.md):** Information for running Delta Code.
+- **[Architecture Overview](./architecture.md):** Understand the high-level design of Delta Code, including its components and how they interact.
 - **CLI Usage:** Documentation for `packages/cli`.
   - **[CLI Introduction](./cli/index.md):** Overview of the command-line interface.
   - **[Commands](./cli/commands.md):** Description of available CLI commands.
@@ -34,6 +34,6 @@ This documentation is organized into the following sections:
 - **[Contributing & Development Guide](../CONTRIBUTING.md):** Information for contributors and developers, including setup, building, testing, and coding conventions.
 - **[NPM Workspaces and Publishing](./npm.md):** Details on how the project's packages are managed and published.
 - **[Troubleshooting Guide](./troubleshooting.md):** Find solutions to common problems and FAQs.
-- **[Terms of Service and Privacy Notice](./tos-privacy.md):** Information on the terms of service and privacy notices applicable to your use of Qwen Code.
+- **[Terms of Service and Privacy Notice](./tos-privacy.md):** Information on the terms of service and privacy notices applicable to your use of Delta Code.
 
-We hope this documentation helps you make the most of Qwen Code!
+We hope this documentation helps you make the most of Delta Code!

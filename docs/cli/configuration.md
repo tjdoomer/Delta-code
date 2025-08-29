@@ -1,6 +1,6 @@
-# Qwen Code Configuration
+# Delta Code Configuration
 
-Qwen Code offers several ways to configure its behavior, including environment variables, command-line arguments, and settings files. This document outlines the different configuration methods and available settings.
+Delta Code offers several ways to configure its behavior, including environment variables, command-line arguments, and settings files. This document outlines the different configuration methods and available settings.
 
 ## Configuration layers
 
@@ -15,25 +15,25 @@ Configuration is applied in the following order of precedence (lower numbers are
 
 ## Settings files
 
-Qwen Code uses `settings.json` files for persistent configuration. There are three locations for these files:
+Delta Code uses `settings.json` files for persistent configuration. There are three locations for these files:
 
 - **User settings file:**
-  - **Location:** `~/.qwen/settings.json` (where `~` is your home directory).
-  - **Scope:** Applies to all Qwen Code sessions for the current user.
+  - **Location:** `~/.delta/settings.json` (where `~` is your home directory).
+  - **Scope:** Applies to all Delta Code sessions for the current user.
 - **Project settings file:**
-  - **Location:** `.qwen/settings.json` within your project's root directory.
-  - **Scope:** Applies only when running Qwen Code from that specific project. Project settings override user settings.
+  - **Location:** `.delta/settings.json` within your project's root directory.
+  - **Scope:** Applies only when running Delta Code from that specific project. Project settings override user settings.
 - **System settings file:**
   - **Location:** `/etc/gemini-cli/settings.json` (Linux), `C:\ProgramData\gemini-cli\settings.json` (Windows) or `/Library/Application Support/GeminiCli/settings.json` (macOS). The path can be overridden using the `GEMINI_CLI_SYSTEM_SETTINGS_PATH` environment variable.
-  - **Scope:** Applies to all Qwen Code sessions on the system, for all users. System settings override user and project settings. May be useful for system administrators at enterprises to have controls over users' Qwen Code setups.
+  - **Scope:** Applies to all Delta Code sessions on the system, for all users. System settings override user and project settings. May be useful for system administrators at enterprises to have controls over users' Delta Code setups.
 
 **Note on environment variables in settings:** String values within your `settings.json` files can reference environment variables using either `$VAR_NAME` or `${VAR_NAME}` syntax. These variables will be automatically resolved when the settings are loaded. For example, if you have an environment variable `MY_API_TOKEN`, you could use it in `settings.json` like this: `"apiKey": "$MY_API_TOKEN"`.
 
-### The `.qwen` directory in your project
+### The `.delta` directory in your project
 
-In addition to a project settings file, a project's `.qwen` directory can contain other project-specific files related to Qwen Code's operation, such as:
+In addition to a project settings file, a project's `.delta` directory can contain other project-specific files related to Delta Code's operation, such as:
 
-- [Custom sandbox profiles](#sandboxing) (e.g., `.qwen/sandbox-macos-custom.sb`, `.qwen/sandbox.Dockerfile`).
+- [Custom sandbox profiles](#sandboxing) (e.g., `.delta/sandbox-macos-custom.sb`, `.delta/sandbox.Dockerfile`).
 
 ### Available settings in `settings.json`:
 
@@ -44,7 +44,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
 
 - **`bugCommand`** (object):
   - **Description:** Overrides the default URL for the `/bug` command.
-  - **Default:** `"urlTemplate": "https://github.com/QwenLM/qwen-code/issues/new?template=bug_report.yml&title={title}&info={info}"`
+  - **Default:** `"urlTemplate": "https://github.com/DeltaLM/delta-code/issues/new?template=bug_report.yml&title={title}&info={info}"`
   - **Properties:**
     - **`urlTemplate`** (string): A URL that can contain `{title}` and `{info}` placeholders.
   - **Example:**
@@ -99,7 +99,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
   - **Example:** `"autoAccept": true`
 
 - **`theme`** (string):
-  - **Description:** Sets the visual [theme](./themes.md) for Qwen Code.
+  - **Description:** Sets the visual [theme](./themes.md) for Delta Code.
   - **Default:** `"Default"`
   - **Example:** `"theme": "GitHub"`
 
@@ -109,7 +109,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
   - **Example:** `"vimMode": true`
 
 - **`sandbox`** (boolean or string):
-  - **Description:** Controls whether and how to use sandboxing for tool execution. If set to `true`, Qwen Code uses a pre-built `qwen-code-sandbox` Docker image. For more information, see [Sandboxing](#sandboxing).
+  - **Description:** Controls whether and how to use sandboxing for tool execution. If set to `true`, Delta Code uses a pre-built `delta-code-sandbox` Docker image. For more information, see [Sandboxing](#sandboxing).
   - **Default:** `false`
   - **Example:** `"sandbox": "docker"`
 
@@ -127,7 +127,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
   - **Example:** `"toolCallCommand": "bin/call_tool"`
 
 - **`mcpServers`** (object):
-  - **Description:** Configures connections to one or more Model-Context Protocol (MCP) servers for discovering and using custom tools. Qwen Code attempts to connect to each configured MCP server to discover available tools. If multiple MCP servers expose a tool with the same name, the tool names will be prefixed with the server alias you defined in the configuration (e.g., `serverAlias__actualToolName`) to avoid conflicts. Note that the system might strip certain schema properties from MCP tool definitions for compatibility.
+  - **Description:** Configures connections to one or more Model-Context Protocol (MCP) servers for discovering and using custom tools. Delta Code attempts to connect to each configured MCP server to discover available tools. If multiple MCP servers expose a tool with the same name, the tool names will be prefixed with the server alias you defined in the configuration (e.g., `serverAlias__actualToolName`) to avoid conflicts. Note that the system might strip certain schema properties from MCP tool definitions for compatibility.
   - **Default:** Empty
   - **Properties:**
     - **`<SERVER_NAME>`** (object): The server parameters for the named server.
@@ -177,7 +177,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
   - **Example:** `"preferredEditor": "vscode"`
 
 - **`telemetry`** (object)
-  - **Description:** Configures logging and metrics collection for Qwen Code. For more information, see [Telemetry](../telemetry.md).
+  - **Description:** Configures logging and metrics collection for Delta Code. For more information, see [Telemetry](../telemetry.md).
   - **Default:** `{"enabled": false, "target": "local", "otlpEndpoint": "http://localhost:4317", "logPrompts": true}`
   - **Properties:**
     - **`enabled`** (boolean): Whether or not telemetry is enabled.
@@ -241,7 +241,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
     ```
 
 - **`excludedProjectEnvVars`** (array of strings):
-  - **Description:** Specifies environment variables that should be excluded from being loaded from project `.env` files. This prevents project-specific environment variables (like `DEBUG=true`) from interfering with the CLI behavior. Variables from `.qwen/.env` files are never excluded.
+  - **Description:** Specifies environment variables that should be excluded from being loaded from project `.env` files. This prevents project-specific environment variables (like `DEBUG=true`) from interfering with the CLI behavior. Variables from `.delta/.env` files are never excluded.
   - **Default:** `["DEBUG", "DEBUG_MODE"]`
   - **Example:**
     ```json
@@ -335,7 +335,7 @@ In addition to a project settings file, a project's `.qwen` directory can contai
 
 The CLI keeps a history of shell commands you run. To avoid conflicts between different projects, this history is stored in a project-specific directory within your user's home folder.
 
-- **Location:** `~/.qwen/tmp/<project_hash>/shell_history`
+- **Location:** `~/.delta/tmp/<project_hash>/shell_history`
   - `<project_hash>` is a unique identifier generated from your project's root path.
   - The history is stored in a file named `shell_history`.
 
@@ -349,7 +349,7 @@ The CLI automatically loads environment variables from an `.env` file. The loadi
 2.  If not found, it searches upwards in parent directories until it finds an `.env` file or reaches the project root (identified by a `.git` folder) or the home directory.
 3.  If still not found, it looks for `~/.env` (in the user's home directory).
 
-**Environment Variable Exclusion:** Some environment variables (like `DEBUG` and `DEBUG_MODE`) are automatically excluded from project `.env` files by default to prevent interference with the CLI behavior. Variables from `.qwen/.env` files are never excluded. You can customize this behavior using the `excludedProjectEnvVars` setting in your `settings.json` file.
+**Environment Variable Exclusion:** Some environment variables (like `DEBUG` and `DEBUG_MODE`) are automatically excluded from project `.env` files by default to prevent interference with the CLI behavior. Variables from `.delta/.env` files are never excluded. You can customize this behavior using the `excludedProjectEnvVars` setting in your `settings.json` file.
 
 - **`GEMINI_API_KEY`** (Required):
   - Your API key for the Gemini API.
@@ -387,10 +387,10 @@ The CLI automatically loads environment variables from an `.env` file. The loadi
   - Switches the Seatbelt (`sandbox-exec`) profile on macOS.
   - `permissive-open`: (Default) Restricts writes to the project folder (and a few other folders, see `packages/cli/src/utils/sandbox-macos-permissive-open.sb`) but allows other operations.
   - `strict`: Uses a strict profile that declines operations by default.
-  - `<profile_name>`: Uses a custom profile. To define a custom profile, create a file named `sandbox-macos-<profile_name>.sb` in your project's `.qwen/` directory (e.g., `my-project/.qwen/sandbox-macos-custom.sb`).
+  - `<profile_name>`: Uses a custom profile. To define a custom profile, create a file named `sandbox-macos-<profile_name>.sb` in your project's `.delta/` directory (e.g., `my-project/.delta/sandbox-macos-custom.sb`).
 - **`DEBUG` or `DEBUG_MODE`** (often used by underlying libraries or the CLI itself):
   - Set to `true` or `1` to enable verbose debug logging, which can be helpful for troubleshooting.
-  - **Note:** These variables are automatically excluded from project `.env` files by default to prevent interference with the CLI behavior. Use `.qwen/.env` files if you need to set these for Qwen Code specifically.
+  - **Note:** These variables are automatically excluded from project `.env` files by default to prevent interference with the CLI behavior. Use `.delta/.env` files if you need to set these for Delta Code specifically.
 - **`NO_COLOR`**:
   - Set to any value to disable all color output in the CLI.
 - **`CLI_TITLE`**:
@@ -412,12 +412,12 @@ Arguments passed directly when running the CLI can override other configurations
   - Specifies the Gemini model to use for this session.
   - Example: `npm start -- --model gemini-1.5-pro-latest`
 - **`--prompt <your_prompt>`** (**`-p <your_prompt>`**):
-  - Used to pass a prompt directly to the command. This invokes Qwen Code in a non-interactive mode.
+  - Used to pass a prompt directly to the command. This invokes Delta Code in a non-interactive mode.
 - **`--prompt-interactive <your_prompt>`** (**`-i <your_prompt>`**):
   - Starts an interactive session with the provided prompt as the initial input.
   - The prompt is processed within the interactive session, not before it.
   - Cannot be used when piping input from stdin.
-  - Example: `qwen -i "explain this code"`
+  - Example: `delta -i "explain this code"`
 - **`--sandbox`** (**`-s`**):
   - Enables sandbox mode for this session.
 - **`--sandbox-image`**:
@@ -438,7 +438,7 @@ Arguments passed directly when running the CLI can override other configurations
     - `auto_edit`: Automatically approve edit tools (replace, write_file) while prompting for others
     - `yolo`: Automatically approve all tool calls (equivalent to `--yolo`)
   - Cannot be used together with `--yolo`. Use `--approval-mode=yolo` instead of `--yolo` for the new unified approach.
-  - Example: `qwen --approval-mode auto_edit`
+  - Example: `delta --approval-mode auto_edit`
 - **`--telemetry`**:
   - Enables [telemetry](../telemetry.md).
 - **`--telemetry-target`**:
@@ -451,8 +451,8 @@ Arguments passed directly when running the CLI can override other configurations
   - Enables [checkpointing](../checkpointing.md).
 - **`--extensions <extension_name ...>`** (**`-e <extension_name ...>`**):
   - Specifies a list of extensions to use for the session. If not provided, all available extensions are used.
-  - Use the special term `qwen -e none` to disable all extensions.
-  - Example: `qwen -e my-extension -e my-other-extension`
+  - Use the special term `delta -e none` to disable all extensions.
+  - Example: `delta -e my-extension -e my-other-extension`
 - **`--list-extensions`** (**`-l`**):
   - Lists all available extensions and exits.
 - **`--proxy`**:
@@ -469,7 +469,7 @@ Arguments passed directly when running the CLI can override other configurations
   - Enables logging of OpenAI API calls for debugging and analysis. This flag overrides the `enableOpenAILogging` setting in `settings.json`.
 - **`--tavily-api-key <api_key>`**:
   - Sets the Tavily API key for web search functionality for this session.
-  - Example: `qwen --tavily-api-key tvly-your-api-key-here`
+  - Example: `delta --tavily-api-key tvly-your-api-key-here`
 
 ## Context Files (Hierarchical Instructional Context)
 
@@ -514,7 +514,7 @@ This example demonstrates how you can provide general project context, specific 
 
 - **Hierarchical Loading and Precedence:** The CLI implements a sophisticated hierarchical memory system by loading context files (e.g., `QWEN.md`) from several locations. Content from files lower in this list (more specific) typically overrides or supplements content from files higher up (more general). The exact concatenation order and final context can be inspected using the `/memory show` command. The typical loading order is:
   1.  **Global Context File:**
-      - Location: `~/.qwen/<contextFileName>` (e.g., `~/.qwen/QWEN.md` in your user home directory).
+      - Location: `~/.delta/<contextFileName>` (e.g., `~/.delta/QWEN.md` in your user home directory).
       - Scope: Provides default instructions for all your projects.
   2.  **Project Root & Ancestors Context Files:**
       - Location: The CLI searches for the configured context file in the current working directory and then in each parent directory up to either the project root (identified by a `.git` folder) or your home directory.
@@ -529,11 +529,11 @@ This example demonstrates how you can provide general project context, specific 
   - Use `/memory show` to display the combined instructional context currently loaded, allowing you to verify the hierarchy and content being used by the AI.
   - See the [Commands documentation](./commands.md#memory) for full details on the `/memory` command and its sub-commands (`show` and `refresh`).
 
-By understanding and utilizing these configuration layers and the hierarchical nature of context files, you can effectively manage the AI's memory and tailor Qwen Code's responses to your specific needs and projects.
+By understanding and utilizing these configuration layers and the hierarchical nature of context files, you can effectively manage the AI's memory and tailor Delta Code's responses to your specific needs and projects.
 
 ## Sandboxing
 
-Qwen Code can execute potentially unsafe operations (like shell commands and file modifications) within a sandboxed environment to protect your system.
+Delta Code can execute potentially unsafe operations (like shell commands and file modifications) within a sandboxed environment to protect your system.
 
 Sandboxing is disabled by default, but you can enable it in a few ways:
 
@@ -541,12 +541,12 @@ Sandboxing is disabled by default, but you can enable it in a few ways:
 - Setting `GEMINI_SANDBOX` environment variable.
 - Sandbox is enabled when using `--yolo` or `--approval-mode=yolo` by default.
 
-By default, it uses a pre-built `qwen-code-sandbox` Docker image.
+By default, it uses a pre-built `delta-code-sandbox` Docker image.
 
-For project-specific sandboxing needs, you can create a custom Dockerfile at `.qwen/sandbox.Dockerfile` in your project's root directory. This Dockerfile can be based on the base sandbox image:
+For project-specific sandboxing needs, you can create a custom Dockerfile at `.delta/sandbox.Dockerfile` in your project's root directory. This Dockerfile can be based on the base sandbox image:
 
 ```dockerfile
-FROM qwen-code-sandbox
+FROM delta-code-sandbox
 
 # Add your custom dependencies or configurations here
 # For example:
@@ -554,15 +554,15 @@ FROM qwen-code-sandbox
 # COPY ./my-config /app/my-config
 ```
 
-When `.qwen/sandbox.Dockerfile` exists, you can use `BUILD_SANDBOX` environment variable when running Qwen Code to automatically build the custom sandbox image:
+When `.delta/sandbox.Dockerfile` exists, you can use `BUILD_SANDBOX` environment variable when running Delta Code to automatically build the custom sandbox image:
 
 ```bash
-BUILD_SANDBOX=1 qwen -s
+BUILD_SANDBOX=1 delta -s
 ```
 
 ## Usage Statistics
 
-To help us improve Qwen Code, we collect anonymized usage statistics. This data helps us understand how the CLI is used, identify common issues, and prioritize new features.
+To help us improve Delta Code, we collect anonymized usage statistics. This data helps us understand how the CLI is used, identify common issues, and prioritize new features.
 
 **What we collect:**
 
