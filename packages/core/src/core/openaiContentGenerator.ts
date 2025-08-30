@@ -1279,6 +1279,9 @@ export class OpenAIContentGenerator implements ContentGenerator {
   private convertToGeminiFormat(
     openaiResponse: OpenAI.Chat.ChatCompletion,
   ): GenerateContentResponse {
+    if (!openaiResponse || !Array.isArray(openaiResponse.choices) || openaiResponse.choices.length === 0) {
+      throw new Error('OpenAI API returned no choices in chat completion response.');
+    }
     const choice = openaiResponse.choices[0];
     const response = new GenerateContentResponse();
 
@@ -1363,7 +1366,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
   private convertStreamChunkToGeminiFormat(
     chunk: OpenAI.Chat.ChatCompletionChunk,
   ): GenerateContentResponse {
-    const choice = chunk.choices?.[0];
+    const choice = Array.isArray(chunk.choices) && chunk.choices.length > 0 ? chunk.choices[0] : undefined;
     const response = new GenerateContentResponse();
 
     if (choice) {
