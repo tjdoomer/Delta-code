@@ -90,6 +90,9 @@ export function createContentGeneratorConfig(
   const openaiBaseUrl = process.env.OPENAI_BASE_URL || undefined;
   const openaiModel = process.env.OPENAI_MODEL || undefined;
 
+  // anthropic auth
+  const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+
   // Use runtime model from config if available; otherwise, fall back to parameter or default
   const effectiveModel = config.getModel() || DEFAULT_GEMINI_MODEL;
 
@@ -132,6 +135,14 @@ export function createContentGeneratorConfig(
     contentGeneratorConfig.apiKey = openaiApiKey;
     contentGeneratorConfig.baseUrl = openaiBaseUrl;
     contentGeneratorConfig.model = openaiModel || DEFAULT_QWEN_MODEL;
+
+    return contentGeneratorConfig;
+  }
+
+  if (authType === AuthType.USE_CLAUDE && anthropicApiKey) {
+    contentGeneratorConfig.apiKey = anthropicApiKey;
+    contentGeneratorConfig.baseUrl = 'https://api.anthropic.com/v1';
+    contentGeneratorConfig.model = 'claude-3-5-sonnet-20241022';
 
     return contentGeneratorConfig;
   }
@@ -200,6 +211,19 @@ export async function createContentGenerator(
 
     // Always use OpenAIContentGenerator, logging is controlled by enableOpenAILogging flag
     return new OpenAIContentGenerator(config, gcConfig);
+  }
+
+  if (config.authType === AuthType.USE_CLAUDE) {
+    if (!config.apiKey) {
+      throw new Error('Anthropic API key is required');
+    }
+
+    // Import AnthropicContentGenerator dynamically to avoid circular dependencies
+    const { AnthropicContentGenerator } = await import(
+      './anthropicContentGenerator.js'
+    );
+
+    return new AnthropicContentGenerator(config, gcConfig);
   }
 
   if (config.authType === AuthType.QWEN_OAUTH) {
