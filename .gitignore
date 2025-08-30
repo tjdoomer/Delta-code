@@ -44,4 +44,5 @@ packages/vscode-ide-companion/*.vsix
 
 # Delta Code Configs
 .delta/
-logs/
+logs/bundle/
+bundle/
