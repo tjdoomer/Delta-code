@@ -26,7 +26,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
 const scriptPath = relative(root, fileURLToPath(import.meta.url));
 const generatedDir = join(root, 'packages/cli/src/generated');
-const gitCommitFile = join(generatedDir, 'git-commit.ts');
+const gitCommitFileTs = join(generatedDir, 'git-commit.ts');
+const gitCommitFileJs = join(generatedDir, 'git-commit.js');
 let gitCommitInfo = 'N/A';
 
 if (!existsSync(generatedDir)) {
@@ -59,4 +60,5 @@ const fileContent = `/**
 export const GIT_COMMIT_INFO = '${gitCommitInfo}';
 `;
 
-writeFileSync(gitCommitFile, fileContent);
+writeFileSync(gitCommitFileTs, fileContent);
+writeFileSync(gitCommitFileJs, fileContent);

@@ -27,6 +27,13 @@ const root = join(__dirname, '..');
 const bundlePath = join(root, 'bundle', 'gemini.js');
 
 try {
+  // Ensure generated commit info exists before any bundling attempts
+  try {
+    execSync('node scripts/generate-git-commit-info.js', { stdio: 'inherit', cwd: root });
+  } catch (e) {
+    console.warn('[delta] Failed to generate git commit info during prepare:', e?.message || e);
+  }
+
   if (existsSync(bundlePath)) {
     // Bundle already present (committed). Just ensure assets are copied.
     execSync('node scripts/copy_bundle_assets.js', { stdio: 'inherit', cwd: root });
@@ -41,8 +48,9 @@ try {
     execSync('node scripts/copy_bundle_assets.js', { stdio: 'inherit', cwd: root });
     process.exit(0);
   } catch (e) {
-    // esbuild missing: cannot build in this environment.
-    console.warn('[delta] Skipping bundle build during prepare (esbuild not available).');
+    // esbuild missing or build failure: cannot build in this environment.
+    const reason = e && typeof e === 'object' && 'message' in e ? e.message : String(e);
+    console.warn('[delta] Skipping bundle build during prepare:', reason);
     console.warn('[delta] If installing from git, ensure the bundle is committed.');
     // Do not fail install; bin may be unavailable without bundle.
     process.exit(0);
