@@ -2,7 +2,7 @@
 
 ![Delta Code Screenshot](./docs/assets/Delta-screenshot.png)
 
-AI-powered CLI for developers, adapted from Gemini CLI and optimized for Delta3‑Coder models.
+AI-powered CLI for developers, adapted from Gemini CLI and optimized for use with any foundation model.
 
 ## Install
 
