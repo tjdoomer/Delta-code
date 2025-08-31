@@ -7,6 +7,7 @@
 import React, { useState } from 'react';
 import { Box, Text, useInput } from 'ink';
 import { Colors } from '../colors.js';
+import { ClaudeModelSelector, CLAUDE_MODELS, ClaudeModel } from './ClaudeModelSelector.js';
 
 interface OpenAIKeyPromptProps {
   onSubmit: (apiKey: string, baseUrl: string, model: string) => void;
@@ -28,12 +29,29 @@ export function OpenAIKeyPrompt({
   const [model, setModel] = useState(() => {
     if (mode === 'azure') return '{deployment-name}';
     if (mode === 'bedrock') return 'us-east-1'; // region in model field for our handler
-    if (mode === 'claude') return 'claude-3-sonnet';
+    if (mode === 'claude') return 'claude-opus-4-1-20250805'; // Default to latest Claude Opus 4.1
     return '';
   });
   const [currentField, setCurrentField] = useState<
     'apiKey' | 'baseUrl' | 'model'
   >('apiKey');
+  const [showModelSelector, setShowModelSelector] = useState(false);
+
+  const handleModelSelect = (selectedModel: ClaudeModel) => {
+    setModel(selectedModel.id);
+    setShowModelSelector(false);
+    // Submit after model selection for Claude
+    if (apiKey.trim()) {
+      onSubmit(apiKey.trim(), baseUrl.trim(), selectedModel.id);
+    } else {
+      setCurrentField('apiKey');
+    }
+  };
+
+  const handleModelSelectorCancel = () => {
+    setShowModelSelector(false);
+    // Stay on model field
+  };
 
   useInput((input, key) => {
     // Filter paste-related control sequences
@@ -74,12 +92,17 @@ export function OpenAIKeyPrompt({
         setCurrentField('model');
         return;
       } else if (currentField === 'model') {
-        // Validate API key only on final submit
-        if (apiKey.trim()) {
-          onSubmit(apiKey.trim(), baseUrl.trim(), model.trim());
+        if (mode === 'claude') {
+          // Show model selector for Claude
+          setShowModelSelector(true);
         } else {
-          // If API key is empty, return focus to the API key field
-          setCurrentField('apiKey');
+          // Validate API key only on final submit
+          if (apiKey.trim()) {
+            onSubmit(apiKey.trim(), baseUrl.trim(), model.trim());
+          } else {
+            // If API key is empty, return focus to the API key field
+            setCurrentField('apiKey');
+          }
         }
       }
       return;
@@ -133,6 +156,17 @@ export function OpenAIKeyPrompt({
       return;
     }
   });
+
+  // Show model selector for Claude mode
+  if (showModelSelector && mode === 'claude') {
+    return (
+      <ClaudeModelSelector
+        onSelect={handleModelSelect}
+        onCancel={handleModelSelectorCancel}
+        defaultModelId={model}
+      />
+    );
+  }
 
   return (
     <Box
@@ -215,7 +249,12 @@ export function OpenAIKeyPrompt({
         <Box flexGrow={1}>
           <Text>
             {currentField === 'model' ? '> ' : '  '}
-            {model}
+            {mode === 'claude' 
+              ? CLAUDE_MODELS.find(m => m.id === model)?.name || model
+              : model}
+            {mode === 'claude' && currentField === 'model' && (
+              <Text color={Colors.Gray}> (Press Enter to select)</Text>
+            )}
           </Text>
         </Box>
       </Box>

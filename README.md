@@ -87,11 +87,13 @@ AWS_REGION="us-east-1"
 
 ### Claude (Anthropic)
 
-- Best path: choose “Claude” and paste your Anthropic API key.
+- Best path: choose "Claude", paste your Anthropic API key, and select from available models (Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, Claude 3.7 Sonnet, Claude 3.5 Sonnet).
 - Environment variables:
 
 ```bash
 ANTHROPIC_API_KEY="your-anthropic-key"
+# Optional: specify a default model
+CLAUDE_MODEL="claude-opus-4-1-20250805"
 ```
 
 ### Using a .env file
@@ -119,6 +121,7 @@ AWS_REGION=us-east-1
 
 # Anthropic Claude
 ANTHROPIC_API_KEY=...
+CLAUDE_MODEL=claude-opus-4-1-20250805  # Optional: specify Claude model
 ```
 
 ## Docs

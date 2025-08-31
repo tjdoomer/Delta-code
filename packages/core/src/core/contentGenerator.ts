@@ -142,7 +142,8 @@ export function createContentGeneratorConfig(
   if (authType === AuthType.USE_CLAUDE && anthropicApiKey) {
     contentGeneratorConfig.apiKey = anthropicApiKey;
     contentGeneratorConfig.baseUrl = 'https://api.anthropic.com/v1';
-    contentGeneratorConfig.model = 'claude-3-5-sonnet-20241022';
+    // Default to Claude Opus 4.1 (latest and most advanced)
+    contentGeneratorConfig.model = process.env.CLAUDE_MODEL || 'claude-opus-4-1-20250805';
 
     return contentGeneratorConfig;
   }
