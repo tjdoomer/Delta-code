@@ -301,6 +301,38 @@ export class AnthropicContentGenerator implements ContentGenerator {
     throw new Error('Anthropic does not support embedding generation. Use a different provider for embeddings.');
   }
 
+  private sanitizeAnthropicParams(config: any): { temperature?: number; top_p?: number } {
+    const params: { temperature?: number; top_p?: number } = {};
+    
+    // Get temperature from request config or content generator config
+    const requestTemp = config?.temperature;
+    const configTemp = this.contentGeneratorConfig.samplingParams?.temperature;
+    const temperature = requestTemp ?? configTemp;
+    
+    // Get top_p from request config or content generator config  
+    const requestTopP = config?.topP;
+    const configTopP = this.contentGeneratorConfig.samplingParams?.top_p;
+    const topP = requestTopP ?? configTopP;
+
+    // Anthropic API constraint: cannot specify both temperature and top_p
+    // Priority: temperature > top_p (industry standard)
+    if (temperature !== undefined && temperature !== null) {
+      params.temperature = temperature;
+      if (topP !== undefined && topP !== null) {
+        if (this.config.getDebugMode()) {
+          console.debug(`[Anthropic] Using temperature=${temperature}, ignoring top_p=${topP} (API constraint)`);
+        }
+      }
+    } else if (topP !== undefined && topP !== null) {
+      params.top_p = topP;
+    } else {
+      // Use Anthropic defaults
+      params.temperature = 0.0;
+    }
+
+    return params;
+  }
+
   private async convertToAnthropicFormat(request: GenerateContentParameters): Promise<AnthropicRequest> {
     const messages: AnthropicMessage[] = [];
     let systemPrompt: string | undefined;
@@ -402,12 +434,14 @@ export class AnthropicContentGenerator implements ContentGenerator {
       }
     }
 
+    // Sanitize parameters to avoid Anthropic API conflicts
+    const sanitizedParams = this.sanitizeAnthropicParams(request.config);
+    
     const anthropicRequest: AnthropicRequest = {
       model: this.model,
       max_tokens: request.config?.maxOutputTokens || 4096,
       messages,
-      temperature: request.config?.temperature || 0.0,
-      top_p: request.config?.topP || 1.0,
+      ...sanitizedParams,
     };
 
     if (systemPrompt) {
