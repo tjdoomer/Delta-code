@@ -4,6 +4,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// Suppress the punycode deprecation warning (DEP0040) triggered by
+// transitive dependencies (tr46, whatwg-url, jsdom, google-auth-library).
+// This is a known ecosystem issue — punycode is not used directly by Delta Code.
+const originalEmitWarning = process.emitWarning;
+process.emitWarning = (warning: string | Error, ...args: unknown[]) => {
+  if (
+    typeof warning === 'string' &&
+    warning.includes('punycode')
+  ) {
+    return;
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (originalEmitWarning as any).call(process, warning, ...args);
+};
+
 import React from 'react';
 import { render } from 'ink';
 import { AppWrapper } from './ui/App.js';
