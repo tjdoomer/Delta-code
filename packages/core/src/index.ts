@@ -101,3 +101,20 @@ export { sessionId } from './utils/session.js';
 export * from './utils/browser.js';
 // OpenAI Logging Utilities
 export { OpenAILogger, openaiLogger } from './utils/openaiLogger.js';
+
+// Hooks
+export * from './hooks/types.js';
+export { HookManager } from './hooks/hookManager.js';
+
+// Agents
+export { parsePRD } from './agents/prdParser.js';
+export type { PRD, Story } from './agents/prdParser.js';
+export { ProgressTracker } from './agents/progressTracker.js';
+export { AgentLoop } from './agents/agentLoop.js';
+
+// Resource-aware delegation
+export { ResourceProbe } from './agents/resourceProbe.js';
+export type { ModelEndpoint } from './agents/resourceProbe.js';
+export { TaskPlanner } from './agents/taskPlanner.js';
+export type { MicroTask } from './agents/taskPlanner.js';
+export { ModelDelegator } from './agents/modelDelegator.js';

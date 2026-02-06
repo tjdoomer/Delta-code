@@ -29,6 +29,7 @@ import {
 } from '../tools/memoryTool.js';
 import { TodoWriteTool } from '../tools/todoWrite.js';
 import { WebSearchTool } from '../tools/web-search.js';
+import { SubAgentTool } from '../tools/subAgentTool.js';
 import { DeltaClient } from '../core/client.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { GitService } from '../services/gitService.js';
@@ -55,6 +56,7 @@ import { IdeConnectionEvent, IdeConnectionType } from '../telemetry/types.js';
 // Re-export OAuth config type
 export type { MCPOAuthConfig };
 import { WorkspaceContext } from '../utils/workspaceContext.js';
+import type { HooksConfig } from '../hooks/types.js';
 
 export enum ApprovalMode {
   DEFAULT = 'default',
@@ -225,6 +227,13 @@ export interface ConfigParameters {
   interactive?: boolean;
   trustedFolder?: boolean;
   disableNextSpeakerCheck?: boolean;
+  hooks?: HooksConfig;
+  delegation?: {
+    enabled?: boolean;
+    localModelEndpoint?: string;
+    preferLocal?: boolean;
+    maxConcurrentMicroAgents?: number;
+  };
 }
 
 export class Config {
@@ -306,6 +315,15 @@ export class Config {
   private readonly interactive: boolean;
   private readonly trustedFolder: boolean | undefined;
   private readonly disableNextSpeakerCheck: boolean;
+  private readonly hooks: HooksConfig | undefined;
+  private readonly delegation:
+    | {
+        enabled?: boolean;
+        localModelEndpoint?: string;
+        preferLocal?: boolean;
+        maxConcurrentMicroAgents?: number;
+      }
+    | undefined;
   private initialized: boolean = false;
 
   constructor(params: ConfigParameters) {
@@ -384,6 +402,8 @@ export class Config {
     this.interactive = params.interactive ?? false;
     this.trustedFolder = params.trustedFolder;
     this.disableNextSpeakerCheck = params.disableNextSpeakerCheck ?? false;
+    this.hooks = params.hooks;
+    this.delegation = params.delegation;
 
     // Web search
     this.tavilyApiKey = params.tavilyApiKey;
@@ -821,6 +841,21 @@ export class Config {
     return this.disableNextSpeakerCheck;
   }
 
+  getHooks(): HooksConfig | undefined {
+    return this.hooks;
+  }
+
+  getDelegation():
+    | {
+        enabled?: boolean;
+        localModelEndpoint?: string;
+        preferLocal?: boolean;
+        maxConcurrentMicroAgents?: number;
+      }
+    | undefined {
+    return this.delegation;
+  }
+
   async getGitService(): Promise<GitService> {
     if (!this.gitService) {
       this.gitService = new GitService(this.targetDir);
@@ -880,6 +915,7 @@ export class Config {
     if (this.getTavilyApiKey()) {
       registerCoreTool(WebSearchTool, this);
     }
+    registerCoreTool(SubAgentTool, this);
 
     await registry.discoverAllTools();
     return registry;

@@ -550,6 +550,35 @@ export const SETTINGS_SCHEMA = {
       'Disable the next-speaker checker that runs after each model response. Recommended for slow local models to avoid doubling inference time.',
     showInDialog: true,
   },
+  hooks: {
+    type: 'object',
+    label: 'Hooks',
+    category: 'Advanced',
+    requiresRestart: false,
+    default: undefined as
+      | Record<string, Array<{ command: string; match?: string; timeout?: number }>>
+      | undefined,
+    description:
+      'Lifecycle hooks that run shell commands on events like PreToolExecution, PostToolExecution, PreFileEdit, PostFileEdit.',
+    showInDialog: false,
+  },
+  delegation: {
+    type: 'object',
+    label: 'Delegation',
+    category: 'Advanced',
+    requiresRestart: false,
+    default: undefined as
+      | {
+          enabled?: boolean;
+          localModelEndpoint?: string;
+          preferLocal?: boolean;
+          maxConcurrentMicroAgents?: number;
+        }
+      | undefined,
+    description:
+      'Resource-aware model delegation settings for routing tasks to different models.',
+    showInDialog: false,
+  },
 } as const;
 
 type InferSettings<T extends SettingsSchema> = {

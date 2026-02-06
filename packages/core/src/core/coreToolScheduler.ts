@@ -22,6 +22,7 @@ import {
   AnyDeclarativeTool,
   AnyToolInvocation,
 } from '../index.js';
+import { HookManager } from '../hooks/hookManager.js';
 import { Part, PartListUnion } from '@google/genai';
 import { getResponseTextFromParts } from '../utils/generateContentResponseUtilities.js';
 import {
@@ -243,6 +244,7 @@ export class CoreToolScheduler {
   private onToolCallsUpdate?: ToolCallsUpdateHandler;
   private getPreferredEditor: () => EditorType | undefined;
   private config: Config;
+  private hookManager: HookManager | undefined;
   private onEditorClose: () => void;
   private isFinalizingToolCalls = false;
   private isScheduling = false;
@@ -261,6 +263,18 @@ export class CoreToolScheduler {
     this.onToolCallsUpdate = options.onToolCallsUpdate;
     this.getPreferredEditor = options.getPreferredEditor;
     this.onEditorClose = options.onEditorClose;
+
+    try {
+      const hooksConfig = this.config.getHooks?.();
+      if (hooksConfig && Object.keys(hooksConfig).length > 0) {
+        this.hookManager = new HookManager(
+          hooksConfig,
+          this.config.getWorkingDir(),
+        );
+      }
+    } catch {
+      // Hooks not available in this context (e.g., testing)
+    }
   }
 
   private setStatusInternal(
@@ -820,9 +834,21 @@ export class CoreToolScheduler {
               }
             : undefined;
 
+        // Fire pre-execution hook if configured
+        const hookMgr = this.hookManager;
+        if (hookMgr) {
+          const hookContext = { tool: toolName, model: this.config.getModel?.() ?? '' };
+          hookMgr.fire('PreToolExecution', hookContext).catch(() => {});
+        }
+
         invocation
           .execute(signal, liveOutputCallback)
           .then(async (toolResult: ToolResult) => {
+            // Fire post-execution hook if configured
+            if (hookMgr) {
+              const hookContext = { tool: toolName, model: this.config.getModel?.() ?? '' };
+              hookMgr.fire('PostToolExecution', hookContext).catch(() => {});
+            }
             if (signal.aborted) {
               this.setStatusInternal(
                 callId,

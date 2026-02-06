@@ -588,6 +588,8 @@ export async function loadCliConfig(
     interactive,
     trustedFolder,
     disableNextSpeakerCheck: settings.disableNextSpeakerCheck ?? false,
+    hooks: settings.hooks as ConfigParameters['hooks'],
+    delegation: settings.delegation as ConfigParameters['delegation'],
   });
 }
 

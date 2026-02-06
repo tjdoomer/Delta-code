@@ -32,6 +32,7 @@ interface FooterProps {
   promptTokenCount: number;
   nightly: boolean;
   vimMode?: string;
+  approvalMode?: string;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -47,6 +48,7 @@ export const Footer: React.FC<FooterProps> = ({
   promptTokenCount,
   nightly,
   vimMode,
+  approvalMode,
 }) => {
   const { columns: terminalWidth } = useTerminalSize();
 
@@ -127,6 +129,20 @@ export const Footer: React.FC<FooterProps> = ({
             model={model}
           />
         </Text>
+        {approvalMode && approvalMode !== 'default' && (
+          <Text>
+            <Text color={theme.ui.symbol}>| </Text>
+            <Text
+              color={
+                approvalMode === 'yolo'
+                  ? theme.status.error
+                  : theme.status.warning
+              }
+            >
+              [{approvalMode}]
+            </Text>
+          </Text>
+        )}
         {corgiMode && (
           <Text>
             <Text color={theme.ui.symbol}>| </Text>

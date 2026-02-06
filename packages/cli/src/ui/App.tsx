@@ -1252,6 +1252,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
             promptTokenCount={sessionStats.lastPromptTokenCount}
             nightly={nightly}
             vimMode={vimModeEnabled ? vimMode : undefined}
+            approvalMode={config.getApprovalMode()}
           />
         </Box>
       </Box>

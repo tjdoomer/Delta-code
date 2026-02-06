@@ -19,6 +19,21 @@ vi.mock('../ui/commands/ideCommand.js', () => ({ ideCommand: vi.fn() }));
 vi.mock('../ui/commands/restoreCommand.js', () => ({
   restoreCommand: vi.fn(),
 }));
+vi.mock('../ui/commands/modelCommand.js', () => ({ modelCommand: {} }));
+vi.mock('../ui/commands/shortcutsCommand.js', () => ({
+  shortcutsCommand: {},
+}));
+vi.mock('../ui/commands/summaryCommand.js', () => ({
+  summaryCommand: vi.fn(),
+}));
+vi.mock('../ui/commands/approvalModeCommand.js', () => ({
+  approvalModeCommand: {},
+}));
+vi.mock('../ui/commands/hooksCommand.js', () => ({ hooksCommand: {} }));
+vi.mock('../ui/commands/checkpointCommand.js', () => ({
+  checkpointCommand: vi.fn(),
+}));
+vi.mock('../ui/commands/loopCommand.js', () => ({ loopCommand: {} }));
 
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { BuiltinCommandLoader } from './BuiltinCommandLoader.js';
@@ -27,6 +42,8 @@ import { CommandKind } from '../ui/commands/types.js';
 
 import { ideCommand } from '../ui/commands/ideCommand.js';
 import { restoreCommand } from '../ui/commands/restoreCommand.js';
+import { summaryCommand } from '../ui/commands/summaryCommand.js';
+import { checkpointCommand } from '../ui/commands/checkpointCommand.js';
 
 vi.mock('../ui/commands/authCommand.js', () => ({ authCommand: {} }));
 vi.mock('../ui/commands/bugCommand.js', () => ({ bugCommand: {} }));
@@ -59,6 +76,8 @@ describe('BuiltinCommandLoader', () => {
 
   const ideCommandMock = ideCommand as Mock;
   const restoreCommandMock = restoreCommand as Mock;
+  const summaryCommandMock = summaryCommand as unknown as Mock;
+  const checkpointCommandMock = checkpointCommand as unknown as Mock;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -74,6 +93,16 @@ describe('BuiltinCommandLoader', () => {
       description: 'Restore command',
       kind: CommandKind.BUILT_IN,
     });
+    summaryCommandMock.mockReturnValue({
+      name: 'summary',
+      description: 'Summary command',
+      kind: CommandKind.BUILT_IN,
+    });
+    checkpointCommandMock.mockReturnValue({
+      name: 'checkpoint',
+      description: 'Checkpoint command',
+      kind: CommandKind.BUILT_IN,
+    });
   });
 
   it('should correctly pass the config object to command factory functions', async () => {
@@ -84,6 +113,10 @@ describe('BuiltinCommandLoader', () => {
     expect(ideCommandMock).toHaveBeenCalledWith(mockConfig);
     expect(restoreCommandMock).toHaveBeenCalledTimes(1);
     expect(restoreCommandMock).toHaveBeenCalledWith(mockConfig);
+    expect(summaryCommandMock).toHaveBeenCalledTimes(1);
+    expect(summaryCommandMock).toHaveBeenCalledWith(mockConfig);
+    expect(checkpointCommandMock).toHaveBeenCalledTimes(1);
+    expect(checkpointCommandMock).toHaveBeenCalledWith(mockConfig);
   });
 
   it('should filter out null command definitions returned by factories', async () => {
@@ -108,6 +141,10 @@ describe('BuiltinCommandLoader', () => {
     expect(ideCommandMock).toHaveBeenCalledWith(null);
     expect(restoreCommandMock).toHaveBeenCalledTimes(1);
     expect(restoreCommandMock).toHaveBeenCalledWith(null);
+    expect(summaryCommandMock).toHaveBeenCalledTimes(1);
+    expect(summaryCommandMock).toHaveBeenCalledWith(null);
+    expect(checkpointCommandMock).toHaveBeenCalledTimes(1);
+    expect(checkpointCommandMock).toHaveBeenCalledWith(null);
   });
 
   it('should return a list of all loaded commands', async () => {
