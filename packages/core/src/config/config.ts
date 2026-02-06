@@ -224,6 +224,7 @@ export interface ConfigParameters {
   chatCompression?: ChatCompressionSettings;
   interactive?: boolean;
   trustedFolder?: boolean;
+  disableNextSpeakerCheck?: boolean;
 }
 
 export class Config {
@@ -304,6 +305,7 @@ export class Config {
   private readonly chatCompression: ChatCompressionSettings | undefined;
   private readonly interactive: boolean;
   private readonly trustedFolder: boolean | undefined;
+  private readonly disableNextSpeakerCheck: boolean;
   private initialized: boolean = false;
 
   constructor(params: ConfigParameters) {
@@ -381,6 +383,7 @@ export class Config {
     this.chatCompression = params.chatCompression;
     this.interactive = params.interactive ?? false;
     this.trustedFolder = params.trustedFolder;
+    this.disableNextSpeakerCheck = params.disableNextSpeakerCheck ?? false;
 
     // Web search
     this.tavilyApiKey = params.tavilyApiKey;
@@ -812,6 +815,10 @@ export class Config {
 
   isInteractive(): boolean {
     return this.interactive;
+  }
+
+  getDisableNextSpeakerCheck(): boolean {
+    return this.disableNextSpeakerCheck;
   }
 
   async getGitService(): Promise<GitService> {

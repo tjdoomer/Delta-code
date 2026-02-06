@@ -587,6 +587,7 @@ export async function loadCliConfig(
     folderTrust,
     interactive,
     trustedFolder,
+    disableNextSpeakerCheck: settings.disableNextSpeakerCheck ?? false,
   });
 }
 

@@ -229,6 +229,7 @@ describe('Delta Client (client.ts)', () => {
       setFallbackMode: vi.fn(),
       getCliVersion: vi.fn().mockReturnValue('1.0.0'),
       getChatCompression: vi.fn().mockReturnValue(undefined),
+      getDisableNextSpeakerCheck: vi.fn().mockReturnValue(false),
     };
     const MockedConfig = vi.mocked(Config, true);
     MockedConfig.mockImplementation(

@@ -766,17 +766,18 @@ describe('useSlashCommandProcessor', () => {
       expect(action).toHaveBeenCalledWith(expect.anything(), 'with-args');
     });
 
-    it('should handle `?` as a command prefix', async () => {
+    it('should not handle `?` as a command prefix', async () => {
       const action = vi.fn();
       const command = createTestCommand({ name: 'help', action });
       const result = setupProcessorHook([command]);
       await waitFor(() => expect(result.current.slashCommands).toHaveLength(1));
 
-      await act(async () => {
-        await result.current.handleSlashCommand('?help');
+      const processResult = await act(async () => {
+        return result.current.handleSlashCommand('?help');
       });
 
-      expect(action).toHaveBeenCalledTimes(1);
+      expect(action).not.toHaveBeenCalled();
+      expect(processResult).toBe(false);
     });
   });
 

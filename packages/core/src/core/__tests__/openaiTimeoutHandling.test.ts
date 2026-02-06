@@ -252,7 +252,7 @@ describe('OpenAIContentGenerator Timeout Handling', () => {
       expect(OpenAI).toHaveBeenCalledWith({
         apiKey: 'test-key',
         baseURL: 'http://localhost:8080',
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
         defaultHeaders: {
           'User-Agent': expect.stringMatching(/^DeltaCode/),
@@ -304,7 +304,7 @@ describe('OpenAIContentGenerator Timeout Handling', () => {
       expect(OpenAI).toHaveBeenCalledWith({
         apiKey: 'test-key',
         baseURL: 'http://localhost:8080',
-        timeout: 120000, // default
+        timeout: 300000, // default
         maxRetries: 3, // default
         defaultHeaders: {
           'User-Agent': expect.stringMatching(/^DeltaCode/),

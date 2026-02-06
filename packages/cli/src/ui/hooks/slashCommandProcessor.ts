@@ -243,7 +243,7 @@ export const useSlashCommandProcessor = (
       }
 
       const trimmed = rawQuery.trim();
-      if (!trimmed.startsWith('/') && !trimmed.startsWith('?')) {
+      if (!trimmed.startsWith('/')) {
         return false;
       }
 

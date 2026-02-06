@@ -59,7 +59,7 @@ describe('OpenAIContentGenerator', () => {
       getContentGeneratorConfig: vi.fn().mockReturnValue({
         authType: 'openai',
         enableOpenAILogging: false,
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
         samplingParams: {
           temperature: 0.7,
@@ -90,7 +90,7 @@ describe('OpenAIContentGenerator', () => {
       apiKey: 'test-key',
       authType: AuthType.USE_OPENAI,
       enableOpenAILogging: false,
-      timeout: 120000,
+      timeout: 300000,
       maxRetries: 3,
       samplingParams: {
         temperature: 0.7,
@@ -110,7 +110,7 @@ describe('OpenAIContentGenerator', () => {
       expect(OpenAI).toHaveBeenCalledWith({
         apiKey: 'test-key',
         baseURL: undefined,
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
         defaultHeaders: {
           'User-Agent': expect.stringMatching(/^DeltaCode/),
@@ -125,7 +125,7 @@ describe('OpenAIContentGenerator', () => {
         baseUrl: 'https://api.custom.com',
         authType: AuthType.USE_OPENAI,
         enableOpenAILogging: false,
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
       };
       new OpenAIContentGenerator(contentGeneratorConfig, mockConfig);
@@ -133,7 +133,7 @@ describe('OpenAIContentGenerator', () => {
       expect(OpenAI).toHaveBeenCalledWith({
         apiKey: 'test-key',
         baseURL: 'https://api.custom.com',
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
         defaultHeaders: {
           'User-Agent': expect.stringMatching(/^DeltaCode/),
@@ -148,7 +148,7 @@ describe('OpenAIContentGenerator', () => {
         baseUrl: 'https://openrouter.ai/api/v1',
         authType: AuthType.USE_OPENAI,
         enableOpenAILogging: false,
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
       };
       new OpenAIContentGenerator(contentGeneratorConfig, mockConfig);
@@ -156,7 +156,7 @@ describe('OpenAIContentGenerator', () => {
       expect(OpenAI).toHaveBeenCalledWith({
         apiKey: 'test-key',
         baseURL: 'https://openrouter.ai/api/v1',
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
         defaultHeaders: {
           'User-Agent': expect.stringMatching(/^DeltaCode/),
@@ -1637,7 +1637,7 @@ describe('OpenAIContentGenerator', () => {
         apiKey: 'test-key',
         authType: AuthType.USE_OPENAI,
         enableOpenAILogging: false,
-        timeout: 120000,
+        timeout: 300000,
         maxRetries: 3,
         samplingParams: {
           temperature: 0.7,
@@ -3498,6 +3498,173 @@ describe('OpenAIContentGenerator', () => {
           ]),
         }),
       );
+    });
+  });
+
+  describe('think tag filtering', () => {
+    it('should filter complete <think> blocks from non-streaming responses', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        object: 'chat.completion',
+        created: 1234567890,
+        model: 'test-model',
+        choices: [
+          {
+            index: 0,
+            message: {
+              role: 'assistant',
+              content:
+                '<think>I need to think about this...</think>Here is my answer.',
+            },
+            finish_reason: 'stop',
+          },
+        ],
+        usage: { prompt_tokens: 10, completion_tokens: 20, total_tokens: 30 },
+      };
+
+      mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
+
+      const request: GenerateContentParameters = {
+        model: 'test-model',
+        contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
+      };
+
+      const response = await generator.generateContent(request, 'test-prompt');
+      const text = response.candidates?.[0]?.content?.parts?.[0];
+      expect(text).toEqual({ text: 'Here is my answer.' });
+    });
+
+    it('should filter <think> blocks from streaming responses', async () => {
+      const chunks = [
+        {
+          id: 'test-id',
+          object: 'chat.completion.chunk',
+          created: 1234567890,
+          model: 'test-model',
+          choices: [
+            { index: 0, delta: { content: '<think>thinking' }, finish_reason: null },
+          ],
+        },
+        {
+          id: 'test-id',
+          object: 'chat.completion.chunk',
+          created: 1234567890,
+          model: 'test-model',
+          choices: [
+            {
+              index: 0,
+              delta: { content: ' deeply</think>Hello world' },
+              finish_reason: null,
+            },
+          ],
+        },
+        {
+          id: 'test-id',
+          object: 'chat.completion.chunk',
+          created: 1234567890,
+          model: 'test-model',
+          choices: [{ index: 0, delta: {}, finish_reason: 'stop' }],
+        },
+      ];
+
+      const asyncIterator = {
+        [Symbol.asyncIterator]: () => {
+          let index = 0;
+          return {
+            next: async () => {
+              if (index < chunks.length) {
+                return { value: chunks[index++], done: false };
+              }
+              return { value: undefined, done: true };
+            },
+          };
+        },
+      };
+
+      mockOpenAIClient.chat.completions.create.mockResolvedValue(asyncIterator);
+
+      const request: GenerateContentParameters = {
+        model: 'test-model',
+        contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
+      };
+
+      const stream = await generator.generateContentStream(request, 'test-prompt');
+      const responses = [];
+      for await (const response of stream) {
+        responses.push(response);
+      }
+
+      // Collect all text parts
+      const allText = responses
+        .flatMap((r) => r.candidates?.[0]?.content?.parts || [])
+        .filter((p) => 'text' in p && p.text)
+        .map((p) => ('text' in p ? p.text : ''))
+        .join('');
+
+      expect(allText).toBe('Hello world');
+    });
+
+    it('should pass through text with no think tags unchanged', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        object: 'chat.completion',
+        created: 1234567890,
+        model: 'test-model',
+        choices: [
+          {
+            index: 0,
+            message: {
+              role: 'assistant',
+              content: 'Just a normal response with no tags.',
+            },
+            finish_reason: 'stop',
+          },
+        ],
+        usage: { prompt_tokens: 10, completion_tokens: 20, total_tokens: 30 },
+      };
+
+      mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
+
+      const request: GenerateContentParameters = {
+        model: 'test-model',
+        contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
+      };
+
+      const response = await generator.generateContent(request, 'test-prompt');
+      const text = response.candidates?.[0]?.content?.parts?.[0];
+      expect(text).toEqual({ text: 'Just a normal response with no tags.' });
+    });
+
+    it('should filter multiple <think> blocks from non-streaming responses', async () => {
+      const mockResponse = {
+        id: 'test-id',
+        object: 'chat.completion',
+        created: 1234567890,
+        model: 'test-model',
+        choices: [
+          {
+            index: 0,
+            message: {
+              role: 'assistant',
+              content:
+                '<think>thought 1</think>First part.<think>thought 2</think> Second part.',
+            },
+            finish_reason: 'stop',
+          },
+        ],
+        usage: { prompt_tokens: 10, completion_tokens: 20, total_tokens: 30 },
+      };
+
+      mockOpenAIClient.chat.completions.create.mockResolvedValue(mockResponse);
+
+      const request: GenerateContentParameters = {
+        model: 'test-model',
+        contents: [{ role: 'user', parts: [{ text: 'Hello' }] }],
+      };
+
+      const response = await generator.generateContent(request, 'test-prompt');
+      const text = response.candidates?.[0]?.content?.parts?.[0];
+      expect(text).toEqual({ text: 'First part. Second part.' });
     });
   });
 });

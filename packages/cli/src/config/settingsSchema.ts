@@ -540,6 +540,16 @@ export const SETTINGS_SCHEMA = {
     description: 'The API key for the Tavily API.',
     showInDialog: false,
   },
+  disableNextSpeakerCheck: {
+    type: 'boolean',
+    label: 'Disable Next Speaker Check',
+    category: 'General',
+    requiresRestart: false,
+    default: false,
+    description:
+      'Disable the next-speaker checker that runs after each model response. Recommended for slow local models to avoid doubling inference time.',
+    showInDialog: true,
+  },
 } as const;
 
 type InferSettings<T extends SettingsSchema> = {
