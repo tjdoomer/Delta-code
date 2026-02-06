@@ -10,7 +10,7 @@ import { IndividualToolCallDisplay, ToolCallStatus } from '../../types.js';
 import { DiffRenderer } from './DiffRenderer.js';
 import { Colors } from '../../colors.js';
 import { MarkdownDisplay } from '../../utils/MarkdownDisplay.js';
-import { GeminiRespondingSpinner } from '../GeminiRespondingSpinner.js';
+import { DeltaRespondingSpinner } from '../DeltaRespondingSpinner.js';
 import { MaxSizedBox } from '../shared/MaxSizedBox.js';
 import { TodoDisplay } from '../TodoDisplay.js';
 import { TodoResultDisplay } from '@delta-code/delta-code-core';
@@ -223,7 +223,7 @@ const ToolStatusIndicator: React.FC<ToolStatusIndicatorProps> = ({
       <Text color={Colors.AccentGreen}>o</Text>
     )}
     {status === ToolCallStatus.Executing && (
-      <GeminiRespondingSpinner
+      <DeltaRespondingSpinner
         spinnerType="toggle"
         nonRespondingDisplay={'⊷'}
       />

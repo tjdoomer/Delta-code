@@ -257,8 +257,8 @@ describe('useDeltaAuth', () => {
     );
 
     // Change to non-Delta auth
-    const geminiSettings = createMockSettings(AuthType.USE_GEMINI);
-    rerender({ settings: geminiSettings, isAuthenticating: true });
+    const apiKeySettings = createMockSettings(AuthType.USE_GEMINI);
+    rerender({ settings: apiKeySettings, isAuthenticating: true });
 
     expect(mockDeltaOAuth2Events.off).toHaveBeenCalledWith(
       DeltaOAuth2Event.AuthUri,
@@ -332,8 +332,8 @@ describe('useDeltaAuth', () => {
     expect(result.current.authStatus).toBe('polling');
 
     // Switch to different auth type
-    const geminiSettings = createMockSettings(AuthType.USE_GEMINI);
-    rerender({ settings: geminiSettings, isAuthenticating: true });
+    const apiKeySettings = createMockSettings(AuthType.USE_GEMINI);
+    rerender({ settings: apiKeySettings, isAuthenticating: true });
 
     expect(result.current.isDeltaAuthenticating).toBe(false);
     expect(result.current.deviceAuth).toBe(null);
@@ -414,11 +414,11 @@ describe('useDeltaAuth', () => {
     expect(deltaResult.current.isDeltaAuth).toBe(true);
 
     // Test with other auth types
-    const geminiSettings = createMockSettings(AuthType.USE_GEMINI);
-    const { result: geminiResult } = renderHook(() =>
+    const apiKeySettings = createMockSettings(AuthType.USE_GEMINI);
+    const { result: apiKeyResult } = renderHook(() =>
       useDeltaAuth(geminiSettings, false),
     );
-    expect(geminiResult.current.isDeltaAuth).toBe(false);
+    expect(apiKeyResult.current.isDeltaAuth).toBe(false);
 
     const oauthSettings = createMockSettings(AuthType.LOGIN_WITH_GOOGLE);
     const { result: oauthResult } = renderHook(() =>

@@ -78,7 +78,7 @@ export const setOpenAIModel = (model: string): void => {
 };
 
 // Google AI Studio (Gemini) key
-export const setGeminiApiKey = (apiKey: string): void => {
+export const setDeltaApiKey = (apiKey: string): void => {
   process.env.GEMINI_API_KEY = apiKey;
 };
 

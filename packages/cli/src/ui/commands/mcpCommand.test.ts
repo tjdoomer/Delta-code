@@ -866,7 +866,7 @@ describe('mcpCommand', () => {
       const mockToolRegistry = {
         discoverToolsForServer: vi.fn(),
       };
-      const mockGeminiClient = {
+      const mockDeltaClient = {
         setTools: vi.fn(),
       };
 
@@ -880,7 +880,7 @@ describe('mcpCommand', () => {
               },
             }),
             getToolRegistry: vi.fn().mockResolvedValue(mockToolRegistry),
-            getGeminiClient: vi.fn().mockReturnValue(mockGeminiClient),
+            getDeltaClient: vi.fn().mockReturnValue(mockDeltaClient),
             getPromptRegistry: vi.fn().mockResolvedValue({
               removePromptsByServer: vi.fn(),
             }),
@@ -905,7 +905,7 @@ describe('mcpCommand', () => {
       expect(mockToolRegistry.discoverToolsForServer).toHaveBeenCalledWith(
         'test-server',
       );
-      expect(mockGeminiClient.setTools).toHaveBeenCalled();
+      expect(mockDeltaClient.setTools).toHaveBeenCalled();
       expect(context.ui.reloadCommands).toHaveBeenCalledTimes(1);
 
       expect(isMessageAction(result)).toBe(true);
@@ -974,7 +974,7 @@ describe('mcpCommand', () => {
         discoverMcpTools: vi.fn(),
         getAllTools: vi.fn().mockReturnValue([]),
       };
-      const mockGeminiClient = {
+      const mockDeltaClient = {
         setTools: vi.fn(),
       };
 
@@ -984,7 +984,7 @@ describe('mcpCommand', () => {
             getMcpServers: vi.fn().mockReturnValue({ server1: {} }),
             getBlockedMcpServers: vi.fn().mockReturnValue([]),
             getToolRegistry: vi.fn().mockResolvedValue(mockToolRegistry),
-            getGeminiClient: vi.fn().mockReturnValue(mockGeminiClient),
+            getDeltaClient: vi.fn().mockReturnValue(mockDeltaClient),
             getPromptRegistry: vi.fn().mockResolvedValue({
               getPromptsByServer: vi.fn().mockReturnValue([]),
             }),
@@ -1009,7 +1009,7 @@ describe('mcpCommand', () => {
         expect.any(Number),
       );
       expect(mockToolRegistry.discoverMcpTools).toHaveBeenCalled();
-      expect(mockGeminiClient.setTools).toHaveBeenCalled();
+      expect(mockDeltaClient.setTools).toHaveBeenCalled();
       expect(context.ui.reloadCommands).toHaveBeenCalledTimes(1);
 
       expect(isMessageAction(result)).toBe(true);

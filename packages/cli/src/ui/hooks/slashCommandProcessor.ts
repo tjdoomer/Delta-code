@@ -54,7 +54,7 @@ export const useSlashCommandProcessor = (
   openSettingsDialog: () => void,
   toggleVimEnabled: () => Promise<boolean>,
   setIsProcessing: (isProcessing: boolean) => void,
-  setGeminiMdFileCount: (count: number) => void,
+  setDeltaMdFileCount: (count: number) => void,
 ) => {
   const session = useSessionStats();
   const [commands, setCommands] = useState<readonly SlashCommand[]>([]);
@@ -177,7 +177,7 @@ export const useSlashCommandProcessor = (
         setPendingItem: setPendingCompressionItem,
         toggleCorgiMode,
         toggleVimEnabled,
-        setGeminiMdFileCount,
+        setDeltaMdFileCount,
         reloadCommands,
       },
       session: {
@@ -203,7 +203,7 @@ export const useSlashCommandProcessor = (
       toggleCorgiMode,
       toggleVimEnabled,
       sessionShellAllowlist,
-      setGeminiMdFileCount,
+      setDeltaMdFileCount,
       reloadCommands,
     ],
   );
@@ -377,7 +377,7 @@ export const useSlashCommandProcessor = (
                   }
                 case 'load_history': {
                   await config
-                    ?.getGeminiClient()
+                    ?.getDeltaClient()
                     ?.setHistory(result.clientHistory);
                   fullCommandContext.ui.clear();
                   result.history.forEach((item, index) => {

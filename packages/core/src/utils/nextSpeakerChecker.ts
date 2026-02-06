@@ -5,8 +5,8 @@
  */
 
 import { Content } from '@google/genai';
-import { GeminiClient } from '../core/client.js';
-import { GeminiChat } from '../core/geminiChat.js';
+import { DeltaClient } from '../core/client.js';
+import { DeltaChat } from '../core/deltaChat.js';
 import { isFunctionResponse } from './messageInspectors.js';
 
 const CHECK_PROMPT = `Analyze *only* the content and structure of your immediately preceding response (your last turn in the conversation history). Based *strictly* on that response, determine who should logically speak next: the 'user' or the 'model' (you).
@@ -39,8 +39,8 @@ export interface NextSpeakerResponse {
 }
 
 export async function checkNextSpeaker(
-  chat: GeminiChat,
-  geminiClient: GeminiClient,
+  chat: DeltaChat,
+  deltaClient: DeltaClient,
   abortSignal: AbortSignal,
 ): Promise<NextSpeakerResponse | null> {
   // We need to capture the curated history because there are many moments when the model will return invalid turns
@@ -107,11 +107,11 @@ export async function checkNextSpeaker(
   ];
 
   try {
-    const parsedResponse = (await geminiClient.generateJson(
+    const parsedResponse = (await deltaClient.generateJson(
       contents,
       RESPONSE_SCHEMA,
       abortSignal,
-      // Use the currently configured model (Gemini, OpenAI-compatible, etc.)
+      // Use the currently configured model
       undefined,
     )) as unknown as NextSpeakerResponse;
 
@@ -125,7 +125,7 @@ export async function checkNextSpeaker(
     return null;
   } catch (error) {
     console.warn(
-      'Failed to talk to Gemini endpoint when seeing if conversation should continue.',
+      'Failed to talk to API endpoint when seeing if conversation should continue.',
       error,
     );
     return null;

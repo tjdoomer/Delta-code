@@ -57,7 +57,7 @@ export interface LogEventEntry {
 }
 
 export interface EventValue {
-  gemini_cli_key: EventMetadataKey | string;
+  delta_cli_key: EventMetadataKey | string;
   value: string;
 }
 
@@ -78,7 +78,7 @@ export interface LogRequest {
 
 /**
  * Determine the surface that the user is currently using.  Surface is effectively the
- * distribution channel in which the user is using Gemini CLI.  Gemini CLI comes bundled
+ * distribution channel in which the user is using Delta Code.  Delta Code comes bundled
  * w/ Firebase Studio and Cloud Shell.  Users that manually download themselves will
  * likely be "SURFACE_NOT_SET".
  *
@@ -311,67 +311,67 @@ export class ClearcutLogger {
   logStartSessionEvent(event: StartSessionEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_START_SESSION_MODEL,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_START_SESSION_MODEL,
         value: event.model,
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SESSION_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SESSION_ID,
         value: this.config?.getSessionId() ?? '',
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_EMBEDDING_MODEL,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_EMBEDDING_MODEL,
         value: event.embedding_model,
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_START_SESSION_SANDBOX,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_START_SESSION_SANDBOX,
         value: event.sandbox_enabled.toString(),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_START_SESSION_CORE_TOOLS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_START_SESSION_CORE_TOOLS,
         value: event.core_tools_enabled,
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_START_SESSION_APPROVAL_MODE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_START_SESSION_APPROVAL_MODE,
         value: event.approval_mode,
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_API_KEY_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_API_KEY_ENABLED,
         value: event.api_key_enabled.toString(),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_VERTEX_API_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_VERTEX_API_ENABLED,
         value: event.vertex_ai_enabled.toString(),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_DEBUG_MODE_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_DEBUG_MODE_ENABLED,
         value: event.debug_enabled.toString(),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_VERTEX_API_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_VERTEX_API_ENABLED,
         value: event.vertex_ai_enabled.toString(),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_START_SESSION_MCP_SERVERS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_START_SESSION_MCP_SERVERS,
         value: event.mcp_servers,
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_VERTEX_API_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_VERTEX_API_ENABLED,
         value: event.vertex_ai_enabled.toString(),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_TELEMETRY_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_TELEMETRY_ENABLED,
         value: event.telemetry_enabled.toString(),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_START_SESSION_TELEMETRY_LOG_USER_PROMPTS_ENABLED,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_START_SESSION_TELEMETRY_LOG_USER_PROMPTS_ENABLED,
         value: event.telemetry_log_user_prompts_enabled.toString(),
       },
     ];
@@ -386,19 +386,19 @@ export class ClearcutLogger {
   logNewPromptEvent(event: UserPromptEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_USER_PROMPT_LENGTH,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_USER_PROMPT_LENGTH,
         value: JSON.stringify(event.prompt_length),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SESSION_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SESSION_ID,
         value: this.config?.getSessionId() ?? '',
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_AUTH_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_AUTH_TYPE,
         value: JSON.stringify(event.auth_type),
       },
     ];
@@ -410,47 +410,47 @@ export class ClearcutLogger {
   logToolCallEvent(event: ToolCallEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_TOOL_CALL_NAME,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_TOOL_CALL_NAME,
         value: JSON.stringify(event.function_name),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_TOOL_CALL_DECISION,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_TOOL_CALL_DECISION,
         value: JSON.stringify(event.decision),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_TOOL_CALL_SUCCESS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_TOOL_CALL_SUCCESS,
         value: JSON.stringify(event.success),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_TOOL_CALL_DURATION_MS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_TOOL_CALL_DURATION_MS,
         value: JSON.stringify(event.duration_ms),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_TOOL_ERROR_MESSAGE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_TOOL_ERROR_MESSAGE,
         value: JSON.stringify(event.error),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_TOOL_CALL_ERROR_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_TOOL_CALL_ERROR_TYPE,
         value: JSON.stringify(event.error_type),
       },
     ];
 
     if (event.metadata) {
       const metadataMapping: { [key: string]: EventMetadataKey } = {
-        ai_added_lines: EventMetadataKey.GEMINI_CLI_AI_ADDED_LINES,
-        ai_removed_lines: EventMetadataKey.GEMINI_CLI_AI_REMOVED_LINES,
-        user_added_lines: EventMetadataKey.GEMINI_CLI_USER_ADDED_LINES,
-        user_removed_lines: EventMetadataKey.GEMINI_CLI_USER_REMOVED_LINES,
+        ai_added_lines: EventMetadataKey.DELTA_CLI_AI_ADDED_LINES,
+        ai_removed_lines: EventMetadataKey.DELTA_CLI_AI_REMOVED_LINES,
+        user_added_lines: EventMetadataKey.DELTA_CLI_USER_ADDED_LINES,
+        user_removed_lines: EventMetadataKey.DELTA_CLI_USER_REMOVED_LINES,
       };
 
-      for (const [key, gemini_cli_key] of Object.entries(metadataMapping)) {
+      for (const [key, delta_cli_key] of Object.entries(metadataMapping)) {
         if (event.metadata[key] !== undefined) {
           data.push({
-            gemini_cli_key,
+            delta_cli_key,
             value: JSON.stringify(event.metadata[key]),
           });
         }
@@ -465,11 +465,11 @@ export class ClearcutLogger {
   logApiRequestEvent(event: ApiRequestEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_REQUEST_MODEL,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_REQUEST_MODEL,
         value: JSON.stringify(event.model),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
     ];
@@ -481,52 +481,52 @@ export class ClearcutLogger {
   logApiResponseEvent(event: ApiResponseEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_RESPONSE_MODEL,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_RESPONSE_MODEL,
         value: JSON.stringify(event.model),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_RESPONSE_STATUS_CODE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_RESPONSE_STATUS_CODE,
         value: JSON.stringify(event.status_code),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_RESPONSE_DURATION_MS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_RESPONSE_DURATION_MS,
         value: JSON.stringify(event.duration_ms),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_ERROR_MESSAGE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_ERROR_MESSAGE,
         value: JSON.stringify(event.error),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_API_RESPONSE_INPUT_TOKEN_COUNT,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_API_RESPONSE_INPUT_TOKEN_COUNT,
         value: JSON.stringify(event.input_token_count),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_API_RESPONSE_OUTPUT_TOKEN_COUNT,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_API_RESPONSE_OUTPUT_TOKEN_COUNT,
         value: JSON.stringify(event.output_token_count),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_API_RESPONSE_CACHED_TOKEN_COUNT,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_API_RESPONSE_CACHED_TOKEN_COUNT,
         value: JSON.stringify(event.cached_content_token_count),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_API_RESPONSE_THINKING_TOKEN_COUNT,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_API_RESPONSE_THINKING_TOKEN_COUNT,
         value: JSON.stringify(event.thoughts_token_count),
       },
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_API_RESPONSE_TOOL_TOKEN_COUNT,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_API_RESPONSE_TOOL_TOKEN_COUNT,
         value: JSON.stringify(event.tool_token_count),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_AUTH_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_AUTH_TYPE,
         value: JSON.stringify(event.auth_type),
       },
     ];
@@ -538,27 +538,27 @@ export class ClearcutLogger {
   logApiErrorEvent(event: ApiErrorEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_ERROR_MODEL,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_ERROR_MODEL,
         value: JSON.stringify(event.model),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_ERROR_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_ERROR_TYPE,
         value: JSON.stringify(event.error_type),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_ERROR_STATUS_CODE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_ERROR_STATUS_CODE,
         value: JSON.stringify(event.status_code),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_API_ERROR_DURATION_MS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_API_ERROR_DURATION_MS,
         value: JSON.stringify(event.duration_ms),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_AUTH_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_AUTH_TYPE,
         value: JSON.stringify(event.auth_type),
       },
     ];
@@ -570,11 +570,11 @@ export class ClearcutLogger {
   logFlashFallbackEvent(event: FlashFallbackEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_AUTH_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_AUTH_TYPE,
         value: JSON.stringify(event.auth_type),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SESSION_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SESSION_ID,
         value: this.config?.getSessionId() ?? '',
       },
     ];
@@ -588,11 +588,11 @@ export class ClearcutLogger {
   logLoopDetectedEvent(event: LoopDetectedEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_LOOP_DETECTED_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_LOOP_DETECTED_TYPE,
         value: JSON.stringify(event.loop_type),
       },
     ];
@@ -604,19 +604,19 @@ export class ClearcutLogger {
   logNextSpeakerCheck(event: NextSpeakerCheckEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_PROMPT_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_PROMPT_ID,
         value: JSON.stringify(event.prompt_id),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_RESPONSE_FINISH_REASON,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_RESPONSE_FINISH_REASON,
         value: JSON.stringify(event.finish_reason),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_NEXT_SPEAKER_CHECK_RESULT,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_NEXT_SPEAKER_CHECK_RESULT,
         value: JSON.stringify(event.result),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SESSION_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SESSION_ID,
         value: this.config?.getSessionId() ?? '',
       },
     ];
@@ -630,21 +630,21 @@ export class ClearcutLogger {
   logSlashCommandEvent(event: SlashCommandEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SLASH_COMMAND_NAME,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SLASH_COMMAND_NAME,
         value: JSON.stringify(event.command),
       },
     ];
 
     if (event.subcommand) {
       data.push({
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SLASH_COMMAND_SUBCOMMAND,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SLASH_COMMAND_SUBCOMMAND,
         value: JSON.stringify(event.subcommand),
       });
     }
 
     if (event.status) {
       data.push({
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SLASH_COMMAND_STATUS,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SLASH_COMMAND_STATUS,
         value: JSON.stringify(event.status),
       });
     }
@@ -656,8 +656,8 @@ export class ClearcutLogger {
   logMalformedJsonResponseEvent(event: MalformedJsonResponseEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key:
-          EventMetadataKey.GEMINI_CLI_MALFORMED_JSON_RESPONSE_MODEL,
+        delta_cli_key:
+          EventMetadataKey.DELTA_CLI_MALFORMED_JSON_RESPONSE_MODEL,
         value: JSON.stringify(event.model),
       },
     ];
@@ -671,7 +671,7 @@ export class ClearcutLogger {
   logIdeConnectionEvent(event: IdeConnectionEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_IDE_CONNECTION_TYPE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_IDE_CONNECTION_TYPE,
         value: JSON.stringify(event.connection_type),
       },
     ];
@@ -683,11 +683,11 @@ export class ClearcutLogger {
   logKittySequenceOverflowEvent(event: KittySequenceOverflowEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_KITTY_SEQUENCE_LENGTH,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_KITTY_SEQUENCE_LENGTH,
         value: event.sequence_length.toString(),
       },
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_KITTY_TRUNCATED_SEQUENCE,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_KITTY_TRUNCATED_SEQUENCE,
         value: event.truncated_sequence,
       },
     ];
@@ -701,7 +701,7 @@ export class ClearcutLogger {
   logEndSessionEvent(event: EndSessionEvent): void {
     const data: EventValue[] = [
       {
-        gemini_cli_key: EventMetadataKey.GEMINI_CLI_SESSION_ID,
+        delta_cli_key: EventMetadataKey.DELTA_CLI_SESSION_ID,
         value: event?.session_id?.toString() ?? '',
       },
     ];
@@ -790,11 +790,11 @@ function addDefaultFields(data: EventValue[]): EventValue[] {
   const surface = determineSurface();
   const defaultLogMetadata: EventValue[] = [
     {
-      gemini_cli_key: EventMetadataKey.GEMINI_CLI_GOOGLE_ACCOUNTS_COUNT,
+      delta_cli_key: EventMetadataKey.DELTA_CLI_GOOGLE_ACCOUNTS_COUNT,
       value: `${totalAccounts}`,
     },
     {
-      gemini_cli_key: EventMetadataKey.GEMINI_CLI_SURFACE,
+      delta_cli_key: EventMetadataKey.DELTA_CLI_SURFACE,
       value: surface,
     },
   ];

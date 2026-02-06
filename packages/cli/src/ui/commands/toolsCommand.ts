@@ -38,12 +38,12 @@ export const toolsCommand: SlashCommand = {
 
     const tools = toolRegistry.getAllTools();
     // Filter out MCP tools by checking for the absence of a serverName property
-    const geminiTools = tools.filter((tool) => !('serverName' in tool));
+    const deltaTools = tools.filter((tool) => !('serverName' in tool));
 
     let message = 'Available Delta Code tools:\n\n';
 
-    if (geminiTools.length > 0) {
-      geminiTools.forEach((tool) => {
+    if (deltaTools.length > 0) {
+      deltaTools.forEach((tool) => {
         if (useShowDescriptions && tool.description) {
           message += `  - \u001b[36m${tool.displayName} (${tool.name})\u001b[0m:\n`;
 

@@ -11,7 +11,7 @@ import {
   setOpenAIApiKey,
   setOpenAIBaseUrl,
   setOpenAIModel,
-  setGeminiApiKey,
+  setDeltaApiKey,
   setAzureOpenAIConfig,
   setAwsBedrockConfig,
   setAnthropicApiKey,
@@ -81,7 +81,7 @@ export function AuthDialog({
     model: string,
   ) => {
     if (providerMode === 'google') {
-      setGeminiApiKey(apiKey);
+      setDeltaApiKey(apiKey);
       setShowOpenAIKeyPrompt(false);
       onSelect(AuthType.USE_GEMINI, SettingScope.User);
       return;

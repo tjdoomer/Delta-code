@@ -8,11 +8,11 @@ import React from 'react';
 import type { HistoryItem } from '../types.js';
 import { UserMessage } from './messages/UserMessage.js';
 import { UserShellMessage } from './messages/UserShellMessage.js';
-import { GeminiMessage } from './messages/GeminiMessage.js';
+import { DeltaMessage } from './messages/DeltaMessage.js';
 import { InfoMessage } from './messages/InfoMessage.js';
 import { ErrorMessage } from './messages/ErrorMessage.js';
 import { ToolGroupMessage } from './messages/ToolGroupMessage.js';
-import { GeminiMessageContent } from './messages/GeminiMessageContent.js';
+import { DeltaMessageContent } from './messages/DeltaMessageContent.js';
 import { CompressionMessage } from './messages/CompressionMessage.js';
 import { Box } from 'ink';
 import { AboutBox } from './AboutBox.js';
@@ -47,16 +47,16 @@ export const HistoryItemDisplay: React.FC<HistoryItemDisplayProps> = ({
     {/* Render standard message types */}
     {item.type === 'user' && <UserMessage text={item.text} />}
     {item.type === 'user_shell' && <UserShellMessage text={item.text} />}
-    {item.type === 'gemini' && (
-      <GeminiMessage
+    {item.type === 'delta' && (
+      <DeltaMessage
         text={item.text}
         isPending={isPending}
         availableTerminalHeight={availableTerminalHeight}
         terminalWidth={terminalWidth}
       />
     )}
-    {item.type === 'gemini_content' && (
-      <GeminiMessageContent
+    {item.type === 'delta_content' && (
+      <DeltaMessageContent
         text={item.text}
         isPending={isPending}
         availableTerminalHeight={availableTerminalHeight}

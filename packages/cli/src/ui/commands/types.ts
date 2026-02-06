@@ -60,7 +60,7 @@ export interface CommandContext {
     /** Toggles a special display mode. */
     toggleCorgiMode: () => void;
     toggleVimEnabled: () => Promise<boolean>;
-    setGeminiMdFileCount: (count: number) => void;
+    setDeltaMdFileCount: (count: number) => void;
     reloadCommands: () => void;
   };
   // Session-specific data
@@ -120,7 +120,7 @@ export interface LoadHistoryActionReturn {
 
 /**
  * The return type for a command action that should immediately submit
- * content as a prompt to the Gemini model.
+ * content as a prompt to the model.
  */
 export interface SubmitPromptActionReturn {
   type: 'submit_prompt';

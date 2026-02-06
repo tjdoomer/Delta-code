@@ -55,7 +55,7 @@ describe('ShellTool', () => {
       getTargetDir: vi.fn().mockReturnValue('/test/dir'),
       getSummarizeToolOutputConfig: vi.fn().mockReturnValue(undefined),
       getWorkspaceContext: () => createMockWorkspaceContext('.'),
-      getGeminiClient: vi.fn(),
+      getDeltaClient: vi.fn(),
       getGitCoAuthor: vi.fn().mockReturnValue({
         enabled: true,
         name: 'Delta-Coder',
@@ -357,7 +357,7 @@ describe('ShellTool', () => {
 
       expect(summarizer.summarizeToolOutput).toHaveBeenCalledWith(
         expect.any(String),
-        mockConfig.getGeminiClient(),
+        mockConfig.getDeltaClient(),
         mockAbortSignal,
         1000,
       );

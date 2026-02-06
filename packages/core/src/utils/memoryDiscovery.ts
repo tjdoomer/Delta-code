@@ -10,8 +10,8 @@ import * as path from 'path';
 import { homedir } from 'os';
 import { bfsFileSearch } from './bfsFileSearch.js';
 import {
-  GEMINI_CONFIG_DIR,
-  getAllGeminiMdFilenames,
+  DELTA_CONFIG_DIR,
+  getAllDeltaMdFilenames,
 } from '../tools/memoryTool.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { processImports } from './memoryImportProcessor.js';
@@ -33,7 +33,7 @@ const logger = {
     console.error('[ERROR] [MemoryDiscovery]', ...args),
 };
 
-interface GeminiFileContent {
+interface DeltaFileContent {
   filePath: string;
   content: string | null;
 }
@@ -81,9 +81,9 @@ async function findProjectRoot(startDir: string): Promise<string | null> {
   }
 }
 
-async function getGeminiMdFilePathsInternal(
+async function getDeltaMdFilePathsInternal(
   currentWorkingDirectory: string,
-  includeDirectoriesToReadGemini: readonly string[],
+  includeDirectoriesToReadDelta: readonly string[],
   userHomePath: string,
   debugMode: boolean,
   fileService: FileDiscoveryService,
@@ -92,12 +92,12 @@ async function getGeminiMdFilePathsInternal(
   maxDirs: number,
 ): Promise<string[]> {
   const dirs = new Set<string>([
-    ...includeDirectoriesToReadGemini,
+    ...includeDirectoriesToReadDelta,
     currentWorkingDirectory,
   ]);
   const paths = [];
   for (const dir of dirs) {
-    const pathsByDir = await getGeminiMdFilePathsInternalForEachDir(
+    const pathsByDir = await getDeltaMdFilePathsInternalForEachDir(
       dir,
       userHomePath,
       debugMode,
@@ -111,7 +111,7 @@ async function getGeminiMdFilePathsInternal(
   return Array.from(new Set<string>(paths));
 }
 
-async function getGeminiMdFilePathsInternalForEachDir(
+async function getDeltaMdFilePathsInternalForEachDir(
   dir: string,
   userHomePath: string,
   debugMode: boolean,
@@ -121,14 +121,14 @@ async function getGeminiMdFilePathsInternalForEachDir(
   maxDirs: number,
 ): Promise<string[]> {
   const allPaths = new Set<string>();
-  const geminiMdFilenames = getAllGeminiMdFilenames();
+  const deltaMdFilenames = getAllDeltaMdFilenames();
 
-  for (const geminiMdFilename of geminiMdFilenames) {
+  for (const deltaMdFilename of deltaMdFilenames) {
     const resolvedHome = path.resolve(userHomePath);
     const globalMemoryPath = path.join(
       resolvedHome,
-      GEMINI_CONFIG_DIR,
-      geminiMdFilename,
+      DELTA_CONFIG_DIR,
+      deltaMdFilename,
     );
 
     // This part that finds the global file always runs.
@@ -137,7 +137,7 @@ async function getGeminiMdFilePathsInternalForEachDir(
       allPaths.add(globalMemoryPath);
       if (debugMode)
         logger.debug(
-          `Found readable global ${geminiMdFilename}: ${globalMemoryPath}`,
+          `Found readable global ${deltaMdFilename}: ${globalMemoryPath}`,
         );
     } catch {
       // It's okay if it's not found.
@@ -149,14 +149,14 @@ async function getGeminiMdFilePathsInternalForEachDir(
 
     if (isHomeDirectory) {
       // For home directory, only check for DELTA.md directly in the home directory
-      const homeContextPath = path.join(resolvedHome, geminiMdFilename);
+      const homeContextPath = path.join(resolvedHome, deltaMdFilename);
       try {
         await fs.access(homeContextPath, fsSync.constants.R_OK);
         if (homeContextPath !== globalMemoryPath) {
           allPaths.add(homeContextPath);
           if (debugMode)
             logger.debug(
-              `Found readable home ${geminiMdFilename}: ${homeContextPath}`,
+              `Found readable home ${deltaMdFilename}: ${homeContextPath}`,
             );
         }
       } catch {
@@ -168,7 +168,7 @@ async function getGeminiMdFilePathsInternalForEachDir(
       const resolvedCwd = path.resolve(dir);
       if (debugMode)
         logger.debug(
-          `Searching for ${geminiMdFilename} starting from CWD: ${resolvedCwd}`,
+          `Searching for ${deltaMdFilename} starting from CWD: ${resolvedCwd}`,
         );
 
       const projectRoot = await findProjectRoot(resolvedCwd);
@@ -182,11 +182,11 @@ async function getGeminiMdFilePathsInternalForEachDir(
         : path.dirname(resolvedHome);
 
       while (currentDir && currentDir !== path.dirname(currentDir)) {
-        if (currentDir === path.join(resolvedHome, GEMINI_CONFIG_DIR)) {
+        if (currentDir === path.join(resolvedHome, DELTA_CONFIG_DIR)) {
           break;
         }
 
-        const potentialPath = path.join(currentDir, geminiMdFilename);
+        const potentialPath = path.join(currentDir, deltaMdFilename);
         try {
           await fs.access(potentialPath, fsSync.constants.R_OK);
           if (potentialPath !== globalMemoryPath) {
@@ -210,7 +210,7 @@ async function getGeminiMdFilePathsInternalForEachDir(
       };
 
       const downwardPaths = await bfsFileSearch(resolvedCwd, {
-        fileName: geminiMdFilename,
+        fileName: deltaMdFilename,
         maxDirs,
         debug: debugMode,
         fileService,
@@ -232,19 +232,19 @@ async function getGeminiMdFilePathsInternalForEachDir(
 
   if (debugMode)
     logger.debug(
-      `Final ordered ${getAllGeminiMdFilenames()} paths to read: ${JSON.stringify(
+      `Final ordered ${getAllDeltaMdFilenames()} paths to read: ${JSON.stringify(
         finalPaths,
       )}`,
     );
   return finalPaths;
 }
 
-async function readGeminiMdFiles(
+async function readDeltaMdFiles(
   filePaths: string[],
   debugMode: boolean,
   importFormat: 'flat' | 'tree' = 'tree',
-): Promise<GeminiFileContent[]> {
-  const results: GeminiFileContent[] = [];
+): Promise<DeltaFileContent[]> {
+  const results: DeltaFileContent[] = [];
   for (const filePath of filePaths) {
     try {
       const content = await fs.readFile(filePath, 'utf-8');
@@ -269,7 +269,7 @@ async function readGeminiMdFiles(
       if (!isTestEnv) {
         const message = error instanceof Error ? error.message : String(error);
         logger.warn(
-          `Warning: Could not read ${getAllGeminiMdFilenames()} file at ${filePath}. Error: ${message}`,
+          `Warning: Could not read ${getAllDeltaMdFilenames()} file at ${filePath}. Error: ${message}`,
         );
       }
       results.push({ filePath, content: null }); // Still include it with null content
@@ -280,7 +280,7 @@ async function readGeminiMdFiles(
 }
 
 function concatenateInstructions(
-  instructionContents: GeminiFileContent[],
+  instructionContents: DeltaFileContent[],
   // CWD is needed to resolve relative paths for display markers
   currentWorkingDirectoryForDisplay: string,
 ): string {
@@ -306,7 +306,7 @@ function concatenateInstructions(
  */
 export async function loadServerHierarchicalMemory(
   currentWorkingDirectory: string,
-  includeDirectoriesToReadGemini: readonly string[],
+  includeDirectoriesToReadDelta: readonly string[],
   debugMode: boolean,
   fileService: FileDiscoveryService,
   extensionContextFilePaths: string[] = [],
@@ -322,9 +322,9 @@ export async function loadServerHierarchicalMemory(
   // For the server, homedir() refers to the server process's home.
   // This is consistent with how MemoryTool already finds the global path.
   const userHomePath = homedir();
-  const filePaths = await getGeminiMdFilePathsInternal(
+  const filePaths = await getDeltaMdFilePathsInternal(
     currentWorkingDirectory,
-    includeDirectoriesToReadGemini,
+    includeDirectoriesToReadDelta,
     userHomePath,
     debugMode,
     fileService,
@@ -336,7 +336,7 @@ export async function loadServerHierarchicalMemory(
     if (debugMode) logger.debug('No DELTA.md files found in hierarchy.');
     return { memoryContent: '', fileCount: 0 };
   }
-  const contentsWithPaths = await readGeminiMdFiles(
+  const contentsWithPaths = await readDeltaMdFiles(
     filePaths,
     debugMode,
     importFormat,

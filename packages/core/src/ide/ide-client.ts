@@ -107,13 +107,13 @@ export class IdeClient {
    * A diff is accepted with any modifications if the user performs one of the
    * following actions:
    * - Clicks the checkbox icon in the IDE to accept
-   * - Runs `command+shift+p` > "Gemini CLI: Accept Diff in IDE" to accept
+   * - Runs `command+shift+p` > "Delta Code: Accept Diff in IDE" to accept
    * - Selects "accept" in the CLI UI
    * - Saves the file via `ctrl/command+s`
    *
    * A diff is rejected if the user performs one of the following actions:
    * - Clicks the "x" icon in the IDE
-   * - Runs "Gemini CLI: Close Diff in IDE"
+   * - Runs "Delta Code: Close Diff in IDE"
    * - Selects "no" in the CLI UI
    * - Closes the file
    */

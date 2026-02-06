@@ -526,7 +526,7 @@ class GrepToolInvocation extends BaseToolInvocation<
         'bower_components/**',
         '.svn/**',
         '.hg/**',
-        ...fileDiscovery.getGeminiIgnorePatterns(),
+        ...fileDiscovery.getDeltaIgnorePatterns(),
       ]; // Use glob patterns for ignores here
 
       const filesIterator = globStream(globPattern, {

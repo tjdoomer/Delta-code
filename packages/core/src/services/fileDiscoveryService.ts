@@ -8,16 +8,16 @@ import { GitIgnoreParser, GitIgnoreFilter } from '../utils/gitIgnoreParser.js';
 import { isGitRepository } from '../utils/gitUtils.js';
 import * as path from 'path';
 
-const GEMINI_IGNORE_FILE_NAME = '.geminiignore';
+const DELTA_IGNORE_FILE_NAME = '.deltaignore';
 
 export interface FilterFilesOptions {
   respectGitIgnore?: boolean;
-  respectGeminiIgnore?: boolean;
+  respectDeltaIgnore?: boolean;
 }
 
 export class FileDiscoveryService {
   private gitIgnoreFilter: GitIgnoreFilter | null = null;
-  private geminiIgnoreFilter: GitIgnoreFilter | null = null;
+  private deltaIgnoreFilter: GitIgnoreFilter | null = null;
   private projectRoot: string;
 
   constructor(projectRoot: string) {
@@ -33,11 +33,11 @@ export class FileDiscoveryService {
     }
     const gParser = new GitIgnoreParser(this.projectRoot);
     try {
-      gParser.loadPatterns(GEMINI_IGNORE_FILE_NAME);
+      gParser.loadPatterns(DELTA_IGNORE_FILE_NAME);
     } catch (_error) {
       // ignore file not found
     }
-    this.geminiIgnoreFilter = gParser;
+    this.deltaIgnoreFilter = gParser;
   }
 
   /**
@@ -47,7 +47,7 @@ export class FileDiscoveryService {
     filePaths: string[],
     options: FilterFilesOptions = {
       respectGitIgnore: true,
-      respectGeminiIgnore: true,
+      respectDeltaIgnore: true,
     },
   ): string[] {
     return filePaths.filter((filePath) => {
@@ -55,8 +55,8 @@ export class FileDiscoveryService {
         return false;
       }
       if (
-        options.respectGeminiIgnore &&
-        this.shouldGeminiIgnoreFile(filePath)
+        options.respectDeltaIgnore &&
+        this.shouldDeltaIgnoreFile(filePath)
       ) {
         return false;
       }
@@ -75,11 +75,11 @@ export class FileDiscoveryService {
   }
 
   /**
-   * Checks if a single file should be gemini-ignored
+   * Checks if a single file should be delta-ignored
    */
-  shouldGeminiIgnoreFile(filePath: string): boolean {
-    if (this.geminiIgnoreFilter) {
-      return this.geminiIgnoreFilter.isIgnored(filePath);
+  shouldDeltaIgnoreFile(filePath: string): boolean {
+    if (this.deltaIgnoreFilter) {
+      return this.deltaIgnoreFilter.isIgnored(filePath);
     }
     return false;
   }
@@ -91,21 +91,21 @@ export class FileDiscoveryService {
     filePath: string,
     options: FilterFilesOptions = {},
   ): boolean {
-    const { respectGitIgnore = true, respectGeminiIgnore = true } = options;
+    const { respectGitIgnore = true, respectDeltaIgnore = true } = options;
 
     if (respectGitIgnore && this.shouldGitIgnoreFile(filePath)) {
       return true;
     }
-    if (respectGeminiIgnore && this.shouldGeminiIgnoreFile(filePath)) {
+    if (respectDeltaIgnore && this.shouldDeltaIgnoreFile(filePath)) {
       return true;
     }
     return false;
   }
 
   /**
-   * Returns loaded patterns from .geminiignore
+   * Returns loaded patterns from .deltaignore
    */
-  getGeminiIgnorePatterns(): string[] {
-    return this.geminiIgnoreFilter?.getPatterns() ?? [];
+  getDeltaIgnorePatterns(): string[] {
+    return this.deltaIgnoreFilter?.getPatterns() ?? [];
   }
 }

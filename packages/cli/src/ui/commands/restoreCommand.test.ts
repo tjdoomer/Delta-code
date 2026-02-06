@@ -19,15 +19,15 @@ describe('restoreCommand', () => {
   let mockGitService: GitService;
   let mockSetHistory: ReturnType<typeof vi.fn>;
   let testRootDir: string;
-  let geminiTempDir: string;
+  let deltaTempDir: string;
   let checkpointsDir: string;
 
   beforeEach(async () => {
     testRootDir = await fs.mkdtemp(
       path.join(os.tmpdir(), 'restore-command-test-'),
     );
-    geminiTempDir = path.join(testRootDir, '.gemini');
-    checkpointsDir = path.join(geminiTempDir, 'checkpoints');
+    deltaTempDir = path.join(testRootDir, '.delta');
+    checkpointsDir = path.join(deltaTempDir, 'checkpoints');
     // The command itself creates this, but for tests it's easier to have it ready.
     // Some tests might remove it to test error paths.
     await fs.mkdir(checkpointsDir, { recursive: true });
@@ -39,8 +39,8 @@ describe('restoreCommand', () => {
 
     mockConfig = {
       getCheckpointingEnabled: vi.fn().mockReturnValue(true),
-      getProjectTempDir: vi.fn().mockReturnValue(geminiTempDir),
-      getGeminiClient: vi.fn().mockReturnValue({
+      getProjectTempDir: vi.fn().mockReturnValue(deltaTempDir),
+      getDeltaClient: vi.fn().mockReturnValue({
         setHistory: mockSetHistory,
       }),
     } as unknown as Config;

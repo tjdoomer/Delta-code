@@ -82,16 +82,16 @@ node_modules/
 
     it('should handle custom patterns file name', async () => {
       // No .git directory for this test
-      await createTestFile('.geminiignore', 'temp/\n*.tmp');
+      await createTestFile('.deltaignore', 'temp/\n*.tmp');
 
-      parser.loadPatterns('.geminiignore');
+      parser.loadPatterns('.deltaignore');
       expect(parser.getPatterns()).toEqual(['temp/', '*.tmp']);
       expect(parser.isIgnored(path.join('temp', 'file.txt'))).toBe(true);
       expect(parser.isIgnored(path.join('src', 'file.tmp'))).toBe(true);
     });
 
-    it('should initialize without errors when no .geminiignore exists', () => {
-      expect(() => parser.loadPatterns('.geminiignore')).not.toThrow();
+    it('should initialize without errors when no .deltaignore exists', () => {
+      expect(() => parser.loadPatterns('.deltaignore')).not.toThrow();
     });
   });
 

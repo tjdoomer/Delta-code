@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// File for 'gemini mcp add' command
+// File for 'delta mcp add' command
 import type { CommandModule } from 'yargs';
 import { loadSettings, SettingScope } from '../../config/settings.js';
 import { MCPServerConfig } from '@delta-code/delta-code-core';
@@ -129,7 +129,7 @@ export const addCommand: CommandModule = {
   describe: 'Add a server',
   builder: (yargs) =>
     yargs
-      .usage('Usage: gemini mcp add [options] <name> <commandOrUrl> [args...]')
+      .usage('Usage: delta mcp add [options] <name> <commandOrUrl> [args...]')
       .positional('name', {
         describe: 'Name of the server',
         type: 'string',

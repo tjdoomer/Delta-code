@@ -884,7 +884,7 @@ describe('OpenAIContentGenerator', () => {
   });
 
   describe('finish reason mapping', () => {
-    it('should map OpenAI finish reasons to Gemini format', async () => {
+    it('should map OpenAI finish reasons to GenAI format', async () => {
       const testCases = [
         { openai: 'stop', expected: FinishReason.STOP },
         { openai: 'length', expected: FinishReason.MAX_TOKENS },
@@ -1121,7 +1121,7 @@ describe('OpenAIContentGenerator', () => {
   });
 
   describe('tool parameter conversion', () => {
-    it('should convert Gemini types to OpenAI JSON Schema types', async () => {
+    it('should convert GenAI types to OpenAI JSON Schema types', async () => {
       const mockResponse = {
         id: 'chatcmpl-123',
         choices: [
@@ -1957,7 +1957,7 @@ describe('OpenAIContentGenerator', () => {
   });
 
   describe('request/response logging conversion', () => {
-    it('should convert complex Gemini request to OpenAI format for logging', async () => {
+    it('should convert complex GenAI request to OpenAI format for logging', async () => {
       const loggingConfig = {
         getContentGeneratorConfig: vi.fn().mockReturnValue({
           enableOpenAILogging: true,

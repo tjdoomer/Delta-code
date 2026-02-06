@@ -14,7 +14,7 @@
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
-        "GEMINI_SANDBOX": "false"
+        "DELTA_SANDBOX": "false"
       }
     },
     {
@@ -78,7 +78,7 @@
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
-        "GEMINI_SANDBOX": "false"
+        "DELTA_SANDBOX": "false"
       }
     }
   ],

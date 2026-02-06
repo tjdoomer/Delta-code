@@ -34,7 +34,7 @@ describe('GrepTool', () => {
   const abortSignal = new AbortController().signal;
 
   const mockFileService = {
-    getGeminiIgnorePatterns: () => [],
+    getDeltaIgnorePatterns: () => [],
   } as unknown as FileDiscoveryService;
 
   const mockConfig = {
@@ -230,7 +230,7 @@ describe('GrepTool', () => {
       );
     });
 
-    it('should exclude files matching geminiIgnorePatterns', async () => {
+    it('should exclude files matching deltaIgnorePatterns', async () => {
       // Create a file that should be ignored
       await fs.writeFile(
         path.join(tempRootDir, 'ignored-file.txt'),
@@ -238,7 +238,7 @@ describe('GrepTool', () => {
       );
 
       // Update the mock file service to return ignore patterns
-      mockFileService.getGeminiIgnorePatterns = () => ['ignored-file.txt'];
+      mockFileService.getDeltaIgnorePatterns = () => ['ignored-file.txt'];
 
       // Re-create the grep tool with the updated mock
       const grepToolWithIgnore = new GrepTool(mockConfig);
@@ -286,7 +286,7 @@ describe('GrepTool', () => {
 
       // Create a mock config with multiple directories
       const multiDirFileService = {
-        getGeminiIgnorePatterns: () => [],
+        getDeltaIgnorePatterns: () => [],
       };
 
       const multiDirConfig = {
@@ -341,7 +341,7 @@ describe('GrepTool', () => {
 
       // Create a mock config with multiple directories
       const multiDirFileService = {
-        getGeminiIgnorePatterns: () => [],
+        getDeltaIgnorePatterns: () => [],
       };
 
       const multiDirConfig = {

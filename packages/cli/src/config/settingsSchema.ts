@@ -237,13 +237,13 @@ export const SETTINGS_SCHEMA = {
         description: 'Respect .gitignore files when searching',
         showInDialog: true,
       },
-      respectGeminiIgnore: {
+      respectDeltaIgnore: {
         type: 'boolean',
-        label: 'Respect .geminiignore',
+        label: 'Respect .deltaignore',
         category: 'File Filtering',
         requiresRestart: true,
         default: true,
-        description: 'Respect .geminiignore files when searching',
+        description: 'Respect .deltaignore files when searching',
         showInDialog: true,
       },
       enableRecursiveFileSearch: {
@@ -447,7 +447,7 @@ export const SETTINGS_SCHEMA = {
     category: 'General',
     requiresRestart: false,
     default: undefined as string | undefined,
-    description: 'The Gemini model to use for conversations.',
+    description: 'The model to use for conversations.',
     showInDialog: false,
   },
   hasSeenIdeIntegrationNudge: {

@@ -11,12 +11,12 @@ import { randomUUID } from 'crypto';
 import { QWEN_DIR } from './paths.js';
 
 const homeDir = os.homedir() ?? '';
-const geminiDir = path.join(homeDir, QWEN_DIR);
-const installationIdFile = path.join(geminiDir, 'installation_id');
+const deltaDir = path.join(homeDir, QWEN_DIR);
+const installationIdFile = path.join(deltaDir, 'installation_id');
 
-function ensureGeminiDirExists() {
-  if (!fs.existsSync(geminiDir)) {
-    fs.mkdirSync(geminiDir, { recursive: true });
+function ensureDeltaDirExists() {
+  if (!fs.existsSync(deltaDir)) {
+    fs.mkdirSync(deltaDir, { recursive: true });
   }
 }
 
@@ -39,7 +39,7 @@ function writeInstallationIdToFile(installationId: string) {
  */
 export function getInstallationId(): string {
   try {
-    ensureGeminiDirExists();
+    ensureDeltaDirExists();
     let installationId = readInstallationIdFromFile();
 
     if (!installationId) {

@@ -19,7 +19,7 @@ import {
   FunctionDeclaration,
   Type,
 } from '@google/genai';
-import { GeminiChat } from './geminiChat.js';
+import { DeltaChat } from './deltaChat.js';
 
 /**
  * @fileoverview Defines the configuration interfaces for a subagent.
@@ -595,7 +595,7 @@ export class SubAgentScope {
 
       this.runtimeContext.setModel(this.modelConfig.model);
 
-      return new GeminiChat(
+      return new DeltaChat(
         this.runtimeContext,
         contentGenerator,
         generationConfig,
@@ -604,7 +604,7 @@ export class SubAgentScope {
     } catch (error) {
       await reportError(
         error,
-        'Error initializing Gemini chat session.',
+        'Error initializing chat session.',
         start_history,
         'startChat',
       );

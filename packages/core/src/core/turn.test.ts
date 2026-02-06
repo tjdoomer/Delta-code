@@ -7,13 +7,13 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
   Turn,
-  GeminiEventType,
-  ServerGeminiToolCallRequestEvent,
-  ServerGeminiErrorEvent,
+  DeltaEventType,
+  ServerDeltaToolCallRequestEvent,
+  ServerDeltaErrorEvent,
 } from './turn.js';
 import { GenerateContentResponse, Part, Content } from '@google/genai';
 import { reportError } from '../utils/errorReporting.js';
-import { GeminiChat } from './geminiChat.js';
+import { DeltaChat } from './deltaChat.js';
 
 const mockSendMessageStream = vi.fn();
 const mockGetHistory = vi.fn();
@@ -59,7 +59,7 @@ describe('Turn', () => {
       getHistory: mockGetHistory,
       maybeIncludeSchemaDepthContext: mockMaybeIncludeSchemaDepthContext,
     };
-    turn = new Turn(mockChatInstance as unknown as GeminiChat, 'prompt-id-1');
+    turn = new Turn(mockChatInstance as unknown as DeltaChat, 'prompt-id-1');
     mockGetHistory.mockReturnValue([]);
     mockSendMessageStream.mockResolvedValue((async function* () {})());
   });
@@ -105,8 +105,8 @@ describe('Turn', () => {
       );
 
       expect(events).toEqual([
-        { type: GeminiEventType.Content, value: 'Hello' },
-        { type: GeminiEventType.Content, value: ' world' },
+        { type: DeltaEventType.Content, value: 'Hello' },
+        { type: DeltaEventType.Content, value: ' world' },
       ]);
       expect(turn.getDebugResponses().length).toBe(2);
     });
@@ -137,8 +137,8 @@ describe('Turn', () => {
       }
 
       expect(events.length).toBe(2);
-      const event1 = events[0] as ServerGeminiToolCallRequestEvent;
-      expect(event1.type).toBe(GeminiEventType.ToolCallRequest);
+      const event1 = events[0] as ServerDeltaToolCallRequestEvent;
+      expect(event1.type).toBe(DeltaEventType.ToolCallRequest);
       expect(event1.value).toEqual(
         expect.objectContaining({
           callId: 'fc1',
@@ -149,8 +149,8 @@ describe('Turn', () => {
       );
       expect(turn.pendingToolCalls[0]).toEqual(event1.value);
 
-      const event2 = events[1] as ServerGeminiToolCallRequestEvent;
-      expect(event2.type).toBe(GeminiEventType.ToolCallRequest);
+      const event2 = events[1] as ServerDeltaToolCallRequestEvent;
+      expect(event2.type).toBe(DeltaEventType.ToolCallRequest);
       expect(event2.value).toEqual(
         expect.objectContaining({
           name: 'tool2',
@@ -190,8 +190,8 @@ describe('Turn', () => {
         events.push(event);
       }
       expect(events).toEqual([
-        { type: GeminiEventType.Content, value: 'First part' },
-        { type: GeminiEventType.UserCancelled },
+        { type: DeltaEventType.Content, value: 'First part' },
+        { type: DeltaEventType.UserCancelled },
       ]);
       expect(turn.getDebugResponses().length).toBe(1);
     });
@@ -214,15 +214,15 @@ describe('Turn', () => {
       }
 
       expect(events.length).toBe(1);
-      const errorEvent = events[0] as ServerGeminiErrorEvent;
-      expect(errorEvent.type).toBe(GeminiEventType.Error);
+      const errorEvent = events[0] as ServerDeltaErrorEvent;
+      expect(errorEvent.type).toBe(DeltaEventType.Error);
       expect(errorEvent.value).toEqual({
         error: { message: 'API Error', status: undefined },
       });
       expect(turn.getDebugResponses().length).toBe(0);
       expect(reportError).toHaveBeenCalledWith(
         error,
-        'Error when talking to Gemini API',
+        'Error when talking to API',
         [...historyContent, reqParts],
         'Turn.run-sendMessageStream',
       );
@@ -249,8 +249,8 @@ describe('Turn', () => {
       }
 
       expect(events.length).toBe(3);
-      const event1 = events[0] as ServerGeminiToolCallRequestEvent;
-      expect(event1.type).toBe(GeminiEventType.ToolCallRequest);
+      const event1 = events[0] as ServerDeltaToolCallRequestEvent;
+      expect(event1.type).toBe(DeltaEventType.ToolCallRequest);
       expect(event1.value).toEqual(
         expect.objectContaining({
           callId: 'fc1',
@@ -261,8 +261,8 @@ describe('Turn', () => {
       );
       expect(turn.pendingToolCalls[0]).toEqual(event1.value);
 
-      const event2 = events[1] as ServerGeminiToolCallRequestEvent;
-      expect(event2.type).toBe(GeminiEventType.ToolCallRequest);
+      const event2 = events[1] as ServerDeltaToolCallRequestEvent;
+      expect(event2.type).toBe(DeltaEventType.ToolCallRequest);
       expect(event2.value).toEqual(
         expect.objectContaining({
           callId: 'fc2',
@@ -273,8 +273,8 @@ describe('Turn', () => {
       );
       expect(turn.pendingToolCalls[1]).toEqual(event2.value);
 
-      const event3 = events[2] as ServerGeminiToolCallRequestEvent;
-      expect(event3.type).toBe(GeminiEventType.ToolCallRequest);
+      const event3 = events[2] as ServerDeltaToolCallRequestEvent;
+      expect(event3.type).toBe(DeltaEventType.ToolCallRequest);
       expect(event3.value).toEqual(
         expect.objectContaining({
           callId: 'fc3',
@@ -310,8 +310,8 @@ describe('Turn', () => {
       }
 
       expect(events).toEqual([
-        { type: GeminiEventType.Content, value: 'Partial response' },
-        { type: GeminiEventType.Finished, value: 'STOP' },
+        { type: DeltaEventType.Content, value: 'Partial response' },
+        { type: DeltaEventType.Finished, value: 'STOP' },
       ]);
     });
 
@@ -343,10 +343,10 @@ describe('Turn', () => {
 
       expect(events).toEqual([
         {
-          type: GeminiEventType.Content,
+          type: DeltaEventType.Content,
           value: 'This is a long response that was cut off...',
         },
-        { type: GeminiEventType.Finished, value: 'MAX_TOKENS' },
+        { type: DeltaEventType.Finished, value: 'MAX_TOKENS' },
       ]);
     });
 
@@ -373,8 +373,8 @@ describe('Turn', () => {
       }
 
       expect(events).toEqual([
-        { type: GeminiEventType.Content, value: 'Content blocked' },
-        { type: GeminiEventType.Finished, value: 'SAFETY' },
+        { type: DeltaEventType.Content, value: 'Content blocked' },
+        { type: DeltaEventType.Finished, value: 'SAFETY' },
       ]);
     });
 
@@ -402,7 +402,7 @@ describe('Turn', () => {
 
       expect(events).toEqual([
         {
-          type: GeminiEventType.Content,
+          type: DeltaEventType.Content,
           value: 'Response without finish reason',
         },
       ]);
@@ -440,9 +440,9 @@ describe('Turn', () => {
       }
 
       expect(events).toEqual([
-        { type: GeminiEventType.Content, value: 'First part' },
-        { type: GeminiEventType.Content, value: 'Second part' },
-        { type: GeminiEventType.Finished, value: 'OTHER' },
+        { type: DeltaEventType.Content, value: 'First part' },
+        { type: DeltaEventType.Content, value: 'Second part' },
+        { type: DeltaEventType.Finished, value: 'OTHER' },
       ]);
     });
   });

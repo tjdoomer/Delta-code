@@ -3,7 +3,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const entry = join(__dirname, '..', 'bundle', 'gemini.js');
+const entry = join(__dirname, '..', 'bundle', 'delta.js');
 
 // Re-exec the actual ESM entrypoint
 const { pathToFileURL: toURL } = await import('url');

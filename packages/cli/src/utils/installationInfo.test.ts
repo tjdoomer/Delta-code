@@ -135,7 +135,7 @@ describe('getInstallationInfo', () => {
     const cliPath = '/usr/local/bin/gemini';
     process.argv[1] = cliPath;
     mockedRealPathSync.mockReturnValue(cliPath);
-    mockedExecSync.mockReturnValue(Buffer.from('gemini-cli')); // Simulate successful command
+    mockedExecSync.mockReturnValue(Buffer.from('delta-code')); // Simulate successful command
 
     const info = getInstallationInfo(projectRoot, false);
 

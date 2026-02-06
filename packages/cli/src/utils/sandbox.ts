@@ -274,8 +274,8 @@ export async function start_sandbox(
           ...process.argv.map((arg) => quote([arg])),
         ].join(' '),
       );
-      // start and set up proxy if GEMINI_SANDBOX_PROXY_COMMAND is set
-      const proxyCommand = process.env.GEMINI_SANDBOX_PROXY_COMMAND;
+      // start and set up proxy if DELTA_SANDBOX_PROXY_COMMAND is set
+      const proxyCommand = process.env.DELTA_SANDBOX_PROXY_COMMAND;
       let proxyProcess: ChildProcess | undefined = undefined;
       let sandboxProcess: ChildProcess | undefined = undefined;
       const sandboxEnv = { ...process.env };
@@ -342,7 +342,7 @@ export async function start_sandbox(
 
     console.error(`hopping into sandbox (command: ${config.command}) ...`);
 
-    // determine full path for gemini-cli to distinguish linked vs installed setting
+    // determine full path for delta-code to distinguish linked vs installed setting
     const gcPath = fs.realpathSync(process.argv[1]);
 
     const projectSandboxDockerfile = path.join(
@@ -355,14 +355,14 @@ export async function start_sandbox(
     const workdir = path.resolve(process.cwd());
     const containerWorkdir = getContainerPath(workdir);
 
-    // if BUILD_SANDBOX is set, then call scripts/build_sandbox.js under gemini-cli repo
+    // if BUILD_SANDBOX is set, then call scripts/build_sandbox.js under delta-code repo
     //
-    // note this can only be done with binary linked from gemini-cli repo
+    // note this can only be done with binary linked from delta-code repo
     if (process.env.BUILD_SANDBOX) {
-      if (!gcPath.includes('gemini-cli/packages/')) {
+      if (!gcPath.includes('delta-code/packages/')) {
         console.error(
           'ERROR: cannot build sandbox using installed gemini binary; ' +
-            'run `npm link ./packages/cli` under gemini-cli repo to switch to linked binary.',
+            'run `npm link ./packages/cli` under delta-code repo to switch to linked binary.',
         );
         process.exit(1);
       } else {
@@ -384,7 +384,7 @@ export async function start_sandbox(
             stdio: 'inherit',
             env: {
               ...process.env,
-              GEMINI_SANDBOX: config.command, // in case sandbox is enabled via flags (see config.ts under cli package)
+              DELTA_SANDBOX: config.command, // in case sandbox is enabled via flags (see config.ts under cli package)
             },
           },
         );
@@ -395,8 +395,8 @@ export async function start_sandbox(
     if (!(await ensureSandboxImageIsPresent(config.command, image))) {
       const remedy =
         image === LOCAL_DEV_SANDBOX_IMAGE_NAME
-          ? 'Try running `npm run build:all` or `npm run build:sandbox` under the gemini-cli repo to build it locally, or check the image name and your network connection.'
-          : 'Please check the image name, your network connection, or notify gemini-cli-dev@google.com if the issue persists.';
+          ? 'Try running `npm run build:all` or `npm run build:sandbox` under the delta-code repo to build it locally, or check the image name and your network connection.'
+          : 'Please check the image name, your network connection, or notify delta-code-dev@google.com if the issue persists.';
       console.error(
         `ERROR: Sandbox image '${image}' is missing or could not be pulled. ${remedy}`,
       );
@@ -507,8 +507,8 @@ export async function start_sandbox(
 
     // copy proxy environment variables, replacing localhost with SANDBOX_PROXY_NAME
     // copy as both upper-case and lower-case as is required by some utilities
-    // GEMINI_SANDBOX_PROXY_COMMAND implies HTTPS_PROXY unless HTTP_PROXY is set
-    const proxyCommand = process.env.GEMINI_SANDBOX_PROXY_COMMAND;
+    // DELTA_SANDBOX_PROXY_COMMAND implies HTTPS_PROXY unless HTTP_PROXY is set
+    const proxyCommand = process.env.DELTA_SANDBOX_PROXY_COMMAND;
 
     if (proxyCommand) {
       let proxy =
@@ -707,7 +707,7 @@ export async function start_sandbox(
     let userFlag = '';
     const finalEntrypoint = entrypoint(workdir);
 
-    if (process.env.GEMINI_CLI_INTEGRATION_TEST === 'true') {
+    if (process.env.DELTA_CLI_INTEGRATION_TEST === 'true') {
       args.push('--user', 'root');
       userFlag = '--user root';
     } else if (await shouldUseCurrentUserInSandbox()) {
@@ -754,7 +754,7 @@ export async function start_sandbox(
     // push container entrypoint (including args)
     args.push(...finalEntrypoint);
 
-    // start and set up proxy if GEMINI_SANDBOX_PROXY_COMMAND is set
+    // start and set up proxy if DELTA_SANDBOX_PROXY_COMMAND is set
     let proxyProcess: ChildProcess | undefined = undefined;
     let sandboxProcess: ChildProcess | undefined = undefined;
 

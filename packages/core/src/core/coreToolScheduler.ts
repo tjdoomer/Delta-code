@@ -130,7 +130,7 @@ export type AllToolCallsCompleteHandler = (
 export type ToolCallsUpdateHandler = (toolCalls: ToolCall[]) => void;
 
 /**
- * Formats tool output for a Gemini FunctionResponse.
+ * Formats tool output for a FunctionResponse.
  */
 function createFunctionResponsePart(
   callId: string,

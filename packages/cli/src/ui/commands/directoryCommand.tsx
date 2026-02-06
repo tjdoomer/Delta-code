@@ -106,8 +106,8 @@ export const directoryCommand: SlashCommand = {
                   context.services.settings.merged.memoryDiscoveryMaxDirs,
                 );
               config.setUserMemory(memoryContent);
-              config.setGeminiMdFileCount(fileCount);
-              context.ui.setGeminiMdFileCount(fileCount);
+              config.setDeltaMdFileCount(fileCount);
+              context.ui.setDeltaMdFileCount(fileCount);
             }
             addItem(
               {
@@ -122,9 +122,9 @@ export const directoryCommand: SlashCommand = {
         }
 
         if (added.length > 0) {
-          const gemini = config.getGeminiClient();
-          if (gemini) {
-            await gemini.addDirectoryContext();
+          const client = config.getDeltaClient();
+          if (client) {
+            await client.addDirectoryContext();
           }
           addItem(
             {

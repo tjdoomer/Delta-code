@@ -20,8 +20,8 @@ import {
 } from '../utils/environmentContext.js';
 import {
   Turn,
-  ServerGeminiStreamEvent,
-  GeminiEventType,
+  ServerDeltaStreamEvent,
+  DeltaEventType,
   ChatCompressionInfo,
 } from './turn.js';
 import { Config } from '../config/config.js';
@@ -29,7 +29,7 @@ import { UserTierId } from '../code_assist/types.js';
 import { getCoreSystemPrompt, getCompressionPrompt } from './prompts.js';
 import { checkNextSpeaker } from '../utils/nextSpeakerChecker.js';
 import { reportError } from '../utils/errorReporting.js';
-import { GeminiChat } from './geminiChat.js';
+import { DeltaChat } from './deltaChat.js';
 import { retryWithBackoff } from '../utils/retry.js';
 import { getErrorMessage } from '../utils/errors.js';
 import { isFunctionResponse } from '../utils/messageInspectors.js';
@@ -87,8 +87,8 @@ export function findIndexAfterFraction(
   return contentLengths.length;
 }
 
-export class GeminiClient {
-  private chat?: GeminiChat;
+export class DeltaClient {
+  private chat?: DeltaChat;
   private contentGenerator?: ContentGenerator;
   private embeddingModel: string;
   private generateContentConfig: GenerateContentConfig = {
@@ -147,7 +147,7 @@ export class GeminiClient {
     this.getChat().addHistory(content);
   }
 
-  getChat(): GeminiChat {
+  getChat(): DeltaChat {
     if (!this.chat) {
       throw new Error('Chat not initialized');
     }
@@ -213,7 +213,7 @@ export class GeminiClient {
     });
   }
 
-  async startChat(extraHistory?: Content[]): Promise<GeminiChat> {
+  async startChat(extraHistory?: Content[]): Promise<DeltaChat> {
     this.forceFullIdeContext = true;
     const envParts = await getEnvironmentContext(this.config);
     const toolRegistry = await this.config.getToolRegistry();
@@ -243,7 +243,7 @@ export class GeminiClient {
             },
           }
         : this.generateContentConfig;
-      return new GeminiChat(
+      return new DeltaChat(
         this.config,
         this.getContentGenerator(),
         {
@@ -256,7 +256,7 @@ export class GeminiClient {
     } catch (error) {
       await reportError(
         error,
-        'Error initializing Gemini chat session.',
+        'Error initializing chat session.',
         history,
         'startChat',
       );
@@ -438,7 +438,7 @@ export class GeminiClient {
     prompt_id: string,
     turns: number = this.MAX_TURNS,
     originalModel?: string,
-  ): AsyncGenerator<ServerGeminiStreamEvent, Turn> {
+  ): AsyncGenerator<ServerDeltaStreamEvent, Turn> {
     if (this.lastPromptId !== prompt_id) {
       this.loopDetector.reset(prompt_id);
       this.lastPromptId = prompt_id;
@@ -448,7 +448,7 @@ export class GeminiClient {
       this.config.getMaxSessionTurns() > 0 &&
       this.sessionTurnCount > this.config.getMaxSessionTurns()
     ) {
-      yield { type: GeminiEventType.MaxSessionTurns };
+      yield { type: DeltaEventType.MaxSessionTurns };
       return new Turn(this.getChat(), prompt_id);
     }
     // Ensure turns never exceeds MAX_TURNS to prevent infinite loops
@@ -463,7 +463,7 @@ export class GeminiClient {
     const compressed = await this.tryCompressChat(prompt_id);
 
     if (compressed) {
-      yield { type: GeminiEventType.ChatCompressed, value: compressed };
+      yield { type: DeltaEventType.ChatCompressed, value: compressed };
     }
 
     // Check session token limit after compression using accurate token counting
@@ -496,7 +496,7 @@ export class GeminiClient {
         totalRequestTokens > sessionTokenLimit
       ) {
         yield {
-          type: GeminiEventType.SessionTokenLimitExceeded,
+          type: DeltaEventType.SessionTokenLimitExceeded,
           value: {
             currentTokens: totalRequestTokens,
             limit: sessionTokenLimit,
@@ -540,14 +540,14 @@ export class GeminiClient {
 
     const loopDetected = await this.loopDetector.turnStarted(signal);
     if (loopDetected) {
-      yield { type: GeminiEventType.LoopDetected };
+      yield { type: DeltaEventType.LoopDetected };
       return turn;
     }
 
     const resultStream = turn.run(request, signal);
     for await (const event of resultStream) {
       if (this.loopDetector.addAndCheck(event)) {
-        yield { type: GeminiEventType.LoopDetected };
+        yield { type: DeltaEventType.LoopDetected };
         return turn;
       }
       yield event;

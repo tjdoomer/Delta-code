@@ -151,22 +151,22 @@ export class AnthropicContentGenerator implements ContentGenerator {
       const response = await this.makeRequest('/messages', anthropicRequest as unknown as Record<string, unknown>);
       const anthropicResponse = await response.json() as AnthropicResponse;
       
-      const geminiResponse = this.convertToGeminiFormat(anthropicResponse);
+      const genAIResponse = this.convertToGenAIFormat(anthropicResponse);
       const durationMs = Date.now() - startTime;
 
       // Log API response event for UI telemetry
       const responseEvent = new ApiResponseEvent(
-        geminiResponse.responseId || 'unknown',
+        genAIResponse.responseId || 'unknown',
         this.model,
         durationMs,
         userPromptId,
         this.contentGeneratorConfig.authType,
-        geminiResponse.usageMetadata,
+        genAIResponse.usageMetadata,
       );
 
       logApiResponse(this.config, responseEvent);
 
-      return geminiResponse;
+      return genAIResponse;
     } catch (error) {
       const durationMs = Date.now() - startTime;
       const errorMessage = error instanceof Error ? error.message : String(error);
@@ -455,7 +455,7 @@ export class AnthropicContentGenerator implements ContentGenerator {
     return anthropicRequest;
   }
 
-  private convertToGeminiFormat(anthropicResponse: AnthropicResponse): GenerateContentResponse {
+  private convertToGenAIFormat(anthropicResponse: AnthropicResponse): GenerateContentResponse {
     const response = new GenerateContentResponse();
     const parts: Part[] = [];
 

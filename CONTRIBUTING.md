@@ -98,8 +98,8 @@ This section guides contributors on how to build, modify, and understand the dev
 To clone the repository:
 
 ```bash
-git clone https://github.com/google-gemini/gemini-cli.git # Or your fork's URL
-cd gemini-cli
+git clone https://github.com/google-gemini/delta-code.git # Or your fork's URL
+cd delta-code
 ```
 
 To install dependencies defined in `package.json` as well as root dependencies:
@@ -118,7 +118,7 @@ This command typically compiles TypeScript to JavaScript, bundles assets, and pr
 
 ### Enabling Sandboxing
 
-[Sandboxing](#sandboxing) is highly recommended and requires, at a minimum, setting `GEMINI_SANDBOX=true` in your `~/.env` and ensuring a sandboxing provider (e.g. `macOS Seatbelt`, `docker`, or `podman`) is available. See [Sandboxing](#sandboxing) for details.
+[Sandboxing](#sandboxing) is highly recommended and requires, at a minimum, setting `DELTA_SANDBOX=true` in your `~/.env` and ensuring a sandboxing provider (e.g. `macOS Seatbelt`, `docker`, or `podman`) is available. See [Sandboxing](#sandboxing) for details.
 
 To build both the `gemini` CLI utility and the sandbox container, run `build:all` from the root directory:
 
@@ -130,13 +130,13 @@ To skip building the sandbox container, you can use `npm run build` instead.
 
 ### Running
 
-To start the Gemini CLI from the source code (after building), run the following command from the root directory:
+To start the Delta Code from the source code (after building), run the following command from the root directory:
 
 ```bash
 npm start
 ```
 
-If you'd like to run the source build outside of the gemini-cli folder you can utilize `npm link path/to/gemini-cli/packages/cli` (see: [docs](https://docs.npmjs.com/cli/v9/commands/npm-link)) or `alias gemini="node path/to/gemini-cli/packages/cli"` to run with `gemini`
+If you'd like to run the source build outside of the delta-code folder you can utilize `npm link path/to/delta-code/packages/cli` (see: [docs](https://docs.npmjs.com/cli/v9/commands/npm-link)) or `alias gemini="node path/to/delta-code/packages/cli"` to run with `gemini`
 
 ### Running Tests
 
@@ -154,7 +154,7 @@ This will run tests located in the `packages/core` and `packages/cli` directorie
 
 #### Integration Tests
 
-The integration tests are designed to validate the end-to-end functionality of the Gemini CLI. They are not run as part of the default `npm run test` command.
+The integration tests are designed to validate the end-to-end functionality of the Delta Code. They are not run as part of the default `npm run test` command.
 
 To run the integration tests, use the following command:
 
@@ -216,7 +216,7 @@ npm run lint
 
 - `packages/`: Contains the individual sub-packages of the project.
   - `cli/`: The command-line interface.
-  - `core/`: The core backend logic for the Gemini CLI.
+  - `core/`: The core backend logic for the Delta Code.
 - `docs/`: Contains all project documentation.
 - `scripts/`: Utility scripts for building, testing, and development tasks.
 
@@ -242,13 +242,13 @@ To hit a breakpoint inside the sandbox container run:
 DEBUG=1 gemini
 ```
 
-**Note:** If you have `DEBUG=true` in a project's `.env` file, it won't affect gemini-cli due to automatic exclusion. Use `.gemini/.env` files for gemini-cli specific debug settings.
+**Note:** If you have `DEBUG=true` in a project's `.env` file, it won't affect delta-code due to automatic exclusion. Use `.gemini/.env` files for delta-code specific debug settings.
 
 ### React DevTools
 
 To debug the CLI's React-based UI, you can use React DevTools. Ink, the library used for the CLI's interface, is compatible with React DevTools version 4.x.
 
-1.  **Start the Gemini CLI in development mode:**
+1.  **Start the Delta Code in development mode:**
 
     ```bash
     DEV=true npm start
@@ -280,13 +280,13 @@ On macOS, `delta` uses Seatbelt (`sandbox-exec`) under a `permissive-open` profi
 
 ### Container-based Sandboxing (All Platforms)
 
-For stronger container-based sandboxing on macOS or other platforms, you can set `GEMINI_SANDBOX=true|docker|podman|<command>` in your environment or `.env` file. The specified command (or if `true` then either `docker` or `podman`) must be installed on the host machine. Once enabled, `npm run build:all` will build a minimal container ("sandbox") image and `npm start` will launch inside a fresh instance of that container. The first build can take 20-30s (mostly due to downloading of the base image) but after that both build and start overhead should be minimal. Default builds (`npm run build`) will not rebuild the sandbox.
+For stronger container-based sandboxing on macOS or other platforms, you can set `DELTA_SANDBOX=true|docker|podman|<command>` in your environment or `.env` file. The specified command (or if `true` then either `docker` or `podman`) must be installed on the host machine. Once enabled, `npm run build:all` will build a minimal container ("sandbox") image and `npm start` will launch inside a fresh instance of that container. The first build can take 20-30s (mostly due to downloading of the base image) but after that both build and start overhead should be minimal. Default builds (`npm run build`) will not rebuild the sandbox.
 
-Container-based sandboxing mounts the project directory (and system temp directory) with read-write access and is started/stopped/removed automatically as you start/stop Gemini CLI. Files created within the sandbox should be automatically mapped to your user/group on host machine. You can easily specify additional mounts, ports, or environment variables by setting `SANDBOX_{MOUNTS,PORTS,ENV}` as needed. You can also fully customize the sandbox for your projects by creating the files `.delta/sandbox.Dockerfile` and/or `.delta/sandbox.bashrc` under your project settings directory (`.delta`) and running `delta` with `BUILD_SANDBOX=1` to trigger building of your custom sandbox.
+Container-based sandboxing mounts the project directory (and system temp directory) with read-write access and is started/stopped/removed automatically as you start/stop Delta Code. Files created within the sandbox should be automatically mapped to your user/group on host machine. You can easily specify additional mounts, ports, or environment variables by setting `SANDBOX_{MOUNTS,PORTS,ENV}` as needed. You can also fully customize the sandbox for your projects by creating the files `.delta/sandbox.Dockerfile` and/or `.delta/sandbox.bashrc` under your project settings directory (`.delta`) and running `delta` with `BUILD_SANDBOX=1` to trigger building of your custom sandbox.
 
 #### Proxied Networking
 
-All sandboxing methods, including macOS Seatbelt using `*-proxied` profiles, support restricting outbound network traffic through a custom proxy server that can be specified as `GEMINI_SANDBOX_PROXY_COMMAND=<command>`, where `<command>` must start a proxy server that listens on `:::8877` for relevant requests. See `docs/examples/proxy-script.md` for a minimal proxy that only allows `HTTPS` connections to `example.com:443` (e.g. `curl https://example.com`) and declines all other requests. The proxy is started and stopped automatically alongside the sandbox.
+All sandboxing methods, including macOS Seatbelt using `*-proxied` profiles, support restricting outbound network traffic through a custom proxy server that can be specified as `DELTA_SANDBOX_PROXY_COMMAND=<command>`, where `<command>` must start a proxy server that listens on `:::8877` for relevant requests. See `docs/examples/proxy-script.md` for a minimal proxy that only allows `HTTPS` connections to `example.com:443` (e.g. `curl https://example.com`) and declines all other requests. The proxy is started and stopped automatically alongside the sandbox.
 
 ## Manual Publish
 

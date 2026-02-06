@@ -24,9 +24,9 @@ describe('FileSearch', () => {
     vi.restoreAllMocks();
   });
 
-  it('should use .geminiignore rules', async () => {
+  it('should use .deltaignore rules', async () => {
     tmpDir = await createTmpDir({
-      '.geminiignore': 'dist/',
+      '.deltaignore': 'dist/',
       dist: ['ignored.js'],
       src: ['not-ignored.js'],
     });
@@ -34,7 +34,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: true,
+      useDeltaignore: true,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -43,22 +43,22 @@ describe('FileSearch', () => {
     await fileSearch.initialize();
     const results = await fileSearch.search('');
 
-    expect(results).toEqual(['src/', '.geminiignore', 'src/not-ignored.js']);
+    expect(results).toEqual(['src/', '.deltaignore', 'src/not-ignored.js']);
   });
 
-  it('should combine .gitignore and .geminiignore rules', async () => {
+  it('should combine .gitignore and .deltaignore rules', async () => {
     tmpDir = await createTmpDir({
       '.gitignore': 'dist/',
-      '.geminiignore': 'build/',
+      '.deltaignore': 'build/',
       dist: ['ignored-by-git.js'],
-      build: ['ignored-by-gemini.js'],
+      build: ['ignored-by-delta.js'],
       src: ['not-ignored.js'],
     });
 
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: true,
+      useDeltaignore: true,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -69,7 +69,7 @@ describe('FileSearch', () => {
 
     expect(results).toEqual([
       'src/',
-      '.geminiignore',
+      '.deltaignore',
       '.gitignore',
       'src/not-ignored.js',
     ]);
@@ -84,7 +84,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: ['logs'],
       cache: false,
       cacheTtl: 0,
@@ -111,7 +111,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -142,7 +142,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -164,7 +164,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -197,7 +197,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -225,7 +225,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -253,7 +253,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: true,
+      useDeltaignore: true,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -278,7 +278,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -302,7 +302,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -322,7 +322,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -360,7 +360,7 @@ describe('FileSearch', () => {
       const fileSearch = new FileSearch({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: false,
         cacheTtl: 0,
@@ -376,7 +376,7 @@ describe('FileSearch', () => {
       const getOptions = () => ({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: true,
         cacheTtl: 10,
@@ -409,7 +409,7 @@ describe('FileSearch', () => {
       const options = {
         projectRoot: tmpDir,
         useGitignore: true,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: true,
         cacheTtl: 10000,
@@ -447,7 +447,7 @@ describe('FileSearch', () => {
       const options = {
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: true,
         cacheTtl: 10, // 10 seconds
@@ -476,7 +476,7 @@ describe('FileSearch', () => {
       const getOptions = (maxDepth?: number) => ({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: true,
         cacheTtl: 10000,
@@ -521,7 +521,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: true,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -542,7 +542,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false, // Explicitly disable .gitignore to isolate this rule
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -564,7 +564,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -599,7 +599,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: true, // Enable caching for this test
       cacheTtl: 0,
@@ -637,7 +637,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: false,
       cacheTtl: 0,
@@ -679,7 +679,7 @@ describe('FileSearch', () => {
     const fileSearch = new FileSearch({
       projectRoot: tmpDir,
       useGitignore: false,
-      useGeminiignore: false,
+      useDeltaignore: false,
       ignoreDirs: [],
       cache: true, // Ensure caching is enabled
       cacheTtl: 10000,
@@ -724,7 +724,7 @@ describe('FileSearch', () => {
       const fileSearch = new FileSearch({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: false,
         cacheTtl: 0,
@@ -741,7 +741,7 @@ describe('FileSearch', () => {
       const fileSearch = new FileSearch({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: false,
         cacheTtl: 0,
@@ -763,7 +763,7 @@ describe('FileSearch', () => {
       const fileSearch = new FileSearch({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: false,
         cacheTtl: 0,
@@ -787,7 +787,7 @@ describe('FileSearch', () => {
       const fileSearch = new FileSearch({
         projectRoot: tmpDir,
         useGitignore: false,
-        useGeminiignore: false,
+        useDeltaignore: false,
         ignoreDirs: [],
         cache: false,
         cacheTtl: 0,

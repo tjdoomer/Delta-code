@@ -385,7 +385,7 @@ describe('FileCommandLoader', () => {
       const projectCommandsDir = getProjectCommandsDir(process.cwd());
       const extensionDir = path.join(
         process.cwd(),
-        '.gemini/extensions/test-ext',
+        '.delta/extensions/test-ext',
       );
 
       mock({
@@ -396,7 +396,7 @@ describe('FileCommandLoader', () => {
           'project.toml': 'prompt = "Project command"',
         },
         [extensionDir]: {
-          'gemini-extension.json': JSON.stringify({
+          'delta-extension.json': JSON.stringify({
             name: 'test-ext',
             version: '1.0.0',
           }),
@@ -434,12 +434,12 @@ describe('FileCommandLoader', () => {
       const projectCommandsDir = getProjectCommandsDir(process.cwd());
       const extensionDir = path.join(
         process.cwd(),
-        '.gemini/extensions/test-ext',
+        '.delta/extensions/test-ext',
       );
 
       mock({
         [extensionDir]: {
-          'gemini-extension.json': JSON.stringify({
+          'delta-extension.json': JSON.stringify({
             name: 'test-ext',
             version: '1.0.0',
           }),
@@ -528,16 +528,16 @@ describe('FileCommandLoader', () => {
     it('only loads commands from active extensions', async () => {
       const extensionDir1 = path.join(
         process.cwd(),
-        '.gemini/extensions/active-ext',
+        '.delta/extensions/active-ext',
       );
       const extensionDir2 = path.join(
         process.cwd(),
-        '.gemini/extensions/inactive-ext',
+        '.delta/extensions/inactive-ext',
       );
 
       mock({
         [extensionDir1]: {
-          'gemini-extension.json': JSON.stringify({
+          'delta-extension.json': JSON.stringify({
             name: 'active-ext',
             version: '1.0.0',
           }),
@@ -546,7 +546,7 @@ describe('FileCommandLoader', () => {
           },
         },
         [extensionDir2]: {
-          'gemini-extension.json': JSON.stringify({
+          'delta-extension.json': JSON.stringify({
             name: 'inactive-ext',
             version: '1.0.0',
           }),
@@ -585,12 +585,12 @@ describe('FileCommandLoader', () => {
     it('handles missing extension commands directory gracefully', async () => {
       const extensionDir = path.join(
         process.cwd(),
-        '.gemini/extensions/no-commands',
+        '.delta/extensions/no-commands',
       );
 
       mock({
         [extensionDir]: {
-          'gemini-extension.json': JSON.stringify({
+          'delta-extension.json': JSON.stringify({
             name: 'no-commands',
             version: '1.0.0',
           }),
@@ -615,11 +615,11 @@ describe('FileCommandLoader', () => {
     });
 
     it('handles nested command structure in extensions', async () => {
-      const extensionDir = path.join(process.cwd(), '.gemini/extensions/a');
+      const extensionDir = path.join(process.cwd(), '.delta/extensions/a');
 
       mock({
         [extensionDir]: {
-          'gemini-extension.json': JSON.stringify({
+          'delta-extension.json': JSON.stringify({
             name: 'a',
             version: '1.0.0',
           }),

@@ -265,7 +265,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
     };
 
     if (request.config?.tools) {
-      createParams.tools = await this.convertGeminiToolsToOpenAI(
+      createParams.tools = await this.convertGenAIToolsToOpenAI(
         request.config.tools,
       );
     }
@@ -294,7 +294,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
         createParams,
       )) as OpenAI.Chat.ChatCompletion;
 
-      const response = this.convertToGeminiFormat(completion);
+      const response = this.convertToGenAIFormat(completion);
       const durationMs = Date.now() - startTime;
 
       // Log API response event for UI telemetry
@@ -312,7 +312,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
       // Log interaction if enabled
       if (this.contentGeneratorConfig.enableOpenAILogging) {
         const openaiRequest = createParams;
-        const openaiResponse = this.convertGeminiResponseToOpenAI(response);
+        const openaiResponse = this.convertGenAIResponseToOpenAI(response);
         await openaiLogger.logInteraction(openaiRequest, openaiResponse);
       }
 
@@ -429,7 +429,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
             const combinedResponse =
               this.combineStreamResponsesForLogging(responses);
             const openaiResponse =
-              this.convertGeminiResponseToOpenAI(combinedResponse);
+              this.convertGenAIResponseToOpenAI(combinedResponse);
             await openaiLogger.logInteraction(openaiRequest, openaiResponse);
           }
         } catch (error) {
@@ -538,7 +538,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
     this.streamingToolCalls.clear();
 
     for await (const chunk of stream) {
-      yield this.convertStreamChunkToGeminiFormat(chunk);
+      yield this.convertStreamChunkToGenAIFormat(chunk);
     }
   }
 
@@ -691,7 +691,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
     }
   }
 
-  private convertGeminiParametersToOpenAI(
+  private convertGenAIParametersToOpenAI(
     parameters: Record<string, unknown>,
   ): Record<string, unknown> | undefined {
     if (!parameters || typeof parameters !== 'object') {
@@ -712,7 +712,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
       const result: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(obj)) {
         if (key === 'type' && typeof value === 'string') {
-          // Convert Gemini types to OpenAI JSON Schema types
+          // Convert GenAI types to OpenAI JSON Schema types
           const lowerValue = value.toLowerCase();
           if (lowerValue === 'integer') {
             result[key] = 'integer';
@@ -757,21 +757,21 @@ export class OpenAIContentGenerator implements ContentGenerator {
   }
 
   /**
-   * Converts Gemini tools to OpenAI format for API compatibility.
-   * Handles both Gemini tools (using 'parameters' field) and MCP tools (using 'parametersJsonSchema' field).
+   * Converts GenAI tools to OpenAI format for API compatibility.
+   * Handles both GenAI tools (using 'parameters' field) and MCP tools (using 'parametersJsonSchema' field).
    *
-   * Gemini tools use a custom parameter format that needs conversion to OpenAI JSON Schema format.
+   * GenAI tools use a custom parameter format that needs conversion to OpenAI JSON Schema format.
    * MCP tools already use JSON Schema format in the parametersJsonSchema field and can be used directly.
    *
-   * @param geminiTools - Array of Gemini tools to convert
+   * @param genAITools - Array of GenAI tools to convert
    * @returns Promise resolving to array of OpenAI-compatible tools
    */
-  private async convertGeminiToolsToOpenAI(
-    geminiTools: ToolListUnion,
+  private async convertGenAIToolsToOpenAI(
+    genAITools: ToolListUnion,
   ): Promise<OpenAI.Chat.ChatCompletionTool[]> {
     const openAITools: OpenAI.Chat.ChatCompletionTool[] = [];
 
-    for (const tool of geminiTools) {
+    for (const tool of genAITools) {
       let actualTool: Tool;
 
       // Handle CallableTool vs Tool
@@ -788,7 +788,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
           if (func.name && func.description) {
             let parameters: Record<string, unknown> | undefined;
 
-            // Handle both Gemini tools (parameters) and MCP tools (parametersJsonSchema)
+            // Handle both GenAI tools (parameters) and MCP tools (parametersJsonSchema)
             if (func.parametersJsonSchema) {
               // MCP tool format - use parametersJsonSchema directly
               if (func.parametersJsonSchema) {
@@ -799,8 +799,8 @@ export class OpenAIContentGenerator implements ContentGenerator {
                 parameters = paramsCopy;
               }
             } else if (func.parameters) {
-              // Gemini tool format - convert parameters to OpenAI format
-              parameters = this.convertGeminiParametersToOpenAI(
+              // GenAI tool format - convert parameters to OpenAI format
+              parameters = this.convertGenAIParametersToOpenAI(
                 func.parameters as Record<string, unknown>,
               );
             }
@@ -1276,7 +1276,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
     return merged;
   }
 
-  private convertToGeminiFormat(
+  private convertToGenAIFormat(
     openaiResponse: OpenAI.Chat.ChatCompletion,
   ): GenerateContentResponse {
     if (!openaiResponse || !Array.isArray(openaiResponse.choices) || openaiResponse.choices.length === 0) {
@@ -1363,7 +1363,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
     return response;
   }
 
-  private convertStreamChunkToGeminiFormat(
+  private convertStreamChunkToGenAIFormat(
     chunk: OpenAI.Chat.ChatCompletionChunk,
   ): GenerateContentResponse {
     const choice = Array.isArray(chunk.choices) && chunk.choices.length > 0 ? chunk.choices[0] : undefined;
@@ -1584,9 +1584,9 @@ export class OpenAIContentGenerator implements ContentGenerator {
   }
 
   /**
-   * Convert Gemini response format to OpenAI chat completion format for logging
+   * Convert GenAI response format to OpenAI chat completion format for logging
    */
-  private convertGeminiResponseToOpenAI(
+  private convertGenAIResponseToOpenAI(
     response: GenerateContentResponse,
   ): OpenAIResponseFormat {
     const candidate = response.candidates?.[0];
@@ -1622,7 +1622,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
         role: 'assistant',
         content: messageContent,
       },
-      finish_reason: this.mapGeminiFinishReasonToOpenAI(
+      finish_reason: this.mapGenAIFinishReasonToOpenAI(
         candidate?.finishReason,
       ),
     };
@@ -1660,12 +1660,12 @@ export class OpenAIContentGenerator implements ContentGenerator {
   }
 
   /**
-   * Map Gemini finish reasons to OpenAI finish reasons
+   * Map GenAI finish reasons to OpenAI finish reasons
    */
-  private mapGeminiFinishReasonToOpenAI(geminiReason?: unknown): string {
-    if (!geminiReason) return 'stop';
+  private mapGenAIFinishReasonToOpenAI(genAIReason?: unknown): string {
+    if (!genAIReason) return 'stop';
 
-    switch (geminiReason) {
+    switch (genAIReason) {
       case 'STOP':
       case 1: // FinishReason.STOP
         return 'stop';

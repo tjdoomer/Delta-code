@@ -26,7 +26,7 @@ const renderWithWidth = (
 
 describe('<ContextSummaryDisplay />', () => {
   const baseProps = {
-    geminiMdFileCount: 1,
+    deltaMdFileCount: 1,
     contextFileNames: ['DELTA.md'],
     mcpServers: { 'test-server': { command: 'test' } },
     showToolDescriptions: false,
@@ -74,7 +74,7 @@ describe('<ContextSummaryDisplay />', () => {
   it('should not render empty parts', () => {
     const props = {
       ...baseProps,
-      geminiMdFileCount: 0,
+      deltaMdFileCount: 0,
       mcpServers: {},
     };
     const { lastFrame } = renderWithWidth(60, props);

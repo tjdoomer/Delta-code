@@ -413,9 +413,9 @@ const authCommand: SlashCommand = {
         await toolRegistry.discoverToolsForServer(serverName);
       }
       // Update the client with the new tools
-      const geminiClient = config.getGeminiClient();
-      if (geminiClient) {
-        await geminiClient.setTools();
+      const deltaClient = config.getDeltaClient();
+      if (deltaClient) {
+        await deltaClient.setTools();
       }
 
       // Reload the slash commands to reflect the changes.
@@ -506,9 +506,9 @@ const refreshCommand: SlashCommand = {
     await toolRegistry.discoverMcpTools();
 
     // Update the client with the new tools
-    const geminiClient = config.getGeminiClient();
-    if (geminiClient) {
-      await geminiClient.setTools();
+    const deltaClient = config.getDeltaClient();
+    if (deltaClient) {
+      await deltaClient.setTools();
     }
 
     // Reload the slash commands to reflect the changes.

@@ -35,7 +35,7 @@ describe('initCommand', () => {
   let mockContext: CommandContext;
   const targetDir = '/test/dir';
   const DEFAULT_CONTEXT_FILENAME = 'DELTA.md';
-  const geminiMdPath = path.join(targetDir, DEFAULT_CONTEXT_FILENAME);
+  const deltaMdPath = path.join(targetDir, DEFAULT_CONTEXT_FILENAME);
 
   beforeEach(() => {
     // Create a fresh mock context for each test
@@ -79,7 +79,7 @@ describe('initCommand', () => {
     const result = await initCommand.action!(mockContext, '');
 
     // Assert: Check that writeFileSync was called correctly
-    expect(fs.writeFileSync).toHaveBeenCalledWith(geminiMdPath, '', 'utf8');
+    expect(fs.writeFileSync).toHaveBeenCalledWith(deltaMdPath, '', 'utf8');
 
     // Assert: Check that an informational message was added to the UI
     expect(mockContext.ui.addItem).toHaveBeenCalledWith(
@@ -103,7 +103,7 @@ describe('initCommand', () => {
 
     const result = await initCommand.action!(mockContext, '');
 
-    expect(fs.writeFileSync).toHaveBeenCalledWith(geminiMdPath, '', 'utf8');
+    expect(fs.writeFileSync).toHaveBeenCalledWith(deltaMdPath, '', 'utf8');
     expect(result.type).toBe('submit_prompt');
   });
 

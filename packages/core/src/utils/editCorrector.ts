@@ -5,7 +5,7 @@
  */
 
 import { Content, GenerateContentConfig } from '@google/genai';
-import { GeminiClient } from '../core/client.js';
+import { DeltaClient } from '../core/client.js';
 import { EditToolParams, EditTool } from '../tools/edit.js';
 import { WriteFileTool } from '../tools/write-file.js';
 import { ReadFileTool } from '../tools/read-file.js';
@@ -71,15 +71,15 @@ function getTimestampFromFunctionId(fcnId: string): number {
 }
 
 /**
- * Will look through the gemini client history and determine when the most recent
+ * Will look through the delta client history and determine when the most recent
  * edit to a target file occurred. If no edit happened, it will return -1
  * @param filePath the path to the file
- * @param client the geminiClient, so that we can get the history
+ * @param client the deltaClient, so that we can get the history
  * @returns a DateTime (as a number) of when the last edit occurred, or -1 if no edit was found.
  */
 async function findLastEditTimestamp(
   filePath: string,
-  client: GeminiClient,
+  client: DeltaClient,
 ): Promise<number> {
   const history = (await client.getHistory()) ?? [];
 
@@ -150,7 +150,7 @@ async function findLastEditTimestamp(
  *
  * @param currentContent The current content of the file.
  * @param originalParams The original EditToolParams
- * @param client The GeminiClient for LLM calls.
+ * @param client The DeltaClient for LLM calls.
  * @returns A promise resolving to an object containing the (potentially corrected)
  *          EditToolParams (as CorrectedEditParams) and the final occurrences count.
  */
@@ -158,7 +158,7 @@ export async function ensureCorrectEdit(
   filePath: string,
   currentContent: string,
   originalParams: EditToolParams, // This is the EditToolParams from edit.ts, without \'corrected\'
-  client: GeminiClient,
+  client: DeltaClient,
   abortSignal: AbortSignal,
 ): Promise<CorrectedEditResult> {
   const cacheKey = `${currentContent}---${originalParams.old_string}---${originalParams.new_string}`;
@@ -169,7 +169,7 @@ export async function ensureCorrectEdit(
 
   let finalNewString = originalParams.new_string;
   const newStringPotentiallyEscaped =
-    unescapeStringForGeminiBug(originalParams.new_string) !==
+    unescapeStringForApiBug(originalParams.new_string) !==
     originalParams.new_string;
 
   const expectedReplacements = originalParams.expected_replacements ?? 1;
@@ -218,7 +218,7 @@ export async function ensureCorrectEdit(
     return result;
   } else {
     // occurrences is 0 or some other unexpected state initially
-    const unescapedOldStringAttempt = unescapeStringForGeminiBug(
+    const unescapedOldStringAttempt = unescapeStringForApiBug(
       originalParams.old_string,
     );
     occurrences = countOccurrences(currentContent, unescapedOldStringAttempt);
@@ -279,7 +279,7 @@ export async function ensureCorrectEdit(
         occurrences = llmOldOccurrences;
 
         if (newStringPotentiallyEscaped) {
-          const baseNewStringForLLMCorrection = unescapeStringForGeminiBug(
+          const baseNewStringForLLMCorrection = unescapeStringForApiBug(
             originalParams.new_string,
           );
           finalNewString = await correctNewString(
@@ -334,7 +334,7 @@ export async function ensureCorrectEdit(
 
 export async function ensureCorrectFileContent(
   content: string,
-  client: GeminiClient,
+  client: DeltaClient,
   abortSignal: AbortSignal,
 ): Promise<string> {
   const cachedResult = fileContentCorrectionCache.get(content);
@@ -343,7 +343,7 @@ export async function ensureCorrectFileContent(
   }
 
   const contentPotentiallyEscaped =
-    unescapeStringForGeminiBug(content) !== content;
+    unescapeStringForApiBug(content) !== content;
   if (!contentPotentiallyEscaped) {
     fileContentCorrectionCache.set(content, content);
     return content;
@@ -372,7 +372,7 @@ const OLD_STRING_CORRECTION_SCHEMA: Record<string, unknown> = {
 };
 
 export async function correctOldStringMismatch(
-  geminiClient: GeminiClient,
+  deltaClient: DeltaClient,
   fileContent: string,
   problematicSnippet: string,
   abortSignal: AbortSignal,
@@ -401,7 +401,7 @@ Return ONLY the corrected target snippet in the specified JSON format with the k
   const contents: Content[] = [{ role: 'user', parts: [{ text: prompt }] }];
 
   try {
-    const result = await geminiClient.generateJson(
+    const result = await deltaClient.generateJson(
       contents,
       OLD_STRING_CORRECTION_SCHEMA,
       abortSignal,
@@ -449,7 +449,7 @@ const NEW_STRING_CORRECTION_SCHEMA: Record<string, unknown> = {
  * Adjusts the new_string to align with a corrected old_string, maintaining the original intent.
  */
 export async function correctNewString(
-  geminiClient: GeminiClient,
+  deltaClient: DeltaClient,
   originalOldString: string,
   correctedOldString: string,
   originalNewString: string,
@@ -489,7 +489,7 @@ Return ONLY the corrected string in the specified JSON format with the key 'corr
   const contents: Content[] = [{ role: 'user', parts: [{ text: prompt }] }];
 
   try {
-    const result = await geminiClient.generateJson(
+    const result = await deltaClient.generateJson(
       contents,
       NEW_STRING_CORRECTION_SCHEMA,
       abortSignal,
@@ -529,7 +529,7 @@ const CORRECT_NEW_STRING_ESCAPING_SCHEMA: Record<string, unknown> = {
 };
 
 export async function correctNewStringEscaping(
-  geminiClient: GeminiClient,
+  deltaClient: DeltaClient,
   oldString: string,
   potentiallyProblematicNewString: string,
   abortSignal: AbortSignal,
@@ -558,7 +558,7 @@ Return ONLY the corrected string in the specified JSON format with the key 'corr
   const contents: Content[] = [{ role: 'user', parts: [{ text: prompt }] }];
 
   try {
-    const result = await geminiClient.generateJson(
+    const result = await deltaClient.generateJson(
       contents,
       CORRECT_NEW_STRING_ESCAPING_SCHEMA,
       abortSignal,
@@ -602,7 +602,7 @@ const CORRECT_STRING_ESCAPING_SCHEMA: Record<string, unknown> = {
 
 export async function correctStringEscaping(
   potentiallyProblematicString: string,
-  client: GeminiClient,
+  client: DeltaClient,
   abortSignal: AbortSignal,
 ): Promise<string> {
   const prompt = `
@@ -685,7 +685,7 @@ function trimPairIfPossible(
 /**
  * Unescapes a string that might have been overly escaped by an LLM.
  */
-export function unescapeStringForGeminiBug(inputString: string): string {
+export function unescapeStringForApiBug(inputString: string): string {
   // Regex explanation:
   // \\ : Matches exactly one literal backslash character.
   // (n|t|r|'|"|`|\\|\n) : This is a capturing group. It matches one of the following:

@@ -7,21 +7,21 @@
 import { type Part, type PartListUnion, FinishReason } from '@google/genai';
 import {
   Config,
-  ServerGeminiContentEvent as ContentEvent,
+  ServerDeltaContentEvent as ContentEvent,
   DEFAULT_GEMINI_FLASH_MODEL,
   EditorType,
-  ServerGeminiErrorEvent as ErrorEvent,
-  GeminiClient,
-  ServerGeminiStreamEvent as GeminiEvent,
+  ServerDeltaErrorEvent as ErrorEvent,
+  DeltaClient,
+  ServerDeltaStreamEvent as DeltaEvent,
   getErrorMessage,
   GitService,
   isNodeError,
   logUserPrompt,
   MessageSenderType,
   parseAndFormatApiError,
-  ServerGeminiChatCompressedEvent,
-  GeminiEventType as ServerGeminiEventType,
-  ServerGeminiFinishedEvent,
+  ServerDeltaChatCompressedEvent,
+  DeltaEventType as ServerDeltaEventType,
+  ServerDeltaFinishedEvent,
   ThoughtSummary,
   ToolCallRequestInfo,
   UnauthorizedError,
@@ -75,11 +75,11 @@ enum StreamProcessingStatus {
 }
 
 /**
- * Manages the Gemini stream, including user input, command processing,
+ * Manages the Delta stream, including user input, command processing,
  * API interaction, and tool call lifecycle.
  */
-export const useGeminiStream = (
-  geminiClient: GeminiClient,
+export const useDeltaStream = (
+  deltaClient: DeltaClient,
   history: HistoryItem[],
   addItem: UseHistoryManagerReturn['addItem'],
   config: Config,
@@ -158,7 +158,7 @@ export const useGeminiStream = (
     onExec,
     onDebugMessage,
     config,
-    geminiClient,
+    deltaClient,
   );
 
   const streamingState = useMemo(() => {
@@ -176,7 +176,7 @@ export const useGeminiStream = (
             tc.status === 'error' ||
             tc.status === 'cancelled') &&
             !(tc as TrackedCompletedToolCall | TrackedCancelledToolCall)
-              .responseSubmittedToGemini),
+              .responseSubmittedToDelta),
       )
     ) {
       return StreamingState.Responding;
@@ -224,7 +224,7 @@ export const useGeminiStream = (
     { isActive: streamingState === StreamingState.Responding },
   );
 
-  const prepareQueryForGemini = useCallback(
+  const prepareQuery = useCallback(
     async (
       query: PartListUnion,
       userMessageTimestamp: number,
@@ -241,7 +241,7 @@ export const useGeminiStream = (
         return { queryToSend: null, shouldProceed: false };
       }
 
-      let localQueryToSendToGemini: PartListUnion | null = null;
+      let localQueryToSend: PartListUnion | null = null;
 
       if (typeof query === 'string') {
         const trimmedQuery = query.trim();
@@ -275,10 +275,10 @@ export const useGeminiStream = (
               return { queryToSend: null, shouldProceed: false };
             }
             case 'submit_prompt': {
-              localQueryToSendToGemini = slashCommandResult.content;
+              localQueryToSend = slashCommandResult.content;
 
               return {
-                queryToSend: localQueryToSendToGemini,
+                queryToSend: localQueryToSend,
                 shouldProceed: true,
               };
             }
@@ -311,27 +311,27 @@ export const useGeminiStream = (
           if (!atCommandResult.shouldProceed) {
             return { queryToSend: null, shouldProceed: false };
           }
-          localQueryToSendToGemini = atCommandResult.processedQuery;
+          localQueryToSend = atCommandResult.processedQuery;
         } else {
-          // Normal query for Gemini
+          // Normal query for model
           addItem(
             { type: MessageType.USER, text: trimmedQuery },
             userMessageTimestamp,
           );
-          localQueryToSendToGemini = trimmedQuery;
+          localQueryToSend = trimmedQuery;
         }
       } else {
         // It's a function response (PartListUnion that isn't a string)
-        localQueryToSendToGemini = query;
+        localQueryToSend = query;
       }
 
-      if (localQueryToSendToGemini === null) {
+      if (localQueryToSend === null) {
         onDebugMessage(
-          'Query processing resulted in null, not sending to Gemini.',
+          'Query processing resulted in null, not sending to model.',
         );
         return { queryToSend: null, shouldProceed: false };
       }
-      return { queryToSend: localQueryToSendToGemini, shouldProceed: true };
+      return { queryToSend: localQueryToSend, shouldProceed: true };
     },
     [
       config,
@@ -350,35 +350,35 @@ export const useGeminiStream = (
   const handleContentEvent = useCallback(
     (
       eventValue: ContentEvent['value'],
-      currentGeminiMessageBuffer: string,
+      currentDeltaMessageBuffer: string,
       userMessageTimestamp: number,
     ): string => {
       if (turnCancelledRef.current) {
         // Prevents additional output after a user initiated cancel.
         return '';
       }
-      let newGeminiMessageBuffer = currentGeminiMessageBuffer + eventValue;
+      let newDeltaMessageBuffer = currentDeltaMessageBuffer + eventValue;
       if (
-        pendingHistoryItemRef.current?.type !== 'gemini' &&
-        pendingHistoryItemRef.current?.type !== 'gemini_content'
+        pendingHistoryItemRef.current?.type !== 'delta' &&
+        pendingHistoryItemRef.current?.type !== 'delta_content'
       ) {
         if (pendingHistoryItemRef.current) {
           addItem(pendingHistoryItemRef.current, userMessageTimestamp);
         }
-        setPendingHistoryItem({ type: 'gemini', text: '' });
-        newGeminiMessageBuffer = eventValue;
+        setPendingHistoryItem({ type: 'delta', text: '' });
+        newDeltaMessageBuffer = eventValue;
       }
       // Split large messages for better rendering performance. Ideally,
       // we should maximize the amount of output sent to <Static />.
-      const splitPoint = findLastSafeSplitPoint(newGeminiMessageBuffer);
-      if (splitPoint === newGeminiMessageBuffer.length) {
+      const splitPoint = findLastSafeSplitPoint(newDeltaMessageBuffer);
+      if (splitPoint === newDeltaMessageBuffer.length) {
         // Update the existing message with accumulated content
         setPendingHistoryItem((item) => ({
-          type: item?.type as 'gemini' | 'gemini_content',
-          text: newGeminiMessageBuffer,
+          type: item?.type as 'delta' | 'delta_content',
+          text: newDeltaMessageBuffer,
         }));
       } else {
-        // This indicates that we need to split up this Gemini Message.
+        // This indicates that we need to split up this Delta Message.
         // Splitting a message is primarily a performance consideration. There is a
         // <Static> component at the root of App.tsx which takes care of rendering
         // content statically or dynamically. Everything but the last message is
@@ -386,21 +386,21 @@ export const useGeminiStream = (
         // multiple times per-second (as streaming occurs). Prior to this change you'd
         // see heavy flickering of the terminal. This ensures that larger messages get
         // broken up so that there are more "statically" rendered.
-        const beforeText = newGeminiMessageBuffer.substring(0, splitPoint);
-        const afterText = newGeminiMessageBuffer.substring(splitPoint);
+        const beforeText = newDeltaMessageBuffer.substring(0, splitPoint);
+        const afterText = newDeltaMessageBuffer.substring(splitPoint);
         addItem(
           {
             type: pendingHistoryItemRef.current?.type as
-              | 'gemini'
-              | 'gemini_content',
+              | 'delta'
+              | 'delta_content',
             text: beforeText,
           },
           userMessageTimestamp,
         );
-        setPendingHistoryItem({ type: 'gemini_content', text: afterText });
-        newGeminiMessageBuffer = afterText;
+        setPendingHistoryItem({ type: 'delta_content', text: afterText });
+        newDeltaMessageBuffer = afterText;
       }
-      return newGeminiMessageBuffer;
+      return newDeltaMessageBuffer;
     },
     [addItem, pendingHistoryItemRef, setPendingHistoryItem],
   );
@@ -465,7 +465,7 @@ export const useGeminiStream = (
   );
 
   const handleFinishedEvent = useCallback(
-    (event: ServerGeminiFinishedEvent, userMessageTimestamp: number) => {
+    (event: ServerDeltaFinishedEvent, userMessageTimestamp: number) => {
       const finishReason = event.value;
 
       const finishReasonMessages: Record<FinishReason, string | undefined> = {
@@ -505,7 +505,7 @@ export const useGeminiStream = (
   );
 
   const handleChatCompressionEvent = useCallback(
-    (eventValue: ServerGeminiChatCompressedEvent['value']) =>
+    (eventValue: ServerDeltaChatCompressedEvent['value']) =>
       addItem(
         {
           type: 'info',
@@ -561,55 +561,55 @@ export const useGeminiStream = (
     );
   }, [addItem]);
 
-  const processGeminiStreamEvents = useCallback(
+  const processStreamEvents = useCallback(
     async (
-      stream: AsyncIterable<GeminiEvent>,
+      stream: AsyncIterable<DeltaEvent>,
       userMessageTimestamp: number,
       signal: AbortSignal,
     ): Promise<StreamProcessingStatus> => {
-      let geminiMessageBuffer = '';
+      let deltaMessageBuffer = '';
       const toolCallRequests: ToolCallRequestInfo[] = [];
       for await (const event of stream) {
         switch (event.type) {
-          case ServerGeminiEventType.Thought:
+          case ServerDeltaEventType.Thought:
             setThought(event.value);
             break;
-          case ServerGeminiEventType.Content:
-            geminiMessageBuffer = handleContentEvent(
+          case ServerDeltaEventType.Content:
+            deltaMessageBuffer = handleContentEvent(
               event.value,
-              geminiMessageBuffer,
+              deltaMessageBuffer,
               userMessageTimestamp,
             );
             break;
-          case ServerGeminiEventType.ToolCallRequest:
+          case ServerDeltaEventType.ToolCallRequest:
             toolCallRequests.push(event.value);
             break;
-          case ServerGeminiEventType.UserCancelled:
+          case ServerDeltaEventType.UserCancelled:
             handleUserCancelledEvent(userMessageTimestamp);
             break;
-          case ServerGeminiEventType.Error:
+          case ServerDeltaEventType.Error:
             handleErrorEvent(event.value, userMessageTimestamp);
             break;
-          case ServerGeminiEventType.ChatCompressed:
+          case ServerDeltaEventType.ChatCompressed:
             handleChatCompressionEvent(event.value);
             break;
-          case ServerGeminiEventType.ToolCallConfirmation:
-          case ServerGeminiEventType.ToolCallResponse:
+          case ServerDeltaEventType.ToolCallConfirmation:
+          case ServerDeltaEventType.ToolCallResponse:
             // do nothing
             break;
-          case ServerGeminiEventType.MaxSessionTurns:
+          case ServerDeltaEventType.MaxSessionTurns:
             handleMaxSessionTurnsEvent();
             break;
-          case ServerGeminiEventType.SessionTokenLimitExceeded:
+          case ServerDeltaEventType.SessionTokenLimitExceeded:
             handleSessionTokenLimitExceededEvent(event.value);
             break;
-          case ServerGeminiEventType.Finished:
+          case ServerDeltaEventType.Finished:
             handleFinishedEvent(
-              event as ServerGeminiFinishedEvent,
+              event as ServerDeltaFinishedEvent,
               userMessageTimestamp,
             );
             break;
-          case ServerGeminiEventType.LoopDetected:
+          case ServerDeltaEventType.LoopDetected:
             // handle later because we want to move pending history to history
             // before we add loop detected message to history
             loopDetectedRef.current = true;
@@ -676,7 +676,7 @@ export const useGeminiStream = (
         prompt_id = config.getSessionId() + '########' + getPromptCount();
       }
 
-      const { queryToSend, shouldProceed } = await prepareQueryForGemini(
+      const { queryToSend, shouldProceed } = await prepareQuery(
         query,
         userMessageTimestamp,
         abortSignal,
@@ -697,12 +697,12 @@ export const useGeminiStream = (
       setInitError(null);
 
       try {
-        const stream = geminiClient.sendMessageStream(
+        const stream = deltaClient.sendMessageStream(
           queryToSend,
           abortSignal,
           prompt_id!,
         );
-        const processingStatus = await processGeminiStreamEvents(
+        const processingStatus = await processStreamEvents(
           stream,
           userMessageTimestamp,
           abortSignal,
@@ -747,13 +747,13 @@ export const useGeminiStream = (
     [
       streamingState,
       setModelSwitchedFromQuotaError,
-      prepareQueryForGemini,
-      processGeminiStreamEvents,
+      prepareQuery,
+      processStreamEvents,
       pendingHistoryItemRef,
       addItem,
       setPendingHistoryItem,
       setInitError,
-      geminiClient,
+      deltaClient,
       onAuthError,
       config,
       startNewPrompt,
@@ -815,24 +815,24 @@ export const useGeminiStream = (
         );
       }
 
-      const geminiTools = completedAndReadyToSubmitTools.filter(
+      const deltaTools = completedAndReadyToSubmitTools.filter(
         (t) => !t.request.isClientInitiated,
       );
 
-      if (geminiTools.length === 0) {
+      if (deltaTools.length === 0) {
         return;
       }
 
-      // If all the tools were cancelled, don't submit a response to Gemini.
-      const allToolsCancelled = geminiTools.every(
+      // If all the tools were cancelled, don't submit a response to the model.
+      const allToolsCancelled = deltaTools.every(
         (tc) => tc.status === 'cancelled',
       );
 
       if (allToolsCancelled) {
-        if (geminiClient) {
+        if (deltaClient) {
           // We need to manually add the function responses to the history
           // so the model knows the tools were cancelled.
-          const responsesToAdd = geminiTools.flatMap(
+          const responsesToAdd = deltaTools.flatMap(
             (toolCall) => toolCall.response.responseParts,
           );
           const combinedParts: Part[] = [];
@@ -845,27 +845,27 @@ export const useGeminiStream = (
               combinedParts.push(response);
             }
           }
-          geminiClient.addHistory({
+          deltaClient.addHistory({
             role: 'user',
             parts: combinedParts,
           });
         }
 
-        const callIdsToMarkAsSubmitted = geminiTools.map(
+        const callIdsToMarkAsSubmitted = deltaTools.map(
           (toolCall) => toolCall.request.callId,
         );
         markToolsAsSubmitted(callIdsToMarkAsSubmitted);
         return;
       }
 
-      const responsesToSend: PartListUnion[] = geminiTools.map(
+      const responsesToSend: PartListUnion[] = deltaTools.map(
         (toolCall) => toolCall.response.responseParts,
       );
-      const callIdsToMarkAsSubmitted = geminiTools.map(
+      const callIdsToMarkAsSubmitted = deltaTools.map(
         (toolCall) => toolCall.request.callId,
       );
 
-      const prompt_ids = geminiTools.map(
+      const prompt_ids = deltaTools.map(
         (toolCall) => toolCall.request.prompt_id,
       );
 
@@ -888,7 +888,7 @@ export const useGeminiStream = (
       isResponding,
       submitQuery,
       markToolsAsSubmitted,
-      geminiClient,
+      deltaClient,
       performMemoryRefresh,
       modelSwitchedFromQuotaError,
     ],
@@ -963,7 +963,7 @@ export const useGeminiStream = (
             const toolName = toolCall.request.name;
             const fileName = path.basename(filePath);
             const toolCallWithSnapshotFileName = `${timestamp}-${fileName}-${toolName}.json`;
-            const clientHistory = await geminiClient?.getHistory();
+            const clientHistory = await deltaClient?.getHistory();
             const toolCallWithSnapshotFilePath = path.join(
               checkpointDir,
               toolCallWithSnapshotFileName,
@@ -997,7 +997,7 @@ export const useGeminiStream = (
       }
     };
     saveRestorableToolCalls();
-  }, [toolCalls, config, onDebugMessage, gitService, history, geminiClient]);
+  }, [toolCalls, config, onDebugMessage, gitService, history, deltaClient]);
 
   return {
     streamingState,

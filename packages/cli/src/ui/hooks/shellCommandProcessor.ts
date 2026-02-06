@@ -12,7 +12,7 @@ import {
 import { useCallback } from 'react';
 import {
   Config,
-  GeminiClient,
+  DeltaClient,
   isBinary,
   ShellExecutionResult,
   ShellExecutionService,
@@ -29,8 +29,8 @@ import fs from 'fs';
 export const OUTPUT_UPDATE_INTERVAL_MS = 1000;
 const MAX_OUTPUT_LENGTH = 10000;
 
-function addShellCommandToGeminiHistory(
-  geminiClient: GeminiClient,
+function addShellCommandToHistory(
+  deltaClient: DeltaClient,
   rawQuery: string,
   resultText: string,
 ) {
@@ -39,7 +39,7 @@ function addShellCommandToGeminiHistory(
       ? resultText.substring(0, MAX_OUTPUT_LENGTH) + '\n... (truncated)'
       : resultText;
 
-  geminiClient.addHistory({
+  deltaClient.addHistory({
     role: 'user',
     parts: [
       {
@@ -69,7 +69,7 @@ export const useShellCommandProcessor = (
   onExec: (command: Promise<void>) => void,
   onDebugMessage: (message: string) => void,
   config: Config,
-  geminiClient: GeminiClient,
+  deltaClient: DeltaClient,
 ) => {
   const handleShellCommand = useCallback(
     (rawQuery: PartListUnion, abortSignal: AbortSignal): boolean => {
@@ -251,8 +251,8 @@ export const useShellCommandProcessor = (
               );
 
               // Add the same complete, contextual result to the LLM's history.
-              addShellCommandToGeminiHistory(
-                geminiClient,
+              addShellCommandToHistory(
+                deltaClient,
                 rawQuery,
                 finalOutput,
               );
@@ -306,7 +306,7 @@ export const useShellCommandProcessor = (
       addItemToHistory,
       setPendingHistoryItem,
       onExec,
-      geminiClient,
+      deltaClient,
     ],
   );
 

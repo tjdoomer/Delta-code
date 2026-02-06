@@ -17,7 +17,7 @@ vi.mock('../utils/editCorrector.js', () => ({
 }));
 
 vi.mock('../core/client.js', () => ({
-  GeminiClient: vi.fn().mockImplementation(() => ({
+  DeltaClient: vi.fn().mockImplementation(() => ({
     generateJson: mockGenerateJson,
   })),
 }));
@@ -42,7 +42,7 @@ describe('EditTool', () => {
   let tempDir: string;
   let rootDir: string;
   let mockConfig: Config;
-  let geminiClient: any;
+  let deltaClient: any;
 
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -50,19 +50,19 @@ describe('EditTool', () => {
     rootDir = path.join(tempDir, 'root');
     fs.mkdirSync(rootDir);
 
-    geminiClient = {
+    deltaClient = {
       generateJson: mockGenerateJson, // mockGenerateJson is already defined and hoisted
     };
 
     mockConfig = {
-      getGeminiClient: vi.fn().mockReturnValue(geminiClient),
+      getDeltaClient: vi.fn().mockReturnValue(deltaClient),
       getTargetDir: () => rootDir,
       getApprovalMode: vi.fn(),
       setApprovalMode: vi.fn(),
       getWorkspaceContext: () => createMockWorkspaceContext(rootDir),
       getIdeClient: () => undefined,
       getIdeMode: () => false,
-      // getGeminiConfig: () => ({ apiKey: 'test-api-key' }), // This was not a real Config method
+      // getDeltaConfig: () => ({ apiKey: 'test-api-key' }), // This was not a real Config method
       // Add other properties/methods of Config if EditTool uses them
       // Minimal other methods to satisfy Config type if needed by EditTool constructor or other direct uses:
       getApiKey: () => 'test-api-key',
@@ -78,8 +78,8 @@ describe('EditTool', () => {
       getUserAgent: () => 'test-agent',
       getUserMemory: () => '',
       setUserMemory: vi.fn(),
-      getGeminiMdFileCount: () => 0,
-      setGeminiMdFileCount: vi.fn(),
+      getDeltaMdFileCount: () => 0,
+      setDeltaMdFileCount: vi.fn(),
       getToolRegistry: () => ({}) as any, // Minimal mock for ToolRegistry
     } as unknown as Config;
 
@@ -333,7 +333,7 @@ describe('EditTool', () => {
           mockCalled = true;
           expect(content).toBe(originalContent);
           expect(p).toBe(params);
-          expect(client).toBe(geminiClient);
+          expect(client).toBe(deltaClient);
           return {
             params: {
               file_path: filePath,

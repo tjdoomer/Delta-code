@@ -8,7 +8,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { Mock } from 'vitest';
 import { Config, ConfigParameters, SandboxConfig } from './config.js';
 import * as path from 'path';
-import { setGeminiMdFilename as mockSetGeminiMdFilename } from '../tools/memoryTool.js';
+import { setDeltaMdFilename as mockSetDeltaMdFilename } from '../tools/memoryTool.js';
 import {
   DEFAULT_TELEMETRY_TARGET,
   DEFAULT_OTLP_ENDPOINT,
@@ -18,7 +18,7 @@ import {
   ContentGeneratorConfig,
   createContentGeneratorConfig,
 } from '../core/contentGenerator.js';
-import { GeminiClient } from '../core/client.js';
+import { DeltaClient } from '../core/client.js';
 import { GitService } from '../services/gitService.js';
 
 vi.mock('fs', async (importOriginal) => {
@@ -72,10 +72,10 @@ vi.mock('../tools/web-fetch');
 vi.mock('../tools/read-many-files');
 vi.mock('../tools/memoryTool', () => ({
   MemoryTool: vi.fn(),
-  setGeminiMdFilename: vi.fn(),
-  getCurrentGeminiMdFilename: vi.fn(() => 'DELTA.md'), // Mock the original filename
+  setDeltaMdFilename: vi.fn(),
+  getCurrentDeltaMdFilename: vi.fn(() => 'DELTA.md'), // Mock the original filename
   DEFAULT_CONTEXT_FILENAME: 'DELTA.md',
-  GEMINI_CONFIG_DIR: '.gemini',
+  DELTA_CONFIG_DIR: '.delta',
 }));
 
 vi.mock('../core/contentGenerator.js', async (importOriginal) => {
@@ -88,7 +88,7 @@ vi.mock('../core/contentGenerator.js', async (importOriginal) => {
 });
 
 vi.mock('../core/client.js', () => ({
-  GeminiClient: vi.fn().mockImplementation(() => ({
+  DeltaClient: vi.fn().mockImplementation(() => ({
     initialize: vi.fn().mockResolvedValue(undefined),
   })),
 }));
@@ -205,7 +205,7 @@ describe('Server Config (config.ts)', () => {
       expect(config.getContentGeneratorConfig()).toEqual(mockContentConfig);
       expect(config.getContentGeneratorConfig().model).toBe(newModel);
       expect(config.getModel()).toBe(newModel); // getModel() should return the updated model
-      expect(GeminiClient).toHaveBeenCalledWith(config);
+      expect(DeltaClient).toHaveBeenCalledWith(config);
       // Verify that fallback mode is reset
       expect(config.isInFallbackMode()).toBe(false);
     });
@@ -241,9 +241,9 @@ describe('Server Config (config.ts)', () => {
 
       // Set the existing client
       (
-        config as unknown as { geminiClient: typeof mockExistingClient }
-      ).geminiClient = mockExistingClient;
-      (GeminiClient as Mock).mockImplementation(() => mockNewClient);
+        config as unknown as { deltaClient: typeof mockExistingClient }
+      ).deltaClient = mockExistingClient;
+      (DeltaClient as Mock).mockImplementation(() => mockNewClient);
 
       await config.refreshAuth(authType);
 
@@ -251,7 +251,7 @@ describe('Server Config (config.ts)', () => {
       expect(mockExistingClient.getHistory).toHaveBeenCalled();
 
       // Verify that new client was created and initialized
-      expect(GeminiClient).toHaveBeenCalledWith(config);
+      expect(DeltaClient).toHaveBeenCalledWith(config);
       expect(mockNewClient.initialize).toHaveBeenCalledWith(mockContentConfig);
 
       // Verify that history was restored to the new client
@@ -279,13 +279,13 @@ describe('Server Config (config.ts)', () => {
       };
 
       // No existing client
-      (config as unknown as { geminiClient: null }).geminiClient = null;
-      (GeminiClient as Mock).mockImplementation(() => mockNewClient);
+      (config as unknown as { deltaClient: null }).deltaClient = null;
+      (DeltaClient as Mock).mockImplementation(() => mockNewClient);
 
       await config.refreshAuth(authType);
 
       // Verify that new client was created and initialized
-      expect(GeminiClient).toHaveBeenCalledWith(config);
+      expect(DeltaClient).toHaveBeenCalledWith(config);
       expect(mockNewClient.initialize).toHaveBeenCalledWith(mockContentConfig);
 
       // Verify that setHistory was not called since there was no existing history
@@ -323,9 +323,9 @@ describe('Server Config (config.ts)', () => {
       };
 
       (
-        config as unknown as { geminiClient: typeof mockExistingClient }
-      ).geminiClient = mockExistingClient;
-      (GeminiClient as Mock).mockImplementation(() => mockNewClient);
+        config as unknown as { deltaClient: typeof mockExistingClient }
+      ).deltaClient = mockExistingClient;
+      (DeltaClient as Mock).mockImplementation(() => mockNewClient);
 
       await config.refreshAuth(AuthType.LOGIN_WITH_GOOGLE);
 
@@ -366,9 +366,9 @@ describe('Server Config (config.ts)', () => {
       };
 
       (
-        config as unknown as { geminiClient: typeof mockExistingClient }
-      ).geminiClient = mockExistingClient;
-      (GeminiClient as Mock).mockImplementation(() => mockNewClient);
+        config as unknown as { deltaClient: typeof mockExistingClient }
+      ).deltaClient = mockExistingClient;
+      (DeltaClient as Mock).mockImplementation(() => mockNewClient);
 
       await config.refreshAuth(AuthType.USE_GEMINI);
 
@@ -395,19 +395,19 @@ describe('Server Config (config.ts)', () => {
     expect(config.getUserMemory()).toBe('');
   });
 
-  it('Config constructor should call setGeminiMdFilename with contextFileName if provided', () => {
+  it('Config constructor should call setDeltaMdFilename with contextFileName if provided', () => {
     const contextFileName = 'CUSTOM_AGENTS.md';
     const paramsWithContextFile: ConfigParameters = {
       ...baseParams,
       contextFileName,
     };
     new Config(paramsWithContextFile);
-    expect(mockSetGeminiMdFilename).toHaveBeenCalledWith(contextFileName);
+    expect(mockSetDeltaMdFilename).toHaveBeenCalledWith(contextFileName);
   });
 
-  it('Config constructor should not call setGeminiMdFilename if contextFileName is not provided', () => {
+  it('Config constructor should not call setDeltaMdFilename if contextFileName is not provided', () => {
     new Config(baseParams); // baseParams does not have contextFileName
-    expect(mockSetGeminiMdFilename).not.toHaveBeenCalled();
+    expect(mockSetDeltaMdFilename).not.toHaveBeenCalled();
   });
 
   it('should set default file filtering settings when not provided', () => {

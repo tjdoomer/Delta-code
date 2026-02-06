@@ -13,11 +13,11 @@ import {
   GenerateContentResponse,
   GoogleGenAI,
 } from '@google/genai';
-import { findIndexAfterFraction, GeminiClient } from './client.js';
+import { findIndexAfterFraction, DeltaClient } from './client.js';
 import { AuthType, ContentGenerator } from './contentGenerator.js';
-import { GeminiChat } from './geminiChat.js';
+import { DeltaChat } from './deltaChat.js';
 import { Config } from '../config/config.js';
-import { GeminiEventType, Turn } from './turn.js';
+import { DeltaEventType, Turn } from './turn.js';
 import { getCoreSystemPrompt } from './prompts.js';
 import { DEFAULT_GEMINI_FLASH_MODEL } from '../config/models.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
@@ -46,7 +46,7 @@ vi.mock('./turn', () => {
   // Export the mock class as 'Turn'
   return {
     Turn: MockTurn,
-    GeminiEventType: {
+    DeltaEventType: {
       MaxSessionTurns: 'MaxSessionTurns',
       ChatCompressed: 'ChatCompressed',
     },
@@ -143,8 +143,8 @@ describe('findIndexAfterFraction', () => {
   });
 });
 
-describe('Gemini Client (client.ts)', () => {
-  let client: GeminiClient;
+describe('Delta Client (client.ts)', () => {
+  let client: DeltaClient;
   beforeEach(async () => {
     vi.resetAllMocks();
 
@@ -182,7 +182,7 @@ describe('Gemini Client (client.ts)', () => {
       ],
     } as unknown as GenerateContentResponse);
 
-    // Because the GeminiClient constructor kicks off an async process (startChat)
+    // Because the DeltaClient constructor kicks off an async process (startChat)
     // that depends on a fully-formed Config object, we need to mock the
     // entire implementation of Config for these tests.
     const mockToolRegistry = {
@@ -225,7 +225,7 @@ describe('Gemini Client (client.ts)', () => {
       getWorkspaceContext: vi.fn().mockReturnValue({
         getDirectories: vi.fn().mockReturnValue(['/test/dir']),
       }),
-      getGeminiClient: vi.fn(),
+      getDeltaClient: vi.fn(),
       setFallbackMode: vi.fn(),
       getCliVersion: vi.fn().mockReturnValue('1.0.0'),
       getChatCompression: vi.fn().mockReturnValue(undefined),
@@ -237,10 +237,10 @@ describe('Gemini Client (client.ts)', () => {
 
     // We can instantiate the client here since Config is mocked
     // and the constructor will use the mocked GoogleGenAI
-    client = new GeminiClient(
+    client = new DeltaClient(
       new Config({ sessionId: 'test-session-id' } as never),
     );
-    mockConfigObject.getGeminiClient.mockReturnValue(client);
+    mockConfigObject.getDeltaClient.mockReturnValue(client);
 
     await client.initialize(contentGeneratorConfig);
   });
@@ -251,10 +251,10 @@ describe('Gemini Client (client.ts)', () => {
 
   // NOTE: The following tests for startChat were removed due to persistent issues with
   // the @google/genai mock. Specifically, the mockChatCreateFn (representing instance.chats.create)
-  // was not being detected as called by the GeminiClient instance.
+  // was not being detected as called by the DeltaClient instance.
   // This likely points to a subtle issue in how the GoogleGenerativeAI class constructor
   // and its instance methods are mocked and then used by the class under test.
-  // For future debugging, ensure that the `this.client` in `GeminiClient` (which is an
+  // For future debugging, ensure that the `this.client` in `DeltaClient` (which is an
   // instance of the mocked GoogleGenerativeAI) correctly has its `chats.create` method
   // pointing to `mockChatCreateFn`.
   // it('startChat should call getCoreSystemPrompt with userMemory and pass to chats.create', async () => { ... });
@@ -264,7 +264,7 @@ describe('Gemini Client (client.ts)', () => {
   // the @google/genai mock, similar to the startChat tests. The mockGenerateContentFn
   // (representing instance.models.generateContent) was not being detected as called, or the mock
   // was not preventing an actual API call (leading to API key errors).
-  // For future debugging, ensure `this.client.models.generateContent` in `GeminiClient` correctly
+  // For future debugging, ensure `this.client.models.generateContent` in `DeltaClient` correctly
   // uses the `mockGenerateContentFn`.
   // it('generateJson should call getCoreSystemPrompt with userMemory and pass to generateContent', async () => { ... });
   // it('generateJson should call getCoreSystemPrompt with empty string if userMemory is empty', async () => { ... });
@@ -491,7 +491,7 @@ describe('Gemini Client (client.ts)', () => {
       const mockChat = {
         addHistory: vi.fn(),
       };
-      client['chat'] = mockChat as unknown as GeminiChat;
+      client['chat'] = mockChat as unknown as DeltaChat;
 
       const newContent = {
         role: 'user',
@@ -550,7 +550,7 @@ describe('Gemini Client (client.ts)', () => {
         addHistory: vi.fn(),
         setHistory: vi.fn(),
         sendMessage: mockSendMessage,
-      } as unknown as GeminiChat;
+      } as unknown as DeltaChat;
     });
 
     it('should not trigger summarization if token count is below threshold', async () => {
@@ -739,11 +739,11 @@ describe('Gemini Client (client.ts)', () => {
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -807,11 +807,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -862,11 +862,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -938,11 +938,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -990,11 +990,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -1040,11 +1040,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -1133,11 +1133,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -1171,7 +1171,7 @@ ${JSON.stringify(
         events.push(event);
       }
 
-      expect(events).toEqual([{ type: GeminiEventType.MaxSessionTurns }]);
+      expect(events).toEqual([{ type: DeltaEventType.MaxSessionTurns }]);
       expect(mockTurnRunFn).toHaveBeenCalledTimes(MAX_SESSION_TURNS);
     });
 
@@ -1195,11 +1195,11 @@ ${JSON.stringify(
       })();
       mockTurnRunFn.mockReturnValue(mockStream);
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         addHistory: vi.fn(),
         getHistory: vi.fn().mockReturnValue([]),
       };
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
 
       const mockGenerator: Partial<ContentGenerator> = {
         countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -1270,7 +1270,7 @@ ${JSON.stringify(
         vi.spyOn(client['config'], 'getIdeMode').mockReturnValue(true);
         mockTurnRunFn.mockReturnValue(mockStream);
 
-        const mockChat: Partial<GeminiChat> = {
+        const mockChat: Partial<DeltaChat> = {
           addHistory: vi.fn(),
           setHistory: vi.fn(),
           sendMessage: vi.fn().mockResolvedValue({ text: 'summary' }),
@@ -1281,7 +1281,7 @@ ${JSON.stringify(
               { role: 'user', parts: [{ text: 'previous message' }] },
             ]),
         };
-        client['chat'] = mockChat as GeminiChat;
+        client['chat'] = mockChat as DeltaChat;
 
         const mockGenerator: Partial<ContentGenerator> = {
           countTokens: vi.fn().mockResolvedValue({ totalTokens: 0 }),
@@ -1570,7 +1570,7 @@ ${JSON.stringify(
         { role: 'model', parts: [{ text: 'Long response' }] },
       ];
 
-      const mockChat: Partial<GeminiChat> = {
+      const mockChat: Partial<DeltaChat> = {
         getHistory: vi.fn().mockReturnValue(mockChatHistory),
         setHistory: vi.fn(),
         sendMessage: mockSendMessage,
@@ -1587,7 +1587,7 @@ ${JSON.stringify(
         .mockReturnValueOnce(firstCurrentModel)
         .mockReturnValueOnce(secondCurrentModel);
 
-      client['chat'] = mockChat as GeminiChat;
+      client['chat'] = mockChat as DeltaChat;
       client['contentGenerator'] = mockGenerator as ContentGenerator;
       client['startChat'] = vi.fn().mockResolvedValue(mockChat);
 
@@ -1643,7 +1643,7 @@ ${JSON.stringify(
       const mockChat = {
         setHistory: vi.fn(),
       };
-      client['chat'] = mockChat as unknown as GeminiChat;
+      client['chat'] = mockChat as unknown as DeltaChat;
 
       const historyWithThoughts: Content[] = [
         {
@@ -1685,7 +1685,7 @@ ${JSON.stringify(
       const mockChat = {
         setHistory: vi.fn(),
       };
-      client['chat'] = mockChat as unknown as GeminiChat;
+      client['chat'] = mockChat as unknown as DeltaChat;
 
       const historyWithThoughts: Content[] = [
         {

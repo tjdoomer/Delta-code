@@ -26,7 +26,7 @@ import { ToolRegistry } from './tool-registry.js';
 import path from 'path';
 import fs from 'fs';
 import os from 'os';
-import { GeminiClient } from '../core/client.js';
+import { DeltaClient } from '../core/client.js';
 import {
   ensureCorrectEdit,
   ensureCorrectFileContent,
@@ -40,7 +40,7 @@ const rootDir = path.resolve(os.tmpdir(), 'delta-code-test-root');
 vi.mock('../core/client.js');
 vi.mock('../utils/editCorrector.js');
 
-let mockGeminiClientInstance: Mocked<GeminiClient>;
+let mockDeltaClientInstance: Mocked<DeltaClient>;
 const mockEnsureCorrectEdit = vi.fn<typeof ensureCorrectEdit>();
 const mockEnsureCorrectFileContent = vi.fn<typeof ensureCorrectFileContent>();
 
@@ -55,7 +55,7 @@ const mockConfigInternal = {
   getTargetDir: () => rootDir,
   getApprovalMode: vi.fn(() => ApprovalMode.DEFAULT),
   setApprovalMode: vi.fn(),
-  getGeminiClient: vi.fn(), // Initialize as a plain mock function
+  getDeltaClient: vi.fn(), // Initialize as a plain mock function
   getIdeClient: vi.fn(),
   getIdeMode: vi.fn(() => false),
   getWorkspaceContext: () => createMockWorkspaceContext(rootDir),
@@ -72,8 +72,8 @@ const mockConfigInternal = {
   getUserAgent: () => 'test-agent',
   getUserMemory: () => '',
   setUserMemory: vi.fn(),
-  getGeminiMdFileCount: () => 0,
-  setGeminiMdFileCount: vi.fn(),
+  getDeltaMdFileCount: () => 0,
+  setDeltaMdFileCount: vi.fn(),
   getToolRegistry: () =>
     ({
       registerTool: vi.fn(),
@@ -98,20 +98,20 @@ describe('WriteFileTool', () => {
       fs.mkdirSync(rootDir, { recursive: true });
     }
 
-    // Setup GeminiClient mock
-    mockGeminiClientInstance = new (vi.mocked(GeminiClient))(
+    // Setup DeltaClient mock
+    mockDeltaClientInstance = new (vi.mocked(DeltaClient))(
       mockConfig,
-    ) as Mocked<GeminiClient>;
-    vi.mocked(GeminiClient).mockImplementation(() => mockGeminiClientInstance);
+    ) as Mocked<DeltaClient>;
+    vi.mocked(DeltaClient).mockImplementation(() => mockDeltaClientInstance);
 
     vi.mocked(ensureCorrectEdit).mockImplementation(mockEnsureCorrectEdit);
     vi.mocked(ensureCorrectFileContent).mockImplementation(
       mockEnsureCorrectFileContent,
     );
 
-    // Now that mockGeminiClientInstance is initialized, set the mock implementation for getGeminiClient
-    mockConfigInternal.getGeminiClient.mockReturnValue(
-      mockGeminiClientInstance,
+    // Now that mockDeltaClientInstance is initialized, set the mock implementation for getDeltaClient
+    mockConfigInternal.getDeltaClient.mockReturnValue(
+      mockDeltaClientInstance,
     );
     mockConfigInternal.getIdeClient.mockReturnValue({
       openDiff: vi.fn(),
@@ -136,7 +136,7 @@ describe('WriteFileTool', () => {
         filePath: string,
         _currentContent: string,
         params: EditToolParams,
-        _client: GeminiClient,
+        _client: DeltaClient,
         signal?: AbortSignal, // Make AbortSignal optional to match usage
       ): Promise<CorrectedEditResult> => {
         if (signal?.aborted) {
@@ -151,7 +151,7 @@ describe('WriteFileTool', () => {
     mockEnsureCorrectFileContent.mockImplementation(
       async (
         content: string,
-        _client: GeminiClient,
+        _client: DeltaClient,
         signal?: AbortSignal,
       ): Promise<string> => {
         // Make AbortSignal optional
@@ -259,7 +259,7 @@ describe('WriteFileTool', () => {
 
       expect(mockEnsureCorrectFileContent).toHaveBeenCalledWith(
         proposedContent,
-        mockGeminiClientInstance,
+        mockDeltaClientInstance,
         abortSignal,
       );
       expect(mockEnsureCorrectEdit).not.toHaveBeenCalled();
@@ -302,7 +302,7 @@ describe('WriteFileTool', () => {
           new_string: proposedContent,
           file_path: filePath,
         },
-        mockGeminiClientInstance,
+        mockDeltaClientInstance,
         abortSignal,
       );
       expect(mockEnsureCorrectFileContent).not.toHaveBeenCalled();
@@ -394,7 +394,7 @@ describe('WriteFileTool', () => {
 
       expect(mockEnsureCorrectFileContent).toHaveBeenCalledWith(
         proposedContent,
-        mockGeminiClientInstance,
+        mockDeltaClientInstance,
         abortSignal,
       );
       expect(confirmation).toEqual(
@@ -443,7 +443,7 @@ describe('WriteFileTool', () => {
           new_string: proposedContent,
           file_path: filePath,
         },
-        mockGeminiClientInstance,
+        mockDeltaClientInstance,
         abortSignal,
       );
       expect(confirmation).toEqual(
@@ -537,7 +537,7 @@ describe('WriteFileTool', () => {
 
       expect(mockEnsureCorrectFileContent).toHaveBeenCalledWith(
         proposedContent,
-        mockGeminiClientInstance,
+        mockDeltaClientInstance,
         abortSignal,
       );
       expect(result.llmContent).toMatch(
@@ -601,7 +601,7 @@ describe('WriteFileTool', () => {
           new_string: proposedContent,
           file_path: filePath,
         },
-        mockGeminiClientInstance,
+        mockDeltaClientInstance,
         abortSignal,
       );
       expect(result.llmContent).toMatch(/Successfully overwrote file/);

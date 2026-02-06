@@ -36,22 +36,22 @@ export type ScheduleFn = (
 export type MarkToolsAsSubmittedFn = (callIds: string[]) => void;
 
 export type TrackedScheduledToolCall = ScheduledToolCall & {
-  responseSubmittedToGemini?: boolean;
+  responseSubmittedToDelta?: boolean;
 };
 export type TrackedValidatingToolCall = ValidatingToolCall & {
-  responseSubmittedToGemini?: boolean;
+  responseSubmittedToDelta?: boolean;
 };
 export type TrackedWaitingToolCall = WaitingToolCall & {
-  responseSubmittedToGemini?: boolean;
+  responseSubmittedToDelta?: boolean;
 };
 export type TrackedExecutingToolCall = ExecutingToolCall & {
-  responseSubmittedToGemini?: boolean;
+  responseSubmittedToDelta?: boolean;
 };
 export type TrackedCompletedToolCall = CompletedToolCall & {
-  responseSubmittedToGemini?: boolean;
+  responseSubmittedToDelta?: boolean;
 };
 export type TrackedCancelledToolCall = CancelledToolCall & {
-  responseSubmittedToGemini?: boolean;
+  responseSubmittedToDelta?: boolean;
 };
 
 export type TrackedToolCall =
@@ -121,8 +121,8 @@ export function useReactToolScheduler(
           );
           const newTrackedCall: TrackedToolCall = {
             ...coreTc,
-            responseSubmittedToGemini:
-              existingTrackedCall?.responseSubmittedToGemini ?? false,
+            responseSubmittedToDelta:
+              existingTrackedCall?.responseSubmittedToDelta ?? false,
           } as TrackedToolCall;
           return newTrackedCall;
         }),
@@ -167,7 +167,7 @@ export function useReactToolScheduler(
       setToolCallsForDisplay((prevCalls) =>
         prevCalls.map((tc) =>
           callIdsToMark.includes(tc.request.callId)
-            ? { ...tc, responseSubmittedToGemini: true }
+            ? { ...tc, responseSubmittedToDelta: true }
             : tc,
         ),
       );

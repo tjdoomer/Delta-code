@@ -9285,14 +9285,14 @@ var require_react_reconciler_production = __commonJS({
       }
       var exports3 = {};
       "use strict";
-      var React37 = require_react(), Scheduler2 = require_scheduler(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+      var React38 = require_react(), Scheduler2 = require_scheduler(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
       Symbol.for("react.scope");
       var REACT_ACTIVITY_TYPE = Symbol.for("react.activity");
       Symbol.for("react.legacy_hidden");
       Symbol.for("react.tracing_marker");
       var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel");
       Symbol.for("react.view_transition");
-      var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React37.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, rendererVersion = $$$config.rendererVersion, rendererPackageName = $$$config.rendererPackageName, extraDevToolsConfig = $$$config.extraDevToolsConfig, getPublicInstance = $$$config.getPublicInstance, getRootHostContext = $$$config.getRootHostContext, getChildHostContext = $$$config.getChildHostContext, prepareForCommit = $$$config.prepareForCommit, resetAfterCommit = $$$config.resetAfterCommit, createInstance2 = $$$config.createInstance;
+      var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React38.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, rendererVersion = $$$config.rendererVersion, rendererPackageName = $$$config.rendererPackageName, extraDevToolsConfig = $$$config.extraDevToolsConfig, getPublicInstance = $$$config.getPublicInstance, getRootHostContext = $$$config.getRootHostContext, getChildHostContext = $$$config.getChildHostContext, prepareForCommit = $$$config.prepareForCommit, resetAfterCommit = $$$config.resetAfterCommit, createInstance2 = $$$config.createInstance;
       $$$config.cloneMutableInstance;
       var appendInitialChild = $$$config.appendInitialChild, finalizeInitialChildren = $$$config.finalizeInitialChildren, shouldSetTextContent = $$$config.shouldSetTextContent, createTextInstance = $$$config.createTextInstance;
       $$$config.cloneMutableTextInstance;
@@ -20035,14 +20035,14 @@ var require_react_reconciler_development = __commonJS({
       }
       var exports3 = {};
       "use strict";
-      var React37 = require_react(), Scheduler2 = require_scheduler(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+      var React38 = require_react(), Scheduler2 = require_scheduler(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
       Symbol.for("react.scope");
       var REACT_ACTIVITY_TYPE = Symbol.for("react.activity");
       Symbol.for("react.legacy_hidden");
       Symbol.for("react.tracing_marker");
       var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel");
       Symbol.for("react.view_transition");
-      var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React37.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, rendererVersion = $$$config.rendererVersion, rendererPackageName = $$$config.rendererPackageName, extraDevToolsConfig = $$$config.extraDevToolsConfig, getPublicInstance = $$$config.getPublicInstance, getRootHostContext = $$$config.getRootHostContext, getChildHostContext = $$$config.getChildHostContext, prepareForCommit = $$$config.prepareForCommit, resetAfterCommit = $$$config.resetAfterCommit, createInstance2 = $$$config.createInstance;
+      var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React38.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, rendererVersion = $$$config.rendererVersion, rendererPackageName = $$$config.rendererPackageName, extraDevToolsConfig = $$$config.extraDevToolsConfig, getPublicInstance = $$$config.getPublicInstance, getRootHostContext = $$$config.getRootHostContext, getChildHostContext = $$$config.getChildHostContext, prepareForCommit = $$$config.prepareForCommit, resetAfterCommit = $$$config.resetAfterCommit, createInstance2 = $$$config.createInstance;
       $$$config.cloneMutableInstance;
       var appendInitialChild = $$$config.appendInitialChild, finalizeInitialChildren = $$$config.finalizeInitialChildren, shouldSetTextContent = $$$config.shouldSetTextContent, createTextInstance = $$$config.createTextInstance;
       $$$config.cloneMutableTextInstance;
@@ -25849,7 +25849,7 @@ var require_backend = __commonJS({
                     });
                     return a;
                   },
-                  useState: function useState43(a) {
+                  useState: function useState44(a) {
                     var b = C();
                     a = null !== b ? b.memoizedState : "function" === typeof a ? a() : a;
                     x.push({
@@ -79013,12 +79013,11 @@ var init_codeAssist = __esm({
 });
 
 // packages/core/dist/src/config/models.js
-var DEFAULT_QWEN_MODEL, DEFAULT_GEMINI_MODEL, DEFAULT_GEMINI_FLASH_MODEL, DEFAULT_GEMINI_FLASH_LITE_MODEL, DEFAULT_GEMINI_EMBEDDING_MODEL;
+var DEFAULT_QWEN_MODEL, DEFAULT_GEMINI_FLASH_MODEL, DEFAULT_GEMINI_FLASH_LITE_MODEL, DEFAULT_GEMINI_EMBEDDING_MODEL;
 var init_models = __esm({
   "packages/core/dist/src/config/models.js"() {
     "use strict";
     DEFAULT_QWEN_MODEL = "delta3-coder-plus";
-    DEFAULT_GEMINI_MODEL = "delta3-coder-plus";
     DEFAULT_GEMINI_FLASH_MODEL = "gemini-2.5-flash";
     DEFAULT_GEMINI_FLASH_LITE_MODEL = "gemini-2.5-flash-lite";
     DEFAULT_GEMINI_EMBEDDING_MODEL = "gemini-embedding-001";
@@ -146265,6 +146264,9 @@ Streaming setup timeout troubleshooting:
         return merged;
       }
       convertToGeminiFormat(openaiResponse) {
+        if (!openaiResponse || !Array.isArray(openaiResponse.choices) || openaiResponse.choices.length === 0) {
+          throw new Error("OpenAI API returned no choices in chat completion response.");
+        }
         const choice2 = openaiResponse.choices[0];
         const response = new GenerateContentResponse();
         const parts = [];
@@ -146325,7 +146327,7 @@ Streaming setup timeout troubleshooting:
         return response;
       }
       convertStreamChunkToGeminiFormat(chunk) {
-        const choice2 = chunk.choices?.[0];
+        const choice2 = Array.isArray(chunk.choices) && chunk.choices.length > 0 ? chunk.choices[0] : void 0;
         const response = new GenerateContentResponse();
         if (choice2) {
           const parts = [];
@@ -146548,6 +146550,323 @@ Streaming setup timeout troubleshooting:
           default:
             return "stop";
         }
+      }
+    };
+  }
+});
+
+// packages/core/dist/src/core/anthropicContentGenerator.js
+var anthropicContentGenerator_exports = {};
+__export(anthropicContentGenerator_exports, {
+  AnthropicContentGenerator: () => AnthropicContentGenerator
+});
+var AnthropicContentGenerator;
+var init_anthropicContentGenerator = __esm({
+  "packages/core/dist/src/core/anthropicContentGenerator.js"() {
+    "use strict";
+    init_node();
+    init_loggers();
+    init_types2();
+    AnthropicContentGenerator = class {
+      apiKey;
+      baseUrl;
+      model;
+      contentGeneratorConfig;
+      config;
+      constructor(contentGeneratorConfig, gcConfig) {
+        this.model = contentGeneratorConfig.model;
+        this.contentGeneratorConfig = contentGeneratorConfig;
+        this.config = gcConfig;
+        this.apiKey = contentGeneratorConfig.apiKey || "";
+        this.baseUrl = contentGeneratorConfig.baseUrl || "https://api.anthropic.com/v1";
+        if (!this.apiKey) {
+          throw new Error("Anthropic API key is required");
+        }
+      }
+      async makeRequest(endpoint, body, stream2 = false) {
+        const url2 = `${this.baseUrl}${endpoint}`;
+        const headers = {
+          "Content-Type": "application/json",
+          "x-api-key": this.apiKey,
+          "anthropic-version": "2023-06-01"
+        };
+        if (stream2) {
+          headers["Accept"] = "text/event-stream";
+        }
+        const response = await fetch(url2, {
+          method: "POST",
+          headers,
+          body: JSON.stringify(body)
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Anthropic API error ${response.status}: ${errorText}`);
+        }
+        return response;
+      }
+      async generateContent(request2, userPromptId) {
+        const startTime = Date.now();
+        try {
+          const anthropicRequest = await this.convertToAnthropicFormat(request2);
+          const response = await this.makeRequest("/messages", anthropicRequest);
+          const anthropicResponse = await response.json();
+          const geminiResponse = this.convertToGeminiFormat(anthropicResponse);
+          const durationMs = Date.now() - startTime;
+          const responseEvent = new ApiResponseEvent(geminiResponse.responseId || "unknown", this.model, durationMs, userPromptId, this.contentGeneratorConfig.authType, geminiResponse.usageMetadata);
+          logApiResponse(this.config, responseEvent);
+          return geminiResponse;
+        } catch (error) {
+          const durationMs = Date.now() - startTime;
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          const errorEvent = new ApiErrorEvent("unknown", this.model, errorMessage, durationMs, userPromptId, this.contentGeneratorConfig.authType);
+          logApiError(this.config, errorEvent);
+          console.error("Anthropic API Error:", errorMessage);
+          throw error;
+        }
+      }
+      async generateContentStream(request2, userPromptId) {
+        const startTime = Date.now();
+        try {
+          const anthropicRequest = { ...await this.convertToAnthropicFormat(request2), stream: true };
+          const response = await this.makeRequest("/messages", anthropicRequest, true);
+          if (!response.body) {
+            throw new Error("No response body for streaming");
+          }
+          return this.streamGenerator(response.body, userPromptId, startTime);
+        } catch (error) {
+          const errorMessage = error instanceof Error ? error.message : String(error);
+          console.error("Anthropic API Streaming Error:", errorMessage);
+          throw error;
+        }
+      }
+      async *streamGenerator(stream2, userPromptId, startTime) {
+        const reader = stream2.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        let currentContent = "";
+        try {
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done)
+              break;
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split("\n");
+            buffer = lines.pop() || "";
+            for (const line of lines) {
+              if (line.startsWith("data: ")) {
+                const data = line.slice(6);
+                if (data === "[DONE]")
+                  continue;
+                try {
+                  const event = JSON.parse(data);
+                  if (event.type === "content_block_delta" && event.delta?.text) {
+                    currentContent += event.delta.text;
+                    const response = new GenerateContentResponse();
+                    response.candidates = [{
+                      content: {
+                        parts: [{ text: event.delta.text }],
+                        role: "model"
+                      },
+                      finishReason: FinishReason2.FINISH_REASON_UNSPECIFIED,
+                      index: 0,
+                      safetyRatings: []
+                    }];
+                    response.responseId = `anthropic-stream-${Date.now()}`;
+                    response.modelVersion = this.model;
+                    response.promptFeedback = { safetyRatings: [] };
+                    yield response;
+                  }
+                  if (event.type === "message_stop") {
+                    const durationMs = Date.now() - startTime;
+                    const responseEvent = new ApiResponseEvent(`anthropic-stream-${userPromptId}`, this.model, durationMs, userPromptId, this.contentGeneratorConfig.authType, event.usage ? {
+                      promptTokenCount: event.usage.input_tokens,
+                      candidatesTokenCount: event.usage.output_tokens,
+                      totalTokenCount: event.usage.input_tokens + event.usage.output_tokens
+                    } : void 0);
+                    logApiResponse(this.config, responseEvent);
+                  }
+                } catch (parseError) {
+                  console.warn("Failed to parse streaming event:", parseError);
+                }
+              }
+            }
+          }
+        } finally {
+          reader.releaseLock();
+        }
+      }
+      async countTokens(request2) {
+        const content = JSON.stringify(request2.contents);
+        const totalTokens = Math.ceil(content.length / 4);
+        return { totalTokens };
+      }
+      async embedContent(request2) {
+        throw new Error("Anthropic does not support embedding generation. Use a different provider for embeddings.");
+      }
+      sanitizeAnthropicParams(config) {
+        const params = {};
+        const requestTemp = config?.temperature;
+        const configTemp = this.contentGeneratorConfig.samplingParams?.temperature;
+        const temperature = requestTemp ?? configTemp;
+        const requestTopP = config?.topP;
+        const configTopP = this.contentGeneratorConfig.samplingParams?.top_p;
+        const topP = requestTopP ?? configTopP;
+        if (temperature !== void 0 && temperature !== null) {
+          params.temperature = temperature;
+          if (topP !== void 0 && topP !== null) {
+            if (this.config.getDebugMode()) {
+              console.debug(`[Anthropic] Using temperature=${temperature}, ignoring top_p=${topP} (API constraint)`);
+            }
+          }
+        } else if (topP !== void 0 && topP !== null) {
+          params.top_p = topP;
+        } else {
+          params.temperature = 0;
+        }
+        return params;
+      }
+      async convertToAnthropicFormat(request2) {
+        const messages = [];
+        let systemPrompt;
+        if (request2.config?.systemInstruction) {
+          if (typeof request2.config.systemInstruction === "string") {
+            systemPrompt = request2.config.systemInstruction;
+          } else if (Array.isArray(request2.config.systemInstruction)) {
+            systemPrompt = request2.config.systemInstruction.map((content) => {
+              if (typeof content === "string")
+                return content;
+              if (content && typeof content === "object" && "parts" in content) {
+                const contentObj = content;
+                return contentObj.parts?.map((p) => typeof p === "string" ? p : "text" in p ? p.text : "").join("\n") || "";
+              }
+              return "";
+            }).join("\n");
+          } else if (request2.config.systemInstruction && typeof request2.config.systemInstruction === "object" && "parts" in request2.config.systemInstruction) {
+            const sysInst = request2.config.systemInstruction;
+            systemPrompt = sysInst.parts?.map((p) => typeof p === "string" ? p : "text" in p ? p.text : "").join("\n") || "";
+          }
+        }
+        if (Array.isArray(request2.contents)) {
+          for (const content of request2.contents) {
+            if (typeof content === "string") {
+              messages.push({ role: "user", content });
+            } else if ("role" in content && "parts" in content) {
+              const role = content.role === "model" ? "assistant" : "user";
+              const contentBlocks = [];
+              for (const part of content.parts || []) {
+                if (typeof part === "string") {
+                  contentBlocks.push({ type: "text", text: part });
+                } else if ("text" in part && part.text) {
+                  contentBlocks.push({ type: "text", text: part.text });
+                } else if ("functionCall" in part && part.functionCall) {
+                  contentBlocks.push({
+                    type: "tool_use",
+                    id: part.functionCall.id || `tool_${Date.now()}`,
+                    name: part.functionCall.name || "",
+                    input: part.functionCall.args || {}
+                  });
+                } else if ("functionResponse" in part && part.functionResponse) {
+                  contentBlocks.push({
+                    type: "tool_result",
+                    tool_use_id: part.functionResponse.id || "",
+                    content: typeof part.functionResponse.response === "string" ? part.functionResponse.response : JSON.stringify(part.functionResponse.response)
+                  });
+                }
+              }
+              if (contentBlocks.length > 0) {
+                messages.push({ role, content: contentBlocks });
+              }
+            }
+          }
+        }
+        const tools = [];
+        if (request2.config?.tools) {
+          for (const tool of request2.config.tools) {
+            let actualTool;
+            if ("tool" in tool) {
+              actualTool = await tool.tool();
+            } else {
+              actualTool = tool;
+            }
+            if (actualTool.functionDeclarations) {
+              for (const func of actualTool.functionDeclarations) {
+                if (func.name && func.description) {
+                  let inputSchema = { type: "object", properties: {} };
+                  if (func.parametersJsonSchema) {
+                    inputSchema = func.parametersJsonSchema;
+                  } else if (func.parameters) {
+                    inputSchema = func.parameters;
+                  }
+                  tools.push({
+                    name: func.name,
+                    description: func.description,
+                    input_schema: inputSchema
+                  });
+                }
+              }
+            }
+          }
+        }
+        const sanitizedParams = this.sanitizeAnthropicParams(request2.config);
+        const anthropicRequest = {
+          model: this.model,
+          max_tokens: request2.config?.maxOutputTokens || 4096,
+          messages,
+          ...sanitizedParams
+        };
+        if (systemPrompt) {
+          anthropicRequest.system = systemPrompt;
+        }
+        if (tools.length > 0) {
+          anthropicRequest.tools = tools;
+        }
+        return anthropicRequest;
+      }
+      convertToGeminiFormat(anthropicResponse) {
+        const response = new GenerateContentResponse();
+        const parts = [];
+        for (const block2 of anthropicResponse.content) {
+          if (block2.type === "text" && block2.text) {
+            parts.push({ text: block2.text });
+          } else if (block2.type === "tool_use") {
+            parts.push({
+              functionCall: {
+                id: block2.id || "",
+                name: block2.name || "",
+                args: block2.input || {}
+              }
+            });
+          }
+        }
+        response.responseId = anthropicResponse.id;
+        response.candidates = [{
+          content: {
+            parts,
+            role: "model"
+          },
+          finishReason: this.mapFinishReason(anthropicResponse.stop_reason),
+          index: 0,
+          safetyRatings: []
+        }];
+        response.modelVersion = this.model;
+        response.promptFeedback = { safetyRatings: [] };
+        if (anthropicResponse.usage) {
+          response.usageMetadata = {
+            promptTokenCount: anthropicResponse.usage.input_tokens,
+            candidatesTokenCount: anthropicResponse.usage.output_tokens,
+            totalTokenCount: anthropicResponse.usage.input_tokens + anthropicResponse.usage.output_tokens
+          };
+        }
+        return response;
+      }
+      mapFinishReason(anthropicReason) {
+        const mapping = {
+          end_turn: FinishReason2.STOP,
+          max_tokens: FinishReason2.MAX_TOKENS,
+          stop_sequence: FinishReason2.STOP,
+          tool_use: FinishReason2.STOP
+        };
+        return mapping[anthropicReason] || FinishReason2.FINISH_REASON_UNSPECIFIED;
       }
     };
   }
@@ -147612,7 +147931,8 @@ function createContentGeneratorConfig(config, authType) {
   const openaiApiKey = process.env.OPENAI_API_KEY;
   const openaiBaseUrl = process.env.OPENAI_BASE_URL || void 0;
   const openaiModel = process.env.OPENAI_MODEL || void 0;
-  const effectiveModel = config.getModel() || DEFAULT_GEMINI_MODEL;
+  const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+  const effectiveModel = config.getModel() || DEFAULT_QWEN_MODEL;
   const contentGeneratorConfig = {
     model: effectiveModel,
     authType,
@@ -147639,6 +147959,12 @@ function createContentGeneratorConfig(config, authType) {
     contentGeneratorConfig.apiKey = openaiApiKey;
     contentGeneratorConfig.baseUrl = openaiBaseUrl;
     contentGeneratorConfig.model = openaiModel || DEFAULT_QWEN_MODEL;
+    return contentGeneratorConfig;
+  }
+  if (authType === AuthType3.USE_CLAUDE && anthropicApiKey) {
+    contentGeneratorConfig.apiKey = anthropicApiKey;
+    contentGeneratorConfig.baseUrl = "https://api.anthropic.com/v1";
+    contentGeneratorConfig.model = process.env.CLAUDE_MODEL || "claude-opus-4-1-20250805";
     return contentGeneratorConfig;
   }
   if (authType === AuthType3.QWEN_OAUTH) {
@@ -147672,6 +147998,13 @@ async function createContentGenerator(config, gcConfig, sessionId2) {
     }
     const { OpenAIContentGenerator: OpenAIContentGenerator2 } = await Promise.resolve().then(() => (init_openaiContentGenerator(), openaiContentGenerator_exports));
     return new OpenAIContentGenerator2(config, gcConfig);
+  }
+  if (config.authType === AuthType3.USE_CLAUDE) {
+    if (!config.apiKey) {
+      throw new Error("Anthropic API key is required");
+    }
+    const { AnthropicContentGenerator: AnthropicContentGenerator2 } = await Promise.resolve().then(() => (init_anthropicContentGenerator(), anthropicContentGenerator_exports));
+    return new AnthropicContentGenerator2(config, gcConfig);
   }
   if (config.authType === AuthType3.QWEN_OAUTH) {
     if (config.apiKey !== "QWEN_OAUTH_DYNAMIC_TOKEN") {
@@ -162059,7 +162392,7 @@ var init_google_auth_provider = __esm({
       // Properties required by OAuthClientProvider, with no-op values
       redirectUrl = "";
       clientMetadata = {
-        client_name: "Gemini CLI (Google ADC)",
+        client_name: "Delta Code (Google ADC)",
         redirect_uris: [],
         grant_types: [],
         response_types: [],
@@ -162752,7 +163085,7 @@ var init_oauth_provider = __esm({
       static async registerClient(registrationUrl, config) {
         const redirectUri = config.redirectUri || `http://localhost:${this.REDIRECT_PORT}${this.REDIRECT_PATH}`;
         const registrationRequest = {
-          client_name: "Gemini CLI (Google ADC)",
+          client_name: "Delta Code (Google ADC)",
           redirect_uris: [redirectUri],
           grant_types: ["authorization_code", "refresh_token"],
           response_types: ["code"],
@@ -162847,7 +163180,7 @@ var init_oauth_provider = __esm({
             <html>
               <body>
                 <h1>Authentication Successful!</h1>
-                <p>You can close this window and return to Gemini CLI.</p>
+                <p>You can close this window and return to Delta Code.</p>
                 <script>window.close();</script>
               </body>
             </html>
@@ -170545,12 +170878,12 @@ var init_ls = __esm({
           const defaultFileIgnores = this.config.getFileFilteringOptions() ?? DEFAULT_FILE_FILTERING_OPTIONS;
           const fileFilteringOptions = {
             respectGitIgnore: this.params.file_filtering_options?.respect_git_ignore ?? defaultFileIgnores.respectGitIgnore,
-            respectGeminiIgnore: this.params.file_filtering_options?.respect_gemini_ignore ?? defaultFileIgnores.respectGeminiIgnore
+            respectDeltaIgnore: this.params.file_filtering_options?.respect_gemini_ignore ?? defaultFileIgnores.respectDeltaIgnore
           };
           const fileDiscovery = this.config.getFileService();
           const entries = [];
           let gitIgnoredCount = 0;
-          let geminiIgnoredCount = 0;
+          let deltaIgnoredCount = 0;
           if (files.length === 0) {
             return {
               llmContent: `Directory ${this.params.path} is empty.`,
@@ -170567,8 +170900,8 @@ var init_ls = __esm({
               gitIgnoredCount++;
               continue;
             }
-            if (fileFilteringOptions.respectGeminiIgnore && fileDiscovery.shouldGeminiIgnoreFile(relativePath)) {
-              geminiIgnoredCount++;
+            if (fileFilteringOptions.respectDeltaIgnore && fileDiscovery.shouldDeltaIgnoreFile(relativePath)) {
+              deltaIgnoredCount++;
               continue;
             }
             try {
@@ -170599,8 +170932,8 @@ ${directoryContent}`;
           if (gitIgnoredCount > 0) {
             ignoredMessages.push(`${gitIgnoredCount} git-ignored`);
           }
-          if (geminiIgnoredCount > 0) {
-            ignoredMessages.push(`${geminiIgnoredCount} gemini-ignored`);
+          if (deltaIgnoredCount > 0) {
+            ignoredMessages.push(`${deltaIgnoredCount} delta-ignored`);
           }
           if (ignoredMessages.length > 0) {
             resultMessage += `
@@ -170639,7 +170972,7 @@ ${directoryContent}`;
               type: "array"
             },
             file_filtering_options: {
-              description: "Optional: Whether to respect ignore patterns from .gitignore or .geminiignore",
+              description: "Optional: Whether to respect ignore patterns from .gitignore or .deltaignore",
               type: "object",
               properties: {
                 respect_git_ignore: {
@@ -170647,7 +170980,7 @@ ${directoryContent}`;
                   type: "boolean"
                 },
                 respect_gemini_ignore: {
-                  description: "Optional: Whether to respect .geminiignore patterns when listing files. Defaults to true.",
+                  description: "Optional: Whether to respect .deltaignore patterns when listing files. Defaults to true.",
                   type: "boolean"
                 }
               }
@@ -180579,8 +180912,8 @@ ${result.llmContent}`;
           return "Limit must be a positive number";
         }
         const fileService = this.config.getFileService();
-        if (fileService.shouldGeminiIgnoreFile(params.absolute_path)) {
-          return `File path '${filePath}' is ignored by .geminiignore pattern(s).`;
+        if (fileService.shouldDeltaIgnoreFile(params.absolute_path)) {
+          return `File path '${filePath}' is ignored by .deltaignore pattern(s).`;
         }
         return null;
       }
@@ -187689,7 +188022,7 @@ WARNING: Results truncated to prevent context overflow. To see more results:
             "bower_components/**",
             ".svn/**",
             ".hg/**",
-            ...fileDiscovery.getGeminiIgnorePatterns()
+            ...fileDiscovery.getDeltaIgnorePatterns()
           ];
           const filesIterator = globStream(globPattern, {
             cwd: absolutePath,
@@ -189135,13 +189468,13 @@ var init_ide_client = __esm({
        * A diff is accepted with any modifications if the user performs one of the
        * following actions:
        * - Clicks the checkbox icon in the IDE to accept
-       * - Runs `command+shift+p` > "Gemini CLI: Accept Diff in IDE" to accept
+       * - Runs `command+shift+p` > "Delta Code: Accept Diff in IDE" to accept
        * - Selects "accept" in the CLI UI
        * - Saves the file via `ctrl/command+s`
        *
        * A diff is rejected if the user performs one of the following actions:
        * - Clicks the "x" icon in the IDE
-       * - Runs "Gemini CLI: Close Diff in IDE"
+       * - Runs "Delta Code: Close Diff in IDE"
        * - Selects "no" in the CLI UI
        * - Closes the file
        */
@@ -189593,10 +189926,10 @@ var init_write_file = __esm({
             // Treat entire current content as old_string
             new_string: proposedContent,
             file_path: filePath
-          }, this.config.getGeminiClient(), abortSignal);
+          }, this.config.getDeltaClient(), abortSignal);
           correctedContent = correctedParams.new_string;
         } else {
-          correctedContent = await ensureCorrectFileContent(proposedContent, this.config.getGeminiClient(), abortSignal);
+          correctedContent = await ensureCorrectFileContent(proposedContent, this.config.getDeltaClient(), abortSignal);
         }
         return { originalContent, correctedContent, fileExists };
       }
@@ -189630,7 +189963,7 @@ var init_write_file = __esm({
 import * as fs21 from "fs/promises";
 import * as path20 from "path";
 import { homedir as homedir7 } from "os";
-function setGeminiMdFilename(newFilename) {
+function setDeltaMdFilename(newFilename) {
   if (Array.isArray(newFilename)) {
     if (newFilename.length > 0) {
       currentGeminiMdFilename = newFilename.map((name2) => name2.trim());
@@ -189639,23 +189972,23 @@ function setGeminiMdFilename(newFilename) {
     currentGeminiMdFilename = newFilename.trim();
   }
 }
-function getCurrentGeminiMdFilename() {
+function getCurrentDeltaMdFilename() {
   if (Array.isArray(currentGeminiMdFilename)) {
     return currentGeminiMdFilename[0];
   }
   return currentGeminiMdFilename;
 }
-function getAllGeminiMdFilenames() {
+function getAllDeltaMdFilenames() {
   if (Array.isArray(currentGeminiMdFilename)) {
     return currentGeminiMdFilename;
   }
   return [currentGeminiMdFilename];
 }
 function getGlobalMemoryFilePath() {
-  return path20.join(homedir7(), GEMINI_CONFIG_DIR, getCurrentGeminiMdFilename());
+  return path20.join(homedir7(), DELTA_CONFIG_DIR, getCurrentDeltaMdFilename());
 }
 function getProjectMemoryFilePath() {
-  return path20.join(process.cwd(), getCurrentGeminiMdFilename());
+  return path20.join(process.cwd(), getCurrentDeltaMdFilename());
 }
 function getMemoryFilePath(scope = "global") {
   return scope === "project" ? getProjectMemoryFilePath() : getGlobalMemoryFilePath();
@@ -189705,7 +190038,7 @@ ${sectionContent.trimStart()}
 ${afterSectionMarker}`.trimEnd() + "\n";
   }
 }
-var memoryToolSchemaData, memoryToolDescription, GEMINI_CONFIG_DIR, DEFAULT_CONTEXT_FILENAME, MEMORY_SECTION_HEADER, currentGeminiMdFilename, MemoryToolInvocation, MemoryTool;
+var memoryToolSchemaData, memoryToolDescription, DELTA_CONFIG_DIR, DEFAULT_CONTEXT_FILENAME, MEMORY_SECTION_HEADER, currentGeminiMdFilename, MemoryToolInvocation, MemoryTool;
 var init_memoryTool = __esm({
   "packages/core/dist/src/tools/memoryTool.js"() {
     "use strict";
@@ -189755,7 +190088,7 @@ Do NOT use this tool:
   - "project": Saves to current project's DELTA.md (project-specific)
   - If not specified, the tool will ask the user where they want to save the memory.
 `;
-    GEMINI_CONFIG_DIR = ".delta";
+    DELTA_CONFIG_DIR = ".delta";
     DEFAULT_CONTEXT_FILENAME = "DELTA.md";
     MEMORY_SECTION_HEADER = "## Delta Added Memories";
     currentGeminiMdFilename = DEFAULT_CONTEXT_FILENAME;
@@ -190094,7 +190427,7 @@ var init_read_many_files = __esm({
       "**/*.odp",
       "**/*.DS_Store",
       "**/.env",
-      `**/${getCurrentGeminiMdFilename()}`
+      `**/${getCurrentDeltaMdFilename()}`
     ];
     DEFAULT_OUTPUT_SEPARATOR_FORMAT = "--- {filePath} ---";
     ReadManyFilesToolInvocation = class extends BaseToolInvocation {
@@ -190112,14 +190445,14 @@ ${this.config.getTargetDir()}
 ) `;
         const paramExcludes = this.params.exclude || [];
         const paramUseDefaultExcludes = this.params.useDefaultExcludes !== false;
-        const geminiIgnorePatterns = this.config.getFileService().getGeminiIgnorePatterns();
-        const finalExclusionPatternsForDescription = paramUseDefaultExcludes ? [...DEFAULT_EXCLUDES, ...paramExcludes, ...geminiIgnorePatterns] : [...paramExcludes, ...geminiIgnorePatterns];
+        const deltaIgnorePatterns = this.config.getFileService().getDeltaIgnorePatterns();
+        const finalExclusionPatternsForDescription = paramUseDefaultExcludes ? [...DEFAULT_EXCLUDES, ...paramExcludes, ...deltaIgnorePatterns] : [...paramExcludes, ...deltaIgnorePatterns];
         let excludeDesc = `Excluding: ${finalExclusionPatternsForDescription.length > 0 ? `patterns like 
 ${finalExclusionPatternsForDescription.slice(0, 2).join("`, `")}${finalExclusionPatternsForDescription.length > 2 ? "...`" : "`"}` : "none specified"}`;
-        if (geminiIgnorePatterns.length > 0) {
-          const geminiPatternsInEffect = geminiIgnorePatterns.filter((p) => finalExclusionPatternsForDescription.includes(p)).length;
+        if (deltaIgnorePatterns.length > 0) {
+          const geminiPatternsInEffect = deltaIgnorePatterns.filter((p) => finalExclusionPatternsForDescription.includes(p)).length;
           if (geminiPatternsInEffect > 0) {
-            excludeDesc += ` (includes ${geminiPatternsInEffect} from .geminiignore)`;
+            excludeDesc += ` (includes ${geminiPatternsInEffect} from .deltaignore)`;
           }
         }
         return `Will attempt to read and concatenate files ${pathDesc}. ${excludeDesc}. File encoding: ${DEFAULT_ENCODING}. Separator: "${DEFAULT_OUTPUT_SEPARATOR_FORMAT.replace("{filePath}", "path/to/file.ext")}".`;
@@ -190130,7 +190463,7 @@ ${finalExclusionPatternsForDescription.slice(0, 2).join("`, `")}${finalExclusion
         const fileFilteringOptions = {
           respectGitIgnore: this.params.file_filtering_options?.respect_git_ignore ?? defaultFileIgnores.respectGitIgnore,
           // Use the property from the returned object
-          respectGeminiIgnore: this.params.file_filtering_options?.respect_gemini_ignore ?? defaultFileIgnores.respectGeminiIgnore
+          respectDeltaIgnore: this.params.file_filtering_options?.respect_gemini_ignore ?? defaultFileIgnores.respectDeltaIgnore
           // Use the property from the returned object
         };
         const fileDiscovery = this.config.getFileService();
@@ -190168,14 +190501,14 @@ No search paths or include patterns were specified. Nothing to read or concatena
           const entries = Array.from(allEntries);
           const gitFilteredEntries = fileFilteringOptions.respectGitIgnore ? fileDiscovery.filterFiles(entries.map((p) => path21.relative(this.config.getTargetDir(), p)), {
             respectGitIgnore: true,
-            respectGeminiIgnore: false
+            respectDeltaIgnore: false
           }).map((p) => path21.resolve(this.config.getTargetDir(), p)) : entries;
-          const finalFilteredEntries = fileFilteringOptions.respectGeminiIgnore ? fileDiscovery.filterFiles(gitFilteredEntries.map((p) => path21.relative(this.config.getTargetDir(), p)), {
+          const finalFilteredEntries = fileFilteringOptions.respectDeltaIgnore ? fileDiscovery.filterFiles(gitFilteredEntries.map((p) => path21.relative(this.config.getTargetDir(), p)), {
             respectGitIgnore: false,
-            respectGeminiIgnore: true
+            respectDeltaIgnore: true
           }).map((p) => path21.resolve(this.config.getTargetDir(), p)) : gitFilteredEntries;
           let gitIgnoredCount = 0;
-          let geminiIgnoredCount = 0;
+          let deltaIgnoredCount = 0;
           for (const absoluteFilePath of entries) {
             if (!this.config.getWorkspaceContext().isPathWithinWorkspace(absoluteFilePath)) {
               skippedFiles.push({
@@ -190188,8 +190521,8 @@ No search paths or include patterns were specified. Nothing to read or concatena
               gitIgnoredCount++;
               continue;
             }
-            if (fileFilteringOptions.respectGeminiIgnore && !finalFilteredEntries.includes(absoluteFilePath)) {
-              geminiIgnoredCount++;
+            if (fileFilteringOptions.respectDeltaIgnore && !finalFilteredEntries.includes(absoluteFilePath)) {
+              deltaIgnoredCount++;
               continue;
             }
             filesToConsider.add(absoluteFilePath);
@@ -190200,9 +190533,9 @@ No search paths or include patterns were specified. Nothing to read or concatena
               reason: "git ignored"
             });
           }
-          if (geminiIgnoredCount > 0) {
+          if (deltaIgnoredCount > 0) {
             skippedFiles.push({
-              path: `${geminiIgnoredCount} file(s)`,
+              path: `${deltaIgnoredCount} file(s)`,
               reason: "gemini ignored"
             });
           }
@@ -190400,7 +190733,7 @@ ${fileContentForLlm}
               default: true
             },
             file_filtering_options: {
-              description: "Whether to respect ignore patterns from .gitignore or .geminiignore",
+              description: "Whether to respect ignore patterns from .gitignore or .deltaignore",
               type: "object",
               properties: {
                 respect_git_ignore: {
@@ -190408,7 +190741,7 @@ ${fileContentForLlm}
                   type: "boolean"
                 },
                 respect_gemini_ignore: {
-                  description: "Optional: Whether to respect .geminiignore patterns when listing files. Defaults to true.",
+                  description: "Optional: Whether to respect .deltaignore patterns when listing files. Defaults to true.",
                   type: "boolean"
                 }
               }
@@ -190549,7 +190882,7 @@ async function ensureCorrectEdit(filePath, currentContent, originalParams, clien
     return cachedResult2;
   }
   let finalNewString = originalParams.new_string;
-  const newStringPotentiallyEscaped = unescapeStringForGeminiBug(originalParams.new_string) !== originalParams.new_string;
+  const newStringPotentiallyEscaped = unescapeStringForApiBug(originalParams.new_string) !== originalParams.new_string;
   const expectedReplacements = originalParams.expected_replacements ?? 1;
   let finalOldString = originalParams.old_string;
   let occurrences = countOccurrences(currentContent, finalOldString);
@@ -190582,7 +190915,7 @@ async function ensureCorrectEdit(filePath, currentContent, originalParams, clien
     editCorrectionCache.set(cacheKey, result2);
     return result2;
   } else {
-    const unescapedOldStringAttempt = unescapeStringForGeminiBug(originalParams.old_string);
+    const unescapedOldStringAttempt = unescapeStringForApiBug(originalParams.old_string);
     occurrences = countOccurrences(currentContent, unescapedOldStringAttempt);
     if (occurrences === expectedReplacements) {
       finalOldString = unescapedOldStringAttempt;
@@ -190621,7 +190954,7 @@ async function ensureCorrectEdit(filePath, currentContent, originalParams, clien
         finalOldString = llmCorrectedOldString;
         occurrences = llmOldOccurrences;
         if (newStringPotentiallyEscaped) {
-          const baseNewStringForLLMCorrection = unescapeStringForGeminiBug(originalParams.new_string);
+          const baseNewStringForLLMCorrection = unescapeStringForApiBug(originalParams.new_string);
           finalNewString = await correctNewString(
             client,
             originalParams.old_string,
@@ -190672,7 +191005,7 @@ async function ensureCorrectFileContent(content, client, abortSignal) {
   if (cachedResult2) {
     return cachedResult2;
   }
-  const contentPotentiallyEscaped = unescapeStringForGeminiBug(content) !== content;
+  const contentPotentiallyEscaped = unescapeStringForApiBug(content) !== content;
   if (!contentPotentiallyEscaped) {
     fileContentCorrectionCache.set(content, content);
     return content;
@@ -190681,7 +191014,7 @@ async function ensureCorrectFileContent(content, client, abortSignal) {
   fileContentCorrectionCache.set(content, correctedContent);
   return correctedContent;
 }
-async function correctOldStringMismatch(geminiClient, fileContent, problematicSnippet, abortSignal) {
+async function correctOldStringMismatch(deltaClient, fileContent, problematicSnippet, abortSignal) {
   const prompt = `
 Context: A process needs to find an exact literal, unique match for a specific text snippet within a file's content. The provided snippet failed to match exactly. This is most likely because it has been overly escaped.
 
@@ -190706,7 +191039,7 @@ Return ONLY the corrected target snippet in the specified JSON format with the k
 `.trim();
   const contents = [{ role: "user", parts: [{ text: prompt }] }];
   try {
-    const result = await geminiClient.generateJson(contents, OLD_STRING_CORRECTION_SCHEMA, abortSignal, EditModel, EditConfig);
+    const result = await deltaClient.generateJson(contents, OLD_STRING_CORRECTION_SCHEMA, abortSignal, EditModel, EditConfig);
     if (result && typeof result.corrected_target_snippet === "string" && result.corrected_target_snippet.length > 0) {
       return result.corrected_target_snippet;
     } else {
@@ -190720,7 +191053,7 @@ Return ONLY the corrected target snippet in the specified JSON format with the k
     return problematicSnippet;
   }
 }
-async function correctNewString(geminiClient, originalOldString, correctedOldString, originalNewString, abortSignal) {
+async function correctNewString(deltaClient, originalOldString, correctedOldString, originalNewString, abortSignal) {
   if (originalOldString === correctedOldString) {
     return originalNewString;
   }
@@ -190754,7 +191087,7 @@ Return ONLY the corrected string in the specified JSON format with the key 'corr
   `.trim();
   const contents = [{ role: "user", parts: [{ text: prompt }] }];
   try {
-    const result = await geminiClient.generateJson(contents, NEW_STRING_CORRECTION_SCHEMA, abortSignal, EditModel, EditConfig);
+    const result = await deltaClient.generateJson(contents, NEW_STRING_CORRECTION_SCHEMA, abortSignal, EditModel, EditConfig);
     if (result && typeof result.corrected_new_string === "string" && result.corrected_new_string.length > 0) {
       return result.corrected_new_string;
     } else {
@@ -190768,7 +191101,7 @@ Return ONLY the corrected string in the specified JSON format with the key 'corr
     return originalNewString;
   }
 }
-async function correctNewStringEscaping(geminiClient, oldString, potentiallyProblematicNewString, abortSignal) {
+async function correctNewStringEscaping(deltaClient, oldString, potentiallyProblematicNewString, abortSignal) {
   const prompt = `
 Context: A text replacement operation is planned. The text to be replaced (old_string) has been correctly identified in the file. However, the replacement text (new_string) might have been improperly escaped by a previous LLM generation (e.g. too many backslashes for newlines like \\n instead of 
 , or unnecessarily quotes like \\"Hello\\" instead of "Hello").
@@ -190794,7 +191127,7 @@ Return ONLY the corrected string in the specified JSON format with the key 'corr
   `.trim();
   const contents = [{ role: "user", parts: [{ text: prompt }] }];
   try {
-    const result = await geminiClient.generateJson(contents, CORRECT_NEW_STRING_ESCAPING_SCHEMA, abortSignal, EditModel, EditConfig);
+    const result = await deltaClient.generateJson(contents, CORRECT_NEW_STRING_ESCAPING_SCHEMA, abortSignal, EditModel, EditConfig);
     if (result && typeof result.corrected_new_string_escaping === "string" && result.corrected_new_string_escaping.length > 0) {
       return result.corrected_new_string_escaping;
     } else {
@@ -190860,7 +191193,7 @@ function trimPairIfPossible(target, trimIfTargetTrims, currentContent, expectedR
     pair: trimIfTargetTrims
   };
 }
-function unescapeStringForGeminiBug(inputString) {
+function unescapeStringForApiBug(inputString) {
   return inputString.replace(/\\+(n|t|r|'|"|`|\\|\n)/g, (match2, capturedChar) => {
     switch (capturedChar) {
       case "n":
@@ -191042,7 +191375,7 @@ var init_edit = __esm({
             type: ToolErrorType.FILE_NOT_FOUND
           };
         } else if (currentContent !== null) {
-          const correctedEdit = await ensureCorrectEdit(params.file_path, currentContent, params, this.config.getGeminiClient(), abortSignal);
+          const correctedEdit = await ensureCorrectEdit(params.file_path, currentContent, params, this.config.getDeltaClient(), abortSignal);
           finalOldString = correctedEdit.params.old_string;
           finalNewString = correctedEdit.params.new_string;
           occurrences = correctedEdit.occurrences;
@@ -191393,7 +191726,7 @@ var init_partUtils = __esm({
 });
 
 // packages/core/dist/src/utils/summarizer.js
-async function summarizeToolOutput(textToSummarize, geminiClient, abortSignal, maxOutputTokens = 2e3) {
+async function summarizeToolOutput(textToSummarize, deltaClient, abortSignal, maxOutputTokens = 2e3) {
   if (!textToSummarize || textToSummarize.length < maxOutputTokens) {
     return textToSummarize;
   }
@@ -191403,7 +191736,7 @@ async function summarizeToolOutput(textToSummarize, geminiClient, abortSignal, m
     maxOutputTokens
   };
   try {
-    const parsedResponse = await geminiClient.generateContent(contents, toolOutputSummarizerConfig, abortSignal, DEFAULT_GEMINI_FLASH_LITE_MODEL);
+    const parsedResponse = await deltaClient.generateContent(contents, toolOutputSummarizerConfig, abortSignal, DEFAULT_GEMINI_FLASH_LITE_MODEL);
     return getResponseText(parsedResponse) || textToSummarize;
   } catch (error) {
     console.error("Failed to summarize tool output.", error);
@@ -197754,7 +198087,7 @@ ${result.output}`;
           }
           const summarizeConfig = this.config.getSummarizeToolOutputConfig();
           if (summarizeConfig && summarizeConfig[ShellTool.Name]) {
-            const summary = await summarizeToolOutput(llmContent, this.config.getGeminiClient(), signal, summarizeConfig[ShellTool.Name].tokenBudget);
+            const summary = await summarizeToolOutput(llmContent, this.config.getDeltaClient(), signal, summarizeConfig[ShellTool.Name].tokenBudget);
             return {
               llmContent: summary,
               returnDisplay: returnDisplayMessage
@@ -223887,7 +224220,7 @@ var init_web_fetch = __esm({
             ]
           }).substring(0, MAX_CONTENT_LENGTH);
           console.debug(`[WebFetchTool] Converted HTML to text (${textContent2.length} characters)`);
-          const geminiClient = this.config.getGeminiClient();
+          const deltaClient = this.config.getDeltaClient();
           const fallbackPrompt = `The user requested the following: "${this.params.prompt}".
 
 I have fetched the content from ${this.params.url}. Please use the following content to answer the user's request.
@@ -223896,7 +224229,7 @@ I have fetched the content from ${this.params.url}. Please use the following con
 ${textContent2}
 ---`;
           console.debug(`[WebFetchTool] Processing content with prompt: "${this.params.prompt}"`);
-          const result = await geminiClient.generateContent([{ role: "user", parts: [{ text: fallbackPrompt }] }], {}, signal);
+          const result = await deltaClient.generateContent([{ role: "user", parts: [{ text: fallbackPrompt }] }], {}, signal);
           const resultText = getResponseText2(result) || "";
           console.debug(`[WebFetchTool] Successfully processed content from ${this.params.url}`);
           return {
@@ -224509,7 +224842,7 @@ async function readFullStructure(rootPath, options2) {
         const fileName = entry.name;
         const filePath = path25.join(currentPath, fileName);
         if (options2.fileService) {
-          const shouldIgnore = options2.fileFilteringOptions.respectGitIgnore && options2.fileService.shouldGitIgnoreFile(filePath) || options2.fileFilteringOptions.respectGeminiIgnore && options2.fileService.shouldGeminiIgnoreFile(filePath);
+          const shouldIgnore = options2.fileFilteringOptions.respectGitIgnore && options2.fileService.shouldGitIgnoreFile(filePath) || options2.fileFilteringOptions.respectDeltaIgnore && options2.fileService.shouldDeltaIgnoreFile(filePath);
           if (shouldIgnore) {
             continue;
           }
@@ -224533,7 +224866,7 @@ async function readFullStructure(rootPath, options2) {
         const subFolderPath = path25.join(currentPath, subFolderName);
         let isIgnored = false;
         if (options2.fileService) {
-          isIgnored = options2.fileFilteringOptions.respectGitIgnore && options2.fileService.shouldGitIgnoreFile(subFolderPath) || options2.fileFilteringOptions.respectGeminiIgnore && options2.fileService.shouldGeminiIgnoreFile(subFolderPath);
+          isIgnored = options2.fileFilteringOptions.respectGitIgnore && options2.fileService.shouldGitIgnoreFile(subFolderPath) || options2.fileFilteringOptions.respectDeltaIgnore && options2.fileService.shouldDeltaIgnoreFile(subFolderPath);
         }
         if (options2.ignoredFolders.has(subFolderName) || isIgnored) {
           const ignoredSubFolder = {
@@ -224730,7 +225063,7 @@ import os14 from "node:os";
 import path26 from "node:path";
 async function reportError2(error, baseMessage, context2, type = "general", reportingDir = os14.tmpdir()) {
   const timestamp = (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-");
-  const reportFileName = `gemini-client-error-${type}-${timestamp}.json`;
+  const reportFileName = `delta-client-error-${type}-${timestamp}.json`;
   const reportPath = path26.join(reportingDir, reportFileName);
   let errorToReport;
   if (error instanceof Error) {
@@ -224791,27 +225124,27 @@ var init_errorReporting = __esm({
 });
 
 // packages/core/dist/src/core/turn.js
-var GeminiEventType, Turn;
+var DeltaEventType, Turn;
 var init_turn = __esm({
   "packages/core/dist/src/core/turn.js"() {
     "use strict";
     init_generateContentResponseUtilities();
     init_errorReporting();
     init_errors();
-    (function(GeminiEventType2) {
-      GeminiEventType2["Content"] = "content";
-      GeminiEventType2["ToolCallRequest"] = "tool_call_request";
-      GeminiEventType2["ToolCallResponse"] = "tool_call_response";
-      GeminiEventType2["ToolCallConfirmation"] = "tool_call_confirmation";
-      GeminiEventType2["UserCancelled"] = "user_cancelled";
-      GeminiEventType2["Error"] = "error";
-      GeminiEventType2["ChatCompressed"] = "chat_compressed";
-      GeminiEventType2["Thought"] = "thought";
-      GeminiEventType2["MaxSessionTurns"] = "max_session_turns";
-      GeminiEventType2["SessionTokenLimitExceeded"] = "session_token_limit_exceeded";
-      GeminiEventType2["Finished"] = "finished";
-      GeminiEventType2["LoopDetected"] = "loop_detected";
-    })(GeminiEventType || (GeminiEventType = {}));
+    (function(DeltaEventType2) {
+      DeltaEventType2["Content"] = "content";
+      DeltaEventType2["ToolCallRequest"] = "tool_call_request";
+      DeltaEventType2["ToolCallResponse"] = "tool_call_response";
+      DeltaEventType2["ToolCallConfirmation"] = "tool_call_confirmation";
+      DeltaEventType2["UserCancelled"] = "user_cancelled";
+      DeltaEventType2["Error"] = "error";
+      DeltaEventType2["ChatCompressed"] = "chat_compressed";
+      DeltaEventType2["Thought"] = "thought";
+      DeltaEventType2["MaxSessionTurns"] = "max_session_turns";
+      DeltaEventType2["SessionTokenLimitExceeded"] = "session_token_limit_exceeded";
+      DeltaEventType2["Finished"] = "finished";
+      DeltaEventType2["LoopDetected"] = "loop_detected";
+    })(DeltaEventType || (DeltaEventType = {}));
     Turn = class {
       chat;
       prompt_id;
@@ -224836,7 +225169,7 @@ var init_turn = __esm({
           }, this.prompt_id);
           for await (const resp of responseStream) {
             if (signal?.aborted) {
-              yield { type: GeminiEventType.UserCancelled };
+              yield { type: DeltaEventType.UserCancelled };
               return;
             }
             this.debugResponses.push(resp);
@@ -224851,14 +225184,14 @@ var init_turn = __esm({
                 description
               };
               yield {
-                type: GeminiEventType.Thought,
+                type: DeltaEventType.Thought,
                 value: thought
               };
               continue;
             }
             const text = getResponseText2(resp);
             if (text) {
-              yield { type: GeminiEventType.Content, value: text };
+              yield { type: DeltaEventType.Content, value: text };
             }
             const functionCalls = resp.functionCalls ?? [];
             for (const fnCall of functionCalls) {
@@ -224871,7 +225204,7 @@ var init_turn = __esm({
             if (finishReason) {
               this.finishReason = finishReason;
               yield {
-                type: GeminiEventType.Finished,
+                type: DeltaEventType.Finished,
                 value: finishReason
               };
             }
@@ -224882,7 +225215,7 @@ var init_turn = __esm({
             throw error;
           }
           if (signal.aborted) {
-            yield { type: GeminiEventType.UserCancelled };
+            yield { type: DeltaEventType.UserCancelled };
             return;
           }
           const contextForReport = [...this.chat.getHistory(
@@ -224896,7 +225229,7 @@ var init_turn = __esm({
             status
           };
           await this.chat.maybeIncludeSchemaDepthContext(structuredError);
-          yield { type: GeminiEventType.Error, value: { error: structuredError } };
+          yield { type: DeltaEventType.Error, value: { error: structuredError } };
           return;
         }
       }
@@ -224912,7 +225245,7 @@ var init_turn = __esm({
           prompt_id: this.prompt_id
         };
         this.pendingToolCalls.push(toolCallRequest);
-        return { type: GeminiEventType.ToolCallRequest, value: toolCallRequest };
+        return { type: DeltaEventType.ToolCallRequest, value: toolCallRequest };
       }
       getDebugResponses() {
         return this.debugResponses;
@@ -224935,7 +225268,7 @@ function urlMatches(urlArray, targetUrl) {
 }
 function getCoreSystemPrompt(userMemory, config) {
   let systemMdEnabled = false;
-  let systemMdPath = path27.resolve(path27.join(GEMINI_CONFIG_DIR, "system.md"));
+  let systemMdPath = path27.resolve(path27.join(DELTA_CONFIG_DIR, "system.md"));
   const systemMdVar = process21.env.GEMINI_SYSTEM_MD;
   if (systemMdVar) {
     const systemMdVarLower = systemMdVar.toLowerCase();
@@ -225405,7 +225738,7 @@ var init_prompts = __esm({
 });
 
 // packages/core/dist/src/utils/nextSpeakerChecker.js
-async function checkNextSpeaker(chat, geminiClient, abortSignal) {
+async function checkNextSpeaker(chat, deltaClient, abortSignal) {
   const curatedHistory = chat.getHistory(
     /* curated */
     true
@@ -225440,7 +225773,7 @@ async function checkNextSpeaker(chat, geminiClient, abortSignal) {
     { role: "user", parts: [{ text: CHECK_PROMPT }] }
   ];
   try {
-    const parsedResponse = await geminiClient.generateJson(
+    const parsedResponse = await deltaClient.generateJson(
       contents,
       RESPONSE_SCHEMA,
       abortSignal,
@@ -225484,7 +225817,7 @@ var init_nextSpeakerChecker = __esm({
   }
 });
 
-// packages/core/dist/src/core/geminiChat.js
+// packages/core/dist/src/core/deltaChat.js
 function isValidResponse2(response) {
   if (response.candidates === void 0 || response.candidates.length === 0) {
     return false;
@@ -225552,9 +225885,9 @@ function isSchemaDepthError(errorMessage) {
 function isInvalidArgumentError(errorMessage) {
   return errorMessage.includes("Request contains an invalid argument");
 }
-var GeminiChat;
-var init_geminiChat = __esm({
-  "packages/core/dist/src/core/geminiChat.js"() {
+var DeltaChat;
+var init_deltaChat = __esm({
+  "packages/core/dist/src/core/deltaChat.js"() {
     "use strict";
     init_node();
     init_retry();
@@ -225562,7 +225895,7 @@ var init_geminiChat = __esm({
     init_contentGenerator();
     init_models();
     init_tools();
-    GeminiChat = class {
+    DeltaChat = class {
       config;
       contentGenerator;
       generationConfig;
@@ -226008,11 +226341,11 @@ var init_loopDetectionService = __esm({
           return true;
         }
         switch (event.type) {
-          case GeminiEventType.ToolCallRequest:
+          case DeltaEventType.ToolCallRequest:
             this.resetContentTracking();
             this.loopDetected = this.checkToolCallLoop(event.value);
             break;
-          case GeminiEventType.Content:
+          case DeltaEventType.Content:
             this.loopDetected = this.checkContentLoop(event.value);
             break;
           default:
@@ -226163,7 +226496,7 @@ var init_loopDetectionService = __esm({
         return originalChunk === currentChunk;
       }
       async checkForLoopWithLLM(signal) {
-        const recentHistory = this.config.getGeminiClient().getHistory().slice(-LLM_LOOP_CHECK_HISTORY_COUNT);
+        const recentHistory = this.config.getDeltaClient().getHistory().slice(-LLM_LOOP_CHECK_HISTORY_COUNT);
         const prompt = `You are a sophisticated AI diagnostic agent specializing in identifying when a conversational AI is stuck in an unproductive state. Your task is to analyze the provided conversation history and determine if the assistant has ceased to make meaningful progress.
 
 An unproductive state is characterized by one or more of the following patterns over the last 5 or more assistant turns:
@@ -226196,7 +226529,7 @@ Please analyze the conversation history to determine the possibility that the co
         };
         let result;
         try {
-          result = await this.config.getGeminiClient().generateJson(contents, schema, signal, DEFAULT_GEMINI_FLASH_MODEL);
+          result = await this.config.getDeltaClient().generateJson(contents, schema, signal, DEFAULT_GEMINI_FLASH_MODEL);
         } catch (e2) {
           this.config.getDebugMode() ? console.error(e2) : console.debug(e2);
           return false;
@@ -226266,7 +226599,7 @@ function findIndexAfterFraction(history, fraction) {
   }
   return contentLengths.length;
 }
-var import_undici2, GeminiClient;
+var import_undici2, DeltaClient;
 var init_client3 = __esm({
   "packages/core/dist/src/core/client.js"() {
     "use strict";
@@ -226275,7 +226608,7 @@ var init_client3 = __esm({
     init_prompts();
     init_nextSpeakerChecker();
     init_errorReporting();
-    init_geminiChat();
+    init_deltaChat();
     init_retry();
     init_errors();
     init_messageInspectors();
@@ -226288,7 +226621,7 @@ var init_client3 = __esm({
     init_ideContext();
     init_loggers();
     init_types2();
-    GeminiClient = class {
+    DeltaClient = class {
       config;
       chat;
       contentGenerator;
@@ -226412,7 +226745,7 @@ var init_client3 = __esm({
               includeThoughts: true
             }
           } : this.generateContentConfig;
-          return new GeminiChat(this.config, this.getContentGenerator(), {
+          return new DeltaChat(this.config, this.getContentGenerator(), {
             systemInstruction,
             ...generateContentConfigWithThinking,
             tools
@@ -226554,7 +226887,7 @@ var init_client3 = __esm({
         }
         this.sessionTurnCount++;
         if (this.config.getMaxSessionTurns() > 0 && this.sessionTurnCount > this.config.getMaxSessionTurns()) {
-          yield { type: GeminiEventType.MaxSessionTurns };
+          yield { type: DeltaEventType.MaxSessionTurns };
           return new Turn(this.getChat(), prompt_id);
         }
         const boundedTurns = Math.min(turns, this.MAX_TURNS);
@@ -226564,7 +226897,7 @@ var init_client3 = __esm({
         const initialModel = originalModel || this.config.getModel();
         const compressed = await this.tryCompressChat(prompt_id);
         if (compressed) {
-          yield { type: GeminiEventType.ChatCompressed, value: compressed };
+          yield { type: DeltaEventType.ChatCompressed, value: compressed };
         }
         const sessionTokenLimit = this.config.getSessionTokenLimit();
         if (sessionTokenLimit > 0) {
@@ -226585,7 +226918,7 @@ var init_client3 = __esm({
           });
           if (totalRequestTokens !== void 0 && totalRequestTokens > sessionTokenLimit) {
             yield {
-              type: GeminiEventType.SessionTokenLimitExceeded,
+              type: DeltaEventType.SessionTokenLimitExceeded,
               value: {
                 currentTokens: totalRequestTokens,
                 limit: sessionTokenLimit,
@@ -226612,13 +226945,13 @@ var init_client3 = __esm({
         const turn = new Turn(this.getChat(), prompt_id);
         const loopDetected = await this.loopDetector.turnStarted(signal);
         if (loopDetected) {
-          yield { type: GeminiEventType.LoopDetected };
+          yield { type: DeltaEventType.LoopDetected };
           return turn;
         }
         const resultStream = turn.run(request2, signal);
         for await (const event of resultStream) {
           if (this.loopDetector.addAndCheck(event)) {
-            yield { type: GeminiEventType.LoopDetected };
+            yield { type: DeltaEventType.LoopDetected };
             return turn;
           }
           yield event;
@@ -227384,16 +227717,16 @@ var init_gitIgnoreParser = __esm({
 
 // packages/core/dist/src/services/fileDiscoveryService.js
 import * as path29 from "path";
-var GEMINI_IGNORE_FILE_NAME, FileDiscoveryService;
+var DELTA_IGNORE_FILE_NAME, FileDiscoveryService;
 var init_fileDiscoveryService = __esm({
   "packages/core/dist/src/services/fileDiscoveryService.js"() {
     "use strict";
     init_gitIgnoreParser();
     init_gitUtils();
-    GEMINI_IGNORE_FILE_NAME = ".geminiignore";
+    DELTA_IGNORE_FILE_NAME = ".deltaignore";
     FileDiscoveryService = class {
       gitIgnoreFilter = null;
-      geminiIgnoreFilter = null;
+      deltaIgnoreFilter = null;
       projectRoot;
       constructor(projectRoot) {
         this.projectRoot = path29.resolve(projectRoot);
@@ -227407,23 +227740,23 @@ var init_fileDiscoveryService = __esm({
         }
         const gParser = new GitIgnoreParser(this.projectRoot);
         try {
-          gParser.loadPatterns(GEMINI_IGNORE_FILE_NAME);
+          gParser.loadPatterns(DELTA_IGNORE_FILE_NAME);
         } catch (_error) {
         }
-        this.geminiIgnoreFilter = gParser;
+        this.deltaIgnoreFilter = gParser;
       }
       /**
        * Filters a list of file paths based on git ignore rules
        */
       filterFiles(filePaths, options2 = {
         respectGitIgnore: true,
-        respectGeminiIgnore: true
+        respectDeltaIgnore: true
       }) {
         return filePaths.filter((filePath) => {
           if (options2.respectGitIgnore && this.shouldGitIgnoreFile(filePath)) {
             return false;
           }
-          if (options2.respectGeminiIgnore && this.shouldGeminiIgnoreFile(filePath)) {
+          if (options2.respectDeltaIgnore && this.shouldDeltaIgnoreFile(filePath)) {
             return false;
           }
           return true;
@@ -227439,11 +227772,11 @@ var init_fileDiscoveryService = __esm({
         return false;
       }
       /**
-       * Checks if a single file should be gemini-ignored
+       * Checks if a single file should be delta-ignored
        */
-      shouldGeminiIgnoreFile(filePath) {
-        if (this.geminiIgnoreFilter) {
-          return this.geminiIgnoreFilter.isIgnored(filePath);
+      shouldDeltaIgnoreFile(filePath) {
+        if (this.deltaIgnoreFilter) {
+          return this.deltaIgnoreFilter.isIgnored(filePath);
         }
         return false;
       }
@@ -227451,20 +227784,20 @@ var init_fileDiscoveryService = __esm({
        * Unified method to check if a file should be ignored based on filtering options
        */
       shouldIgnoreFile(filePath, options2 = {}) {
-        const { respectGitIgnore = true, respectGeminiIgnore = true } = options2;
+        const { respectGitIgnore = true, respectDeltaIgnore = true } = options2;
         if (respectGitIgnore && this.shouldGitIgnoreFile(filePath)) {
           return true;
         }
-        if (respectGeminiIgnore && this.shouldGeminiIgnoreFile(filePath)) {
+        if (respectDeltaIgnore && this.shouldDeltaIgnoreFile(filePath)) {
           return true;
         }
         return false;
       }
       /**
-       * Returns loaded patterns from .geminiignore
+       * Returns loaded patterns from .deltaignore
        */
-      getGeminiIgnorePatterns() {
-        return this.geminiIgnoreFilter?.getPatterns() ?? [];
+      getDeltaIgnorePatterns() {
+        return this.deltaIgnoreFilter?.getPatterns() ?? [];
       }
     };
   }
@@ -232037,7 +232370,7 @@ var init_gitService = __esm({
         const repoDir = this.getHistoryDir();
         const gitConfigPath = path30.join(repoDir, ".gitconfig");
         await fs30.mkdir(repoDir, { recursive: true });
-        const gitConfigContent = "[user]\n  name = Gemini CLI\n  email = gemini-cli@google.com\n[commit]\n  gpgsign = false\n";
+        const gitConfigContent = "[user]\n  name = Delta Code\n  email = delta-code@google.com\n[commit]\n  gpgsign = false\n";
         await fs30.writeFile(gitConfigPath, gitConfigContent);
         const repo = simpleGit(repoDir);
         const isRepoDefined = await repo.checkIsRepo(CheckRepoActions.IS_REPO_ROOT);
@@ -232305,11 +232638,11 @@ var init_config2 = __esm({
     })(ApprovalMode || (ApprovalMode = {}));
     DEFAULT_MEMORY_FILE_FILTERING_OPTIONS = {
       respectGitIgnore: false,
-      respectGeminiIgnore: true
+      respectDeltaIgnore: true
     };
     DEFAULT_FILE_FILTERING_OPTIONS = {
       respectGitIgnore: true,
-      respectGeminiIgnore: true
+      respectDeltaIgnore: true
     };
     MCPServerConfig = class {
       command;
@@ -232370,14 +232703,14 @@ var init_config2 = __esm({
       mcpServerCommand;
       mcpServers;
       userMemory;
-      geminiMdFileCount;
+      deltaMdFileCount;
       approvalMode;
       showMemoryUsage;
       accessibility;
       telemetrySettings;
       gitCoAuthor;
       usageStatisticsEnabled;
-      geminiClient;
+      deltaClient;
       fileFiltering;
       fileDiscoveryService = null;
       gitService = void 0;
@@ -232429,7 +232762,7 @@ var init_config2 = __esm({
         this.mcpServerCommand = params.mcpServerCommand;
         this.mcpServers = params.mcpServers;
         this.userMemory = params.userMemory ?? "";
-        this.geminiMdFileCount = params.geminiMdFileCount ?? 0;
+        this.deltaMdFileCount = params.deltaMdFileCount ?? 0;
         this.approvalMode = params.approvalMode ?? ApprovalMode.DEFAULT;
         this.showMemoryUsage = params.showMemoryUsage ?? false;
         this.accessibility = params.accessibility ?? {};
@@ -232448,7 +232781,7 @@ var init_config2 = __esm({
         this.usageStatisticsEnabled = params.usageStatisticsEnabled ?? true;
         this.fileFiltering = {
           respectGitIgnore: params.fileFiltering?.respectGitIgnore ?? true,
-          respectGeminiIgnore: params.fileFiltering?.respectGeminiIgnore ?? true,
+          respectDeltaIgnore: params.fileFiltering?.respectDeltaIgnore ?? true,
           enableRecursiveFileSearch: params.fileFiltering?.enableRecursiveFileSearch ?? true
         };
         this.checkpointing = params.checkpointing ?? false;
@@ -232481,7 +232814,7 @@ var init_config2 = __esm({
         this.trustedFolder = params.trustedFolder;
         this.tavilyApiKey = params.tavilyApiKey;
         if (params.contextFileName) {
-          setGeminiMdFilename(params.contextFileName);
+          setDeltaMdFilename(params.contextFileName);
         }
         if (this.telemetrySettings.enabled) {
           initializeTelemetry(this);
@@ -232509,17 +232842,17 @@ var init_config2 = __esm({
       }
       async refreshAuth(authMethod) {
         let existingHistory = [];
-        if (this.geminiClient && this.geminiClient.isInitialized()) {
-          existingHistory = this.geminiClient.getHistory();
+        if (this.deltaClient && this.deltaClient.isInitialized()) {
+          existingHistory = this.deltaClient.getHistory();
         }
         const newContentGeneratorConfig = createContentGeneratorConfig(this, authMethod);
-        const newGeminiClient = new GeminiClient(this);
-        await newGeminiClient.initialize(newContentGeneratorConfig);
+        const newDeltaClient = new DeltaClient(this);
+        await newDeltaClient.initialize(newContentGeneratorConfig);
         const fromGenaiToVertex = this.contentGeneratorConfig?.authType === AuthType3.USE_GEMINI && authMethod === AuthType3.LOGIN_WITH_GOOGLE;
         this.contentGeneratorConfig = newContentGeneratorConfig;
-        this.geminiClient = newGeminiClient;
+        this.deltaClient = newDeltaClient;
         if (existingHistory.length > 0) {
-          this.geminiClient.setHistory(existingHistory, {
+          this.deltaClient.setHistory(existingHistory, {
             stripThoughts: fromGenaiToVertex
           });
         }
@@ -232623,11 +232956,11 @@ var init_config2 = __esm({
       setUserMemory(newUserMemory) {
         this.userMemory = newUserMemory;
       }
-      getGeminiMdFileCount() {
-        return this.geminiMdFileCount;
+      getDeltaMdFileCount() {
+        return this.deltaMdFileCount;
       }
-      setGeminiMdFileCount(count) {
-        this.geminiMdFileCount = count;
+      setDeltaMdFileCount(count) {
+        this.deltaMdFileCount = count;
       }
       getApprovalMode() {
         return this.approvalMode;
@@ -232659,11 +232992,11 @@ var init_config2 = __esm({
       getGitCoAuthor() {
         return this.gitCoAuthor;
       }
-      getGeminiClient() {
-        return this.geminiClient;
+      getDeltaClient() {
+        return this.deltaClient;
       }
       getGeminiDir() {
-        return path32.join(this.targetDir, GEMINI_CONFIG_DIR);
+        return path32.join(this.targetDir, DELTA_CONFIG_DIR);
       }
       getProjectTempDir() {
         return getProjectTempDir(this.getProjectRoot());
@@ -232674,13 +233007,13 @@ var init_config2 = __esm({
       getFileFilteringRespectGitIgnore() {
         return this.fileFiltering.respectGitIgnore;
       }
-      getFileFilteringRespectGeminiIgnore() {
-        return this.fileFiltering.respectGeminiIgnore;
+      getFileFilteringRespectDeltaIgnore() {
+        return this.fileFiltering.respectDeltaIgnore;
       }
       getFileFilteringOptions() {
         return {
           respectGitIgnore: this.fileFiltering.respectGitIgnore,
-          respectGeminiIgnore: this.fileFiltering.respectGeminiIgnore
+          respectDeltaIgnore: this.fileFiltering.respectDeltaIgnore
         };
       }
       getCheckpointingEnabled() {
@@ -233073,12 +233406,12 @@ var init_logger = __esm({
   }
 });
 
-// packages/core/dist/src/core/geminiRequest.js
+// packages/core/dist/src/core/deltaRequest.js
 function partListUnionToString(value) {
   return partToString(value, { verbose: true });
 }
-var init_geminiRequest = __esm({
-  "packages/core/dist/src/core/geminiRequest.js"() {
+var init_deltaRequest = __esm({
+  "packages/core/dist/src/core/deltaRequest.js"() {
     "use strict";
     init_partUtils();
   }
@@ -233958,7 +234291,7 @@ async function bfsFileSearch(rootDir, options2) {
         const fullPath = path35.join(currentDir, entry.name);
         if (fileService?.shouldIgnoreFile(fullPath, {
           respectGitIgnore: options2.fileFilteringOptions?.respectGitIgnore,
-          respectGeminiIgnore: options2.fileFilteringOptions?.respectGeminiIgnore
+          respectDeltaIgnore: options2.fileFilteringOptions?.respectDeltaIgnore
         })) {
           continue;
         }
@@ -236397,48 +236730,48 @@ async function findProjectRoot2(startDir) {
     currentDir = parentDir;
   }
 }
-async function getGeminiMdFilePathsInternal(currentWorkingDirectory, includeDirectoriesToReadGemini, userHomePath, debugMode, fileService, extensionContextFilePaths = [], fileFilteringOptions, maxDirs) {
+async function getDeltaMdFilePathsInternal(currentWorkingDirectory, includeDirectoriesToReadGemini, userHomePath, debugMode, fileService, extensionContextFilePaths = [], fileFilteringOptions, maxDirs) {
   const dirs = /* @__PURE__ */ new Set([
     ...includeDirectoriesToReadGemini,
     currentWorkingDirectory
   ]);
   const paths = [];
   for (const dir of dirs) {
-    const pathsByDir = await getGeminiMdFilePathsInternalForEachDir(dir, userHomePath, debugMode, fileService, extensionContextFilePaths, fileFilteringOptions, maxDirs);
+    const pathsByDir = await getDeltaMdFilePathsInternalForEachDir(dir, userHomePath, debugMode, fileService, extensionContextFilePaths, fileFilteringOptions, maxDirs);
     paths.push(...pathsByDir);
   }
   return Array.from(new Set(paths));
 }
-async function getGeminiMdFilePathsInternalForEachDir(dir, userHomePath, debugMode, fileService, extensionContextFilePaths = [], fileFilteringOptions, maxDirs) {
+async function getDeltaMdFilePathsInternalForEachDir(dir, userHomePath, debugMode, fileService, extensionContextFilePaths = [], fileFilteringOptions, maxDirs) {
   const allPaths = /* @__PURE__ */ new Set();
-  const geminiMdFilenames = getAllGeminiMdFilenames();
-  for (const geminiMdFilename of geminiMdFilenames) {
+  const deltaMdFilenames = getAllDeltaMdFilenames();
+  for (const deltaMdFilename of deltaMdFilenames) {
     const resolvedHome = path37.resolve(userHomePath);
-    const globalMemoryPath = path37.join(resolvedHome, GEMINI_CONFIG_DIR, geminiMdFilename);
+    const globalMemoryPath = path37.join(resolvedHome, DELTA_CONFIG_DIR, deltaMdFilename);
     try {
       await fs36.access(globalMemoryPath, fsSync2.constants.R_OK);
       allPaths.add(globalMemoryPath);
       if (debugMode)
-        logger4.debug(`Found readable global ${geminiMdFilename}: ${globalMemoryPath}`);
+        logger4.debug(`Found readable global ${deltaMdFilename}: ${globalMemoryPath}`);
     } catch {
     }
     const resolvedDir = dir ? path37.resolve(dir) : resolvedHome;
     const isHomeDirectory = resolvedDir === resolvedHome;
     if (isHomeDirectory) {
-      const homeContextPath = path37.join(resolvedHome, geminiMdFilename);
+      const homeContextPath = path37.join(resolvedHome, deltaMdFilename);
       try {
         await fs36.access(homeContextPath, fsSync2.constants.R_OK);
         if (homeContextPath !== globalMemoryPath) {
           allPaths.add(homeContextPath);
           if (debugMode)
-            logger4.debug(`Found readable home ${geminiMdFilename}: ${homeContextPath}`);
+            logger4.debug(`Found readable home ${deltaMdFilename}: ${homeContextPath}`);
         }
       } catch {
       }
     } else if (dir) {
       const resolvedCwd = path37.resolve(dir);
       if (debugMode)
-        logger4.debug(`Searching for ${geminiMdFilename} starting from CWD: ${resolvedCwd}`);
+        logger4.debug(`Searching for ${deltaMdFilename} starting from CWD: ${resolvedCwd}`);
       const projectRoot = await findProjectRoot2(resolvedCwd);
       if (debugMode)
         logger4.debug(`Determined project root: ${projectRoot ?? "None"}`);
@@ -236446,10 +236779,10 @@ async function getGeminiMdFilePathsInternalForEachDir(dir, userHomePath, debugMo
       let currentDir = resolvedCwd;
       const ultimateStopDir = projectRoot ? path37.dirname(projectRoot) : path37.dirname(resolvedHome);
       while (currentDir && currentDir !== path37.dirname(currentDir)) {
-        if (currentDir === path37.join(resolvedHome, GEMINI_CONFIG_DIR)) {
+        if (currentDir === path37.join(resolvedHome, DELTA_CONFIG_DIR)) {
           break;
         }
-        const potentialPath = path37.join(currentDir, geminiMdFilename);
+        const potentialPath = path37.join(currentDir, deltaMdFilename);
         try {
           await fs36.access(potentialPath, fsSync2.constants.R_OK);
           if (potentialPath !== globalMemoryPath) {
@@ -236468,7 +236801,7 @@ async function getGeminiMdFilePathsInternalForEachDir(dir, userHomePath, debugMo
         ...fileFilteringOptions
       };
       const downwardPaths = await bfsFileSearch(resolvedCwd, {
-        fileName: geminiMdFilename,
+        fileName: deltaMdFilename,
         maxDirs,
         debug: debugMode,
         fileService,
@@ -236485,10 +236818,10 @@ async function getGeminiMdFilePathsInternalForEachDir(dir, userHomePath, debugMo
   }
   const finalPaths = Array.from(allPaths);
   if (debugMode)
-    logger4.debug(`Final ordered ${getAllGeminiMdFilenames()} paths to read: ${JSON.stringify(finalPaths)}`);
+    logger4.debug(`Final ordered ${getAllDeltaMdFilenames()} paths to read: ${JSON.stringify(finalPaths)}`);
   return finalPaths;
 }
-async function readGeminiMdFiles(filePaths, debugMode, importFormat = "tree") {
+async function readDeltaMdFiles(filePaths, debugMode, importFormat = "tree") {
   const results = [];
   for (const filePath of filePaths) {
     try {
@@ -236501,7 +236834,7 @@ async function readGeminiMdFiles(filePaths, debugMode, importFormat = "tree") {
       const isTestEnv = process.env.NODE_ENV === "test" || process.env.VITEST;
       if (!isTestEnv) {
         const message = error instanceof Error ? error.message : String(error);
-        logger4.warn(`Warning: Could not read ${getAllGeminiMdFilenames()} file at ${filePath}. Error: ${message}`);
+        logger4.warn(`Warning: Could not read ${getAllDeltaMdFilenames()} file at ${filePath}. Error: ${message}`);
       }
       results.push({ filePath, content: null });
       if (debugMode)
@@ -236526,13 +236859,13 @@ async function loadServerHierarchicalMemory(currentWorkingDirectory, includeDire
   if (debugMode)
     logger4.debug(`Loading server hierarchical memory for CWD: ${currentWorkingDirectory} (importFormat: ${importFormat})`);
   const userHomePath = homedir9();
-  const filePaths = await getGeminiMdFilePathsInternal(currentWorkingDirectory, includeDirectoriesToReadGemini, userHomePath, debugMode, fileService, extensionContextFilePaths, fileFilteringOptions || DEFAULT_MEMORY_FILE_FILTERING_OPTIONS, maxDirs);
+  const filePaths = await getDeltaMdFilePathsInternal(currentWorkingDirectory, includeDirectoriesToReadGemini, userHomePath, debugMode, fileService, extensionContextFilePaths, fileFilteringOptions || DEFAULT_MEMORY_FILE_FILTERING_OPTIONS, maxDirs);
   if (filePaths.length === 0) {
     if (debugMode)
       logger4.debug("No DELTA.md files found in hierarchy.");
     return { memoryContent: "", fileCount: 0 };
   }
-  const contentsWithPaths = await readGeminiMdFiles(filePaths, debugMode, importFormat);
+  const contentsWithPaths = await readDeltaMdFiles(filePaths, debugMode, importFormat);
   const combinedInstructions = concatenateInstructions(contentsWithPaths, currentWorkingDirectory);
   if (debugMode)
     logger4.debug(`Combined instructions length: ${combinedInstructions.length}`);
@@ -240112,7 +240445,7 @@ var init_fileSearch = __esm({
         return results;
       }
       /**
-       * Loads ignore rules from .gitignore and .geminiignore files, and applies
+       * Loads ignore rules from .gitignore and .deltaignore files, and applies
        * any additional ignore directories specified in the options.
        */
       loadIgnoreRules() {
@@ -240123,7 +240456,7 @@ var init_fileSearch = __esm({
           }
         }
         if (this.options.useGeminiignore) {
-          const geminiignorePath = path38.join(this.absoluteDir, ".geminiignore");
+          const geminiignorePath = path38.join(this.absoluteDir, ".deltaignore");
           if (fs37.existsSync(geminiignorePath)) {
             this.ignore.add(fs37.readFileSync(geminiignorePath, "utf8"));
           }
@@ -240190,9 +240523,9 @@ function getRateLimitMessage(authType, error, userTier, currentModel, fallbackMo
     case AuthType3.LOGIN_WITH_GOOGLE: {
       const isPaidTier = userTier === UserTierId.LEGACY || userTier === UserTierId.STANDARD;
       if (isProQuotaExceededError(error)) {
-        return isPaidTier ? getRateLimitErrorMessageGoogleProQuotaPaid(currentModel || DEFAULT_GEMINI_MODEL, fallbackModel) : getRateLimitErrorMessageGoogleProQuotaFree(currentModel || DEFAULT_GEMINI_MODEL, fallbackModel);
+        return isPaidTier ? getRateLimitErrorMessageGoogleProQuotaPaid(currentModel || DEFAULT_QWEN_MODEL, fallbackModel) : getRateLimitErrorMessageGoogleProQuotaFree(currentModel || DEFAULT_QWEN_MODEL, fallbackModel);
       } else if (isGenericQuotaExceededError(error)) {
-        return isPaidTier ? getRateLimitErrorMessageGoogleGenericQuotaPaid(currentModel || DEFAULT_GEMINI_MODEL) : getRateLimitErrorMessageGoogleGenericQuotaFree();
+        return isPaidTier ? getRateLimitErrorMessageGoogleGenericQuotaPaid(currentModel || DEFAULT_QWEN_MODEL) : getRateLimitErrorMessageGoogleGenericQuotaFree();
       } else {
         return isPaidTier ? getRateLimitErrorMessageGooglePaid(fallbackModel) : getRateLimitErrorMessageGoogleFree(fallbackModel);
       }
@@ -240252,16 +240585,16 @@ var init_errorParsing = __esm({
     init_contentGenerator();
     getRateLimitErrorMessageGoogleFree = (fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
 Possible quota limitations in place or slow response times detected. Switching to the ${fallbackModel} model for the rest of this session.`;
-    getRateLimitErrorMessageGoogleProQuotaFree = (currentModel = DEFAULT_GEMINI_MODEL, fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
+    getRateLimitErrorMessageGoogleProQuotaFree = (currentModel = DEFAULT_QWEN_MODEL, fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
 You have reached your daily ${currentModel} quota limit. You will be switched to the ${fallbackModel} model for the rest of this session. To increase your limits, upgrade to a Gemini Code Assist Standard or Enterprise plan with higher limits at https://goo.gle/set-up-gemini-code-assist, or use /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
     getRateLimitErrorMessageGoogleGenericQuotaFree = () => `
 You have reached your daily quota limit. To increase your limits, upgrade to a Gemini Code Assist Standard or Enterprise plan with higher limits at https://goo.gle/set-up-gemini-code-assist, or use /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
     getRateLimitErrorMessageGooglePaid = (fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
-Possible quota limitations in place or slow response times detected. Switching to the ${fallbackModel} model for the rest of this session. We appreciate you for choosing Gemini Code Assist and the Gemini CLI.`;
-    getRateLimitErrorMessageGoogleProQuotaPaid = (currentModel = DEFAULT_GEMINI_MODEL, fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
-You have reached your daily ${currentModel} quota limit. You will be switched to the ${fallbackModel} model for the rest of this session. We appreciate you for choosing Gemini Code Assist and the Gemini CLI. To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
-    getRateLimitErrorMessageGoogleGenericQuotaPaid = (currentModel = DEFAULT_GEMINI_MODEL) => `
-You have reached your daily quota limit. We appreciate you for choosing Gemini Code Assist and the Gemini CLI. To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
+Possible quota limitations in place or slow response times detected. Switching to the ${fallbackModel} model for the rest of this session. We appreciate you for choosing Gemini Code Assist and the Delta Code.`;
+    getRateLimitErrorMessageGoogleProQuotaPaid = (currentModel = DEFAULT_QWEN_MODEL, fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
+You have reached your daily ${currentModel} quota limit. You will be switched to the ${fallbackModel} model for the rest of this session. We appreciate you for choosing Gemini Code Assist and the Delta Code. To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
+    getRateLimitErrorMessageGoogleGenericQuotaPaid = (currentModel = DEFAULT_QWEN_MODEL) => `
+You have reached your daily quota limit. We appreciate you for choosing Gemini Code Assist and the Delta Code. To continue accessing the ${currentModel} model today, consider using /auth to switch to using a paid API key from AI Studio at https://aistudio.google.com/apikey`;
     RATE_LIMIT_ERROR_MESSAGE_USE_GEMINI = "\nPlease wait and try again later. To increase your limits, request a quota increase through AI Studio, or switch to another /auth method";
     RATE_LIMIT_ERROR_MESSAGE_VERTEX = "\nPlease wait and try again later. To increase your limits, request a quota increase through Vertex, or switch to another /auth method";
     getRateLimitErrorMessageDefault = (fallbackModel = DEFAULT_GEMINI_FLASH_MODEL) => `
@@ -240384,12 +240717,12 @@ var init_src = __esm({
     init_config2();
     init_client3();
     init_contentGenerator();
-    init_geminiChat();
+    init_deltaChat();
     init_logger();
     init_prompts();
     init_tokenLimits();
     init_turn();
-    init_geminiRequest();
+    init_deltaRequest();
     init_coreToolScheduler();
     init_nonInteractiveToolExecutor();
     init_codeAssist();
@@ -240500,12 +240833,16 @@ __export(dist_exports, {
   DEFAULT_FILE_FILTERING_OPTIONS: () => DEFAULT_FILE_FILTERING_OPTIONS,
   DEFAULT_GEMINI_EMBEDDING_MODEL: () => DEFAULT_GEMINI_EMBEDDING_MODEL,
   DEFAULT_GEMINI_FLASH_MODEL: () => DEFAULT_GEMINI_FLASH_MODEL,
-  DEFAULT_GEMINI_MODEL: () => DEFAULT_GEMINI_MODEL,
   DEFAULT_MEMORY_FILE_FILTERING_OPTIONS: () => DEFAULT_MEMORY_FILE_FILTERING_OPTIONS,
   DEFAULT_OTLP_ENDPOINT: () => DEFAULT_OTLP_ENDPOINT,
+  DEFAULT_QWEN_MODEL: () => DEFAULT_QWEN_MODEL,
   DEFAULT_TELEMETRY_TARGET: () => DEFAULT_TELEMETRY_TARGET,
   DEFAULT_TOKEN_LIMIT: () => DEFAULT_TOKEN_LIMIT,
+  DELTA_CONFIG_DIR: () => DELTA_CONFIG_DIR,
   DeclarativeTool: () => DeclarativeTool,
+  DeltaChat: () => DeltaChat,
+  DeltaClient: () => DeltaClient,
+  DeltaEventType: () => DeltaEventType,
   DeltaOAuth2Client: () => DeltaOAuth2Client,
   DeltaOAuth2Event: () => DeltaOAuth2Event,
   DetectedIde: () => DetectedIde,
@@ -240519,11 +240856,7 @@ __export(dist_exports, {
   FileSearch: () => FileSearch,
   FlashFallbackEvent: () => FlashFallbackEvent,
   ForbiddenError: () => ForbiddenError,
-  GEMINI_CONFIG_DIR: () => GEMINI_CONFIG_DIR,
   GOOGLE_ACCOUNTS_FILENAME: () => GOOGLE_ACCOUNTS_FILENAME,
-  GeminiChat: () => GeminiChat,
-  GeminiClient: () => GeminiClient,
-  GeminiEventType: () => GeminiEventType,
   GitIgnoreParser: () => GitIgnoreParser,
   GitService: () => GitService,
   GlobTool: () => GlobTool,
@@ -240613,7 +240946,7 @@ __export(dist_exports, {
   generateCodeVerifier: () => generateCodeVerifier,
   generatePKCEPair: () => generatePKCEPair,
   generateValidName: () => generateValidName,
-  getAllGeminiMdFilenames: () => getAllGeminiMdFilenames,
+  getAllDeltaMdFilenames: () => getAllDeltaMdFilenames,
   getAllMCPServerStatuses: () => getAllMCPServerStatuses,
   getAvailablePort: () => getAvailablePort,
   getCachedEncodingForBuffer: () => getCachedEncodingForBuffer,
@@ -240621,7 +240954,7 @@ __export(dist_exports, {
   getCommandRoots: () => getCommandRoots,
   getCompressionPrompt: () => getCompressionPrompt,
   getCoreSystemPrompt: () => getCoreSystemPrompt,
-  getCurrentGeminiMdFilename: () => getCurrentGeminiMdFilename,
+  getCurrentDeltaMdFilename: () => getCurrentDeltaMdFilename,
   getDeltaOAuthClient: () => getDeltaOAuthClient,
   getDiffCommand: () => getDiffCommand,
   getErrorMessage: () => getErrorMessage,
@@ -240690,7 +241023,7 @@ __export(dist_exports, {
   resetEncodingCache: () => resetEncodingCache,
   retryWithBackoff: () => retryWithBackoff,
   sessionId: () => sessionId,
-  setGeminiMdFilename: () => setGeminiMdFilename,
+  setDeltaMdFilename: () => setDeltaMdFilename,
   shortenPath: () => shortenPath,
   shouldAttemptBrowserLaunch: () => shouldAttemptBrowserLaunch,
   shutdownTelemetry: () => shutdownTelemetry,
@@ -240958,20 +241291,20 @@ var require_react_jsx_runtime_development = __commonJS({
       function validateChildKeys(node) {
         "object" === typeof node && null !== node && node.$$typeof === REACT_ELEMENT_TYPE && node._store && (node._store.validated = 1);
       }
-      var React37 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
+      var React38 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler");
       Symbol.for("react.provider");
-      var REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React37.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty2 = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+      var REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React38.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty2 = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
         return null;
       };
-      React37 = {
+      React38 = {
         "react-stack-bottom-frame": function(callStackForError) {
           return callStackForError();
         }
       };
       var specialPropKeyWarningShown;
       var didWarnAboutElementRef = {};
-      var unknownOwnerDebugStack = React37["react-stack-bottom-frame"].bind(
-        React37,
+      var unknownOwnerDebugStack = React38["react-stack-bottom-frame"].bind(
+        React38,
         UnknownOwner
       )();
       var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -267704,8 +268037,8 @@ var require_semver11 = __commonJS({
   }
 });
 
-// packages/cli/src/gemini.tsx
-var import_react86 = __toESM(require_react(), 1);
+// packages/cli/src/delta.tsx
+var import_react87 = __toESM(require_react(), 1);
 
 // node_modules/ink/build/render.js
 import { Stream } from "node:stream";
@@ -273994,7 +274327,7 @@ var measureElement = (node) => ({
 var measure_element_default = measureElement;
 
 // packages/cli/src/ui/App.tsx
-var import_react85 = __toESM(require_react(), 1);
+var import_react86 = __toESM(require_react(), 1);
 
 // packages/cli/src/ui/hooks/useTerminalSize.ts
 var import_react24 = __toESM(require_react(), 1);
@@ -274367,7 +274700,7 @@ var SDK_VERSION = "1.9.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var MAX_CHUNK_SIZE = 1024 * 1024 * 8;
 
-// packages/cli/src/ui/hooks/useGeminiStream.ts
+// packages/cli/src/ui/hooks/useDeltaStream.ts
 init_dist3();
 var import_react32 = __toESM(require_react(), 1);
 import { promises as fs41 } from "fs";
@@ -274699,16 +275032,16 @@ async function handleAtCommand({
     }
     const gitIgnored = respectFileIgnore.respectGitIgnore && fileDiscovery.shouldIgnoreFile(pathName, {
       respectGitIgnore: true,
-      respectGeminiIgnore: false
+      respectDeltaIgnore: false
     });
-    const geminiIgnored = respectFileIgnore.respectGeminiIgnore && fileDiscovery.shouldIgnoreFile(pathName, {
+    const deltaIgnored = respectFileIgnore.respectDeltaIgnore && fileDiscovery.shouldIgnoreFile(pathName, {
       respectGitIgnore: false,
-      respectGeminiIgnore: true
+      respectDeltaIgnore: true
     });
-    if (gitIgnored || geminiIgnored) {
-      const reason = gitIgnored && geminiIgnored ? "both" : gitIgnored ? "git" : "gemini";
+    if (gitIgnored || deltaIgnored) {
+      const reason = gitIgnored && deltaIgnored ? "both" : gitIgnored ? "git" : "gemini";
       ignoredByReason[reason].push(pathName);
-      const reasonText = reason === "both" ? "ignored by both git and gemini" : reason === "git" ? "git-ignored" : "gemini-ignored";
+      const reasonText = reason === "both" ? "ignored by both git and gemini" : reason === "git" ? "git-ignored" : "delta-ignored";
       onDebugMessage(`Path ${pathName} is ${reasonText} and will be skipped.`);
       continue;
     }
@@ -274848,7 +275181,7 @@ ${messages.join("\n")}`;
     paths: pathSpecsToRead,
     file_filtering_options: {
       respect_git_ignore: respectFileIgnore.respectGitIgnore,
-      respect_gemini_ignore: respectFileIgnore.respectGeminiIgnore
+      respect_gemini_ignore: respectFileIgnore.respectDeltaIgnore
     }
     // Use configuration setting
   };
@@ -274978,9 +275311,9 @@ import os19 from "os";
 import fs40 from "fs";
 var OUTPUT_UPDATE_INTERVAL_MS2 = 1e3;
 var MAX_OUTPUT_LENGTH = 1e4;
-function addShellCommandToGeminiHistory(geminiClient, rawQuery, resultText) {
+function addShellCommandToGeminiHistory(deltaClient, rawQuery, resultText) {
   const modelContent = resultText.length > MAX_OUTPUT_LENGTH ? resultText.substring(0, MAX_OUTPUT_LENGTH) + "\n... (truncated)" : resultText;
-  geminiClient.addHistory({
+  deltaClient.addHistory({
     role: "user",
     parts: [
       {
@@ -274997,7 +275330,7 @@ ${modelContent}
     ]
   });
 }
-var useShellCommandProcessor = (addItemToHistory, setPendingHistoryItem, onExec, onDebugMessage, config, geminiClient) => {
+var useShellCommandProcessor = (addItemToHistory, setPendingHistoryItem, onExec, onDebugMessage, config, deltaClient) => {
   const handleShellCommand = (0, import_react26.useCallback)(
     (rawQuery, abortSignal) => {
       if (typeof rawQuery !== "string" || rawQuery.trim() === "") {
@@ -275151,7 +275484,7 @@ ${finalOutput}`;
               userMessageTimestamp
             );
             addShellCommandToGeminiHistory(
-              geminiClient,
+              deltaClient,
               rawQuery,
               finalOutput
             );
@@ -275197,7 +275530,7 @@ ${finalOutput}`;
       addItemToHistory,
       setPendingHistoryItem,
       onExec,
-      geminiClient
+      deltaClient
     ]
   );
   return { handleShellCommand };
@@ -275737,7 +276070,7 @@ function useReactToolScheduler(onComplete, config, setPendingHistoryItem, getPre
           );
           const newTrackedCall = {
             ...coreTc,
-            responseSubmittedToGemini: existingTrackedCall?.responseSubmittedToGemini ?? false
+            responseSubmittedToDelta: existingTrackedCall?.responseSubmittedToDelta ?? false
           };
           return newTrackedCall;
         })
@@ -275774,7 +276107,7 @@ function useReactToolScheduler(onComplete, config, setPendingHistoryItem, getPre
     (callIdsToMark) => {
       setToolCallsForDisplay(
         (prevCalls) => prevCalls.map(
-          (tc) => callIdsToMark.includes(tc.request.callId) ? { ...tc, responseSubmittedToGemini: true } : tc
+          (tc) => callIdsToMark.includes(tc.request.callId) ? { ...tc, responseSubmittedToDelta: true } : tc
         )
       );
     },
@@ -275913,7 +276246,7 @@ var useStateAndRef = (initialValue) => {
   return [ref, setStateInternal];
 };
 
-// packages/cli/src/ui/hooks/useGeminiStream.ts
+// packages/cli/src/ui/hooks/useDeltaStream.ts
 function mergePartListUnions(list2) {
   const resultParts = [];
   for (const item of list2) {
@@ -275925,7 +276258,7 @@ function mergePartListUnions(list2) {
   }
   return resultParts;
 }
-var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, handleSlashCommand, shellModeActive, getPreferredEditor, onAuthError, performMemoryRefresh, modelSwitchedFromQuotaError, setModelSwitchedFromQuotaError, onEditorClose, onCancelSubmit) => {
+var useDeltaStream = (deltaClient, history, addItem, config, onDebugMessage, handleSlashCommand, shellModeActive, getPreferredEditor, onAuthError, performMemoryRefresh, modelSwitchedFromQuotaError, setModelSwitchedFromQuotaError, onEditorClose, onCancelSubmit) => {
   const [initError, setInitError] = (0, import_react32.useState)(null);
   const abortControllerRef = (0, import_react32.useRef)(null);
   const turnCancelledRef = (0, import_react32.useRef)(false);
@@ -275977,14 +276310,14 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
     onExec,
     onDebugMessage,
     config,
-    geminiClient
+    deltaClient
   );
   const streamingState = (0, import_react32.useMemo)(() => {
     if (toolCalls.some((tc) => tc.status === "awaiting_approval")) {
       return "waiting_for_confirmation" /* WaitingForConfirmation */;
     }
     if (isResponding || toolCalls.some(
-      (tc) => tc.status === "executing" || tc.status === "scheduled" || tc.status === "validating" || (tc.status === "success" || tc.status === "error" || tc.status === "cancelled") && !tc.responseSubmittedToGemini
+      (tc) => tc.status === "executing" || tc.status === "scheduled" || tc.status === "validating" || (tc.status === "success" || tc.status === "error" || tc.status === "cancelled") && !tc.responseSubmittedToDelta
     )) {
       return "responding" /* Responding */;
     }
@@ -276129,27 +276462,27 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
     ]
   );
   const handleContentEvent = (0, import_react32.useCallback)(
-    (eventValue, currentGeminiMessageBuffer, userMessageTimestamp) => {
+    (eventValue, currentDeltaMessageBuffer, userMessageTimestamp) => {
       if (turnCancelledRef.current) {
         return "";
       }
-      let newGeminiMessageBuffer = currentGeminiMessageBuffer + eventValue;
+      let newDeltaMessageBuffer = currentDeltaMessageBuffer + eventValue;
       if (pendingHistoryItemRef.current?.type !== "gemini" && pendingHistoryItemRef.current?.type !== "gemini_content") {
         if (pendingHistoryItemRef.current) {
           addItem(pendingHistoryItemRef.current, userMessageTimestamp);
         }
         setPendingHistoryItem({ type: "gemini", text: "" });
-        newGeminiMessageBuffer = eventValue;
+        newDeltaMessageBuffer = eventValue;
       }
-      const splitPoint = findLastSafeSplitPoint(newGeminiMessageBuffer);
-      if (splitPoint === newGeminiMessageBuffer.length) {
+      const splitPoint = findLastSafeSplitPoint(newDeltaMessageBuffer);
+      if (splitPoint === newDeltaMessageBuffer.length) {
         setPendingHistoryItem((item) => ({
           type: item?.type,
-          text: newGeminiMessageBuffer
+          text: newDeltaMessageBuffer
         }));
       } else {
-        const beforeText = newGeminiMessageBuffer.substring(0, splitPoint);
-        const afterText = newGeminiMessageBuffer.substring(splitPoint);
+        const beforeText = newDeltaMessageBuffer.substring(0, splitPoint);
+        const afterText = newDeltaMessageBuffer.substring(splitPoint);
         addItem(
           {
             type: pendingHistoryItemRef.current?.type,
@@ -276158,9 +276491,9 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
           userMessageTimestamp
         );
         setPendingHistoryItem({ type: "gemini_content", text: afterText });
-        newGeminiMessageBuffer = afterText;
+        newDeltaMessageBuffer = afterText;
       }
-      return newGeminiMessageBuffer;
+      return newDeltaMessageBuffer;
     },
     [addItem, pendingHistoryItemRef, setPendingHistoryItem]
   );
@@ -276297,44 +276630,44 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
       const toolCallRequests = [];
       for await (const event of stream2) {
         switch (event.type) {
-          case GeminiEventType.Thought:
+          case DeltaEventType.Thought:
             setThought(event.value);
             break;
-          case GeminiEventType.Content:
+          case DeltaEventType.Content:
             geminiMessageBuffer = handleContentEvent(
               event.value,
               geminiMessageBuffer,
               userMessageTimestamp
             );
             break;
-          case GeminiEventType.ToolCallRequest:
+          case DeltaEventType.ToolCallRequest:
             toolCallRequests.push(event.value);
             break;
-          case GeminiEventType.UserCancelled:
+          case DeltaEventType.UserCancelled:
             handleUserCancelledEvent(userMessageTimestamp);
             break;
-          case GeminiEventType.Error:
+          case DeltaEventType.Error:
             handleErrorEvent(event.value, userMessageTimestamp);
             break;
-          case GeminiEventType.ChatCompressed:
+          case DeltaEventType.ChatCompressed:
             handleChatCompressionEvent(event.value);
             break;
-          case GeminiEventType.ToolCallConfirmation:
-          case GeminiEventType.ToolCallResponse:
+          case DeltaEventType.ToolCallConfirmation:
+          case DeltaEventType.ToolCallResponse:
             break;
-          case GeminiEventType.MaxSessionTurns:
+          case DeltaEventType.MaxSessionTurns:
             handleMaxSessionTurnsEvent();
             break;
-          case GeminiEventType.SessionTokenLimitExceeded:
+          case DeltaEventType.SessionTokenLimitExceeded:
             handleSessionTokenLimitExceededEvent(event.value);
             break;
-          case GeminiEventType.Finished:
+          case DeltaEventType.Finished:
             handleFinishedEvent(
               event,
               userMessageTimestamp
             );
             break;
-          case GeminiEventType.LoopDetected:
+          case DeltaEventType.LoopDetected:
             loopDetectedRef.current = true;
             break;
           default: {
@@ -276395,7 +276728,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
       setIsResponding(true);
       setInitError(null);
       try {
-        const stream2 = geminiClient.sendMessageStream(
+        const stream2 = deltaClient.sendMessageStream(
           queryToSend,
           abortSignal,
           prompt_id
@@ -276449,7 +276782,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
       addItem,
       setPendingHistoryItem,
       setInitError,
-      geminiClient,
+      deltaClient,
       onAuthError,
       config,
       startNewPrompt,
@@ -276497,7 +276830,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
         (tc) => tc.status === "cancelled"
       );
       if (allToolsCancelled) {
-        if (geminiClient) {
+        if (deltaClient) {
           const responsesToAdd = geminiTools.flatMap(
             (toolCall) => toolCall.response.responseParts
           );
@@ -276511,7 +276844,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
               combinedParts.push(response);
             }
           }
-          geminiClient.addHistory({
+          deltaClient.addHistory({
             role: "user",
             parts: combinedParts
           });
@@ -276547,7 +276880,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
       isResponding,
       submitQuery,
       markToolsAsSubmitted,
-      geminiClient,
+      deltaClient,
       performMemoryRefresh,
       modelSwitchedFromQuotaError
     ]
@@ -276604,7 +276937,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
             const toolName = toolCall.request.name;
             const fileName = path42.basename(filePath);
             const toolCallWithSnapshotFileName = `${timestamp}-${fileName}-${toolName}.json`;
-            const clientHistory = await geminiClient?.getHistory();
+            const clientHistory = await deltaClient?.getHistory();
             const toolCallWithSnapshotFilePath = path42.join(
               checkpointDir,
               toolCallWithSnapshotFileName
@@ -276637,7 +276970,7 @@ var useGeminiStream = (geminiClient, history, addItem, config, onDebugMessage, h
       }
     };
     saveRestorableToolCalls();
-  }, [toolCalls, config, onDebugMessage, gitService, history, geminiClient]);
+  }, [toolCalls, config, onDebugMessage, gitService, history, deltaClient]);
   return {
     streamingState,
     submitQuery,
@@ -280124,7 +280457,7 @@ var useAuthCommand = (settings, setAuthError, config) => {
           console.log(
             `
 ----------------------------------------------------------------
-Logging in with Google... Please restart Gemini CLI to continue.
+Logging in with Google... Please restart Delta Code to continue.
 ----------------------------------------------------------------
             `
           );
@@ -280976,7 +281309,7 @@ init_open();
 import process29 from "node:process";
 
 // packages/cli/src/generated/git-commit.js
-var GIT_COMMIT_INFO = "b8a02908";
+var GIT_COMMIT_INFO = "89fbc9c8";
 
 // packages/cli/src/ui/commands/bugCommand.ts
 var bugCommand = {
@@ -281132,7 +281465,7 @@ var saveCommand = {
         };
       }
     }
-    const chat = await config?.getGeminiClient()?.getChat();
+    const chat = await config?.getDeltaClient()?.getChat();
     if (!chat) {
       return {
         type: "message",
@@ -281264,10 +281597,10 @@ var clearCommand = {
   description: "clear the screen and conversation history",
   kind: "built-in" /* BUILT_IN */,
   action: async (context2, _args) => {
-    const geminiClient = context2.services.config?.getGeminiClient();
-    if (geminiClient) {
+    const deltaClient = context2.services.config?.getDeltaClient();
+    if (deltaClient) {
       context2.ui.setDebugMessage("Clearing terminal and resetting chat.");
-      await geminiClient.resetChat();
+      await deltaClient.resetChat();
     } else {
       context2.ui.setDebugMessage("Clearing terminal.");
     }
@@ -281306,7 +281639,7 @@ var compressCommand = {
     try {
       ui2.setPendingItem(pendingMessage);
       const promptId = `compress-${Date.now()}`;
-      const compressed = await context2.services.config?.getGeminiClient()?.tryCompressChat(promptId, true);
+      const compressed = await context2.services.config?.getDeltaClient()?.tryCompressChat(promptId, true);
       if (compressed) {
         ui2.addItem(
           {
@@ -281348,7 +281681,7 @@ var copyCommand = {
   description: "Copy the last result or code snippet to clipboard",
   kind: "built-in" /* BUILT_IN */,
   action: async (context2, _args) => {
-    const chat = await context2.services.config?.getGeminiClient()?.getChat();
+    const chat = await context2.services.config?.getDeltaClient()?.getChat();
     const history = chat?.getHistory();
     const lastAiMessage = history ? history.filter((item) => item.role === "model").pop() : void 0;
     if (!lastAiMessage) {
@@ -281514,8 +281847,8 @@ var directoryCommand = {
                 context2.services.settings.merged.memoryDiscoveryMaxDirs
               );
               config.setUserMemory(memoryContent);
-              config.setGeminiMdFileCount(fileCount);
-              context2.ui.setGeminiMdFileCount(fileCount);
+              config.setDeltaMdFileCount(fileCount);
+              context2.ui.setDeltaMdFileCount(fileCount);
             }
             addItem(
               {
@@ -281530,7 +281863,7 @@ var directoryCommand = {
           }
         }
         if (added.length > 0) {
-          const gemini = config.getGeminiClient();
+          const gemini = config.getDeltaClient();
           if (gemini) {
             await gemini.addDirectoryContext();
           }
@@ -281663,8 +281996,8 @@ var USER_SETTINGS_DIR2 = path50.join(homedir13(), SETTINGS_DIRECTORY_NAME2);
 var USER_SETTINGS_PATH = path50.join(USER_SETTINGS_DIR2, "settings.json");
 var DEFAULT_EXCLUDED_ENV_VARS = ["DEBUG", "DEBUG_MODE"];
 function getSystemSettingsPath() {
-  if (process.env.GEMINI_CLI_SYSTEM_SETTINGS_PATH) {
-    return process.env.GEMINI_CLI_SYSTEM_SETTINGS_PATH;
+  if (process.env.DELTA_CLI_SYSTEM_SETTINGS_PATH) {
+    return process.env.DELTA_CLI_SYSTEM_SETTINGS_PATH;
   }
   if (platform6() === "darwin") {
     return "/Library/Application Support/DeltaCode/settings.json";
@@ -281783,7 +282116,7 @@ function resolveEnvVarsInObject(obj) {
 function findEnvFile(startDir) {
   let currentDir = path50.resolve(startDir);
   while (true) {
-    const geminiEnvPath = path50.join(currentDir, GEMINI_CONFIG_DIR, ".env");
+    const geminiEnvPath = path50.join(currentDir, DELTA_CONFIG_DIR, ".env");
     if (fs44.existsSync(geminiEnvPath)) {
       return geminiEnvPath;
     }
@@ -281793,7 +282126,7 @@ function findEnvFile(startDir) {
     }
     const parentDir = path50.dirname(currentDir);
     if (parentDir === currentDir || !parentDir) {
-      const homeGeminiEnvPath = path50.join(homedir13(), GEMINI_CONFIG_DIR, ".env");
+      const homeGeminiEnvPath = path50.join(homedir13(), DELTA_CONFIG_DIR, ".env");
       if (fs44.existsSync(homeGeminiEnvPath)) {
         return homeGeminiEnvPath;
       }
@@ -281846,7 +282179,7 @@ function loadEnvironment(settings) {
       const envFileContent = fs44.readFileSync(envFilePath, "utf-8");
       const parsedEnv = dotenv.parse(envFileContent);
       const excludedVars = resolvedSettings?.excludedProjectEnvVars || DEFAULT_EXCLUDED_ENV_VARS;
-      const isProjectEnvFile = !envFilePath.includes(GEMINI_CONFIG_DIR);
+      const isProjectEnvFile = !envFilePath.includes(DELTA_CONFIG_DIR);
       for (const key in parsedEnv) {
         if (Object.hasOwn(parsedEnv, key)) {
           if (isProjectEnvFile && excludedVars.includes(key)) {
@@ -282195,7 +282528,7 @@ var initCommand = {
       };
     }
     const targetDir = context2.services.config.getTargetDir();
-    const contextFileName = getCurrentGeminiMdFilename();
+    const contextFileName = getCurrentDeltaMdFilename();
     const contextFilePath = path52.join(targetDir, contextFileName);
     try {
       if (fs45.existsSync(contextFilePath)) {
@@ -282597,9 +282930,9 @@ Use /mcp auth <server-name> to authenticate.`
         );
         await toolRegistry.discoverToolsForServer(serverName);
       }
-      const geminiClient = config.getGeminiClient();
-      if (geminiClient) {
-        await geminiClient.setTools();
+      const deltaClient = config.getDeltaClient();
+      if (deltaClient) {
+        await deltaClient.setTools();
       }
       context2.ui.reloadCommands();
       return {
@@ -282667,9 +283000,9 @@ var refreshCommand = {
       Date.now()
     );
     await toolRegistry.discoverMcpTools();
-    const geminiClient = config.getGeminiClient();
-    if (geminiClient) {
-      await geminiClient.setTools();
+    const deltaClient = config.getDeltaClient();
+    if (deltaClient) {
+      await deltaClient.setTools();
     }
     context2.ui.reloadCommands();
     return getMcpStatus(context2, false, false, false);
@@ -282703,7 +283036,7 @@ var memoryCommand = {
       kind: "built-in" /* BUILT_IN */,
       action: async (context2) => {
         const memoryContent = context2.services.config?.getUserMemory() || "";
-        const fileCount = context2.services.config?.getGeminiMdFileCount() || 0;
+        const fileCount = context2.services.config?.getDeltaMdFileCount() || 0;
         const messageContent = memoryContent.length > 0 ? `Current memory content from ${fileCount} file(s):
 
 ---
@@ -282925,7 +283258,7 @@ ${globalMemoryContent}
               context2.services.settings.merged.memoryDiscoveryMaxDirs
             );
             config.setUserMemory(memoryContent);
-            config.setGeminiMdFileCount(fileCount);
+            config.setDeltaMdFileCount(fileCount);
             const successMessage = memoryContent.length > 0 ? `Memory refreshed successfully. Loaded ${memoryContent.length} characters from ${fileCount} file(s).` : "Memory refreshed successfully. No memory content found.";
             context2.ui.addItem(
               {
@@ -283056,7 +283389,7 @@ ${fileList}`
       loadHistory(toolCallData.history);
     }
     if (toolCallData.clientHistory) {
-      await config?.getGeminiClient()?.setHistory(toolCallData.clientHistory);
+      await config?.getDeltaClient()?.setHistory(toolCallData.clientHistory);
     }
     if (toolCallData.commitHash) {
       await gitService?.restoreProjectFromSnapshot(toolCallData.commitHash);
@@ -284277,7 +284610,7 @@ var McpPromptLoader = class {
 };
 
 // packages/cli/src/ui/hooks/slashCommandProcessor.ts
-var useSlashCommandProcessor = (config, settings, addItem, clearItems, loadHistory, refreshStatic, onDebugMessage, openThemeDialog, openAuthDialog, openEditorDialog, toggleCorgiMode, setQuittingMessages, openPrivacyNotice, openSettingsDialog, toggleVimEnabled, setIsProcessing, setGeminiMdFileCount) => {
+var useSlashCommandProcessor = (config, settings, addItem, clearItems, loadHistory, refreshStatic, onDebugMessage, openThemeDialog, openAuthDialog, openEditorDialog, toggleCorgiMode, setQuittingMessages, openPrivacyNotice, openSettingsDialog, toggleVimEnabled, setIsProcessing, setDeltaMdFileCount) => {
   const session = useSessionStats();
   const [commands, setCommands] = (0, import_react43.useState)([]);
   const [reloadTrigger, setReloadTrigger] = (0, import_react43.useState)(0);
@@ -284379,7 +284712,7 @@ var useSlashCommandProcessor = (config, settings, addItem, clearItems, loadHisto
         setPendingItem: setPendingCompressionItem,
         toggleCorgiMode,
         toggleVimEnabled,
-        setGeminiMdFileCount,
+        setDeltaMdFileCount,
         reloadCommands
       },
       session: {
@@ -284405,7 +284738,7 @@ var useSlashCommandProcessor = (config, settings, addItem, clearItems, loadHisto
       toggleCorgiMode,
       toggleVimEnabled,
       sessionShellAllowlist,
-      setGeminiMdFileCount,
+      setDeltaMdFileCount,
       reloadCommands
     ]
   );
@@ -284540,7 +284873,7 @@ var useSlashCommandProcessor = (config, settings, addItem, clearItems, loadHisto
                     }
                   }
                 case "load_history": {
-                  await config?.getGeminiClient()?.setHistory(result.clientHistory);
+                  await config?.getDeltaClient()?.setHistory(result.clientHistory);
                   fullCommandContext.ui.clear();
                   result.history.forEach((item, index) => {
                     fullCommandContext.ui.addItem(item, index);
@@ -284989,9 +285322,9 @@ function Spinner({ type = "dots" }) {
 }
 var build_default = Spinner;
 
-// packages/cli/src/ui/components/GeminiRespondingSpinner.tsx
+// packages/cli/src/ui/components/DeltaRespondingSpinner.tsx
 var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
-var GeminiRespondingSpinner = ({ nonRespondingDisplay, spinnerType = "dots" }) => {
+var DeltaRespondingSpinner = ({ nonRespondingDisplay, spinnerType = "dots" }) => {
   const streamingState = useStreamingContext();
   if (streamingState === "responding" /* Responding */) {
     return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(build_default, { type: spinnerType });
@@ -285032,7 +285365,7 @@ var LoadingIndicator = ({
         children: [
           /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Box_default, { children: [
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Box_default, { marginRight: 1, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-              GeminiRespondingSpinner,
+              DeltaRespondingSpinner,
               {
                 nonRespondingDisplay: streamingState === "waiting_for_confirmation" /* WaitingForConfirmation */ ? "\u280F" : ""
               }
@@ -287608,7 +287941,7 @@ function useAtCompletion(props) {
           projectRoot: cwd4,
           ignoreDirs: [],
           useGitignore: config?.getFileFilteringOptions()?.respectGitIgnore ?? true,
-          useGeminiignore: config?.getFileFilteringOptions()?.respectGeminiIgnore ?? true,
+          useGeminiignore: config?.getFileFilteringOptions()?.respectDeltaIgnore ?? true,
           cache: true,
           cacheTtl: 30,
           // 30 seconds
@@ -288173,7 +288506,7 @@ async function saveClipboardImage(targetDir) {
   }
   try {
     const baseDir = targetDir || process.cwd();
-    const tempDir = path59.join(baseDir, ".gemini-clipboard");
+    const tempDir = path59.join(baseDir, ".delta-clipboard");
     await fs53.mkdir(tempDir, { recursive: true });
     const timestamp = (/* @__PURE__ */ new Date()).getTime();
     const formats = [
@@ -288225,7 +288558,7 @@ async function saveClipboardImage(targetDir) {
 async function cleanupOldClipboardImages(targetDir) {
   try {
     const baseDir = targetDir || process.cwd();
-    const tempDir = path59.join(baseDir, ".gemini-clipboard");
+    const tempDir = path59.join(baseDir, ".delta-clipboard");
     const files = await fs53.readdir(tempDir);
     const oneHourAgo = Date.now() - 60 * 60 * 1e3;
     for (const file of files) {
@@ -303385,13 +303718,13 @@ var SETTINGS_SCHEMA = {
         description: "Respect .gitignore files when searching",
         showInDialog: true
       },
-      respectGeminiIgnore: {
+      respectDeltaIgnore: {
         type: "boolean",
-        label: "Respect .geminiignore",
+        label: "Respect .deltaignore",
         category: "File Filtering",
         requiresRestart: true,
         default: true,
-        description: "Respect .geminiignore files when searching",
+        description: "Respect .deltaignore files when searching",
         showInDialog: true
       },
       enableRecursiveFileSearch: {
@@ -304114,7 +304447,7 @@ def fibonacci(n):
 
 // packages/cli/src/ui/components/AuthDialog.tsx
 init_dist3();
-var import_react66 = __toESM(require_react(), 1);
+var import_react67 = __toESM(require_react(), 1);
 
 // packages/cli/src/config/auth.ts
 init_dist3();
@@ -304166,7 +304499,7 @@ var setOpenAIBaseUrl = (baseUrl) => {
 var setOpenAIModel = (model) => {
   process.env.OPENAI_MODEL = model;
 };
-var setGeminiApiKey = (apiKey) => {
+var setDeltaApiKey = (apiKey) => {
   process.env.GEMINI_API_KEY = apiKey;
 };
 var setAzureOpenAIConfig = (baseUrl, deploymentName, apiKey) => {
@@ -304181,26 +304514,138 @@ var setAwsBedrockConfig = (accessKeyId, secretAccessKey, region) => {
 };
 
 // packages/cli/src/ui/components/OpenAIKeyPrompt.tsx
+var import_react66 = __toESM(require_react(), 1);
+
+// packages/cli/src/ui/components/ClaudeModelSelector.tsx
 var import_react65 = __toESM(require_react(), 1);
 var import_jsx_runtime22 = __toESM(require_jsx_runtime(), 1);
+var CLAUDE_MODELS = [
+  {
+    id: "claude-opus-4-1-20250805",
+    name: "Claude Opus 4.1",
+    description: "Latest and most advanced Opus model (recommended)"
+  },
+  {
+    id: "claude-opus-4-20250514",
+    name: "Claude Opus 4",
+    description: "Most powerful Claude 4 model for complex tasks"
+  },
+  {
+    id: "claude-sonnet-4-20250514",
+    name: "Claude Sonnet 4",
+    description: "Balanced Claude 4 model with excellent performance"
+  },
+  {
+    id: "claude-3-7-sonnet-20250219",
+    name: "Claude Sonnet 3.7",
+    description: "Latest Claude 3.7 Sonnet model"
+  },
+  {
+    id: "claude-3-7-sonnet-latest",
+    name: "Claude Sonnet 3.7 (Latest)",
+    description: "Always points to the latest Claude 3.7 Sonnet version"
+  },
+  {
+    id: "claude-3-5-sonnet-20241022",
+    name: "Claude 3.5 Sonnet",
+    description: "Previous generation model, still very capable"
+  }
+];
+function ClaudeModelSelector({
+  onSelect,
+  onCancel,
+  defaultModelId = "claude-opus-4-1-20250805"
+}) {
+  const [selectedIndex, setSelectedIndex] = (0, import_react65.useState)(() => {
+    const defaultIndex = CLAUDE_MODELS.findIndex((m) => m.id === defaultModelId);
+    return defaultIndex >= 0 ? defaultIndex : 0;
+  });
+  use_input_default((input, key) => {
+    if (key.upArrow) {
+      setSelectedIndex((prev) => prev > 0 ? prev - 1 : CLAUDE_MODELS.length - 1);
+      return;
+    }
+    if (key.downArrow) {
+      setSelectedIndex((prev) => prev < CLAUDE_MODELS.length - 1 ? prev + 1 : 0);
+      return;
+    }
+    if (key.return) {
+      onSelect(CLAUDE_MODELS[selectedIndex]);
+      return;
+    }
+    if (key.escape) {
+      onCancel();
+      return;
+    }
+    const num = parseInt(input, 10);
+    if (!isNaN(num) && num >= 1 && num <= CLAUDE_MODELS.length) {
+      setSelectedIndex(num - 1);
+      return;
+    }
+  });
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+    Box_default,
+    {
+      borderStyle: "round",
+      borderColor: Colors.AccentBlue,
+      flexDirection: "column",
+      padding: 1,
+      width: "100%",
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: "Select Claude Model" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { color: Colors.Gray, children: "Choose the Claude model for your conversations:" }) }),
+        CLAUDE_MODELS.map((model, index) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Box_default, { marginBottom: 1, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { flexDirection: "row", alignItems: "center", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Text, { color: index === selectedIndex ? Colors.AccentBlue : Colors.Foreground, children: [
+            index === selectedIndex ? "\u25B6 " : "  ",
+            index + 1,
+            ". ",
+            model.name
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { marginLeft: 4, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { color: Colors.Gray, dimColor: index !== selectedIndex, children: model.description }) })
+        ] }, model.id)),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Text, { color: Colors.Gray, children: [
+          "Use \u2191\u2193 to navigate, Enter to select, Esc to cancel, or press 1-",
+          CLAUDE_MODELS.length,
+          " for quick selection"
+        ] }) })
+      ]
+    }
+  );
+}
+
+// packages/cli/src/ui/components/OpenAIKeyPrompt.tsx
+var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
 function OpenAIKeyPrompt({
   onSubmit,
   onCancel,
   mode = "openai"
 }) {
-  const [apiKey, setApiKey] = (0, import_react65.useState)("");
-  const [baseUrl, setBaseUrl] = (0, import_react65.useState)(() => {
+  const [apiKey, setApiKey] = (0, import_react66.useState)("");
+  const [baseUrl, setBaseUrl] = (0, import_react66.useState)(() => {
     if (mode === "azure") return "https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-08-01-preview";
     if (mode === "claude") return "https://api.anthropic.com/v1/messages";
     return "";
   });
-  const [model, setModel] = (0, import_react65.useState)(() => {
+  const [model, setModel] = (0, import_react66.useState)(() => {
     if (mode === "azure") return "{deployment-name}";
     if (mode === "bedrock") return "us-east-1";
-    if (mode === "claude") return "claude-3-sonnet";
+    if (mode === "claude") return "claude-opus-4-1-20250805";
     return "";
   });
-  const [currentField, setCurrentField] = (0, import_react65.useState)("apiKey");
+  const [currentField, setCurrentField] = (0, import_react66.useState)("apiKey");
+  const [showModelSelector, setShowModelSelector] = (0, import_react66.useState)(false);
+  const handleModelSelect = (selectedModel) => {
+    setModel(selectedModel.id);
+    setShowModelSelector(false);
+    if (apiKey.trim()) {
+      onSubmit(apiKey.trim(), baseUrl.trim(), selectedModel.id);
+    } else {
+      setCurrentField("apiKey");
+    }
+  };
+  const handleModelSelectorCancel = () => {
+    setShowModelSelector(false);
+  };
   use_input_default((input, key) => {
     let cleanInput = (input || "").replace(/\u001b\[[0-9;]*[a-zA-Z]/g, "").replace(/\[200~/g, "").replace(/\[201~/g, "").replace(/^\[|~$/g, "");
     cleanInput = cleanInput.split("").filter((ch) => ch.charCodeAt(0) >= 32).join("");
@@ -304222,10 +304667,14 @@ function OpenAIKeyPrompt({
         setCurrentField("model");
         return;
       } else if (currentField === "model") {
-        if (apiKey.trim()) {
-          onSubmit(apiKey.trim(), baseUrl.trim(), model.trim());
+        if (mode === "claude") {
+          setShowModelSelector(true);
         } else {
-          setCurrentField("apiKey");
+          if (apiKey.trim()) {
+            onSubmit(apiKey.trim(), baseUrl.trim(), model.trim());
+          } else {
+            setCurrentField("apiKey");
+          }
         }
       }
       return;
@@ -304271,7 +304720,17 @@ function OpenAIKeyPrompt({
       return;
     }
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+  if (showModelSelector && mode === "claude") {
+    return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+      ClaudeModelSelector,
+      {
+        onSelect: handleModelSelect,
+        onCancel: handleModelSelectorCancel,
+        defaultModelId: model
+      }
+    );
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -304280,73 +304739,74 @@ function OpenAIKeyPrompt({
       padding: 1,
       width: "100%",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: mode === "google" ? "Google (Gemini API Key) Configuration" : mode === "azure" ? "Azure OpenAI Configuration" : mode === "bedrock" ? "AWS Bedrock (Claude) Configuration" : mode === "claude" ? "Anthropic Claude Configuration" : "OpenAI Configuration Required" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { children: mode === "google" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(import_jsx_runtime22.Fragment, { children: "Enter your Google AI Studio API key (GEMINI_API_KEY)." }) : mode === "azure" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(import_jsx_runtime22.Fragment, { children: "Enter Azure OpenAI details: API Key, full base URL, and deployment name." }) : mode === "bedrock" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(import_jsx_runtime22.Fragment, { children: "Enter AWS Bedrock credentials: Access Key ID (API Key), Secret (Base URL field), and Region (Model field)." }) : mode === "claude" ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: mode === "google" ? "Google (Gemini API Key) Configuration" : mode === "azure" ? "Azure OpenAI Configuration" : mode === "bedrock" ? "AWS Bedrock (Claude) Configuration" : mode === "claude" ? "Anthropic Claude Configuration" : "OpenAI Configuration Required" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { children: mode === "google" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(import_jsx_runtime23.Fragment, { children: "Enter your Google AI Studio API key (GEMINI_API_KEY)." }) : mode === "azure" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(import_jsx_runtime23.Fragment, { children: "Enter Azure OpenAI details: API Key, full base URL, and deployment name." }) : mode === "bedrock" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(import_jsx_runtime23.Fragment, { children: "Enter AWS Bedrock credentials: Access Key ID (API Key), Secret (Base URL field), and Region (Model field)." }) : mode === "claude" ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
           "Enter your Anthropic Claude API key. You can get one from",
           " ",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { color: Colors.AccentBlue, children: "https://console.anthropic.com/" })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.AccentBlue, children: "https://console.anthropic.com/" })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
           "Please enter your OpenAI configuration. You can get an API key from",
           " ",
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { color: Colors.AccentBlue, children: "https://platform.openai.com/api-keys" })
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.AccentBlue, children: "https://platform.openai.com/api-keys" })
         ] }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Box_default, { marginTop: 1, flexDirection: "row", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { width: 12, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Box_default, { marginTop: 1, flexDirection: "row", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { width: 12, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
             Text,
             {
               color: currentField === "apiKey" ? Colors.AccentBlue : Colors.Gray,
               children: "API Key:"
             }
           ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Text, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Text, { children: [
             currentField === "apiKey" ? "> " : "  ",
             apiKey || " "
           ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Box_default, { marginTop: 1, flexDirection: "row", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { width: 12, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Box_default, { marginTop: 1, flexDirection: "row", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { width: 12, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
             Text,
             {
               color: currentField === "baseUrl" ? Colors.AccentBlue : Colors.Gray,
               children: "Base URL:"
             }
           ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Text, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Text, { children: [
             currentField === "baseUrl" ? "> " : "  ",
             baseUrl
           ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Box_default, { marginTop: 1, flexDirection: "row", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { width: 12, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Box_default, { marginTop: 1, flexDirection: "row", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { width: 12, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
             Text,
             {
               color: currentField === "model" ? Colors.AccentBlue : Colors.Gray,
               children: "Model:"
             }
           ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(Text, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(Text, { children: [
             currentField === "model" ? "> " : "  ",
-            model
+            mode === "claude" ? CLAUDE_MODELS.find((m) => m.id === model)?.name || model : model,
+            mode === "claude" && currentField === "model" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.Gray, children: " (Press Enter to select)" })
           ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Text, { color: Colors.Gray, children: "Press Enter to continue, Tab/\u2191\u2193 to navigate, Esc to cancel" }) })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.Gray, children: "Press Enter to continue, Tab/\u2191\u2193 to navigate, Esc to cancel" }) })
       ]
     }
   );
 }
 
 // packages/cli/src/ui/components/AuthDialog.tsx
-var import_jsx_runtime23 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
 function AuthDialog({
   onSelect,
   settings,
   initialErrorMessage
 }) {
-  const [errorMessage, setErrorMessage] = (0, import_react66.useState)(
+  const [errorMessage, setErrorMessage] = (0, import_react67.useState)(
     initialErrorMessage || null
   );
-  const [showOpenAIKeyPrompt, setShowOpenAIKeyPrompt] = (0, import_react66.useState)(false);
-  const [providerMode, setProviderMode] = (0, import_react66.useState)("openai");
+  const [showOpenAIKeyPrompt, setShowOpenAIKeyPrompt] = (0, import_react67.useState)(false);
+  const [providerMode, setProviderMode] = (0, import_react67.useState)("openai");
   const items = [
     { label: "Choose your Path - OpenAI", value: { provider: "openai", authType: AuthType3.USE_OPENAI } },
     { label: "Choose your Path - Google (Gemini API key)", value: { provider: "google", authType: AuthType3.USE_GEMINI } },
@@ -304373,7 +304833,7 @@ function AuthDialog({
   };
   const handleOpenAIKeySubmit = (apiKey, baseUrl, model) => {
     if (providerMode === "google") {
-      setGeminiApiKey(apiKey);
+      setDeltaApiKey(apiKey);
       setShowOpenAIKeyPrompt(false);
       onSelect(AuthType3.USE_GEMINI, "User" /* User */);
       return;
@@ -304432,7 +304892,7 @@ function AuthDialog({
     { isActive: true }
   );
   if (showOpenAIKeyPrompt) {
-    return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
       OpenAIKeyPrompt,
       {
         mode: providerMode,
@@ -304441,7 +304901,7 @@ function AuthDialog({
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -304450,9 +304910,9 @@ function AuthDialog({
       padding: 1,
       width: "100%",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { bold: true, children: "Get started" }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { children: "How would you like to authenticate for this project?" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { bold: true, children: "Get started" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { children: "How would you like to authenticate for this project?" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
           RadioButtonSelect,
           {
             items,
@@ -304461,22 +304921,22 @@ function AuthDialog({
             isFocused: true
           }
         ) }),
-        errorMessage && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.AccentRed, children: errorMessage }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.AccentPurple, children: "(Use Enter to Set Auth)" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { children: "Terms of Services and Privacy Notice for Delta Code" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Text, { color: Colors.AccentBlue, children: "https://github.com/DeltaLM/Delta3-Coder/blob/main/README.md" }) })
+        errorMessage && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { color: Colors.AccentRed, children: errorMessage }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { color: Colors.AccentPurple, children: "(Use Enter to Set Auth)" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { children: "Terms of Services and Privacy Notice for Delta Code" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { color: Colors.AccentBlue, children: "https://github.com/DeltaLM/Delta3-Coder/blob/main/README.md" }) })
       ]
     }
   );
 }
 
 // packages/cli/src/ui/components/AuthInProgress.tsx
-var import_react67 = __toESM(require_react(), 1);
-var import_jsx_runtime24 = __toESM(require_jsx_runtime(), 1);
+var import_react68 = __toESM(require_react(), 1);
+var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
 function AuthInProgress({
   onTimeout
 }) {
-  const [timedOut, setTimedOut] = (0, import_react67.useState)(false);
+  const [timedOut, setTimedOut] = (0, import_react68.useState)(false);
   useKeypress(
     (key) => {
       if (key.name === "escape" || key.ctrl && key.name === "c") {
@@ -304485,14 +304945,14 @@ function AuthInProgress({
     },
     { isActive: true }
   );
-  (0, import_react67.useEffect)(() => {
+  (0, import_react68.useEffect)(() => {
     const timer = setTimeout(() => {
       setTimedOut(true);
       onTimeout();
     }, 18e4);
     return () => clearTimeout(timer);
   }, [onTimeout]);
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
     Box_default,
     {
       borderStyle: "round",
@@ -304500,8 +304960,8 @@ function AuthInProgress({
       flexDirection: "column",
       padding: 1,
       width: "100%",
-      children: timedOut ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Text, { color: Colors.AccentRed, children: "Authentication timed out. Please try again." }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Text, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(build_default, { type: "dots" }),
+      children: timedOut ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { color: Colors.AccentRed, children: "Authentication timed out. Please try again." }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Text, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(build_default, { type: "dots" }),
         " Waiting for auth... (Press ESC or CTRL+C to cancel)"
       ] }) })
     }
@@ -304509,10 +304969,10 @@ function AuthInProgress({
 }
 
 // packages/cli/src/ui/components/QwenOAuthProgress.tsx
-var import_react69 = __toESM(require_react(), 1);
+var import_react70 = __toESM(require_react(), 1);
 
 // node_modules/ink-link/dist/index.js
-var import_react68 = __toESM(require_react(), 1);
+var import_react69 = __toESM(require_react(), 1);
 var import_prop_types2 = __toESM(require_prop_types(), 1);
 
 // node_modules/terminal-link/node_modules/ansi-escapes/index.js
@@ -304655,10 +305115,10 @@ terminalLink.stderr.isSupported = import_supports_hyperlinks.default.stderr;
 // node_modules/ink-link/dist/index.js
 var Link = ({ children, url: url2, fallback = true }) => (
   // eslint-disable-line react/function-component-definition
-  import_react68.default.createElement(
+  import_react69.default.createElement(
     Transform,
     { transform: (children2) => terminalLink(children2, url2, { fallback }) },
-    import_react68.default.createElement(Text, null, children)
+    import_react69.default.createElement(Text, null, children)
   )
 );
 Link.propTypes = {
@@ -304674,7 +305134,7 @@ var dist_default5 = Link;
 
 // packages/cli/src/ui/components/QwenOAuthProgress.tsx
 var import_qrcode_terminal = __toESM(require_main2(), 1);
-var import_jsx_runtime25 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
 function QrCodeDisplay({
   verificationUrl,
   qrCodeData
@@ -304682,7 +305142,7 @@ function QrCodeDisplay({
   if (!qrCodeData) {
     return null;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -304691,11 +305151,11 @@ function QrCodeDisplay({
       padding: 1,
       width: "100%",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: "Delta OAuth Authentication" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { children: "Please visit this URL to authorize:" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(dist_default5, { url: verificationUrl, fallback: false, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { color: Colors.AccentGreen, bold: true, children: verificationUrl }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { children: "Or scan the QR code below:" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { children: qrCodeData }) })
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: "Delta OAuth Authentication" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { children: "Please visit this URL to authorize:" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(dist_default5, { url: verificationUrl, fallback: false, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.AccentGreen, bold: true, children: verificationUrl }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { children: "Or scan the QR code below:" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { children: qrCodeData }) })
       ]
     }
   );
@@ -304709,7 +305169,7 @@ function StatusDisplay({
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -304718,17 +305178,17 @@ function StatusDisplay({
       padding: 1,
       width: "100%",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Text, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(build_default, { type: "dots" }),
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(build_default, { type: "dots" }),
           " Waiting for authorization",
           dots
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Box_default, { marginTop: 1, justifyContent: "space-between", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Text, { color: Colors.Gray, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { marginTop: 1, justifyContent: "space-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { color: Colors.Gray, children: [
             "Time remaining: ",
             formatTime(timeRemaining)
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { color: Colors.AccentPurple, children: "(Press ESC to cancel)" })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.AccentPurple, children: "(Press ESC to cancel)" })
         ] })
       ]
     }
@@ -304742,9 +305202,9 @@ function DeltaOAuthProgress({
   authMessage
 }) {
   const defaultTimeout = deviceAuth?.expires_in || 300;
-  const [timeRemaining, setTimeRemaining] = (0, import_react69.useState)(defaultTimeout);
-  const [dots, setDots] = (0, import_react69.useState)("");
-  const [qrCodeData, setQrCodeData] = (0, import_react69.useState)(null);
+  const [timeRemaining, setTimeRemaining] = (0, import_react70.useState)(defaultTimeout);
+  const [dots, setDots] = (0, import_react70.useState)("");
+  const [qrCodeData, setQrCodeData] = (0, import_react70.useState)(null);
   use_input_default((input, key) => {
     if (authStatus === "timeout") {
       onCancel();
@@ -304752,7 +305212,7 @@ function DeltaOAuthProgress({
       onCancel();
     }
   });
-  (0, import_react69.useEffect)(() => {
+  (0, import_react70.useEffect)(() => {
     if (!deviceAuth?.verification_uri_complete) {
       return;
     }
@@ -304772,7 +305232,7 @@ function DeltaOAuthProgress({
     };
     generateQR();
   }, [deviceAuth?.verification_uri_complete]);
-  (0, import_react69.useEffect)(() => {
+  (0, import_react70.useEffect)(() => {
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
@@ -304784,7 +305244,7 @@ function DeltaOAuthProgress({
     }, 1e3);
     return () => clearInterval(timer);
   }, [onTimeout]);
-  (0, import_react69.useEffect)(() => {
+  (0, import_react70.useEffect)(() => {
     const dotsTimer = setInterval(() => {
       setDots((prev) => {
         if (prev.length >= 3) return "";
@@ -304793,9 +305253,9 @@ function DeltaOAuthProgress({
     }, 500);
     return () => clearInterval(dotsTimer);
   }, []);
-  const qrCodeDisplay = (0, import_react69.useMemo)(() => {
+  const qrCodeDisplay = (0, import_react70.useMemo)(() => {
     if (!deviceAuth?.verification_uri_complete) return null;
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
       QrCodeDisplay,
       {
         verificationUrl: deviceAuth.verification_uri_complete,
@@ -304804,7 +305264,7 @@ function DeltaOAuthProgress({
     );
   }, [deviceAuth?.verification_uri_complete, qrCodeData]);
   if (authStatus === "timeout") {
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
       Box_default,
       {
         borderStyle: "round",
@@ -304813,15 +305273,15 @@ function DeltaOAuthProgress({
         padding: 1,
         width: "100%",
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { bold: true, color: Colors.AccentRed, children: "Delta OAuth Authentication Timeout" }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { children: authMessage || `OAuth token expired (over ${defaultTimeout} seconds). Please select authentication method again.` }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { color: Colors.Gray, children: "Press any key to return to authentication type selection." }) })
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { bold: true, color: Colors.AccentRed, children: "Delta OAuth Authentication Timeout" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { children: authMessage || `OAuth token expired (over ${defaultTimeout} seconds). Please select authentication method again.` }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.Gray, children: "Press any key to return to authentication type selection." }) })
         ]
       }
     );
   }
   if (!deviceAuth) {
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
       Box_default,
       {
         borderStyle: "round",
@@ -304830,31 +305290,31 @@ function DeltaOAuthProgress({
         padding: 1,
         width: "100%",
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Text, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(build_default, { type: "dots" }),
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(build_default, { type: "dots" }),
             " Waiting for Delta OAuth authentication..."
           ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Box_default, { marginTop: 1, justifyContent: "space-between", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Text, { color: Colors.Gray, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { marginTop: 1, justifyContent: "space-between", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { color: Colors.Gray, children: [
               "Time remaining: ",
               Math.floor(timeRemaining / 60),
               ":",
               (timeRemaining % 60).toString().padStart(2, "0")
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Text, { color: Colors.AccentPurple, children: "(Press ESC to cancel)" })
+            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.AccentPurple, children: "(Press ESC to cancel)" })
           ] })
         ]
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(Box_default, { flexDirection: "column", width: "100%", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { flexDirection: "column", width: "100%", children: [
     qrCodeDisplay,
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(StatusDisplay, { timeRemaining, dots })
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(StatusDisplay, { timeRemaining, dots })
   ] });
 }
 
 // packages/cli/src/ui/components/EditorSettingsDialog.tsx
-var import_react70 = __toESM(require_react(), 1);
+var import_react71 = __toESM(require_react(), 1);
 
 // packages/cli/src/ui/editors/editorSettingsManager.ts
 init_dist3();
@@ -304901,16 +305361,16 @@ var editorSettingsManager = new EditorSettingsManager();
 
 // packages/cli/src/ui/components/EditorSettingsDialog.tsx
 init_dist3();
-var import_jsx_runtime26 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
 function EditorSettingsDialog({
   onSelect,
   settings,
   onExit
 }) {
-  const [selectedScope, setSelectedScope] = (0, import_react70.useState)(
+  const [selectedScope, setSelectedScope] = (0, import_react71.useState)(
     "User" /* User */
   );
-  const [focusedSection, setFocusedSection] = (0, import_react70.useState)(
+  const [focusedSection, setFocusedSection] = (0, import_react71.useState)(
     "editor"
   );
   useKeypress(
@@ -304957,7 +305417,7 @@ function EditorSettingsDialog({
   if (settings.merged.preferredEditor && isEditorAvailable(settings.merged.preferredEditor)) {
     mergedEditorName = EDITOR_DISPLAY_NAMES[settings.merged.preferredEditor];
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -304966,14 +305426,14 @@ function EditorSettingsDialog({
       padding: 1,
       width: "100%",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { flexDirection: "column", width: "45%", paddingRight: 2, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { bold: focusedSection === "editor", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Box_default, { flexDirection: "column", width: "45%", paddingRight: 2, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Text, { bold: focusedSection === "editor", children: [
             focusedSection === "editor" ? "> " : "  ",
             "Select Editor",
             " ",
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.Gray, children: otherScopeModifiedMessage })
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { color: Colors.Gray, children: otherScopeModifiedMessage })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
             RadioButtonSelect,
             {
               items: editorItems.map((item) => ({
@@ -304987,12 +305447,12 @@ function EditorSettingsDialog({
             },
             selectedScope
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { marginTop: 1, flexDirection: "column", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { bold: focusedSection === "scope", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Box_default, { marginTop: 1, flexDirection: "column", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Text, { bold: focusedSection === "scope", children: [
               focusedSection === "scope" ? "> " : "  ",
               "Apply To"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
               RadioButtonSelect,
               {
                 items: scopeItems,
@@ -305002,16 +305462,16 @@ function EditorSettingsDialog({
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.Gray, children: "(Use Enter to select, Tab to change focus)" }) })
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Box_default, { marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { color: Colors.Gray, children: "(Use Enter to select, Tab to change focus)" }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { flexDirection: "column", width: "55%", paddingLeft: 2, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { bold: true, children: "Editor Preference" }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Box_default, { flexDirection: "column", gap: 1, marginTop: 1, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(Text, { color: Colors.Gray, children: "These editors are currently supported. Please note that some editors cannot be used in sandbox mode." }),
-            /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(Text, { color: Colors.Gray, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Box_default, { flexDirection: "column", width: "55%", paddingLeft: 2, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { bold: true, children: "Editor Preference" }),
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Box_default, { flexDirection: "column", gap: 1, marginTop: 1, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { color: Colors.Gray, children: "These editors are currently supported. Please note that some editors cannot be used in sandbox mode." }),
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Text, { color: Colors.Gray, children: [
               "Your preferred editor is:",
               " ",
-              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
                 Text,
                 {
                   color: mergedEditorName === "None" ? Colors.AccentRed : Colors.AccentCyan,
@@ -305030,7 +305490,7 @@ function EditorSettingsDialog({
 
 // packages/cli/src/ui/components/ShellConfirmationDialog.tsx
 init_dist3();
-var import_jsx_runtime27 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime28 = __toESM(require_jsx_runtime(), 1);
 var ShellConfirmationDialog = ({ request: request2 }) => {
   const { commands, onConfirm } = request2;
   useKeypress(
@@ -305062,7 +305522,7 @@ var ShellConfirmationDialog = ({ request: request2 }) => {
       value: ToolConfirmationOutcome.Cancel
     }
   ];
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
     Box_default,
     {
       flexDirection: "column",
@@ -305072,10 +305532,10 @@ var ShellConfirmationDialog = ({ request: request2 }) => {
       width: "100%",
       marginLeft: 1,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(Box_default, { flexDirection: "column", marginBottom: 1, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { bold: true, children: "Shell Command Execution" }),
-          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { children: "A custom command wants to run the following shell commands:" }),
-          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(Box_default, { flexDirection: "column", marginBottom: 1, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { bold: true, children: "Shell Command Execution" }),
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { children: "A custom command wants to run the following shell commands:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
             Box_default,
             {
               flexDirection: "column",
@@ -305083,12 +305543,12 @@ var ShellConfirmationDialog = ({ request: request2 }) => {
               borderColor: Colors.Gray,
               paddingX: 1,
               marginTop: 1,
-              children: commands.map((cmd) => /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { color: Colors.AccentCyan, children: cmd }, cmd))
+              children: commands.map((cmd) => /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { color: Colors.AccentCyan, children: cmd }, cmd))
             }
           )
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Text, { children: "Do you want to proceed?" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(RadioButtonSelect, { items: options2, onSelect: handleSelect, isFocused: true })
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { children: "Do you want to proceed?" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(RadioButtonSelect, { items: options2, onSelect: handleSelect, isFocused: true })
       ]
     }
   );
@@ -307139,7 +307599,7 @@ function getSandboxCommand(sandbox) {
   if (process.env.SANDBOX) {
     return "";
   }
-  const environmentConfiguredSandbox = process.env.GEMINI_SANDBOX?.toLowerCase().trim() ?? "";
+  const environmentConfiguredSandbox = process.env.DELTA_SANDBOX?.toLowerCase().trim() ?? "";
   sandbox = environmentConfiguredSandbox?.length > 0 ? environmentConfiguredSandbox : sandbox;
   if (sandbox === "1" || sandbox === "true") sandbox = true;
   else if (sandbox === "0" || sandbox === "false" || !sandbox) sandbox = false;
@@ -307159,7 +307619,7 @@ function getSandboxCommand(sandbox) {
       return sandbox;
     }
     console.error(
-      `ERROR: missing sandbox command '${sandbox}' (from GEMINI_SANDBOX)`
+      `ERROR: missing sandbox command '${sandbox}' (from DELTA_SANDBOX)`
     );
     process.exit(1);
   }
@@ -307172,7 +307632,7 @@ function getSandboxCommand(sandbox) {
   }
   if (sandbox === true) {
     console.error(
-      "ERROR: GEMINI_SANDBOX is true but failed to determine command for sandbox; install docker or podman or specify command in GEMINI_SANDBOX"
+      "ERROR: DELTA_SANDBOX is true but failed to determine command for sandbox; install docker or podman or specify command in DELTA_SANDBOX"
     );
     process.exit(1);
   }
@@ -307182,7 +307642,7 @@ async function loadSandboxConfig(settings, argv) {
   const sandboxOption = argv.sandbox ?? settings.sandbox;
   const command = getSandboxCommand(sandboxOption);
   const packageJson4 = await getPackageJson();
-  const image2 = argv.sandboxImage ?? process.env.GEMINI_SANDBOX_IMAGE ?? packageJson4?.config?.sandboxImageUri;
+  const image2 = argv.sandboxImage ?? process.env.DELTA_SANDBOX_IMAGE ?? packageJson4?.config?.sandboxImageUri;
   return command && image2 ? { command, image: image2 } : void 0;
 }
 
@@ -307355,7 +307815,7 @@ async function parseArguments() {
   }
   return result;
 }
-async function loadHierarchicalGeminiMemory(currentWorkingDirectory, includeDirectoriesToReadGemini = [], debugMode, fileService, settings, extensionContextFilePaths = [], memoryImportFormat = "tree", fileFilteringOptions) {
+async function loadHierarchicalDeltaMemory(currentWorkingDirectory, includeDirectoriesToReadGemini = [], debugMode, fileService, settings, extensionContextFilePaths = [], memoryImportFormat = "tree", fileFilteringOptions) {
   const realCwd = fs55.realpathSync(path64.resolve(currentWorkingDirectory));
   const realHome = fs55.realpathSync(path64.resolve(homedir17()));
   const isHomeDirectory = realCwd === realHome;
@@ -307403,9 +307863,9 @@ async function loadCliConfig(settings, extensions, sessionId2, argv, cwd4 = proc
     process34.env.TAVILY_API_KEY = argv.tavilyApiKey;
   }
   if (settings.contextFileName) {
-    setGeminiMdFilename(settings.contextFileName);
+    setDeltaMdFilename(settings.contextFileName);
   } else {
-    setGeminiMdFilename(getCurrentGeminiMdFilename());
+    setDeltaMdFilename(getCurrentDeltaMdFilename());
   }
   const extensionContextFilePaths = activeExtensions.flatMap(
     (e2) => e2.contextFiles
@@ -307416,7 +307876,7 @@ async function loadCliConfig(settings, extensions, sessionId2, argv, cwd4 = proc
     ...settings.fileFiltering
   };
   const includeDirectories = (settings.includeDirectories || []).map(resolvePath).concat((argv.includeDirectories || []).map(resolvePath));
-  const { memoryContent, fileCount } = await loadHierarchicalGeminiMemory(
+  const { memoryContent, fileCount } = await loadHierarchicalDeltaMemory(
     cwd4,
     settings.loadMemoryFromIncludeDirectories ? includeDirectories : [],
     debugMode,
@@ -307513,7 +307973,7 @@ async function loadCliConfig(settings, extensions, sessionId2, argv, cwd4 = proc
     mcpServerCommand: settings.mcpServerCommand,
     mcpServers,
     userMemory: memoryContent,
-    geminiMdFileCount: fileCount,
+    deltaMdFileCount: fileCount,
     approvalMode,
     showMemoryUsage: argv.showMemoryUsage || argv.show_memory_usage || settings.showMemoryUsage || false,
     accessibility: settings.accessibility,
@@ -307528,7 +307988,7 @@ async function loadCliConfig(settings, extensions, sessionId2, argv, cwd4 = proc
     // Git-aware file filtering settings
     fileFiltering: {
       respectGitIgnore: settings.fileFiltering?.respectGitIgnore,
-      respectGeminiIgnore: settings.fileFiltering?.respectGeminiIgnore,
+      respectDeltaIgnore: settings.fileFiltering?.respectDeltaIgnore,
       enableRecursiveFileSearch: settings.fileFiltering?.enableRecursiveFileSearch
     },
     checkpointing: argv.checkpointing || settings.checkpointing?.enabled,
@@ -307536,7 +307996,7 @@ async function loadCliConfig(settings, extensions, sessionId2, argv, cwd4 = proc
     cwd: cwd4,
     fileDiscoveryService: fileService,
     bugCommand: settings.bugCommand,
-    model: argv.model || settings.model || DEFAULT_GEMINI_MODEL,
+    model: argv.model || settings.model || DEFAULT_QWEN_MODEL,
     extensionContextFilePaths,
     maxSessionTurns: settings.maxSessionTurns ?? -1,
     sessionTokenLimit: settings.sessionTokenLimit ?? -1,
@@ -307629,24 +308089,24 @@ function mergeExcludeTools(settings, extensions, extraExcludes) {
 }
 
 // packages/cli/src/ui/components/Tips.tsx
-var import_jsx_runtime28 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime29 = __toESM(require_jsx_runtime(), 1);
 var Tips = ({ config }) => {
-  const geminiMdFileCount = config.getGeminiMdFileCount();
-  return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(Box_default, { flexDirection: "column", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { color: Colors.Foreground, children: "Tips for getting started:" }),
-    /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { color: Colors.Foreground, children: "1. Ask questions, edit files, or run commands." }),
-    /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { color: Colors.Foreground, children: "2. Be specific for the best results." }),
-    geminiMdFileCount === 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(Text, { color: Colors.Foreground, children: [
+  const deltaMdFileCount = config.getDeltaMdFileCount();
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Box_default, { flexDirection: "column", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { color: Colors.Foreground, children: "Tips for getting started:" }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { color: Colors.Foreground, children: "1. Ask questions, edit files, or run commands." }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { color: Colors.Foreground, children: "2. Be specific for the best results." }),
+    deltaMdFileCount === 0 && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Text, { color: Colors.Foreground, children: [
       "3. Create",
       " ",
-      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "DELTA.md" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "DELTA.md" }),
       " ",
       "files to customize your interactions with Delta Code."
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(Text, { color: Colors.Foreground, children: [
-      geminiMdFileCount === 0 ? "4." : "3.",
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Text, { color: Colors.Foreground, children: [
+      deltaMdFileCount === 0 ? "4." : "3.",
       " ",
-      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "/help" }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "/help" }),
       " ",
       "for more information."
     ] })
@@ -307701,13 +308161,13 @@ var ConsolePatcher = class {
 };
 
 // packages/cli/src/ui/components/DetailedMessagesDisplay.tsx
-var import_jsx_runtime29 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime30 = __toESM(require_jsx_runtime(), 1);
 var DetailedMessagesDisplay = ({ messages, maxHeight, width }) => {
   if (messages.length === 0) {
     return null;
   }
   const borderAndPadding = 4;
-  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(
     Box_default,
     {
       flexDirection: "column",
@@ -307717,11 +308177,11 @@ var DetailedMessagesDisplay = ({ messages, maxHeight, width }) => {
       paddingX: 1,
       width,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Text, { bold: true, color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Text, { bold: true, color: Colors.Foreground, children: [
           "Debug Console ",
-          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Text, { color: Colors.Gray, children: "(ctrl+o to close)" })
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Text, { color: Colors.Gray, children: "(ctrl+o to close)" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(MaxSizedBox, { maxHeight, maxWidth: width - borderAndPadding, children: messages.map((msg, index) => {
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(MaxSizedBox, { maxHeight, maxWidth: width - borderAndPadding, children: messages.map((msg, index) => {
           let textColor = Colors.Foreground;
           let icon = "\u2139";
           switch (msg.type) {
@@ -307741,14 +308201,14 @@ var DetailedMessagesDisplay = ({ messages, maxHeight, width }) => {
             default:
               break;
           }
-          return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Box_default, { flexDirection: "row", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Text, { color: textColor, children: [
+          return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Box_default, { flexDirection: "row", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Text, { color: textColor, children: [
               icon,
               " "
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Text, { color: textColor, wrap: "wrap", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Text, { color: textColor, wrap: "wrap", children: [
               msg.content,
-              msg.count && msg.count > 1 && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Text, { color: Colors.Gray, children: [
+              msg.count && msg.count > 1 && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Text, { color: Colors.Gray, children: [
                 " (x",
                 msg.count,
                 ")"
@@ -307762,14 +308222,14 @@ var DetailedMessagesDisplay = ({ messages, maxHeight, width }) => {
 };
 
 // packages/cli/src/ui/components/messages/UserMessage.tsx
-var import_jsx_runtime30 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime31 = __toESM(require_jsx_runtime(), 1);
 var UserMessage = ({ text }) => {
   const prefix = "> ";
   const prefixWidth = prefix.length;
   const isSlashCommand2 = text.startsWith("/");
   const textColor = isSlashCommand2 ? Colors.AccentPurple : Colors.Gray;
   const borderColor = isSlashCommand2 ? Colors.AccentPurple : Colors.Gray;
-  return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -307780,32 +308240,32 @@ var UserMessage = ({ text }) => {
       marginY: 1,
       alignSelf: "flex-start",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Text, { color: textColor, children: prefix }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Text, { wrap: "wrap", color: textColor, children: text }) })
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Text, { color: textColor, children: prefix }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Text, { wrap: "wrap", color: textColor, children: text }) })
       ]
     }
   );
 };
 
 // packages/cli/src/ui/components/messages/UserShellMessage.tsx
-var import_jsx_runtime31 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime32 = __toESM(require_jsx_runtime(), 1);
 var UserShellMessage = ({ text }) => {
   const commandToDisplay = text.startsWith("!") ? text.substring(1) : text;
-  return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Box_default, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Text, { color: Colors.AccentCyan, children: "$ " }),
-    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Text, { children: commandToDisplay })
+  return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(Box_default, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { color: Colors.AccentCyan, children: "$ " }),
+    /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { children: commandToDisplay })
   ] });
 };
 
 // packages/cli/src/ui/utils/MarkdownDisplay.tsx
-var import_react74 = __toESM(require_react(), 1);
+var import_react75 = __toESM(require_react(), 1);
 
 // packages/cli/src/ui/utils/TableRenderer.tsx
-var import_react72 = __toESM(require_react(), 1);
+var import_react73 = __toESM(require_react(), 1);
 
 // packages/cli/src/ui/utils/InlineMarkdownRenderer.tsx
-var import_react71 = __toESM(require_react(), 1);
-var import_jsx_runtime32 = __toESM(require_jsx_runtime(), 1);
+var import_react72 = __toESM(require_react(), 1);
+var import_jsx_runtime33 = __toESM(require_jsx_runtime(), 1);
 var BOLD_MARKER_LENGTH = 2;
 var ITALIC_MARKER_LENGTH = 1;
 var STRIKETHROUGH_MARKER_LENGTH = 2;
@@ -307820,7 +308280,7 @@ var RenderInlineInternal = ({ text }) => {
   while ((match2 = inlineRegex.exec(text)) !== null) {
     if (match2.index > lastIndex) {
       nodes.push(
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { children: text.slice(lastIndex, match2.index) }, `t-${lastIndex}`)
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { children: text.slice(lastIndex, match2.index) }, `t-${lastIndex}`)
       );
     }
     const fullMatch = match2[0];
@@ -307828,31 +308288,31 @@ var RenderInlineInternal = ({ text }) => {
     const key = `m-${match2.index}`;
     try {
       if (fullMatch.startsWith("**") && fullMatch.endsWith("**") && fullMatch.length > BOLD_MARKER_LENGTH * 2) {
-        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { bold: true, children: fullMatch.slice(BOLD_MARKER_LENGTH, -BOLD_MARKER_LENGTH) }, key);
+        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { bold: true, children: fullMatch.slice(BOLD_MARKER_LENGTH, -BOLD_MARKER_LENGTH) }, key);
       } else if (fullMatch.length > ITALIC_MARKER_LENGTH * 2 && (fullMatch.startsWith("*") && fullMatch.endsWith("*") || fullMatch.startsWith("_") && fullMatch.endsWith("_")) && !/\w/.test(text.substring(match2.index - 1, match2.index)) && !/\w/.test(
         text.substring(inlineRegex.lastIndex, inlineRegex.lastIndex + 1)
       ) && !/\S[./\\]/.test(text.substring(match2.index - 2, match2.index)) && !/[./\\]\S/.test(
         text.substring(inlineRegex.lastIndex, inlineRegex.lastIndex + 2)
       )) {
-        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { italic: true, children: fullMatch.slice(ITALIC_MARKER_LENGTH, -ITALIC_MARKER_LENGTH) }, key);
+        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { italic: true, children: fullMatch.slice(ITALIC_MARKER_LENGTH, -ITALIC_MARKER_LENGTH) }, key);
       } else if (fullMatch.startsWith("~~") && fullMatch.endsWith("~~") && fullMatch.length > STRIKETHROUGH_MARKER_LENGTH * 2) {
-        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { strikethrough: true, children: fullMatch.slice(
+        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { strikethrough: true, children: fullMatch.slice(
           STRIKETHROUGH_MARKER_LENGTH,
           -STRIKETHROUGH_MARKER_LENGTH
         ) }, key);
       } else if (fullMatch.startsWith("`") && fullMatch.endsWith("`") && fullMatch.length > INLINE_CODE_MARKER_LENGTH) {
         const codeMatch = fullMatch.match(/^(`+)(.+?)\1$/s);
         if (codeMatch && codeMatch[2]) {
-          renderedNode = /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { color: Colors.AccentPurple, children: codeMatch[2] }, key);
+          renderedNode = /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { color: Colors.AccentPurple, children: codeMatch[2] }, key);
         }
       } else if (fullMatch.startsWith("[") && fullMatch.includes("](") && fullMatch.endsWith(")")) {
         const linkMatch = fullMatch.match(/\[(.*?)\]\((.*?)\)/);
         if (linkMatch) {
           const linkText = linkMatch[1];
           const url2 = linkMatch[2];
-          renderedNode = /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(Text, { children: [
+          renderedNode = /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Text, { children: [
             linkText,
-            /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(Text, { color: Colors.AccentBlue, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Text, { color: Colors.AccentBlue, children: [
               " (",
               url2,
               ")"
@@ -307860,7 +308320,7 @@ var RenderInlineInternal = ({ text }) => {
           ] }, key);
         }
       } else if (fullMatch.startsWith("<u>") && fullMatch.endsWith("</u>") && fullMatch.length > UNDERLINE_TAG_START_LENGTH + UNDERLINE_TAG_END_LENGTH - 1) {
-        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { underline: true, children: fullMatch.slice(
+        renderedNode = /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { underline: true, children: fullMatch.slice(
           UNDERLINE_TAG_START_LENGTH,
           -UNDERLINE_TAG_END_LENGTH
         ) }, key);
@@ -307869,22 +308329,22 @@ var RenderInlineInternal = ({ text }) => {
       console.error("Error parsing inline markdown part:", fullMatch, e2);
       renderedNode = null;
     }
-    nodes.push(renderedNode ?? /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { children: fullMatch }, key));
+    nodes.push(renderedNode ?? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { children: fullMatch }, key));
     lastIndex = inlineRegex.lastIndex;
   }
   if (lastIndex < text.length) {
-    nodes.push(/* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Text, { children: text.slice(lastIndex) }, `t-${lastIndex}`));
+    nodes.push(/* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { children: text.slice(lastIndex) }, `t-${lastIndex}`));
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(import_jsx_runtime32.Fragment, { children: nodes.filter((node) => node !== null) });
+  return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(import_jsx_runtime33.Fragment, { children: nodes.filter((node) => node !== null) });
 };
-var RenderInline = import_react71.default.memo(RenderInlineInternal);
+var RenderInline = import_react72.default.memo(RenderInlineInternal);
 var getPlainTextLength = (text) => {
   const cleanText = text.replace(/\*\*(.*?)\*\*/g, "$1").replace(/\*(.*?)\*/g, "$1").replace(/_(.*?)_/g, "$1").replace(/~~(.*?)~~/g, "$1").replace(/`(.*?)`/g, "$1").replace(/<u>(.*?)<\/u>/g, "$1").replace(/\[(.*?)\]\(.*?\)/g, "$1");
   return stringWidth3(cleanText);
 };
 
 // packages/cli/src/ui/utils/TableRenderer.tsx
-var import_jsx_runtime33 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime34 = __toESM(require_jsx_runtime(), 1);
 var TableRenderer = ({
   headers,
   rows,
@@ -307932,8 +308392,8 @@ var TableRenderer = ({
     }
     const actualDisplayWidth = getPlainTextLength(cellContent);
     const paddingNeeded = Math.max(0, contentWidth - actualDisplayWidth);
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Text, { children: [
-      isHeader ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { bold: true, color: Colors.AccentCyan, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(RenderInline, { text: cellContent }) }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(RenderInline, { text: cellContent }),
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(Text, { children: [
+      isHeader ? /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { bold: true, color: Colors.AccentCyan, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: cellContent }) }) : /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: cellContent }),
       " ".repeat(paddingNeeded)
     ] });
   };
@@ -307946,17 +308406,17 @@ var TableRenderer = ({
     const char = chars[type];
     const borderParts = adjustedWidths.map((w) => char.horizontal.repeat(w));
     const border = char.left + borderParts.join(char.middle) + char.right;
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Text, { children: border });
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { children: border });
   };
   const renderRow = (cells, isHeader = false) => {
     const renderedCells = cells.map((cell, index) => {
       const width = adjustedWidths[index] || 0;
       return renderCell(cell || "", width, isHeader);
     });
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Text, { children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(Text, { children: [
       "\u2502",
       " ",
-      renderedCells.map((cell, index) => /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(import_react72.default.Fragment, { children: [
+      renderedCells.map((cell, index) => /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(import_react73.default.Fragment, { children: [
         cell,
         index < renderedCells.length - 1 ? " \u2502 " : ""
       ] }, index)),
@@ -307964,22 +308424,22 @@ var TableRenderer = ({
       "\u2502"
     ] });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Box_default, { flexDirection: "column", marginY: 1, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(Box_default, { flexDirection: "column", marginY: 1, children: [
     renderBorder2("top"),
     renderRow(headers, true),
     renderBorder2("middle"),
-    rows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(import_react72.default.Fragment, { children: renderRow(row) }, index)),
+    rows.map((row, index) => /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(import_react73.default.Fragment, { children: renderRow(row) }, index)),
     renderBorder2("bottom")
   ] });
 };
 
 // packages/cli/src/ui/contexts/SettingsContext.tsx
-var import_react73 = __toESM(require_react(), 1);
-var SettingsContext = import_react73.default.createContext(
+var import_react74 = __toESM(require_react(), 1);
+var SettingsContext = import_react74.default.createContext(
   void 0
 );
 var useSettings = () => {
-  const context2 = (0, import_react73.useContext)(SettingsContext);
+  const context2 = (0, import_react74.useContext)(SettingsContext);
   if (context2 === void 0) {
     throw new Error("useSettings must be used within a SettingsProvider");
   }
@@ -307987,7 +308447,7 @@ var useSettings = () => {
 };
 
 // packages/cli/src/ui/utils/MarkdownDisplay.tsx
-var import_jsx_runtime34 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime35 = __toESM(require_jsx_runtime(), 1);
 var EMPTY_LINE_HEIGHT = 1;
 var CODE_BLOCK_PREFIX_PADDING = 1;
 var LIST_ITEM_PREFIX_PADDING = 1;
@@ -307998,7 +308458,7 @@ var MarkdownDisplayInternal = ({
   availableTerminalHeight,
   terminalWidth
 }) => {
-  if (!text) return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(import_jsx_runtime34.Fragment, {});
+  if (!text) return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_jsx_runtime35.Fragment, {});
   const lines = text.split("\n");
   const headerRegex = /^ *(#{1,4}) +(.*)/;
   const codeFenceRegex = /^ *(`{3,}|~{3,}) *(\w*?) *$/;
@@ -308028,7 +308488,7 @@ var MarkdownDisplayInternal = ({
       const fenceMatch = line.match(codeFenceRegex);
       if (fenceMatch && fenceMatch[1].startsWith(codeBlockFence[0]) && fenceMatch[1].length >= codeBlockFence.length) {
         addContentBlock(
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
             RenderCodeBlock,
             {
               content: codeBlockContent,
@@ -308067,7 +308527,7 @@ var MarkdownDisplayInternal = ({
         tableRows = [];
       } else {
         addContentBlock(
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: line }) }) }, key)
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: line }) }) }, key)
         );
       }
     } else if (inTable && tableSeparatorMatch) {
@@ -308083,7 +308543,7 @@ var MarkdownDisplayInternal = ({
     } else if (inTable && !tableRowMatch) {
       if (tableHeaders.length > 0 && tableRows.length > 0) {
         addContentBlock(
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
             RenderTable,
             {
               headers: tableHeaders,
@@ -308099,12 +308559,12 @@ var MarkdownDisplayInternal = ({
       tableHeaders = [];
       if (line.trim().length > 0) {
         addContentBlock(
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: line }) }) }, key)
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: line }) }) }, key)
         );
       }
     } else if (hrMatch) {
       addContentBlock(
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { dimColor: true, children: "---" }) }, key)
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { dimColor: true, children: "---" }) }, key)
       );
     } else if (headerMatch) {
       const level = headerMatch[1].length;
@@ -308112,28 +308572,28 @@ var MarkdownDisplayInternal = ({
       let headerNode = null;
       switch (level) {
         case 1:
-          headerNode = /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { bold: true, color: Colors.AccentCyan, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: headerText }) });
+          headerNode = /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { bold: true, color: Colors.AccentCyan, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: headerText }) });
           break;
         case 2:
-          headerNode = /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: headerText }) });
+          headerNode = /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: headerText }) });
           break;
         case 3:
-          headerNode = /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { bold: true, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: headerText }) });
+          headerNode = /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { bold: true, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: headerText }) });
           break;
         case 4:
-          headerNode = /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { italic: true, color: Colors.Gray, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: headerText }) });
+          headerNode = /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { italic: true, color: Colors.Gray, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: headerText }) });
           break;
         default:
-          headerNode = /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: headerText }) });
+          headerNode = /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: headerText }) });
           break;
       }
-      if (headerNode) addContentBlock(/* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { children: headerNode }, key));
+      if (headerNode) addContentBlock(/* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { children: headerNode }, key));
     } else if (ulMatch) {
       const leadingWhitespace = ulMatch[1];
       const marker = ulMatch[2];
       const itemText = ulMatch[3];
       addContentBlock(
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
           RenderListItem,
           {
             itemText,
@@ -308149,7 +308609,7 @@ var MarkdownDisplayInternal = ({
       const marker = olMatch[2];
       const itemText = olMatch[3];
       addContentBlock(
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
           RenderListItem,
           {
             itemText,
@@ -308164,20 +308624,20 @@ var MarkdownDisplayInternal = ({
       if (line.trim().length === 0 && !inCodeBlock) {
         if (!lastLineEmpty) {
           contentBlocks.push(
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { height: EMPTY_LINE_HEIGHT }, `spacer-${index}`)
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { height: EMPTY_LINE_HEIGHT }, `spacer-${index}`)
           );
           lastLineEmpty = true;
         }
       } else {
         addContentBlock(
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: line }) }) }, key)
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: line }) }) }, key)
         );
       }
     }
   });
   if (inCodeBlock) {
     addContentBlock(
-      /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
         RenderCodeBlock,
         {
           content: codeBlockContent,
@@ -308192,7 +308652,7 @@ var MarkdownDisplayInternal = ({
   }
   if (inTable && tableHeaders.length > 0 && tableRows.length > 0) {
     addContentBlock(
-      /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
         RenderTable,
         {
           headers: tableHeaders,
@@ -308203,7 +308663,7 @@ var MarkdownDisplayInternal = ({
       )
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(import_jsx_runtime34.Fragment, { children: contentBlocks });
+  return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(import_jsx_runtime35.Fragment, { children: contentBlocks });
 };
 var RenderCodeBlockInternal = ({
   content,
@@ -308222,7 +308682,7 @@ var RenderCodeBlockInternal = ({
     );
     if (content.length > MAX_CODE_LINES_WHEN_PENDING) {
       if (MAX_CODE_LINES_WHEN_PENDING < MIN_LINES_FOR_MESSAGE) {
-        return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { paddingLeft: CODE_BLOCK_PREFIX_PADDING, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { color: Colors.Gray, children: "... code is being written ..." }) });
+        return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { paddingLeft: CODE_BLOCK_PREFIX_PADDING, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { color: Colors.Gray, children: "... code is being written ..." }) });
       }
       const truncatedContent = content.slice(0, MAX_CODE_LINES_WHEN_PENDING);
       const colorizedTruncatedCode = colorizeCode(
@@ -308233,9 +308693,9 @@ var RenderCodeBlockInternal = ({
         void 0,
         settings
       );
-      return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(Box_default, { paddingLeft: CODE_BLOCK_PREFIX_PADDING, flexDirection: "column", children: [
+      return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(Box_default, { paddingLeft: CODE_BLOCK_PREFIX_PADDING, flexDirection: "column", children: [
         colorizedTruncatedCode,
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { color: Colors.Gray, children: "... generating more ..." })
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { color: Colors.Gray, children: "... generating more ..." })
       ] });
     }
   }
@@ -308248,7 +308708,7 @@ var RenderCodeBlockInternal = ({
     void 0,
     settings
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
     Box_default,
     {
       paddingLeft: CODE_BLOCK_PREFIX_PADDING,
@@ -308259,7 +308719,7 @@ var RenderCodeBlockInternal = ({
     }
   );
 };
-var RenderCodeBlock = import_react74.default.memo(RenderCodeBlockInternal);
+var RenderCodeBlock = import_react75.default.memo(RenderCodeBlockInternal);
 var RenderListItemInternal = ({
   itemText,
   type,
@@ -308269,30 +308729,30 @@ var RenderListItemInternal = ({
   const prefix = type === "ol" ? `${marker}. ` : `${marker} `;
   const prefixWidth = prefix.length;
   const indentation = leadingWhitespace.length;
-  return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(
     Box_default,
     {
       paddingLeft: indentation + LIST_ITEM_PREFIX_PADDING,
       flexDirection: "row",
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { children: prefix }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Box_default, { flexGrow: LIST_ITEM_TEXT_FLEX_GROW, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(RenderInline, { text: itemText }) }) })
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { children: prefix }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { flexGrow: LIST_ITEM_TEXT_FLEX_GROW, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { wrap: "wrap", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(RenderInline, { text: itemText }) }) })
       ]
     }
   );
 };
-var RenderListItem = import_react74.default.memo(RenderListItemInternal);
+var RenderListItem = import_react75.default.memo(RenderListItemInternal);
 var RenderTableInternal = ({
   headers,
   rows,
   terminalWidth
-}) => /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(TableRenderer, { headers, rows, terminalWidth });
-var RenderTable = import_react74.default.memo(RenderTableInternal);
-var MarkdownDisplay = import_react74.default.memo(MarkdownDisplayInternal);
+}) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(TableRenderer, { headers, rows, terminalWidth });
+var RenderTable = import_react75.default.memo(RenderTableInternal);
+var MarkdownDisplay = import_react75.default.memo(MarkdownDisplayInternal);
 
-// packages/cli/src/ui/components/messages/GeminiMessage.tsx
-var import_jsx_runtime35 = __toESM(require_jsx_runtime(), 1);
-var GeminiMessage = ({
+// packages/cli/src/ui/components/messages/DeltaMessage.tsx
+var import_jsx_runtime36 = __toESM(require_jsx_runtime(), 1);
+var DeltaMessage = ({
   text,
   isPending,
   availableTerminalHeight,
@@ -308300,9 +308760,9 @@ var GeminiMessage = ({
 }) => {
   const prefix = "\u2726 ";
   const prefixWidth = prefix.length;
-  return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(Box_default, { flexDirection: "row", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Text, { color: Colors.AccentPurple, children: prefix }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Box_default, { flexGrow: 1, flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(Box_default, { flexDirection: "row", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Text, { color: Colors.AccentPurple, children: prefix }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Box_default, { flexGrow: 1, flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
       MarkdownDisplay,
       {
         text,
@@ -308315,35 +308775,35 @@ var GeminiMessage = ({
 };
 
 // packages/cli/src/ui/components/messages/InfoMessage.tsx
-var import_jsx_runtime36 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime37 = __toESM(require_jsx_runtime(), 1);
 var InfoMessage = ({ text }) => {
   const prefix = "\u2139 ";
   const prefixWidth = prefix.length;
-  return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(Box_default, { flexDirection: "row", marginTop: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Text, { color: Colors.AccentYellow, children: prefix }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Text, { wrap: "wrap", color: Colors.AccentYellow, children: text }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(Box_default, { flexDirection: "row", marginTop: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Text, { color: Colors.AccentYellow, children: prefix }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Text, { wrap: "wrap", color: Colors.AccentYellow, children: text }) })
   ] });
 };
 
 // packages/cli/src/ui/components/messages/ErrorMessage.tsx
-var import_jsx_runtime37 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime38 = __toESM(require_jsx_runtime(), 1);
 var ErrorMessage = ({ text }) => {
   const prefix = "\u2715 ";
   const prefixWidth = prefix.length;
-  return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(Box_default, { flexDirection: "row", marginBottom: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Text, { color: Colors.AccentRed, children: prefix }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Text, { wrap: "wrap", color: Colors.AccentRed, children: text }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(Box_default, { flexDirection: "row", marginBottom: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Box_default, { width: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Text, { color: Colors.AccentRed, children: prefix }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Text, { wrap: "wrap", color: Colors.AccentRed, children: text }) })
   ] });
 };
 
 // packages/cli/src/ui/components/messages/ToolGroupMessage.tsx
-var import_react76 = __toESM(require_react(), 1);
+var import_react77 = __toESM(require_react(), 1);
 
 // packages/cli/src/ui/components/messages/ToolMessage.tsx
-var import_react75 = __toESM(require_react(), 1);
+var import_react76 = __toESM(require_react(), 1);
 
 // packages/cli/src/ui/components/TodoDisplay.tsx
-var import_jsx_runtime38 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime39 = __toESM(require_jsx_runtime(), 1);
 var STATUS_ICONS = {
   pending: "\u25CB",
   in_progress: "\u25D0",
@@ -308353,27 +308813,27 @@ var TodoDisplay = ({ todos }) => {
   if (!todos || todos.length === 0) {
     return null;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Box_default, { flexDirection: "column", children: todos.map((todo) => /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(TodoItemRow, { todo }, todo.id)) });
+  return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { flexDirection: "column", children: todos.map((todo) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(TodoItemRow, { todo }, todo.id)) });
 };
 var TodoItemRow = ({ todo }) => {
   const statusIcon = STATUS_ICONS[todo.status];
   const isCompleted = todo.status === "completed";
   const isInProgress = todo.status === "in_progress";
   const itemColor = isCompleted ? Colors.Foreground : isInProgress ? Colors.AccentGreen : Colors.Foreground;
-  return /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(Box_default, { flexDirection: "row", minHeight: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Box_default, { width: 3, children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Text, { color: itemColor, children: statusIcon }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Text, { color: itemColor, strikethrough: isCompleted, wrap: "wrap", children: todo.content }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(Box_default, { flexDirection: "row", minHeight: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { width: 3, children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: itemColor, children: statusIcon }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { flexGrow: 1, children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: itemColor, strikethrough: isCompleted, wrap: "wrap", children: todo.content }) })
   ] });
 };
 
 // packages/cli/src/ui/components/messages/ToolMessage.tsx
-var import_jsx_runtime39 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime40 = __toESM(require_jsx_runtime(), 1);
 var STATIC_HEIGHT = 1;
 var RESERVED_LINE_COUNT = 5;
 var STATUS_INDICATOR_WIDTH = 3;
 var MIN_LINES_SHOWN = 2;
 var MAXIMUM_RESULT_DISPLAY_CHARACTERS = 1e6;
-var useResultDisplayRenderer = (resultDisplay) => import_react75.default.useMemo(() => {
+var useResultDisplayRenderer = (resultDisplay) => import_react76.default.useMemo(() => {
   if (!resultDisplay) {
     return { type: "none" };
   }
@@ -308396,14 +308856,14 @@ var useResultDisplayRenderer = (resultDisplay) => import_react75.default.useMemo
 }, [resultDisplay]);
 var TodoResultRenderer = ({
   data
-}) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(TodoDisplay, { todos: data.todos });
+}) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(TodoDisplay, { todos: data.todos });
 var StringResultRenderer = ({ data, renderAsMarkdown, availableHeight, childWidth }) => {
   let displayData = data;
   if (displayData.length > MAXIMUM_RESULT_DISPLAY_CHARACTERS) {
     displayData = "..." + displayData.slice(-MAXIMUM_RESULT_DISPLAY_CHARACTERS);
   }
   if (renderAsMarkdown) {
-    return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
       MarkdownDisplay,
       {
         text: displayData,
@@ -308413,9 +308873,9 @@ var StringResultRenderer = ({ data, renderAsMarkdown, availableHeight, childWidt
       }
     ) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(MaxSizedBox, { maxHeight: availableHeight, maxWidth: childWidth, children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { wrap: "wrap", children: displayData }) }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(MaxSizedBox, { maxHeight: availableHeight, maxWidth: childWidth, children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { wrap: "wrap", children: displayData }) }) });
 };
-var DiffResultRenderer = ({ data, availableHeight, childWidth }) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+var DiffResultRenderer = ({ data, availableHeight, childWidth }) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
   DiffRenderer,
   {
     diffContent: data.fileDiff,
@@ -308444,10 +308904,10 @@ var ToolMessage = ({
   }
   const childWidth = terminalWidth - 3;
   const displayRenderer = useResultDisplayRenderer(resultDisplay);
-  return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(Box_default, { paddingX: 1, paddingY: 0, flexDirection: "column", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(Box_default, { minHeight: 1, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(ToolStatusIndicator, { status }),
-      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { paddingX: 1, paddingY: 0, flexDirection: "column", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { minHeight: 1, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(ToolStatusIndicator, { status }),
+      /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
         ToolInfo,
         {
           name: name2,
@@ -308456,11 +308916,11 @@ var ToolMessage = ({
           emphasis
         }
       ),
-      emphasis === "high" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(TrailingIndicator, {})
+      emphasis === "high" && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(TrailingIndicator, {})
     ] }),
-    displayRenderer.type !== "none" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { paddingLeft: STATUS_INDICATOR_WIDTH, width: "100%", marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(Box_default, { flexDirection: "column", children: [
-      displayRenderer.type === "todo" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(TodoResultRenderer, { data: displayRenderer.data }),
-      displayRenderer.type === "string" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+    displayRenderer.type !== "none" && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { paddingLeft: STATUS_INDICATOR_WIDTH, width: "100%", marginTop: 1, children: /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { flexDirection: "column", children: [
+      displayRenderer.type === "todo" && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(TodoResultRenderer, { data: displayRenderer.data }),
+      displayRenderer.type === "string" && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
         StringResultRenderer,
         {
           data: displayRenderer.data,
@@ -308469,7 +308929,7 @@ var ToolMessage = ({
           childWidth
         }
       ),
-      displayRenderer.type === "diff" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+      displayRenderer.type === "diff" && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
         DiffResultRenderer,
         {
           data: displayRenderer.data,
@@ -308482,19 +308942,19 @@ var ToolMessage = ({
 };
 var ToolStatusIndicator = ({
   status
-}) => /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(Box_default, { minWidth: STATUS_INDICATOR_WIDTH, children: [
-  status === "Pending" /* Pending */ && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: Colors.AccentGreen, children: "o" }),
-  status === "Executing" /* Executing */ && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
-    GeminiRespondingSpinner,
+}) => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { minWidth: STATUS_INDICATOR_WIDTH, children: [
+  status === "Pending" /* Pending */ && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentGreen, children: "o" }),
+  status === "Executing" /* Executing */ && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+    DeltaRespondingSpinner,
     {
       spinnerType: "toggle",
       nonRespondingDisplay: "\u22B7"
     }
   ),
-  status === "Success" /* Success */ && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: Colors.AccentGreen, children: "\u2714" }),
-  status === "Confirming" /* Confirming */ && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: Colors.AccentYellow, children: "?" }),
-  status === "Canceled" /* Canceled */ && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: Colors.AccentYellow, bold: true, children: "-" }),
-  status === "Error" /* Error */ && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: Colors.AccentRed, bold: true, children: "x" })
+  status === "Success" /* Success */ && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentGreen, children: "\u2714" }),
+  status === "Confirming" /* Confirming */ && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentYellow, children: "?" }),
+  status === "Canceled" /* Canceled */ && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentYellow, bold: true, children: "-" }),
+  status === "Error" /* Error */ && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentRed, bold: true, children: "x" })
 ] });
 var ToolInfo = ({
   name: name2,
@@ -308502,7 +308962,7 @@ var ToolInfo = ({
   status,
   emphasis
 }) => {
-  const nameColor = import_react75.default.useMemo(() => {
+  const nameColor = import_react76.default.useMemo(() => {
     switch (emphasis) {
       case "high":
         return Colors.Foreground;
@@ -308516,27 +308976,27 @@ var ToolInfo = ({
       }
     }
   }, [emphasis]);
-  return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(
     Text,
     {
       wrap: "truncate-end",
       strikethrough: status === "Canceled" /* Canceled */,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: nameColor, bold: true, children: name2 }),
+        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: nameColor, bold: true, children: name2 }),
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Text, { color: Colors.Gray, children: description })
+        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.Gray, children: description })
       ]
     }
   ) });
 };
-var TrailingIndicator = () => /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(Text, { color: Colors.Foreground, wrap: "truncate", children: [
+var TrailingIndicator = () => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Text, { color: Colors.Foreground, wrap: "truncate", children: [
   " ",
   "\u2190"
 ] });
 
 // packages/cli/src/ui/components/messages/ToolConfirmationMessage.tsx
 init_dist3();
-var import_jsx_runtime40 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime41 = __toESM(require_jsx_runtime(), 1);
 var ToolConfirmationMessage = ({
   confirmationDetails,
   config,
@@ -308589,7 +309049,7 @@ var ToolConfirmationMessage = ({
   }
   if (confirmationDetails.type === "edit") {
     if (confirmationDetails.isModifying) {
-      return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(
+      return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(
         Box_default,
         {
           minWidth: "90%",
@@ -308599,8 +309059,8 @@ var ToolConfirmationMessage = ({
           padding: 1,
           overflow: "hidden",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { children: "Modify in progress: " }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentGreen, children: "Save and close external editor to continue" })
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Text, { children: "Modify in progress: " }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Text, { color: Colors.AccentGreen, children: "Save and close external editor to continue" })
           ]
         }
       );
@@ -308631,7 +309091,7 @@ var ToolConfirmationMessage = ({
         value: ToolConfirmationOutcome.Cancel
       });
     }
-    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
       DiffRenderer,
       {
         diffContent: confirmationDetails.fileDiff,
@@ -308661,12 +309121,12 @@ var ToolConfirmationMessage = ({
     if (bodyContentHeight !== void 0) {
       bodyContentHeight -= 2;
     }
-    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { paddingX: 1, marginLeft: 1, children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { paddingX: 1, marginLeft: 1, children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
       MaxSizedBox,
       {
         maxHeight: bodyContentHeight,
         maxWidth: Math.max(childWidth - 4, 1),
-        children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentCyan, children: executionProps.command }) })
+        children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Text, { color: Colors.AccentCyan, children: executionProps.command }) })
       }
     ) }) });
   } else if (confirmationDetails.type === "info") {
@@ -308687,11 +309147,11 @@ var ToolConfirmationMessage = ({
         value: ToolConfirmationOutcome.Cancel
       }
     );
-    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { flexDirection: "column", paddingX: 1, marginLeft: 1, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { color: Colors.AccentCyan, children: infoProps.prompt }),
-      displayUrls && infoProps.urls && infoProps.urls.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { flexDirection: "column", marginTop: 1, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { children: "URLs to fetch:" }),
-        infoProps.urls.map((url2) => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Text, { children: [
+    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Box_default, { flexDirection: "column", paddingX: 1, marginLeft: 1, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Text, { color: Colors.AccentCyan, children: infoProps.prompt }),
+      displayUrls && infoProps.urls && infoProps.urls.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Box_default, { flexDirection: "column", marginTop: 1, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Text, { children: "URLs to fetch:" }),
+        infoProps.urls.map((url2) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Text, { children: [
           " - ",
           url2
         ] }, url2))
@@ -308699,12 +309159,12 @@ var ToolConfirmationMessage = ({
     ] });
   } else {
     const mcpProps = confirmationDetails;
-    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { flexDirection: "column", paddingX: 1, marginLeft: 1, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Text, { color: Colors.AccentCyan, children: [
+    bodyContent = /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Box_default, { flexDirection: "column", paddingX: 1, marginLeft: 1, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Text, { color: Colors.AccentCyan, children: [
         "MCP Server: ",
         mcpProps.serverName
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Text, { color: Colors.AccentCyan, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Text, { color: Colors.AccentCyan, children: [
         "Tool: ",
         mcpProps.toolName
       ] })
@@ -308730,10 +309190,10 @@ var ToolConfirmationMessage = ({
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Box_default, { flexDirection: "column", padding: 1, width: childWidth, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { flexGrow: 1, flexShrink: 1, overflow: "hidden", marginBottom: 1, children: bodyContent }),
-    /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { marginBottom: 1, flexShrink: 0, children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Text, { wrap: "truncate", children: question }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Box_default, { flexShrink: 0, children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Box_default, { flexDirection: "column", padding: 1, width: childWidth, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { flexGrow: 1, flexShrink: 1, overflow: "hidden", marginBottom: 1, children: bodyContent }),
+    /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { marginBottom: 1, flexShrink: 0, children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Text, { wrap: "truncate", children: question }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { flexShrink: 0, children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
       RadioButtonSelect,
       {
         items: options2,
@@ -308745,7 +309205,7 @@ var ToolConfirmationMessage = ({
 };
 
 // packages/cli/src/ui/components/messages/ToolGroupMessage.tsx
-var import_jsx_runtime41 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime42 = __toESM(require_jsx_runtime(), 1);
 var ToolGroupMessage = ({
   toolCalls,
   availableTerminalHeight,
@@ -308764,7 +309224,7 @@ var ToolGroupMessage = ({
     1
   );
   const innerWidth = terminalWidth - 4;
-  const toolAwaitingApproval = (0, import_react76.useMemo)(
+  const toolAwaitingApproval = (0, import_react77.useMemo)(
     () => toolCalls.find((tc) => tc.status === "Confirming" /* Confirming */),
     [toolCalls]
   );
@@ -308781,7 +309241,7 @@ var ToolGroupMessage = ({
     ),
     1
   ) : void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
     Box_default,
     {
       flexDirection: "column",
@@ -308792,8 +309252,8 @@ var ToolGroupMessage = ({
       borderColor,
       children: toolCalls.map((tool) => {
         const isConfirming = toolAwaitingApproval?.callId === tool.callId;
-        return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Box_default, { flexDirection: "column", minHeight: 1, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Box_default, { flexDirection: "row", alignItems: "center", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Box_default, { flexDirection: "column", minHeight: 1, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Box_default, { flexDirection: "row", alignItems: "center", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
             ToolMessage,
             {
               callId: tool.callId,
@@ -308808,7 +309268,7 @@ var ToolGroupMessage = ({
               renderOutputAsMarkdown: tool.renderOutputAsMarkdown
             }
           ) }),
-          tool.status === "Confirming" /* Confirming */ && isConfirming && tool.confirmationDetails && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+          tool.status === "Confirming" /* Confirming */ && isConfirming && tool.confirmationDetails && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
             ToolConfirmationMessage,
             {
               confirmationDetails: tool.confirmationDetails,
@@ -308824,9 +309284,9 @@ var ToolGroupMessage = ({
   );
 };
 
-// packages/cli/src/ui/components/messages/GeminiMessageContent.tsx
-var import_jsx_runtime42 = __toESM(require_jsx_runtime(), 1);
-var GeminiMessageContent = ({
+// packages/cli/src/ui/components/messages/DeltaMessageContent.tsx
+var import_jsx_runtime43 = __toESM(require_jsx_runtime(), 1);
+var DeltaMessageContent = ({
   text,
   isPending,
   availableTerminalHeight,
@@ -308834,7 +309294,7 @@ var GeminiMessageContent = ({
 }) => {
   const originalPrefix = "\u2726 ";
   const prefixWidth = originalPrefix.length;
-  return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Box_default, { flexDirection: "column", paddingLeft: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Box_default, { flexDirection: "column", paddingLeft: prefixWidth, children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
     MarkdownDisplay,
     {
       text,
@@ -308846,14 +309306,14 @@ var GeminiMessageContent = ({
 };
 
 // packages/cli/src/ui/components/messages/CompressionMessage.tsx
-var import_jsx_runtime43 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime44 = __toESM(require_jsx_runtime(), 1);
 var CompressionMessage = ({
   compression
 }) => {
   const text = compression.isPending ? "Compressing chat history" : `Chat history compressed from ${compression.originalTokenCount ?? "unknown"} to ${compression.newTokenCount ?? "unknown"} tokens.`;
-  return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(Box_default, { flexDirection: "row", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Box_default, { marginRight: 1, children: compression.isPending ? /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(build_default, { type: "dots" }) : /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Text, { color: Colors.AccentPurple, children: "\u2726" }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { marginRight: 1, children: compression.isPending ? /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(build_default, { type: "dots" }) : /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { color: Colors.AccentPurple, children: "\u2726" }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
       Text,
       {
         color: compression.isPending ? Colors.AccentPurple : Colors.AccentGreen,
@@ -308864,7 +309324,7 @@ var CompressionMessage = ({
 };
 
 // packages/cli/src/ui/components/AboutBox.tsx
-var import_jsx_runtime44 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime45 = __toESM(require_jsx_runtime(), 1);
 var AboutBox = ({
   cliVersion,
   osVersion,
@@ -308872,7 +309332,7 @@ var AboutBox = ({
   modelVersion,
   selectedAuthType,
   gcpProject
-}) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+}) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
   Box_default,
   {
     borderStyle: "round",
@@ -308882,34 +309342,34 @@ var AboutBox = ({
     marginY: 1,
     width: "100%",
     children: [
-      /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "About Delta Code" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "CLI Version" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: cliVersion }) })
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "About Delta Code" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "CLI Version" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: cliVersion }) })
       ] }),
-      GIT_COMMIT_INFO && !["N/A"].includes(GIT_COMMIT_INFO) && /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Git Commit" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: GIT_COMMIT_INFO }) })
+      GIT_COMMIT_INFO && !["N/A"].includes(GIT_COMMIT_INFO) && /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Git Commit" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: GIT_COMMIT_INFO }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Model" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: modelVersion }) })
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Model" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: modelVersion }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Sandbox" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: sandboxEnv }) })
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Sandbox" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: sandboxEnv }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "OS" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: osVersion }) })
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "OS" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: osVersion }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Auth Method" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: selectedAuthType.startsWith("oauth") ? "OAuth" : selectedAuthType }) })
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "Auth Method" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: selectedAuthType.startsWith("oauth") ? "OAuth" : selectedAuthType }) })
       ] }),
-      gcpProject && /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(Box_default, { flexDirection: "row", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "GCP Project" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Text, { children: gcpProject }) })
+      gcpProject && /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: "35%", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.LightBlue, children: "GCP Project" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: gcpProject }) })
       ] })
     ]
   }
@@ -308987,20 +309447,20 @@ var computeSessionStats = (metrics2) => {
 };
 
 // packages/cli/src/ui/components/StatsDisplay.tsx
-var import_jsx_runtime45 = __toESM(require_jsx_runtime(), 1);
-var StatRow = ({ title, children }) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { children: [
-  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: 28, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { color: Colors.LightBlue, children: title }) }),
+var import_jsx_runtime46 = __toESM(require_jsx_runtime(), 1);
+var StatRow = ({ title, children }) => /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { children: [
+  /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: 28, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { color: Colors.LightBlue, children: title }) }),
   children
 ] });
-var SubStatRow = ({ title, children }) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { paddingLeft: 2, children: [
-  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: 26, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { children: [
+var SubStatRow = ({ title, children }) => /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { paddingLeft: 2, children: [
+  /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: 26, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { children: [
     "\xBB ",
     title
   ] }) }),
   children
 ] });
-var Section = ({ title, children }) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "column", width: "100%", marginBottom: 1, children: [
-  /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, children: title }),
+var Section = ({ title, children }) => /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { flexDirection: "column", width: "100%", marginBottom: 1, children: [
+  /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: title }),
   children
 ] });
 var ModelUsageTable = ({ models, totalCachedTokens, cacheEfficiency }) => {
@@ -309008,14 +309468,14 @@ var ModelUsageTable = ({ models, totalCachedTokens, cacheEfficiency }) => {
   const requestsWidth = 8;
   const inputTokensWidth = 15;
   const outputTokensWidth = 15;
-  return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "column", marginTop: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: nameWidth, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, children: "Model Usage" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: requestsWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, children: "Reqs" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: inputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, children: "Input Tokens" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: outputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, children: "Output Tokens" }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { flexDirection: "column", marginTop: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: nameWidth, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: "Model Usage" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: requestsWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: "Reqs" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: inputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: "Input Tokens" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: outputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: "Output Tokens" }) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
       Box_default,
       {
         borderStyle: "round",
@@ -309026,23 +309486,23 @@ var ModelUsageTable = ({ models, totalCachedTokens, cacheEfficiency }) => {
         width: nameWidth + requestsWidth + inputTokensWidth + outputTokensWidth
       }
     ),
-    Object.entries(models).map(([name2, modelMetrics]) => /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: nameWidth, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: name2.replace("-001", "") }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: requestsWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: modelMetrics.api.totalRequests }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: inputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { color: Colors.AccentYellow, children: modelMetrics.tokens.prompt.toLocaleString() }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { width: outputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { color: Colors.AccentYellow, children: modelMetrics.tokens.candidates.toLocaleString() }) })
+    Object.entries(models).map(([name2, modelMetrics]) => /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: nameWidth, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { children: name2.replace("-001", "") }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: requestsWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { children: modelMetrics.api.totalRequests }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: inputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { color: Colors.AccentYellow, children: modelMetrics.tokens.prompt.toLocaleString() }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: outputTokensWidth, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { color: Colors.AccentYellow, children: modelMetrics.tokens.candidates.toLocaleString() }) })
     ] }, name2)),
-    cacheEfficiency > 0 && /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Box_default, { flexDirection: "column", marginTop: 1, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { color: Colors.AccentGreen, children: "Savings Highlight:" }),
+    cacheEfficiency > 0 && /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { flexDirection: "column", marginTop: 1, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { color: Colors.AccentGreen, children: "Savings Highlight:" }),
         " ",
         totalCachedTokens.toLocaleString(),
         " (",
         cacheEfficiency.toFixed(1),
         "%) of input tokens were served from the cache, reducing costs."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { height: 1 }),
-      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { color: Colors.Gray, children: "\xBB Tip: For a full token breakdown, run `/stats model`." })
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { height: 1 }),
+      /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { color: Colors.Gray, children: "\xBB Tip: For a full token breakdown, run `/stats model`." })
     ] })
   ] });
 };
@@ -309069,11 +309529,11 @@ var StatsDisplay = ({
   );
   const renderTitle = () => {
     if (title) {
-      return Colors.GradientColors && Colors.GradientColors.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(dist_default4, { colors: Colors.GradientColors, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, children: title }) }) : /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: title });
+      return Colors.GradientColors && Colors.GradientColors.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(dist_default4, { colors: Colors.GradientColors, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: title }) }) : /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: title });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Session Stats" });
+    return /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Session Stats" });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -309083,61 +309543,61 @@ var StatsDisplay = ({
       paddingX: 2,
       children: [
         renderTitle(),
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Box_default, { height: 1 }),
-        tools.totalCalls > 0 && /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Section, { title: "Interaction Summary", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(StatRow, { title: "Tool Calls:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { height: 1 }),
+        tools.totalCalls > 0 && /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Section, { title: "Interaction Summary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow, { title: "Tool Calls:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { children: [
             tools.totalCalls,
             " (",
             " ",
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: Colors.AccentGreen, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: Colors.AccentGreen, children: [
               "\u2714 ",
               tools.totalSuccess
             ] }),
             " ",
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: Colors.AccentRed, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: Colors.AccentRed, children: [
               "\u2716 ",
               tools.totalFail
             ] }),
             " )"
           ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(StatRow, { title: "Success Rate:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: successColor, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow, { title: "Success Rate:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: successColor, children: [
             computed.successRate.toFixed(1),
             "%"
           ] }) }),
-          computed.totalDecisions > 0 && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(StatRow, { title: "User Agreement:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: agreementColor, children: [
+          computed.totalDecisions > 0 && /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow, { title: "User Agreement:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: agreementColor, children: [
             computed.agreementRate.toFixed(1),
             "%",
             " ",
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: Colors.Gray, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: Colors.Gray, children: [
               "(",
               computed.totalDecisions,
               " reviewed)"
             ] })
           ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Section, { title: "Performance", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(StatRow, { title: "Wall Time:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: duration }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(StatRow, { title: "Agent Active:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Text, { children: formatDuration(computed.agentActiveTime) }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(SubStatRow, { title: "API Time:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Section, { title: "Performance", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow, { title: "Wall Time:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { children: duration }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow, { title: "Agent Active:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { children: formatDuration(computed.agentActiveTime) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(SubStatRow, { title: "API Time:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { children: [
             formatDuration(computed.totalApiTime),
             " ",
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: Colors.Gray, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: Colors.Gray, children: [
               "(",
               computed.apiTimePercent.toFixed(1),
               "%)"
             ] })
           ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(SubStatRow, { title: "Tool Time:", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(SubStatRow, { title: "Tool Time:", children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { children: [
             formatDuration(computed.totalToolTime),
             " ",
-            /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(Text, { color: Colors.Gray, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: Colors.Gray, children: [
               "(",
               computed.toolTimePercent.toFixed(1),
               "%)"
             ] })
           ] }) })
         ] }),
-        Object.keys(models).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+        Object.keys(models).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
           ModelUsageTable,
           {
             models,
@@ -309151,7 +309611,7 @@ var StatsDisplay = ({
 };
 
 // packages/cli/src/ui/components/ModelStatsDisplay.tsx
-var import_jsx_runtime46 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime47 = __toESM(require_jsx_runtime(), 1);
 var METRIC_COL_WIDTH = 28;
 var MODEL_COL_WIDTH = 22;
 var StatRow2 = ({
@@ -309159,9 +309619,9 @@ var StatRow2 = ({
   values,
   isSubtle = false,
   isSection = false
-}) => /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { children: [
-  /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: METRIC_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: isSection, color: isSection ? void 0 : Colors.LightBlue, children: isSubtle ? `  \u21B3 ${title}` : title }) }),
-  values.map((value, index) => /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: MODEL_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { children: value }) }, index))
+}) => /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
+  /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: METRIC_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: isSection, color: isSection ? void 0 : Colors.LightBlue, children: isSubtle ? `  \u21B3 ${title}` : title }) }),
+  values.map((value, index) => /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: MODEL_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: value }) }, index))
 ] });
 var ModelStatsDisplay = () => {
   const { stats } = useSessionStats();
@@ -309170,14 +309630,14 @@ var ModelStatsDisplay = () => {
     ([, metrics2]) => metrics2.api.totalRequests > 0
   );
   if (activeModels.length === 0) {
-    return /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
       Box_default,
       {
         borderStyle: "round",
         borderColor: Colors.Gray,
         paddingY: 1,
         paddingX: 2,
-        children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { children: "No API calls have been made in this session." })
+        children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: "No API calls have been made in this session." })
       }
     );
   }
@@ -309190,7 +309650,7 @@ var ModelStatsDisplay = () => {
   const hasCached = activeModels.some(
     ([, metrics2]) => metrics2.tokens.cached > 0
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -309199,13 +309659,13 @@ var ModelStatsDisplay = () => {
       paddingY: 1,
       paddingX: 2,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Model Stats For Nerds" }),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { height: 1 }),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: METRIC_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: "Metric" }) }),
-          modelNames.map((name2) => /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { width: MODEL_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { bold: true, children: name2 }) }, name2))
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Model Stats For Nerds" }),
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { height: 1 }),
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: METRIC_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: "Metric" }) }),
+          modelNames.map((name2) => /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: MODEL_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: name2 }) }, name2))
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           Box_default,
           {
             borderStyle: "single",
@@ -309215,21 +309675,21 @@ var ModelStatsDisplay = () => {
             borderRight: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow2, { title: "API", values: [], isSection: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(StatRow2, { title: "API", values: [], isSection: true }),
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Requests",
             values: getModelValues((m) => m.api.totalRequests.toLocaleString())
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Errors",
             values: getModelValues((m) => {
               const errorRate = calculateErrorRate(m);
-              return /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+              return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
                 Text,
                 {
                   color: m.api.totalErrors > 0 ? Colors.AccentRed : Colors.Foreground,
@@ -309244,7 +309704,7 @@ var ModelStatsDisplay = () => {
             })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Avg Latency",
@@ -309254,16 +309714,16 @@ var ModelStatsDisplay = () => {
             })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Box_default, { height: 1 }),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(StatRow2, { title: "Tokens", values: [], isSection: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { height: 1 }),
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(StatRow2, { title: "Tokens", values: [], isSection: true }),
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Total",
-            values: getModelValues((m) => /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(Text, { color: Colors.AccentYellow, children: m.tokens.total.toLocaleString() }))
+            values: getModelValues((m) => /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { color: Colors.AccentYellow, children: m.tokens.total.toLocaleString() }))
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Prompt",
@@ -309271,14 +309731,14 @@ var ModelStatsDisplay = () => {
             values: getModelValues((m) => m.tokens.prompt.toLocaleString())
           }
         ),
-        hasCached && /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        hasCached && /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Cached",
             isSubtle: true,
             values: getModelValues((m) => {
               const cacheHitRate = calculateCacheHitRate(m);
-              return /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(Text, { color: Colors.AccentGreen, children: [
+              return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Text, { color: Colors.AccentGreen, children: [
                 m.tokens.cached.toLocaleString(),
                 " (",
                 cacheHitRate.toFixed(1),
@@ -309287,7 +309747,7 @@ var ModelStatsDisplay = () => {
             })
           }
         ),
-        hasThoughts && /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        hasThoughts && /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Thoughts",
@@ -309295,7 +309755,7 @@ var ModelStatsDisplay = () => {
             values: getModelValues((m) => m.tokens.thoughts.toLocaleString())
           }
         ),
-        hasTool && /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        hasTool && /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Tool",
@@ -309303,7 +309763,7 @@ var ModelStatsDisplay = () => {
             values: getModelValues((m) => m.tokens.tool.toLocaleString())
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
           StatRow2,
           {
             title: "Output",
@@ -309317,7 +309777,7 @@ var ModelStatsDisplay = () => {
 };
 
 // packages/cli/src/ui/components/ToolStatsDisplay.tsx
-var import_jsx_runtime47 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime48 = __toESM(require_jsx_runtime(), 1);
 var TOOL_NAME_COL_WIDTH = 25;
 var CALLS_COL_WIDTH = 8;
 var SUCCESS_RATE_COL_WIDTH = 15;
@@ -309329,14 +309789,14 @@ var StatRow3 = ({ name: name2, stats }) => {
     green: TOOL_SUCCESS_RATE_HIGH,
     yellow: TOOL_SUCCESS_RATE_MEDIUM
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: TOOL_NAME_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { color: Colors.LightBlue, children: name2 }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: CALLS_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: stats.count }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: SUCCESS_RATE_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Text, { color: successColor, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: TOOL_NAME_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { color: Colors.LightBlue, children: name2 }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: CALLS_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: stats.count }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: SUCCESS_RATE_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Text, { color: successColor, children: [
       successRate.toFixed(1),
       "%"
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: formatDuration(avgDuration) }) })
+    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: formatDuration(avgDuration) }) })
   ] });
 };
 var ToolStatsDisplay = () => {
@@ -309346,14 +309806,14 @@ var ToolStatsDisplay = () => {
     ([, metrics2]) => metrics2.count > 0
   );
   if (activeTools.length === 0) {
-    return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
       Box_default,
       {
         borderStyle: "round",
         borderColor: Colors.Gray,
         paddingY: 1,
         paddingX: 2,
-        children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: "No tool calls have been made in this session." })
+        children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: "No tool calls have been made in this session." })
       }
     );
   }
@@ -309372,7 +309832,7 @@ var ToolStatsDisplay = () => {
     green: USER_AGREEMENT_RATE_HIGH,
     yellow: USER_AGREEMENT_RATE_MEDIUM
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
     Box_default,
     {
       borderStyle: "round",
@@ -309382,15 +309842,15 @@ var ToolStatsDisplay = () => {
       paddingX: 2,
       width: 70,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Tool Stats For Nerds" }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { height: 1 }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: TOOL_NAME_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: "Tool Name" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: CALLS_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: "Calls" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: SUCCESS_RATE_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: "Success Rate" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: "Avg Duration" }) })
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Tool Stats For Nerds" }),
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { height: 1 }),
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: TOOL_NAME_COL_WIDTH, children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, children: "Tool Name" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: CALLS_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, children: "Calls" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: SUCCESS_RATE_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, children: "Success Rate" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, children: "Avg Duration" }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
           Box_default,
           {
             borderStyle: "single",
@@ -309401,50 +309861,50 @@ var ToolStatsDisplay = () => {
             width: "100%"
           }
         ),
-        activeTools.map(([name2, stats2]) => /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(StatRow3, { name: name2, stats: stats2 }, name2)),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { height: 1 }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, children: "User Decision Summary" }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        activeTools.map(([name2, stats2]) => /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(StatRow3, { name: name2, stats: stats2 }, name2)),
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { height: 1 }),
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, children: "User Decision Summary" }),
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
             Box_default,
             {
               width: TOOL_NAME_COL_WIDTH + CALLS_COL_WIDTH + SUCCESS_RATE_COL_WIDTH,
-              children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { color: Colors.LightBlue, children: "Total Reviewed Suggestions:" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { color: Colors.LightBlue, children: "Total Reviewed Suggestions:" })
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: totalReviewed }) })
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: totalReviewed }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
             Box_default,
             {
               width: TOOL_NAME_COL_WIDTH + CALLS_COL_WIDTH + SUCCESS_RATE_COL_WIDTH,
-              children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: " \xBB Accepted:" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: " \xBB Accepted:" })
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { color: Colors.AccentGreen, children: totalDecisions.accept }) })
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { color: Colors.AccentGreen, children: totalDecisions.accept }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
             Box_default,
             {
               width: TOOL_NAME_COL_WIDTH + CALLS_COL_WIDTH + SUCCESS_RATE_COL_WIDTH,
-              children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: " \xBB Rejected:" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: " \xBB Rejected:" })
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { color: Colors.AccentRed, children: totalDecisions.reject }) })
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { color: Colors.AccentRed, children: totalDecisions.reject }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
             Box_default,
             {
               width: TOOL_NAME_COL_WIDTH + CALLS_COL_WIDTH + SUCCESS_RATE_COL_WIDTH,
-              children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: " \xBB Modified:" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: " \xBB Modified:" })
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { color: Colors.AccentYellow, children: totalDecisions.modify }) })
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { color: Colors.AccentYellow, children: totalDecisions.modify }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
           Box_default,
           {
             borderStyle: "single",
@@ -309455,15 +309915,15 @@ var ToolStatsDisplay = () => {
             width: "100%"
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(Box_default, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(Box_default, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
             Box_default,
             {
               width: TOOL_NAME_COL_WIDTH + CALLS_COL_WIDTH + SUCCESS_RATE_COL_WIDTH,
-              children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { children: " Overall Agreement Rate:" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { children: " Overall Agreement Rate:" })
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(Text, { bold: true, color: totalReviewed > 0 ? agreementColor : void 0, children: totalReviewed > 0 ? `${agreementRate.toFixed(1)}%` : "--" }) })
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Box_default, { width: AVG_DURATION_COL_WIDTH, justifyContent: "flex-end", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Text, { bold: true, color: totalReviewed > 0 ? agreementColor : void 0, children: totalReviewed > 0 ? `${agreementRate.toFixed(1)}%` : "--" }) })
         ] })
       ]
     }
@@ -309471,14 +309931,14 @@ var ToolStatsDisplay = () => {
 };
 
 // packages/cli/src/ui/components/SessionSummaryDisplay.tsx
-var import_jsx_runtime48 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime49 = __toESM(require_jsx_runtime(), 1);
 var SessionSummaryDisplay = ({
   duration
-}) => /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(StatsDisplay, { title: "Agent powering down. Goodbye!", duration });
+}) => /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(StatsDisplay, { title: "Agent powering down. Goodbye!", duration });
 
 // packages/cli/src/ui/components/Help.tsx
-var import_jsx_runtime49 = __toESM(require_jsx_runtime(), 1);
-var Help = ({ commands }) => /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
+var import_jsx_runtime50 = __toESM(require_jsx_runtime(), 1);
+var Help = ({ commands }) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
   Box_default,
   {
     flexDirection: "column",
@@ -309487,123 +309947,123 @@ var Help = ({ commands }) => /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
     borderStyle: "round",
     padding: 1,
     children: [
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.Foreground, children: "Basics:" }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Add context" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.Foreground, children: "Basics:" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Add context" }),
         ": Use",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "@" }),
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "@" }),
         " ",
         "to specify files for context (e.g.,",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "@src/myFile.ts" }),
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "@src/myFile.ts" }),
         ") to target specific files or folders."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Shell mode" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Shell mode" }),
         ": Execute shell commands via",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "!" }),
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "!" }),
         " ",
         "(e.g.,",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "!npm run start" }),
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "!npm run start" }),
         ") or use natural language (e.g.",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "start server" }),
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "start server" }),
         ")."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Box_default, { height: 1 }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.Foreground, children: "Commands:" }),
-      commands.filter((command) => command.description).map((command) => /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Box_default, { flexDirection: "column", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { bold: true, color: Colors.AccentPurple, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Box_default, { height: 1 }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.Foreground, children: "Commands:" }),
+      commands.filter((command) => command.description).map((command) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Box_default, { flexDirection: "column", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { bold: true, color: Colors.AccentPurple, children: [
             " ",
             "/",
             command.name
           ] }),
           command.description && " - " + command.description
         ] }),
-        command.subCommands && command.subCommands.map((subCommand) => /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { bold: true, color: Colors.AccentPurple, children: [
+        command.subCommands && command.subCommands.map((subCommand) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { bold: true, color: Colors.AccentPurple, children: [
             "   ",
             subCommand.name
           ] }),
           subCommand.description && " - " + subCommand.description
         ] }, subCommand.name))
       ] }, command.name)),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { bold: true, color: Colors.AccentPurple, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { bold: true, color: Colors.AccentPurple, children: [
           " ",
           "!",
           " "
         ] }),
         "- shell command"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Box_default, { height: 1 }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.Foreground, children: "Keyboard Shortcuts:" }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Alt+Left/Right" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Box_default, { height: 1 }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.Foreground, children: "Keyboard Shortcuts:" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Alt+Left/Right" }),
         " ",
         "- Jump through words in the input"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Ctrl+C" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Ctrl+C" }),
         " ",
         "- Quit application"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: process.platform === "win32" ? "Ctrl+Enter" : "Ctrl+J" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: process.platform === "win32" ? "Ctrl+Enter" : "Ctrl+J" }),
         " ",
         process.platform === "linux" ? "- New line (Alt+Enter works for certain linux distros)" : "- New line"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Ctrl+L" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Ctrl+L" }),
         " ",
         "- Clear the screen"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: process.platform === "darwin" ? "Ctrl+X / Meta+Enter" : "Ctrl+X" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: process.platform === "darwin" ? "Ctrl+X / Meta+Enter" : "Ctrl+X" }),
         " ",
         "- Open input in external editor"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Ctrl+Y" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Ctrl+Y" }),
         " ",
         "- Toggle YOLO mode"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Enter" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Enter" }),
         " ",
         "- Send message"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Esc" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Esc" }),
         " ",
         "- Cancel operation"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Shift+Tab" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Shift+Tab" }),
         " ",
         "- Toggle auto-accepting edits"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Up/Down" }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Up/Down" }),
         " ",
         "- Cycle through your prompt history"
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Box_default, { height: 1 }),
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(Text, { color: Colors.Foreground, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Box_default, { height: 1 }),
+      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Text, { color: Colors.Foreground, children: [
         "For a full list of shortcuts, see",
         " ",
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "docs/keyboard-shortcuts.md" })
+        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "docs/keyboard-shortcuts.md" })
       ] })
     ]
   }
 );
 
 // packages/cli/src/ui/components/HistoryItemDisplay.tsx
-var import_jsx_runtime50 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime51 = __toESM(require_jsx_runtime(), 1);
 var HistoryItemDisplay = ({
   item,
   availableTerminalHeight,
@@ -309612,11 +310072,11 @@ var HistoryItemDisplay = ({
   config,
   commands,
   isFocused = true
-}) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(Box_default, { flexDirection: "column", children: [
-  item.type === "user" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(UserMessage, { text: item.text }),
-  item.type === "user_shell" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(UserShellMessage, { text: item.text }),
-  item.type === "gemini" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
-    GeminiMessage,
+}) => /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)(Box_default, { flexDirection: "column", children: [
+  item.type === "user" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(UserMessage, { text: item.text }),
+  item.type === "user_shell" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(UserShellMessage, { text: item.text }),
+  item.type === "gemini" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
+    DeltaMessage,
     {
       text: item.text,
       isPending,
@@ -309624,8 +310084,8 @@ var HistoryItemDisplay = ({
       terminalWidth
     }
   ),
-  item.type === "gemini_content" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
-    GeminiMessageContent,
+  item.type === "gemini_content" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
+    DeltaMessageContent,
     {
       text: item.text,
       isPending,
@@ -309633,9 +310093,9 @@ var HistoryItemDisplay = ({
       terminalWidth
     }
   ),
-  item.type === "info" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(InfoMessage, { text: item.text }),
-  item.type === "error" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(ErrorMessage, { text: item.text }),
-  item.type === "about" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+  item.type === "info" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(InfoMessage, { text: item.text }),
+  item.type === "error" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(ErrorMessage, { text: item.text }),
+  item.type === "about" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
     AboutBox,
     {
       cliVersion: item.cliVersion,
@@ -309646,12 +310106,12 @@ var HistoryItemDisplay = ({
       gcpProject: item.gcpProject
     }
   ),
-  item.type === "help" && commands && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Help, { commands }),
-  item.type === "stats" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(StatsDisplay, { duration: item.duration }),
-  item.type === "model_stats" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(ModelStatsDisplay, {}),
-  item.type === "tool_stats" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(ToolStatsDisplay, {}),
-  item.type === "quit" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(SessionSummaryDisplay, { duration: item.duration }),
-  item.type === "tool_group" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+  item.type === "help" && commands && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Help, { commands }),
+  item.type === "stats" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(StatsDisplay, { duration: item.duration }),
+  item.type === "model_stats" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(ModelStatsDisplay, {}),
+  item.type === "tool_stats" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(ToolStatsDisplay, {}),
+  item.type === "quit" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(SessionSummaryDisplay, { duration: item.duration }),
+  item.type === "tool_group" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
     ToolGroupMessage,
     {
       toolCalls: item.tools,
@@ -309662,13 +310122,13 @@ var HistoryItemDisplay = ({
       isFocused
     }
   ),
-  item.type === "compression" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(CompressionMessage, { compression: item.compression })
+  item.type === "compression" && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(CompressionMessage, { compression: item.compression })
 ] }, item.id);
 
 // packages/cli/src/ui/components/ContextSummaryDisplay.tsx
-var import_jsx_runtime51 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime52 = __toESM(require_jsx_runtime(), 1);
 var ContextSummaryDisplay = ({
-  geminiMdFileCount,
+  deltaMdFileCount,
   contextFileNames,
   mcpServers,
   blockedMcpServers,
@@ -309680,8 +310140,8 @@ var ContextSummaryDisplay = ({
   const mcpServerCount = Object.keys(mcpServers || {}).length;
   const blockedMcpServerCount = blockedMcpServers?.length || 0;
   const openFileCount = ideContext2?.workspaceState?.openFiles?.length ?? 0;
-  if (geminiMdFileCount === 0 && mcpServerCount === 0 && blockedMcpServerCount === 0 && openFileCount === 0) {
-    return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Text, { children: " " });
+  if (deltaMdFileCount === 0 && mcpServerCount === 0 && blockedMcpServerCount === 0 && openFileCount === 0) {
+    return /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(Text, { children: " " });
   }
   const openFilesText = (() => {
     if (openFileCount === 0) {
@@ -309690,12 +310150,12 @@ var ContextSummaryDisplay = ({
     return `${openFileCount} open file${openFileCount > 1 ? "s" : ""} (ctrl+e to view)`;
   })();
   const geminiMdText = (() => {
-    if (geminiMdFileCount === 0) {
+    if (deltaMdFileCount === 0) {
       return "";
     }
     const allNamesTheSame = new Set(contextFileNames).size < 2;
     const name2 = allNamesTheSame ? contextFileNames[0] : "context";
-    return `${geminiMdFileCount} ${name2} file${geminiMdFileCount > 1 ? "s" : ""}`;
+    return `${deltaMdFileCount} ${name2} file${deltaMdFileCount > 1 ? "s" : ""}`;
   })();
   const mcpText = (() => {
     if (mcpServerCount === 0 && blockedMcpServerCount === 0) {
@@ -309726,34 +310186,34 @@ var ContextSummaryDisplay = ({
   })();
   const summaryParts = [openFilesText, geminiMdText, mcpText].filter(Boolean);
   if (isNarrow) {
-    return /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)(Box_default, { flexDirection: "column", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Text, { color: Colors.Gray, children: "Using:" }),
-      summaryParts.map((part, index) => /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)(Text, { color: Colors.Gray, children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(Box_default, { flexDirection: "column", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(Text, { color: Colors.Gray, children: "Using:" }),
+      summaryParts.map((part, index) => /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(Text, { color: Colors.Gray, children: [
         "  ",
         "- ",
         part
       ] }, index))
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)(Text, { color: Colors.Gray, children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(Text, { color: Colors.Gray, children: [
     "Using: ",
     summaryParts.join(" | ")
   ] }) });
 };
 
 // packages/cli/src/ui/hooks/useHistoryManager.ts
-var import_react77 = __toESM(require_react(), 1);
+var import_react78 = __toESM(require_react(), 1);
 function useHistory() {
-  const [history, setHistory] = (0, import_react77.useState)([]);
-  const messageIdCounterRef = (0, import_react77.useRef)(0);
-  const getNextMessageId = (0, import_react77.useCallback)((baseTimestamp) => {
+  const [history, setHistory] = (0, import_react78.useState)([]);
+  const messageIdCounterRef = (0, import_react78.useRef)(0);
+  const getNextMessageId = (0, import_react78.useCallback)((baseTimestamp) => {
     messageIdCounterRef.current += 1;
     return baseTimestamp + messageIdCounterRef.current;
   }, []);
-  const loadHistory = (0, import_react77.useCallback)((newHistory) => {
+  const loadHistory = (0, import_react78.useCallback)((newHistory) => {
     setHistory(newHistory);
   }, []);
-  const addItem = (0, import_react77.useCallback)(
+  const addItem = (0, import_react78.useCallback)(
     (itemData, baseTimestamp) => {
       const id = getNextMessageId(baseTimestamp);
       const newItem = { ...itemData, id };
@@ -309770,7 +310230,7 @@ function useHistory() {
     },
     [getNextMessageId]
   );
-  const updateItem = (0, import_react77.useCallback)(
+  const updateItem = (0, import_react78.useCallback)(
     (id, updates) => {
       setHistory(
         (prevHistory) => prevHistory.map((item) => {
@@ -309784,7 +310244,7 @@ function useHistory() {
     },
     []
   );
-  const clearItems = (0, import_react77.useCallback)(() => {
+  const clearItems = (0, import_react78.useCallback)(() => {
     setHistory([]);
     messageIdCounterRef.current = 0;
   }, []);
@@ -309803,7 +310263,7 @@ import process35 from "node:process";
 
 // packages/cli/src/ui/IdeIntegrationNudge.tsx
 init_dist3();
-var import_jsx_runtime52 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime53 = __toESM(require_jsx_runtime(), 1);
 function IdeIntegrationNudge({
   ide,
   onComplete
@@ -309820,7 +310280,7 @@ function IdeIntegrationNudge({
     { isActive: true }
   );
   const { displayName: ideName } = getIdeInfo(ide);
-  const isExtensionPreInstalled = !!process.env.GEMINI_CLI_IDE_SERVER_PORT && !!process.env.GEMINI_CLI_IDE_WORKSPACE_PATH;
+  const isExtensionPreInstalled = !!process.env.DELTA_CLI_IDE_SERVER_PORT && !!process.env.DELTA_CLI_IDE_WORKSPACE_PATH;
   const OPTIONS = [
     {
       label: "Yes",
@@ -309845,7 +310305,7 @@ function IdeIntegrationNudge({
     }
   ];
   const installText = isExtensionPreInstalled ? `If you select Yes, the CLI will have access to your open files and display diffs directly in ${ideName ?? "your editor"}.` : `If you select Yes, we'll install an extension that allows the CLI to access your open files and display diffs directly in ${ideName ?? "your editor"}.`;
-  return /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)(
     Box_default,
     {
       flexDirection: "column",
@@ -309855,14 +310315,14 @@ function IdeIntegrationNudge({
       width: "100%",
       marginLeft: 1,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(Box_default, { marginBottom: 1, flexDirection: "column", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(Text, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(Text, { color: "yellow", children: "> " }),
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)(Box_default, { marginBottom: 1, flexDirection: "column", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)(Text, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(Text, { color: "yellow", children: "> " }),
             `Do you want to connect ${ideName ?? "your"} editor to Delta Code?`
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(Text, { dimColor: true, children: installText })
+          /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(Text, { dimColor: true, children: installText })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
           RadioButtonSelect,
           {
             items: OPTIONS,
@@ -309876,14 +310336,14 @@ function IdeIntegrationNudge({
 }
 
 // packages/cli/src/ui/hooks/useGitBranchName.ts
-var import_react78 = __toESM(require_react(), 1);
+var import_react79 = __toESM(require_react(), 1);
 import { exec as exec5 } from "node:child_process";
 import fs56 from "node:fs";
 import fsPromises5 from "node:fs/promises";
 import path65 from "path";
 function useGitBranchName(cwd4) {
-  const [branchName, setBranchName] = (0, import_react78.useState)(void 0);
-  const fetchBranchName = (0, import_react78.useCallback)(
+  const [branchName, setBranchName] = (0, import_react79.useState)(void 0);
+  const fetchBranchName = (0, import_react79.useCallback)(
     () => exec5(
       "git rev-parse --abbrev-ref HEAD",
       { cwd: cwd4 },
@@ -309912,7 +310372,7 @@ function useGitBranchName(cwd4) {
     ),
     [cwd4, setBranchName]
   );
-  (0, import_react78.useEffect)(() => {
+  (0, import_react79.useEffect)(() => {
     fetchBranchName();
     const gitLogsHeadPath = path65.join(cwd4, ".git", "logs", "HEAD");
     let watcher;
@@ -309936,14 +310396,14 @@ function useGitBranchName(cwd4) {
 }
 
 // packages/cli/src/ui/hooks/useBracketedPaste.ts
-var import_react79 = __toESM(require_react(), 1);
+var import_react80 = __toESM(require_react(), 1);
 var ENABLE_BRACKETED_PASTE = "\x1B[?2004h";
 var DISABLE_BRACKETED_PASTE = "\x1B[?2004l";
 var useBracketedPaste = () => {
   const cleanup = () => {
     process.stdout.write(DISABLE_BRACKETED_PASTE);
   };
-  (0, import_react79.useEffect)(() => {
+  (0, import_react80.useEffect)(() => {
     process.stdout.write(ENABLE_BRACKETED_PASTE);
     process.on("exit", cleanup);
     process.on("SIGINT", cleanup);
@@ -309958,26 +310418,26 @@ var useBracketedPaste = () => {
 };
 
 // packages/cli/src/ui/contexts/VimModeContext.tsx
-var import_react80 = __toESM(require_react(), 1);
-var import_jsx_runtime53 = __toESM(require_jsx_runtime(), 1);
-var VimModeContext = (0, import_react80.createContext)(void 0);
+var import_react81 = __toESM(require_react(), 1);
+var import_jsx_runtime54 = __toESM(require_jsx_runtime(), 1);
+var VimModeContext = (0, import_react81.createContext)(void 0);
 var VimModeProvider = ({
   children,
   settings
 }) => {
   const initialVimEnabled = settings.merged.vimMode ?? false;
-  const [vimEnabled, setVimEnabled] = (0, import_react80.useState)(initialVimEnabled);
-  const [vimMode, setVimMode] = (0, import_react80.useState)(
+  const [vimEnabled, setVimEnabled] = (0, import_react81.useState)(initialVimEnabled);
+  const [vimMode, setVimMode] = (0, import_react81.useState)(
     initialVimEnabled ? "NORMAL" : "INSERT"
   );
-  (0, import_react80.useEffect)(() => {
+  (0, import_react81.useEffect)(() => {
     const enabled = settings.merged.vimMode ?? false;
     setVimEnabled(enabled);
     if (enabled) {
       setVimMode("NORMAL");
     }
   }, [settings.merged.vimMode]);
-  const toggleVimEnabled = (0, import_react80.useCallback)(async () => {
+  const toggleVimEnabled = (0, import_react81.useCallback)(async () => {
     const newValue = !vimEnabled;
     setVimEnabled(newValue);
     if (newValue) {
@@ -309992,10 +310452,10 @@ var VimModeProvider = ({
     toggleVimEnabled,
     setVimMode
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(VimModeContext.Provider, { value, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(VimModeContext.Provider, { value, children });
 };
 var useVimMode = () => {
-  const context2 = (0, import_react80.useContext)(VimModeContext);
+  const context2 = (0, import_react81.useContext)(VimModeContext);
   if (context2 === void 0) {
     throw new Error("useVimMode must be used within a VimModeProvider");
   }
@@ -310003,7 +310463,7 @@ var useVimMode = () => {
 };
 
 // packages/cli/src/ui/hooks/vim.ts
-var import_react81 = __toESM(require_react(), 1);
+var import_react82 = __toESM(require_react(), 1);
 var DIGIT_MULTIPLIER = 10;
 var DEFAULT_COUNT = 1;
 var DIGIT_1_TO_9 = /^[1-9]$/;
@@ -310066,22 +310526,22 @@ var vimReducer = (state, action) => {
 };
 function useVim(buffer, onSubmit) {
   const { vimEnabled, vimMode, setVimMode } = useVimMode();
-  const [state, dispatch] = (0, import_react81.useReducer)(vimReducer, initialVimState);
-  (0, import_react81.useEffect)(() => {
+  const [state, dispatch] = (0, import_react82.useReducer)(vimReducer, initialVimState);
+  (0, import_react82.useEffect)(() => {
     dispatch({ type: "SET_MODE", mode: vimMode });
   }, [vimMode]);
-  const updateMode = (0, import_react81.useCallback)(
+  const updateMode = (0, import_react82.useCallback)(
     (mode) => {
       setVimMode(mode);
       dispatch({ type: "SET_MODE", mode });
     },
     [setVimMode]
   );
-  const getCurrentCount = (0, import_react81.useCallback)(
+  const getCurrentCount = (0, import_react82.useCallback)(
     () => state.count || DEFAULT_COUNT,
     [state.count]
   );
-  const executeCommand = (0, import_react81.useCallback)(
+  const executeCommand = (0, import_react82.useCallback)(
     (cmdType, count) => {
       switch (cmdType) {
         case CMD_TYPES.DELETE_WORD_FORWARD: {
@@ -310157,7 +310617,7 @@ function useVim(buffer, onSubmit) {
     },
     [buffer, updateMode]
   );
-  const handleInsertModeInput = (0, import_react81.useCallback)(
+  const handleInsertModeInput = (0, import_react82.useCallback)(
     (normalizedKey) => {
       if (normalizedKey.name === "escape") {
         buffer.vimEscapeInsertMode();
@@ -310188,7 +310648,7 @@ function useVim(buffer, onSubmit) {
     },
     [buffer, dispatch, updateMode, onSubmit]
   );
-  const normalizeKey = (0, import_react81.useCallback)(
+  const normalizeKey = (0, import_react82.useCallback)(
     (key) => ({
       name: key.name || "",
       sequence: key.sequence || "",
@@ -310199,7 +310659,7 @@ function useVim(buffer, onSubmit) {
     }),
     []
   );
-  const handleChangeMovement = (0, import_react81.useCallback)(
+  const handleChangeMovement = (0, import_react82.useCallback)(
     (movement) => {
       const count = getCurrentCount();
       dispatch({ type: "CLEAR_COUNT" });
@@ -310220,7 +310680,7 @@ function useVim(buffer, onSubmit) {
     },
     [getCurrentCount, dispatch, buffer, updateMode]
   );
-  const handleOperatorMotion = (0, import_react81.useCallback)(
+  const handleOperatorMotion = (0, import_react82.useCallback)(
     (operator2, motion) => {
       const count = getCurrentCount();
       const commandMap = {
@@ -310247,7 +310707,7 @@ function useVim(buffer, onSubmit) {
     },
     [getCurrentCount, executeCommand, dispatch]
   );
-  const handleInput = (0, import_react81.useCallback)(
+  const handleInput = (0, import_react82.useCallback)(
     (key) => {
       if (!vimEnabled) {
         return false;
@@ -310548,15 +311008,15 @@ function useVim(buffer, onSubmit) {
 import * as fs58 from "fs";
 
 // packages/cli/src/ui/components/UpdateNotification.tsx
-var import_jsx_runtime54 = __toESM(require_jsx_runtime(), 1);
-var UpdateNotification = ({ message }) => /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+var import_jsx_runtime55 = __toESM(require_jsx_runtime(), 1);
+var UpdateNotification = ({ message }) => /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
   Box_default,
   {
     borderStyle: "round",
     borderColor: Colors.AccentYellow,
     paddingX: 1,
     marginY: 1,
-    children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(Text, { color: Colors.AccentYellow, children: message })
+    children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(Text, { color: Colors.AccentYellow, children: message })
   }
 );
 
@@ -310564,21 +311024,21 @@ var UpdateNotification = ({ message }) => /* @__PURE__ */ (0, import_jsx_runtime
 init_dist3();
 
 // packages/cli/src/ui/components/ShowMoreLines.tsx
-var import_jsx_runtime55 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime56 = __toESM(require_jsx_runtime(), 1);
 var ShowMoreLines = ({ constrainHeight }) => {
   const overflowState = useOverflowState();
   const streamingState = useStreamingContext();
   if (overflowState === void 0 || overflowState.overflowingIds.size === 0 || !constrainHeight || !(streamingState === "idle" /* Idle */ || streamingState === "waiting_for_confirmation" /* WaitingForConfirmation */)) {
     return null;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(Text, { color: Colors.Gray, wrap: "truncate", children: "Press ctrl-s to show more lines" }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Box_default, { children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.Gray, wrap: "truncate", children: "Press ctrl-s to show more lines" }) });
 };
 
 // packages/cli/src/ui/privacy/PrivacyNotice.tsx
 init_dist3();
 
 // packages/cli/src/ui/privacy/GeminiPrivacyNotice.tsx
-var import_jsx_runtime56 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime57 = __toESM(require_jsx_runtime(), 1);
 var GeminiPrivacyNotice = ({ onExit }) => {
   useKeypress(
     (key) => {
@@ -310588,47 +311048,47 @@ var GeminiPrivacyNotice = ({ onExit }) => {
     },
     { isActive: true }
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(Box_default, { flexDirection: "column", marginBottom: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Gemini API Key Notice" }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(Text, { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Box_default, { flexDirection: "column", marginBottom: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Gemini API Key Notice" }),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
       "By using the Gemini API",
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
       ", Google AI Studio",
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentRed, children: "[2]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentRed, children: "[2]" }),
       ', and the other Google developer services that reference these terms (collectively, the "APIs" or "Services"), you are agreeing to Google APIs Terms of Service (the "API Terms")',
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentGreen, children: "[3]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentGreen, children: "[3]" }),
       ', and the Gemini API Additional Terms of Service (the "Additional Terms")',
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentPurple, children: "[4]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentPurple, children: "[4]" }),
       "."
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
       " ",
       "https://ai.google.dev/docs/gemini_api_overview"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentRed, children: "[2]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentRed, children: "[2]" }),
       " https://aistudio.google.com/"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentGreen, children: "[3]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentGreen, children: "[3]" }),
       " ",
       "https://developers.google.com/terms"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.AccentPurple, children: "[4]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentPurple, children: "[4]" }),
       " ",
       "https://ai.google.dev/gemini-api/terms"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(Text, { color: Colors.Gray, children: "Press Esc to exit." })
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.Gray, children: "Press Esc to exit." })
   ] });
 };
 
 // packages/cli/src/ui/privacy/CloudPaidPrivacyNotice.tsx
-var import_jsx_runtime57 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime58 = __toESM(require_jsx_runtime(), 1);
 var CloudPaidPrivacyNotice = ({
   onExit
 }) => {
@@ -310640,40 +311100,40 @@ var CloudPaidPrivacyNotice = ({
     },
     { isActive: true }
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Box_default, { flexDirection: "column", marginBottom: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Vertex AI Notice" }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Box_default, { flexDirection: "column", marginBottom: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Vertex AI Notice" }),
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Text, { children: [
       "Service Specific Terms",
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
       " are incorporated into the agreement under which Google has agreed to provide Google Cloud Platform",
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentGreen, children: "[2]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.AccentGreen, children: "[2]" }),
       " to Customer (the \u201CAgreement\u201D). If the Agreement authorizes the resale or supply of Google Cloud Platform under a Google Cloud partner or reseller program, then except for in the section entitled \u201CPartner-Specific Terms\u201D, all references to Customer in the Service Specific Terms mean Partner or Reseller (as applicable), and all references to Customer Data in the Service Specific Terms mean Partner Data. Capitalized terms used but not defined in the Service Specific Terms have the meaning given to them in the Agreement."
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
       " ",
       "https://cloud.google.com/terms/service-terms"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.AccentGreen, children: "[2]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.AccentGreen, children: "[2]" }),
       " ",
       "https://cloud.google.com/terms/services"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(Text, { color: Colors.Gray, children: "Press Esc to exit." })
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.Gray, children: "Press Esc to exit." })
   ] });
 };
 
 // packages/cli/src/ui/hooks/usePrivacySettings.ts
-var import_react82 = __toESM(require_react(), 1);
+var import_react83 = __toESM(require_react(), 1);
 init_dist3();
 var usePrivacySettings = (config) => {
-  const [privacyState, setPrivacyState] = (0, import_react82.useState)({
+  const [privacyState, setPrivacyState] = (0, import_react83.useState)({
     isLoading: true
   });
-  (0, import_react82.useEffect)(() => {
+  (0, import_react83.useEffect)(() => {
     const fetchInitialState = async () => {
       setPrivacyState({
         isLoading: true
@@ -310703,7 +311163,7 @@ var usePrivacySettings = (config) => {
     };
     fetchInitialState();
   }, [config]);
-  const updateDataCollectionOptIn = (0, import_react82.useCallback)(
+  const updateDataCollectionOptIn = (0, import_react83.useCallback)(
     async (optIn) => {
       try {
         const server = getCodeAssistServer(config);
@@ -310728,7 +311188,7 @@ var usePrivacySettings = (config) => {
   };
 };
 function getCodeAssistServer(config) {
-  const server = config.getGeminiClient().getContentGenerator();
+  const server = config.getDeltaClient().getContentGenerator();
   if (!(server instanceof CodeAssistServer)) {
     throw new Error("Oauth not being used");
   } else if (!server.projectId) {
@@ -310774,7 +311234,7 @@ async function setRemoteDataCollectionOptIn(server, optIn) {
 }
 
 // packages/cli/src/ui/privacy/CloudFreePrivacyNotice.tsx
-var import_jsx_runtime58 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime59 = __toESM(require_jsx_runtime(), 1);
 var CloudFreePrivacyNotice = ({
   config,
   onExit
@@ -310789,40 +311249,40 @@ var CloudFreePrivacyNotice = ({
     { isActive: true }
   );
   if (privacyState.isLoading) {
-    return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.Gray, children: "Loading..." });
+    return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { color: Colors.Gray, children: "Loading..." });
   }
   if (privacyState.error) {
-    return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Box_default, { flexDirection: "column", marginY: 1, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Text, { color: Colors.AccentRed, children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(Box_default, { flexDirection: "column", marginY: 1, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(Text, { color: Colors.AccentRed, children: [
         "Error loading Opt-in settings: ",
         privacyState.error
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.Gray, children: "Press Esc to exit." })
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { color: Colors.Gray, children: "Press Esc to exit." })
     ] });
   }
   if (privacyState.isFreeTier === false) {
-    return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(CloudPaidPrivacyNotice, { onExit });
+    return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(CloudPaidPrivacyNotice, { onExit });
   }
   const items = [
     { label: "Yes", value: true },
     { label: "No", value: false }
   ];
-  return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Box_default, { flexDirection: "column", marginY: 1, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Gemini Code Assist for Individuals Privacy Notice" }),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Text, { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(Box_default, { flexDirection: "column", marginY: 1, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { bold: true, color: Colors.AccentPurple, children: "Gemini Code Assist for Individuals Privacy Notice" }),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(Text, { children: [
       "This notice and our Privacy Policy",
-      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
       " describe how Gemini Code Assist handles your data. Please read them carefully."
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { children: "When you use Gemini Code Assist for individuals with Gemini CLI, Google collects your prompts, related code, generated output, code edits, related feature usage information, and your feedback to provide, improve, and develop Google products and services and machine learning technologies." }),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { children: "To help with quality and improve our products (such as generative machine-learning models), human reviewers may read, annotate, and process the data collected above. We take steps to protect your privacy as part of this process. This includes disconnecting the data from your Google Account before reviewers see or annotate it, and storing those disconnected copies for up to 18 months. Please don't submit confidential information or any data you wouldn't want a reviewer to see or Google to use to improve our products, services and machine-learning technologies." }),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Box_default, { flexDirection: "column", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { children: "Allow Google to use this data to develop and improve our products?" }),
-      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { children: "When you use Gemini Code Assist for individuals with Delta Code, Google collects your prompts, related code, generated output, code edits, related feature usage information, and your feedback to provide, improve, and develop Google products and services and machine learning technologies." }),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { children: "To help with quality and improve our products (such as generative machine-learning models), human reviewers may read, annotate, and process the data collected above. We take steps to protect your privacy as part of this process. This includes disconnecting the data from your Google Account before reviewers see or annotate it, and storing those disconnected copies for up to 18 months. Please don't submit confidential information or any data you wouldn't want a reviewer to see or Google to use to improve our products, services and machine-learning technologies." }),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(Box_default, { flexDirection: "column", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { children: "Allow Google to use this data to develop and improve our products?" }),
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
         RadioButtonSelect,
         {
           items,
@@ -310836,19 +311296,19 @@ var CloudFreePrivacyNotice = ({
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(Text, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(Text, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { color: Colors.AccentBlue, children: "[1]" }),
       " ",
       "https://policies.google.com/privacy"
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Newline, {}),
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(Text, { color: Colors.Gray, children: "Press Enter to choose an option and exit." })
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Newline, {}),
+    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Text, { color: Colors.Gray, children: "Press Enter to choose an option and exit." })
   ] });
 };
 
 // packages/cli/src/ui/privacy/PrivacyNotice.tsx
-var import_jsx_runtime59 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime60 = __toESM(require_jsx_runtime(), 1);
 var PrivacyNoticeText = ({
   config,
   onExit
@@ -310856,24 +311316,24 @@ var PrivacyNoticeText = ({
   const authType = config.getContentGeneratorConfig()?.authType;
   switch (authType) {
     case AuthType3.USE_GEMINI:
-      return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(GeminiPrivacyNotice, { onExit });
+      return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(GeminiPrivacyNotice, { onExit });
     case AuthType3.USE_VERTEX_AI:
-      return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(CloudPaidPrivacyNotice, { onExit });
+      return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(CloudPaidPrivacyNotice, { onExit });
     case AuthType3.LOGIN_WITH_GOOGLE:
     default:
-      return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(CloudFreePrivacyNotice, { config, onExit });
+      return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(CloudFreePrivacyNotice, { config, onExit });
   }
 };
-var PrivacyNotice = ({ onExit, config }) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(Box_default, { borderStyle: "round", padding: 1, flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(PrivacyNoticeText, { config, onExit }) });
+var PrivacyNotice = ({ onExit, config }) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { borderStyle: "round", padding: 1, flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(PrivacyNoticeText, { config, onExit }) });
 
 // packages/cli/src/ui/hooks/useSettingsCommand.ts
-var import_react83 = __toESM(require_react(), 1);
+var import_react84 = __toESM(require_react(), 1);
 function useSettingsCommand() {
-  const [isSettingsDialogOpen, setIsSettingsDialogOpen] = (0, import_react83.useState)(false);
-  const openSettingsDialog = (0, import_react83.useCallback)(() => {
+  const [isSettingsDialogOpen, setIsSettingsDialogOpen] = (0, import_react84.useState)(false);
+  const openSettingsDialog = (0, import_react84.useCallback)(() => {
     setIsSettingsDialogOpen(true);
   }, []);
-  const closeSettingsDialog = (0, import_react83.useCallback)(() => {
+  const closeSettingsDialog = (0, import_react84.useCallback)(() => {
     setIsSettingsDialogOpen(false);
   }, []);
   return {
@@ -310884,8 +311344,8 @@ function useSettingsCommand() {
 }
 
 // packages/cli/src/ui/components/SettingsDialog.tsx
-var import_react84 = __toESM(require_react(), 1);
-var import_jsx_runtime60 = __toESM(require_jsx_runtime(), 1);
+var import_react85 = __toESM(require_react(), 1);
+var import_jsx_runtime61 = __toESM(require_jsx_runtime(), 1);
 var maxItemsToShow = 8;
 function SettingsDialog({
   settings,
@@ -310893,29 +311353,29 @@ function SettingsDialog({
   onRestartRequest
 }) {
   const { vimEnabled, toggleVimEnabled } = useVimMode();
-  const [focusSection, setFocusSection] = (0, import_react84.useState)(
+  const [focusSection, setFocusSection] = (0, import_react85.useState)(
     "settings"
   );
-  const [selectedScope, setSelectedScope] = (0, import_react84.useState)(
+  const [selectedScope, setSelectedScope] = (0, import_react85.useState)(
     "User" /* User */
   );
-  const [activeSettingIndex, setActiveSettingIndex] = (0, import_react84.useState)(0);
-  const [scrollOffset, setScrollOffset] = (0, import_react84.useState)(0);
-  const [showRestartPrompt, setShowRestartPrompt] = (0, import_react84.useState)(false);
-  const [pendingSettings, setPendingSettings] = (0, import_react84.useState)(
+  const [activeSettingIndex, setActiveSettingIndex] = (0, import_react85.useState)(0);
+  const [scrollOffset, setScrollOffset] = (0, import_react85.useState)(0);
+  const [showRestartPrompt, setShowRestartPrompt] = (0, import_react85.useState)(false);
+  const [pendingSettings, setPendingSettings] = (0, import_react85.useState)(
     () => (
       // Deep clone to avoid mutation
       structuredClone(settings.forScope(selectedScope).settings)
     )
   );
-  const [modifiedSettings, setModifiedSettings] = (0, import_react84.useState)(
+  const [modifiedSettings, setModifiedSettings] = (0, import_react85.useState)(
     /* @__PURE__ */ new Set()
   );
-  const [modifiedValues, setModifiedValues] = (0, import_react84.useState)(
+  const [modifiedValues, setModifiedValues] = (0, import_react85.useState)(
     /* @__PURE__ */ new Map()
   );
-  const [restartRequiredSettings, setRestartRequiredSettings] = (0, import_react84.useState)(/* @__PURE__ */ new Set());
-  (0, import_react84.useEffect)(() => {
+  const [restartRequiredSettings, setRestartRequiredSettings] = (0, import_react85.useState)(/* @__PURE__ */ new Set());
+  (0, import_react85.useEffect)(() => {
     setPendingSettings(
       structuredClone(settings.forScope(selectedScope).settings)
     );
@@ -310923,7 +311383,7 @@ function SettingsDialog({
       setShowRestartPrompt(false);
     }
   }, [selectedScope, settings, restartRequiredSettings]);
-  (0, import_react84.useEffect)(() => {
+  (0, import_react85.useEffect)(() => {
     if (modifiedSettings.size > 0) {
       setPendingSettings((prevPending) => {
         let updatedPending = { ...prevPending };
@@ -311136,7 +311596,7 @@ function SettingsDialog({
     },
     { isActive: true }
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
     Box_default,
     {
       borderStyle: "round",
@@ -311145,10 +311605,10 @@ function SettingsDialog({
       padding: 1,
       width: "100%",
       height: "100%",
-      children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(Box_default, { flexDirection: "column", flexGrow: 1, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: "Settings" }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { height: 1 }),
-        showScrollUp && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Text, { color: Colors.Gray, children: "\u25B2" }),
+      children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", flexGrow: 1, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { bold: true, color: Colors.AccentBlue, children: "Settings" }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { height: 1 }),
+        showScrollUp && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.Gray, children: "\u25B2" }),
         visibleItems.map((item, idx) => {
           const isActive = focusSection === "settings" && activeSettingIndex === idx + scrollOffset;
           const scopeSettings = settings.forScope(selectedScope).settings;
@@ -311166,24 +311626,24 @@ function SettingsDialog({
             selectedScope,
             settings
           );
-          return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(import_react84.default.Fragment, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(Box_default, { flexDirection: "row", alignItems: "center", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { minWidth: 2, flexShrink: 0, children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Text, { color: isActive ? Colors.AccentGreen : Colors.Gray, children: isActive ? "\u25CF" : "" }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { minWidth: 50, children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(
+          return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(import_react85.default.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "row", alignItems: "center", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { minWidth: 2, flexShrink: 0, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: isActive ? Colors.AccentGreen : Colors.Gray, children: isActive ? "\u25CF" : "" }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { minWidth: 50, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
                 Text,
                 {
                   color: isActive ? Colors.AccentGreen : Colors.Foreground,
                   children: [
                     item.label,
-                    scopeMessage && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(Text, { color: Colors.Gray, children: [
+                    scopeMessage && /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Text, { color: Colors.Gray, children: [
                       " ",
                       scopeMessage
                     ] })
                   ]
                 }
               ) }),
-              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { minWidth: 3 }),
-              /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { minWidth: 3 }),
+              /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
                 Text,
                 {
                   color: isActive ? Colors.AccentGreen : shouldBeGreyedOut ? Colors.Gray : Colors.Foreground,
@@ -311191,17 +311651,17 @@ function SettingsDialog({
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { height: 1 })
+            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { height: 1 })
           ] }, item.value);
         }),
-        showScrollDown && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Text, { color: Colors.Gray, children: "\u25BC" }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { height: 1 }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(Box_default, { marginTop: 1, flexDirection: "column", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(Text, { bold: focusSection === "scope", wrap: "truncate", children: [
+        showScrollDown && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.Gray, children: "\u25BC" }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { height: 1 }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { marginTop: 1, flexDirection: "column", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Text, { bold: focusSection === "scope", wrap: "truncate", children: [
             focusSection === "scope" ? "> " : "  ",
             "Apply To"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
             RadioButtonSelect,
             {
               items: scopeItems,
@@ -311213,9 +311673,9 @@ function SettingsDialog({
             }
           )
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Box_default, { height: 1 }),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Text, { color: Colors.Gray, children: "(Use Enter to select, Tab to change focus)" }),
-        showRestartPrompt && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(Text, { color: Colors.AccentYellow, children: "To see changes, Gemini CLI must be restarted. Press r to exit and apply changes now." })
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { height: 1 }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.Gray, children: "(Use Enter to select, Tab to change focus)" }),
+        showRestartPrompt && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentYellow, children: "To see changes, Delta Code must be restarted. Press r to exit and apply changes now." })
       ] })
     }
   );
@@ -311456,23 +311916,23 @@ import { EventEmitter as EventEmitter8 } from "events";
 var appEvents = new EventEmitter8();
 
 // packages/cli/src/ui/App.tsx
-var import_jsx_runtime61 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime62 = __toESM(require_jsx_runtime(), 1);
 var CTRL_EXIT_PROMPT_DURATION_MS = 1e3;
-var AppWrapper = (props) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(SessionStatsProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(VimModeProvider, { settings: props.settings, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(App2, { ...props }) }) });
+var AppWrapper = (props) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(SessionStatsProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(VimModeProvider, { settings: props.settings, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(App2, { ...props }) }) });
 var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
   const isFocused = useFocus();
   useBracketedPaste();
-  const [updateInfo, setUpdateInfo] = (0, import_react85.useState)(null);
+  const [updateInfo, setUpdateInfo] = (0, import_react86.useState)(null);
   const { stdout } = use_stdout_default();
   const nightly = version2.includes("nightly");
   const { history, addItem, clearItems, loadHistory } = useHistory();
-  const [idePromptAnswered, setIdePromptAnswered] = (0, import_react85.useState)(false);
+  const [idePromptAnswered, setIdePromptAnswered] = (0, import_react86.useState)(false);
   const currentIDE = config.getIdeClient().getCurrentIde();
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     registerCleanup(() => config.getIdeClient().disconnect());
   }, [config]);
   const shouldShowIdePrompt = currentIDE && !config.getIdeMode() && !settings.merged.hasSeenIdeIntegrationNudge && !idePromptAnswered;
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     const cleanup = setUpdateHandler(addItem, setUpdateInfo);
     return cleanup;
   }, [addItem]);
@@ -311481,7 +311941,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     handleNewMessage,
     clearConsoleMessages: clearConsoleMessagesState
   } = useConsoleMessages();
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     const consolePatcher = new ConsolePatcher({
       onNewMessage: handleNewMessage,
       debugMode: config.getDebugMode()
@@ -311490,41 +311950,41 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     registerCleanup(consolePatcher.cleanup);
   }, [handleNewMessage, config]);
   const { stats: sessionStats } = useSessionStats();
-  const [staticNeedsRefresh, setStaticNeedsRefresh] = (0, import_react85.useState)(false);
-  const [staticKey, setStaticKey] = (0, import_react85.useState)(0);
-  const refreshStatic = (0, import_react85.useCallback)(() => {
+  const [staticNeedsRefresh, setStaticNeedsRefresh] = (0, import_react86.useState)(false);
+  const [staticKey, setStaticKey] = (0, import_react86.useState)(0);
+  const refreshStatic = (0, import_react86.useCallback)(() => {
     stdout.write(base_exports.clearTerminal);
     setStaticKey((prev) => prev + 1);
   }, [setStaticKey, stdout]);
-  const [geminiMdFileCount, setGeminiMdFileCount] = (0, import_react85.useState)(0);
-  const [debugMessage, setDebugMessage] = (0, import_react85.useState)("");
-  const [themeError, setThemeError] = (0, import_react85.useState)(null);
-  const [authError, setAuthError] = (0, import_react85.useState)(null);
-  const [editorError, setEditorError] = (0, import_react85.useState)(null);
-  const [footerHeight, setFooterHeight] = (0, import_react85.useState)(0);
-  const [corgiMode, setCorgiMode] = (0, import_react85.useState)(false);
-  const [currentModel, setCurrentModel] = (0, import_react85.useState)(config.getModel());
-  const [shellModeActive, setShellModeActive] = (0, import_react85.useState)(false);
-  const [showErrorDetails, setShowErrorDetails] = (0, import_react85.useState)(false);
-  const [showToolDescriptions, setShowToolDescriptions] = (0, import_react85.useState)(false);
-  const [ctrlCPressedOnce, setCtrlCPressedOnce] = (0, import_react85.useState)(false);
-  const [quittingMessages, setQuittingMessages] = (0, import_react85.useState)(null);
-  const ctrlCTimerRef = (0, import_react85.useRef)(null);
-  const [ctrlDPressedOnce, setCtrlDPressedOnce] = (0, import_react85.useState)(false);
-  const ctrlDTimerRef = (0, import_react85.useRef)(null);
-  const [constrainHeight, setConstrainHeight] = (0, import_react85.useState)(true);
-  const [showPrivacyNotice, setShowPrivacyNotice] = (0, import_react85.useState)(false);
-  const [modelSwitchedFromQuotaError, setModelSwitchedFromQuotaError] = (0, import_react85.useState)(false);
-  const [userTier, setUserTier] = (0, import_react85.useState)(void 0);
-  const [ideContextState, setIdeContextState] = (0, import_react85.useState)();
-  const [showEscapePrompt, setShowEscapePrompt] = (0, import_react85.useState)(false);
-  const [isProcessing, setIsProcessing] = (0, import_react85.useState)(false);
-  (0, import_react85.useEffect)(() => {
+  const [deltaMdFileCount, setDeltaMdFileCount] = (0, import_react86.useState)(0);
+  const [debugMessage, setDebugMessage] = (0, import_react86.useState)("");
+  const [themeError, setThemeError] = (0, import_react86.useState)(null);
+  const [authError, setAuthError] = (0, import_react86.useState)(null);
+  const [editorError, setEditorError] = (0, import_react86.useState)(null);
+  const [footerHeight, setFooterHeight] = (0, import_react86.useState)(0);
+  const [corgiMode, setCorgiMode] = (0, import_react86.useState)(false);
+  const [currentModel, setCurrentModel] = (0, import_react86.useState)(config.getModel());
+  const [shellModeActive, setShellModeActive] = (0, import_react86.useState)(false);
+  const [showErrorDetails, setShowErrorDetails] = (0, import_react86.useState)(false);
+  const [showToolDescriptions, setShowToolDescriptions] = (0, import_react86.useState)(false);
+  const [ctrlCPressedOnce, setCtrlCPressedOnce] = (0, import_react86.useState)(false);
+  const [quittingMessages, setQuittingMessages] = (0, import_react86.useState)(null);
+  const ctrlCTimerRef = (0, import_react86.useRef)(null);
+  const [ctrlDPressedOnce, setCtrlDPressedOnce] = (0, import_react86.useState)(false);
+  const ctrlDTimerRef = (0, import_react86.useRef)(null);
+  const [constrainHeight, setConstrainHeight] = (0, import_react86.useState)(true);
+  const [showPrivacyNotice, setShowPrivacyNotice] = (0, import_react86.useState)(false);
+  const [modelSwitchedFromQuotaError, setModelSwitchedFromQuotaError] = (0, import_react86.useState)(false);
+  const [userTier, setUserTier] = (0, import_react86.useState)(void 0);
+  const [ideContextState, setIdeContextState] = (0, import_react86.useState)();
+  const [showEscapePrompt, setShowEscapePrompt] = (0, import_react86.useState)(false);
+  const [isProcessing, setIsProcessing] = (0, import_react86.useState)(false);
+  (0, import_react86.useEffect)(() => {
     const unsubscribe = ideContext.subscribeToIdeContext(setIdeContextState);
     setIdeContextState(ideContext.getIdeContext());
     return unsubscribe;
   }, []);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     const openDebugConsole = () => {
       setShowErrorDetails(true);
       setConstrainHeight(false);
@@ -311543,14 +312003,14 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
       appEvents.off("log-error" /* LogError */, logErrorHandler);
     };
   }, [handleNewMessage]);
-  const openPrivacyNotice = (0, import_react85.useCallback)(() => {
+  const openPrivacyNotice = (0, import_react86.useCallback)(() => {
     setShowPrivacyNotice(true);
   }, []);
-  const handleEscapePromptChange = (0, import_react85.useCallback)((showPrompt) => {
+  const handleEscapePromptChange = (0, import_react86.useCallback)((showPrompt) => {
     setShowEscapePrompt(showPrompt);
   }, []);
-  const initialPromptSubmitted = (0, import_react85.useRef)(false);
-  const errorCount = (0, import_react85.useMemo)(
+  const initialPromptSubmitted = (0, import_react86.useRef)(false);
+  const errorCount = (0, import_react86.useMemo)(
     () => consoleMessages.filter((msg) => msg.type === "error").reduce((total, msg) => total + msg.count, 0),
     [consoleMessages]
   );
@@ -311580,7 +312040,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     authStatus,
     authMessage
   } = useDeltaAuth(settings, isAuthenticating);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     if (settings.merged.selectedAuthType && !settings.merged.useExternalAuth) {
       const error = validateAuthMethod(settings.merged.selectedAuthType);
       if (error) {
@@ -311594,12 +312054,12 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     openAuthDialog,
     setAuthError
   ]);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     if (!isAuthenticating) {
-      setUserTier(config.getGeminiClient()?.getUserTier());
+      setUserTier(config.getDeltaClient()?.getUserTier());
     }
   }, [config, isAuthenticating]);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     if (isDeltaAuth && authStatus === "timeout") {
       setAuthError(
         authMessage || "Delta OAuth authentication timed out. Please try again or select a different authentication method."
@@ -311623,10 +312083,10 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     handleEditorSelect,
     exitEditorDialog
   } = useEditorSettings(settings, setEditorError, addItem);
-  const toggleCorgiMode = (0, import_react85.useCallback)(() => {
+  const toggleCorgiMode = (0, import_react86.useCallback)(() => {
     setCorgiMode((prev) => !prev);
   }, []);
-  const performMemoryRefresh = (0, import_react85.useCallback)(async () => {
+  const performMemoryRefresh = (0, import_react86.useCallback)(async () => {
     addItem(
       {
         type: "info" /* INFO */,
@@ -311635,7 +312095,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
       Date.now()
     );
     try {
-      const { memoryContent, fileCount } = await loadHierarchicalGeminiMemory(
+      const { memoryContent, fileCount } = await loadHierarchicalDeltaMemory(
         process35.cwd(),
         settings.merged.loadMemoryFromIncludeDirectories ? config.getWorkspaceContext().getDirectories() : [],
         config.getDebugMode(),
@@ -311647,8 +312107,8 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
         config.getFileFilteringOptions()
       );
       config.setUserMemory(memoryContent);
-      config.setGeminiMdFileCount(fileCount);
-      setGeminiMdFileCount(fileCount);
+      config.setDeltaMdFileCount(fileCount);
+      setDeltaMdFileCount(fileCount);
       addItem(
         {
           type: "info" /* INFO */,
@@ -311673,7 +312133,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
       console.error("Error refreshing memory:", error);
     }
   }, [config, addItem, settings.merged]);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     const checkModelChange = () => {
       const configModel = config.getModel();
       if (configModel !== currentModel) {
@@ -311684,7 +312144,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     const interval = setInterval(checkModelChange, 1e3);
     return () => clearInterval(interval);
   }, [config, currentModel]);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     const flashFallbackHandler = async (currentModel2, fallbackModel, error) => {
       let message;
       if (config.getContentGeneratorConfig().authType === AuthType3.LOGIN_WITH_GOOGLE) {
@@ -311749,21 +312209,21 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
   const { rows: terminalHeight, columns: terminalWidth } = useTerminalSize();
   const isNarrow = isNarrowWidth(terminalWidth);
   const { stdin, setRawMode } = use_stdin_default();
-  const isInitialMount = (0, import_react85.useRef)(true);
+  const isInitialMount = (0, import_react86.useRef)(true);
   const widthFraction = 0.9;
   const inputWidth = Math.max(
     20,
     Math.floor(terminalWidth * widthFraction) - 3
   );
   const suggestionsWidth = Math.max(20, Math.floor(terminalWidth * 0.8));
-  const isValidPath = (0, import_react85.useCallback)((filePath) => {
+  const isValidPath = (0, import_react86.useCallback)((filePath) => {
     try {
       return fs58.existsSync(filePath) && fs58.statSync(filePath).isFile();
     } catch (_e) {
       return false;
     }
   }, []);
-  const getPreferredEditor = (0, import_react85.useCallback)(() => {
+  const getPreferredEditor = (0, import_react86.useCallback)(() => {
     const editorType = settings.merged.preferredEditor;
     const isValidEditor = isEditorAvailable(editorType);
     if (!isValidEditor) {
@@ -311772,7 +312232,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     }
     return editorType;
   }, [settings, openEditorDialog]);
-  const onAuthError = (0, import_react85.useCallback)(() => {
+  const onAuthError = (0, import_react86.useCallback)(() => {
     setAuthError("reauth required");
     openAuthDialog();
   }, [openAuthDialog, setAuthError]);
@@ -311805,7 +312265,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     openSettingsDialog,
     toggleVimEnabled,
     setIsProcessing,
-    setGeminiMdFileCount
+    setDeltaMdFileCount
   );
   const buffer = useTextBuffer({
     initialText: "",
@@ -311815,8 +312275,8 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     isValidPath,
     shellModeActive
   });
-  const [userMessages, setUserMessages] = (0, import_react85.useState)([]);
-  const handleUserCancel = (0, import_react85.useCallback)(() => {
+  const [userMessages, setUserMessages] = (0, import_react86.useState)([]);
+  const handleUserCancel = (0, import_react86.useCallback)(() => {
     const lastUserMessage = userMessages.at(-1);
     if (lastUserMessage) {
       buffer.setText(lastUserMessage);
@@ -311826,11 +312286,11 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     streamingState,
     submitQuery,
     initError,
-    pendingHistoryItems: pendingGeminiHistoryItems,
+    pendingHistoryItems: pendingDeltaHistoryItems,
     thought,
     cancelOngoingRequest
-  } = useGeminiStream(
-    config.getGeminiClient(),
+  } = useDeltaStream(
+    config.getDeltaClient(),
     history,
     addItem,
     config,
@@ -311845,7 +312305,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     refreshStatic,
     handleUserCancel
   );
-  const handleFinalSubmit = (0, import_react85.useCallback)(
+  const handleFinalSubmit = (0, import_react86.useCallback)(
     (submittedValue) => {
       const trimmedValue = submittedValue.trim();
       if (trimmedValue.length > 0) {
@@ -311854,7 +312314,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     },
     [submitQuery]
   );
-  const handleIdePromptComplete = (0, import_react85.useCallback)(
+  const handleIdePromptComplete = (0, import_react86.useCallback)(
     (result) => {
       if (result.userSelection === "yes") {
         if (result.isExtensionPreInstalled) {
@@ -311880,11 +312340,11 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
   );
   const { handleInput: vimHandleInput } = useVim(buffer, handleFinalSubmit);
   const pendingHistoryItems = [...pendingSlashCommandHistoryItems];
-  pendingHistoryItems.push(...pendingGeminiHistoryItems);
+  pendingHistoryItems.push(...pendingDeltaHistoryItems);
   const { elapsedTime, currentLoadingPhrase } = useLoadingIndicator(streamingState);
   const showAutoAcceptIndicator = useAutoAcceptIndicator({ config });
   const kittyProtocolStatus = useKittyKeyboardProtocol();
-  const handleExit = (0, import_react85.useCallback)(
+  const handleExit = (0, import_react86.useCallback)(
     (pressedOnce, setPressedOnce, timerRef) => {
       if (pressedOnce) {
         if (timerRef.current) {
@@ -311901,7 +312361,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     },
     [handleSlashCommand]
   );
-  const handleGlobalKeypress = (0, import_react85.useCallback)(
+  const handleGlobalKeypress = (0, import_react86.useCallback)(
     (key) => {
       let enteringConstrainHeightMode = false;
       if (!constrainHeight) {
@@ -311962,13 +312422,13 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     kittyProtocolEnabled: kittyProtocolStatus.enabled,
     config
   });
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     if (config) {
-      setGeminiMdFileCount(config.getGeminiMdFileCount());
+      setDeltaMdFileCount(config.getDeltaMdFileCount());
     }
-  }, [config, config.getGeminiMdFileCount]);
+  }, [config, config.getDeltaMdFileCount]);
   const logger6 = useLogger();
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     const fetchUserMessages = async () => {
       const pastMessagesRaw = await logger6?.getPreviousUserMessages() || [];
       const currentSessionUserMessages = history.filter(
@@ -311992,15 +312452,15 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     fetchUserMessages();
   }, [history, logger6]);
   const isInputActive = streamingState === "idle" /* Idle */ && !initError && !isProcessing;
-  const handleClearScreen = (0, import_react85.useCallback)(() => {
+  const handleClearScreen = (0, import_react86.useCallback)(() => {
     clearItems();
     clearConsoleMessagesState();
     console.clear();
     refreshStatic();
   }, [clearItems, clearConsoleMessagesState, refreshStatic]);
-  const mainControlsRef = (0, import_react85.useRef)(null);
-  const pendingHistoryItemRef = (0, import_react85.useRef)(null);
-  (0, import_react85.useEffect)(() => {
+  const mainControlsRef = (0, import_react86.useRef)(null);
+  const pendingHistoryItemRef = (0, import_react86.useRef)(null);
+  (0, import_react86.useEffect)(() => {
     if (mainControlsRef.current) {
       const fullFooterMeasurement = measure_element_default(mainControlsRef.current);
       setFooterHeight(fullFooterMeasurement.height);
@@ -312010,11 +312470,11 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     /* margins and padding */
     3
   );
-  const availableTerminalHeight = (0, import_react85.useMemo)(
+  const availableTerminalHeight = (0, import_react86.useMemo)(
     () => terminalHeight - footerHeight - staticExtraHeight,
     [terminalHeight, footerHeight]
   );
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
       return;
@@ -312027,30 +312487,30 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
       clearTimeout(handler);
     };
   }, [terminalWidth, terminalHeight, refreshStatic]);
-  (0, import_react85.useEffect)(() => {
+  (0, import_react86.useEffect)(() => {
     if (streamingState === "idle" /* Idle */ && staticNeedsRefresh) {
       setStaticNeedsRefresh(false);
       refreshStatic();
     }
   }, [streamingState, refreshStatic, staticNeedsRefresh]);
-  const filteredConsoleMessages = (0, import_react85.useMemo)(() => {
+  const filteredConsoleMessages = (0, import_react86.useMemo)(() => {
     if (config.getDebugMode()) {
       return consoleMessages;
     }
     return consoleMessages.filter((msg) => msg.type !== "debug");
   }, [consoleMessages, config]);
   const branchName = useGitBranchName(config.getTargetDir());
-  const contextFileNames = (0, import_react85.useMemo)(() => {
+  const contextFileNames = (0, import_react86.useMemo)(() => {
     const fromSettings = settings.merged.contextFileName;
     if (fromSettings) {
       return Array.isArray(fromSettings) ? fromSettings : [fromSettings];
     }
-    return getAllGeminiMdFilenames();
+    return getAllDeltaMdFilenames();
   }, [settings.merged.contextFileName]);
-  const initialPrompt = (0, import_react85.useMemo)(() => config.getQuestion(), [config]);
-  const geminiClient = config.getGeminiClient();
-  (0, import_react85.useEffect)(() => {
-    if (initialPrompt && !initialPromptSubmitted.current && !isAuthenticating && !isAuthDialogOpen && !isThemeDialogOpen && !isEditorDialogOpen && !showPrivacyNotice && geminiClient?.isInitialized?.()) {
+  const initialPrompt = (0, import_react86.useMemo)(() => config.getQuestion(), [config]);
+  const deltaClient = config.getDeltaClient();
+  (0, import_react86.useEffect)(() => {
+    if (initialPrompt && !initialPromptSubmitted.current && !isAuthenticating && !isAuthDialogOpen && !isThemeDialogOpen && !isEditorDialogOpen && !showPrivacyNotice && deltaClient?.isInitialized?.()) {
       submitQuery(initialPrompt);
       initialPromptSubmitted.current = true;
     }
@@ -312062,10 +312522,10 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
     isThemeDialogOpen,
     isEditorDialogOpen,
     showPrivacyNotice,
-    geminiClient
+    deltaClient
   ]);
   if (quittingMessages) {
-    return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { flexDirection: "column", marginBottom: 1, children: quittingMessages.map((item) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Box_default, { flexDirection: "column", marginBottom: 1, children: quittingMessages.map((item) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
       HistoryItemDisplay,
       {
         availableTerminalHeight: constrainHeight ? availableTerminalHeight : void 0,
@@ -312081,16 +312541,16 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
   const debugConsoleMaxHeight = Math.floor(Math.max(terminalHeight * 0.2, 5));
   const staticAreaMaxItemHeight = Math.max(terminalHeight * 4, 100);
   const placeholder = vimModeEnabled ? "  Press 'i' for INSERT mode and 'Esc' for NORMAL mode." : "  Type your message or @path/to/file";
-  return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(StreamingContext.Provider, { value: streamingState, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", width: "90%", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(StreamingContext.Provider, { value: streamingState, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", width: "90%", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
       Static,
       {
         items: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", children: [
-            !settings.merged.hideBanner && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Header, { version: version2, nightly }),
-            !settings.merged.hideTips && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Tips, { config })
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", children: [
+            !settings.merged.hideBanner && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Header, { version: version2, nightly }),
+            !settings.merged.hideTips && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Tips, { config })
           ] }, "header"),
-          ...history.map((h) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+          ...history.map((h) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
             HistoryItemDisplay,
             {
               terminalWidth: mainAreaWidth,
@@ -312107,8 +312567,8 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
       },
       staticKey
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(OverflowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { ref: pendingHistoryItemRef, flexDirection: "column", children: [
-      pendingHistoryItems.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(OverflowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { ref: pendingHistoryItemRef, flexDirection: "column", children: [
+      pendingHistoryItems.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         HistoryItemDisplay,
         {
           availableTerminalHeight: constrainHeight ? availableTerminalHeight : void 0,
@@ -312120,11 +312580,11 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
         },
         i
       )),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(ShowMoreLines, { constrainHeight })
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(ShowMoreLines, { constrainHeight })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", ref: mainControlsRef, children: [
-      updateInfo && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(UpdateNotification, { message: updateInfo.message }),
-      startupWarnings.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", ref: mainControlsRef, children: [
+      updateInfo && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(UpdateNotification, { message: updateInfo.message }),
+      startupWarnings.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         Box_default,
         {
           borderStyle: "round",
@@ -312132,18 +312592,18 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
           paddingX: 1,
           marginY: 1,
           flexDirection: "column",
-          children: startupWarnings.map((warning, index) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentYellow, children: warning }, index))
+          children: startupWarnings.map((warning, index) => /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentYellow, children: warning }, index))
         }
       ),
-      shouldShowIdePrompt && currentIDE ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      shouldShowIdePrompt && currentIDE ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         IdeIntegrationNudge,
         {
           ide: currentIDE,
           onComplete: handleIdePromptComplete
         }
-      ) : isFolderTrustDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(FolderTrustDialog, { onSelect: handleFolderTrustSelect }) : shellConfirmationRequest ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(ShellConfirmationDialog, { request: shellConfirmationRequest }) : confirmationRequest ? /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", children: [
+      ) : isFolderTrustDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(FolderTrustDialog, { onSelect: handleFolderTrustSelect }) : shellConfirmationRequest ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(ShellConfirmationDialog, { request: shellConfirmationRequest }) : confirmationRequest ? /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", children: [
         confirmationRequest.prompt,
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { paddingY: 1, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Box_default, { paddingY: 1, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           RadioButtonSelect,
           {
             items: [
@@ -312155,9 +312615,9 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
             }
           }
         ) })
-      ] }) : isThemeDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", children: [
-        themeError && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentRed, children: themeError }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ] }) : isThemeDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", children: [
+        themeError && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentRed, children: themeError }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           ThemeDialog,
           {
             onSelect: handleThemeSelect,
@@ -312167,15 +312627,15 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
             terminalWidth: mainAreaWidth
           }
         )
-      ] }) : isSettingsDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ] }) : isSettingsDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         SettingsDialog,
         {
           settings,
           onSelect: () => closeSettingsDialog(),
           onRestartRequest: () => process35.exit(0)
         }
-      ) }) : isAuthenticating ? /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(import_jsx_runtime61.Fragment, { children: [
-        isDeltaAuth && isDeltaAuthenticating ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ) }) : isAuthenticating ? /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(import_jsx_runtime62.Fragment, { children: [
+        isDeltaAuth && isDeltaAuthenticating ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           DeltaOAuthProgress,
           {
             deviceAuth: deviceAuth || void 0,
@@ -312196,7 +312656,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
               openAuthDialog();
             }
           }
-        ) : /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        ) : /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           AuthInProgress,
           {
             onTimeout: () => {
@@ -312206,8 +312666,8 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
             }
           }
         ),
-        showErrorDetails && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(OverflowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        showErrorDetails && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(OverflowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
             DetailedMessagesDisplay,
             {
               messages: filteredConsoleMessages,
@@ -312215,18 +312675,18 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
               width: inputWidth
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(ShowMoreLines, { constrainHeight })
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(ShowMoreLines, { constrainHeight })
         ] }) })
-      ] }) : isAuthDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ] }) : isAuthDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Box_default, { flexDirection: "column", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         AuthDialog,
         {
           onSelect: handleAuthSelect,
           settings,
           initialErrorMessage: authError
         }
-      ) }) : isEditorDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", children: [
-        editorError && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentRed, children: editorError }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ) }) : isEditorDialogOpen ? /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", children: [
+        editorError && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Box_default, { marginBottom: 1, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentRed, children: editorError }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           EditorSettingsDialog,
           {
             onSelect: handleEditorSelect,
@@ -312234,14 +312694,14 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
             onExit: exitEditorDialog
           }
         )
-      ] }) : showPrivacyNotice ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ] }) : showPrivacyNotice ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         PrivacyNotice,
         {
           onExit: () => setShowPrivacyNotice(false),
           config
         }
-      ) : /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(import_jsx_runtime61.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      ) : /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(import_jsx_runtime62.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           LoadingIndicator,
           {
             thought: streamingState === "waiting_for_confirmation" /* WaitingForConfirmation */ || config.getAccessibility()?.disableLoadingPhrases ? void 0 : thought,
@@ -312249,7 +312709,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
             elapsedTime
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(
           Box_default,
           {
             marginTop: 1,
@@ -312258,13 +312718,13 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
             flexDirection: isNarrow ? "column" : "row",
             alignItems: isNarrow ? "flex-start" : "center",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { children: [
-                process35.env.GEMINI_SYSTEM_MD && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentRed, children: "|\u2310\u25A0_\u25A0| " }),
-                ctrlCPressedOnce ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentYellow, children: "Press Ctrl+C again to exit." }) : ctrlDPressedOnce ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentYellow, children: "Press Ctrl+D again to exit." }) : showEscapePrompt ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.Gray, children: "Press Esc again to clear." }) : /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { children: [
+                process35.env.GEMINI_SYSTEM_MD && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentRed, children: "|\u2310\u25A0_\u25A0| " }),
+                ctrlCPressedOnce ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentYellow, children: "Press Ctrl+C again to exit." }) : ctrlDPressedOnce ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentYellow, children: "Press Ctrl+D again to exit." }) : showEscapePrompt ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.Gray, children: "Press Esc again to clear." }) : /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
                   ContextSummaryDisplay,
                   {
                     ideContext: ideContextState,
-                    geminiMdFileCount,
+                    deltaMdFileCount,
                     contextFileNames,
                     mcpServers: config.getMcpServers(),
                     blockedMcpServers: config.getBlockedMcpServers(),
@@ -312272,20 +312732,20 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { paddingTop: isNarrow ? 1 : 0, children: [
-                showAutoAcceptIndicator !== ApprovalMode.DEFAULT && !shellModeActive && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { paddingTop: isNarrow ? 1 : 0, children: [
+                showAutoAcceptIndicator !== ApprovalMode.DEFAULT && !shellModeActive && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
                   AutoAcceptIndicator,
                   {
                     approvalMode: showAutoAcceptIndicator
                   }
                 ),
-                shellModeActive && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(ShellModeIndicator, {})
+                shellModeActive && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(ShellModeIndicator, {})
               ] })
             ]
           }
         ),
-        showErrorDetails && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(OverflowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Box_default, { flexDirection: "column", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        showErrorDetails && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(OverflowProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Box_default, { flexDirection: "column", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
             DetailedMessagesDisplay,
             {
               messages: filteredConsoleMessages,
@@ -312293,9 +312753,9 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
               width: inputWidth
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(ShowMoreLines, { constrainHeight })
+          /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(ShowMoreLines, { constrainHeight })
         ] }) }),
-        isInputActive && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        isInputActive && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
           InputPrompt,
           {
             buffer,
@@ -312316,7 +312776,7 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
           }
         )
       ] }),
-      initError && streamingState !== "responding" /* Responding */ && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      initError && streamingState !== "responding" /* Responding */ && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         Box_default,
         {
           borderStyle: "round",
@@ -312325,21 +312785,21 @@ var App2 = ({ config, settings, startupWarnings = [], version: version2 }) => {
           marginBottom: 1,
           children: history.find(
             (item) => item.type === "error" && item.text?.includes(initError)
-          )?.text ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(Text, { color: Colors.AccentRed, children: history.find(
+          )?.text ? /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(Text, { color: Colors.AccentRed, children: history.find(
             (item) => item.type === "error" && item.text?.includes(initError)
-          )?.text }) : /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(import_jsx_runtime61.Fragment, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Text, { color: Colors.AccentRed, children: [
+          )?.text }) : /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(import_jsx_runtime62.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Text, { color: Colors.AccentRed, children: [
               "Initialization Error: ",
               initError
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(Text, { color: Colors.AccentRed, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(Text, { color: Colors.AccentRed, children: [
               " ",
               "Please check API key and configuration."
             ] })
           ] })
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
         Footer,
         {
           model: currentModel,
@@ -312390,7 +312850,7 @@ async function readStdin() {
   });
 }
 
-// packages/cli/src/gemini.tsx
+// packages/cli/src/delta.tsx
 import { basename as basename7 } from "node:path";
 import v8 from "node:v8";
 import os35 from "node:os";
@@ -312582,7 +313042,7 @@ async function start_sandbox(config, nodeArgs = [], cliConfig) {
           ...process.argv.map((arg) => (0, import_shell_quote3.quote)([arg]))
         ].join(" ")
       );
-      const proxyCommand2 = process.env.GEMINI_SANDBOX_PROXY_COMMAND;
+      const proxyCommand2 = process.env.DELTA_SANDBOX_PROXY_COMMAND;
       let proxyProcess2 = void 0;
       let sandboxProcess2 = void 0;
       const sandboxEnv = { ...process.env };
@@ -312645,9 +313105,9 @@ async function start_sandbox(config, nodeArgs = [], cliConfig) {
     const workdir = path67.resolve(process.cwd());
     const containerWorkdir = getContainerPath(workdir);
     if (process.env.BUILD_SANDBOX) {
-      if (!gcPath.includes("gemini-cli/packages/")) {
+      if (!gcPath.includes("delta-code/packages/")) {
         console.error(
-          "ERROR: cannot build sandbox using installed gemini binary; run `npm link ./packages/cli` under gemini-cli repo to switch to linked binary."
+          "ERROR: cannot build sandbox using installed gemini binary; run `npm link ./packages/cli` under delta-code repo to switch to linked binary."
         );
         process.exit(1);
       } else {
@@ -312668,7 +313128,7 @@ async function start_sandbox(config, nodeArgs = [], cliConfig) {
             stdio: "inherit",
             env: {
               ...process.env,
-              GEMINI_SANDBOX: config.command
+              DELTA_SANDBOX: config.command
               // in case sandbox is enabled via flags (see config.ts under cli package)
             }
           }
@@ -312676,7 +313136,7 @@ async function start_sandbox(config, nodeArgs = [], cliConfig) {
       }
     }
     if (!await ensureSandboxImageIsPresent(config.command, image2)) {
-      const remedy = image2 === LOCAL_DEV_SANDBOX_IMAGE_NAME ? "Try running `npm run build:all` or `npm run build:sandbox` under the gemini-cli repo to build it locally, or check the image name and your network connection." : "Please check the image name, your network connection, or notify gemini-cli-dev@google.com if the issue persists.";
+      const remedy = image2 === LOCAL_DEV_SANDBOX_IMAGE_NAME ? "Try running `npm run build:all` or `npm run build:sandbox` under the delta-code repo to build it locally, or check the image name and your network connection." : "Please check the image name, your network connection, or notify delta-code-dev@google.com if the issue persists.";
       console.error(
         `ERROR: Sandbox image '${image2}' is missing or could not be pulled. ${remedy}`
       );
@@ -312757,7 +313217,7 @@ async function start_sandbox(config, nodeArgs = [], cliConfig) {
       const debugPort = process.env.DEBUG_PORT || "9229";
       args.push(`--publish`, `${debugPort}:${debugPort}`);
     }
-    const proxyCommand = process.env.GEMINI_SANDBOX_PROXY_COMMAND;
+    const proxyCommand = process.env.DELTA_SANDBOX_PROXY_COMMAND;
     if (proxyCommand) {
       let proxy = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy || "http://localhost:8877";
       proxy = proxy.replace("localhost", SANDBOX_PROXY_NAME);
@@ -312902,7 +313362,7 @@ async function start_sandbox(config, nodeArgs = [], cliConfig) {
     }
     let userFlag = "";
     const finalEntrypoint = entrypoint(workdir);
-    if (process.env.GEMINI_CLI_INTEGRATION_TEST === "true") {
+    if (process.env.DELTA_CLI_INTEGRATION_TEST === "true") {
       args.push("--user", "root");
       userFlag = "--user root";
     } else if (await shouldUseCurrentUserInSandbox()) {
@@ -313176,7 +313636,7 @@ async function runNonInteractive(config, input, prompt_id) {
         process.exit(0);
       }
     });
-    const geminiClient = config.getGeminiClient();
+    const deltaClient = config.getDeltaClient();
     const toolRegistry = await config.getToolRegistry();
     const abortController = new AbortController();
     let currentMessages = [
@@ -313192,7 +313652,7 @@ async function runNonInteractive(config, input, prompt_id) {
         return;
       }
       const functionCalls = [];
-      const responseStream = geminiClient.sendMessageStream(
+      const responseStream = deltaClient.sendMessageStream(
         currentMessages[0]?.parts || [],
         abortController.signal,
         prompt_id
@@ -313202,9 +313662,9 @@ async function runNonInteractive(config, input, prompt_id) {
           console.error("Operation cancelled.");
           return;
         }
-        if (event.type === GeminiEventType.Content) {
+        if (event.type === DeltaEventType.Content) {
           process.stdout.write(event.value);
-        } else if (event.type === GeminiEventType.ToolCallRequest) {
+        } else if (event.type === DeltaEventType.ToolCallRequest) {
           const toolCallRequest = event.value;
           const fc = {
             name: toolCallRequest.name,
@@ -313271,7 +313731,7 @@ async function runNonInteractive(config, input, prompt_id) {
   }
 }
 
-// packages/cli/src/gemini.tsx
+// packages/cli/src/delta.tsx
 init_dist3();
 
 // packages/cli/src/validateNonInterActiveAuth.ts
@@ -316901,12 +317361,12 @@ async function runZedIntegration(config, settings, extensions, argv) {
   console.info = console.error;
   console.debug = console.error;
   new AgentSideConnection(
-    (client) => new GeminiAgent(config, settings, extensions, argv, client),
+    (client) => new DeltaAgent(config, settings, extensions, argv, client),
     stdout,
     stdin
   );
 }
-var GeminiAgent = class {
+var DeltaAgent = class {
   constructor(config, settings, extensions, argv, client) {
     this.config = config;
     this.settings = settings;
@@ -316965,8 +317425,8 @@ var GeminiAgent = class {
     if (!isAuthenticated) {
       throw RequestError.authRequired();
     }
-    const geminiClient = config.getGeminiClient();
-    const chat = await geminiClient.startChat();
+    const deltaClient = config.getDeltaClient();
+    const chat = await deltaClient.startChat();
     const session = new Session2(sessionId2, chat, config, this.client);
     this.sessions.set(sessionId2, session);
     return {
@@ -317574,8 +318034,8 @@ function toPermissionOptions(confirmation) {
   }
 }
 
-// packages/cli/src/gemini.tsx
-var import_jsx_runtime62 = __toESM(require_jsx_runtime(), 1);
+// packages/cli/src/delta.tsx
+var import_jsx_runtime63 = __toESM(require_jsx_runtime(), 1);
 function validateDnsResolutionOrder(order) {
   const defaultValue = "ipv4first";
   if (order === void 0) {
@@ -317601,7 +318061,7 @@ function getNodeMemoryArgs(config) {
       `Current heap size ${currentMaxOldSpaceSizeMb.toFixed(2)} MB`
     );
   }
-  if (process.env.GEMINI_CLI_NO_RELAUNCH) {
+  if (process.env.DELTA_CLI_NO_RELAUNCH) {
     return [];
   }
   if (targetMaxOldSpaceSizeInMB > currentMaxOldSpaceSizeMb) {
@@ -317616,7 +318076,7 @@ function getNodeMemoryArgs(config) {
 }
 async function relaunchWithAdditionalArgs(additionalArgs) {
   const nodeArgs = [...additionalArgs, ...process.argv.slice(1)];
-  const newEnv = { ...process.env, GEMINI_CLI_NO_RELAUNCH: "true" };
+  const newEnv = { ...process.env, DELTA_CLI_NO_RELAUNCH: "true" };
   const child = spawn11(process.execPath, nodeArgs, {
     stdio: "inherit",
     env: newEnv
@@ -317743,7 +318203,7 @@ async function main() {
     await detectAndEnableKittyProtocol();
     setWindowTitle(basename7(workspaceRoot), settings);
     const instance = render_default(
-      /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(import_react86.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(SettingsContext.Provider, { value: settings, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(import_react87.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(SettingsContext.Provider, { value: settings, children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(
         AppWrapper,
         {
           config,
@@ -317820,6 +318280,11 @@ main().catch((error) => {
 /**
  * @license
  * Copyright 2025 Delta
+ * SPDX-License-Identifier: Apache-2.0
+ */
+/**
+ * @license
+ * Copyright 2026 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
 /*! Bundled license information:

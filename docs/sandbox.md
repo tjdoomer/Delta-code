@@ -50,7 +50,7 @@ Cross-platform sandboxing with complete process isolation.
 delta -s -p "analyze the code structure"
 
 # Use environment variable
-export GEMINI_SANDBOX=true
+export DELTA_SANDBOX=true
 delta -p "run the test suite"
 
 # Configure in settings.json
@@ -64,7 +64,7 @@ delta -p "run the test suite"
 ### Enable sandboxing (in order of precedence)
 
 1. **Command flag**: `-s` or `--sandbox`
-2. **Environment variable**: `GEMINI_SANDBOX=true|docker|podman|sandbox-exec`
+2. **Environment variable**: `DELTA_SANDBOX=true|docker|podman|sandbox-exec`
 3. **Settings file**: `"sandbox": true` in `settings.json`
 
 ### macOS Seatbelt profiles

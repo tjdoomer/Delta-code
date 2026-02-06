@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { MCPServerConfig, GeminiCLIExtension } from '@delta-code/delta-code-core';
+import { MCPServerConfig, DeltaCLIExtension } from '@delta-code/delta-code-core';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
@@ -123,8 +123,8 @@ function getContextFileNames(config: ExtensionConfig): string[] {
 export function annotateActiveExtensions(
   extensions: Extension[],
   enabledExtensionNames: string[],
-): GeminiCLIExtension[] {
-  const annotatedExtensions: GeminiCLIExtension[] = [];
+): DeltaCLIExtension[] {
+  const annotatedExtensions: DeltaCLIExtension[] = [];
 
   if (enabledExtensionNames.length === 0) {
     return extensions.map((extension) => ({

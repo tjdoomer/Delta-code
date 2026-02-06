@@ -68,36 +68,36 @@ Do NOT use this tool:
   - If not specified, the tool will ask the user where they want to save the memory.
 `;
 
-export const GEMINI_CONFIG_DIR = '.delta';
+export const DELTA_CONFIG_DIR = '.delta';
 export const DEFAULT_CONTEXT_FILENAME = 'DELTA.md';
 export const MEMORY_SECTION_HEADER = '## Delta Added Memories';
 
 // This variable will hold the currently configured filename for DELTA.md context files.
-// It defaults to DEFAULT_CONTEXT_FILENAME but can be overridden by setGeminiMdFilename.
-let currentGeminiMdFilename: string | string[] = DEFAULT_CONTEXT_FILENAME;
+// It defaults to DEFAULT_CONTEXT_FILENAME but can be overridden by setDeltaMdFilename.
+let currentDeltaMdFilename: string | string[] = DEFAULT_CONTEXT_FILENAME;
 
-export function setGeminiMdFilename(newFilename: string | string[]): void {
+export function setDeltaMdFilename(newFilename: string | string[]): void {
   if (Array.isArray(newFilename)) {
     if (newFilename.length > 0) {
-      currentGeminiMdFilename = newFilename.map((name) => name.trim());
+      currentDeltaMdFilename = newFilename.map((name) => name.trim());
     }
   } else if (newFilename && newFilename.trim() !== '') {
-    currentGeminiMdFilename = newFilename.trim();
+    currentDeltaMdFilename = newFilename.trim();
   }
 }
 
-export function getCurrentGeminiMdFilename(): string {
-  if (Array.isArray(currentGeminiMdFilename)) {
-    return currentGeminiMdFilename[0];
+export function getCurrentDeltaMdFilename(): string {
+  if (Array.isArray(currentDeltaMdFilename)) {
+    return currentDeltaMdFilename[0];
   }
-  return currentGeminiMdFilename;
+  return currentDeltaMdFilename;
 }
 
-export function getAllGeminiMdFilenames(): string[] {
-  if (Array.isArray(currentGeminiMdFilename)) {
-    return currentGeminiMdFilename;
+export function getAllDeltaMdFilenames(): string[] {
+  if (Array.isArray(currentDeltaMdFilename)) {
+    return currentDeltaMdFilename;
   }
-  return [currentGeminiMdFilename];
+  return [currentDeltaMdFilename];
 }
 
 interface SaveMemoryParams {
@@ -108,11 +108,11 @@ interface SaveMemoryParams {
 }
 
 function getGlobalMemoryFilePath(): string {
-  return path.join(homedir(), GEMINI_CONFIG_DIR, getCurrentGeminiMdFilename());
+  return path.join(homedir(), DELTA_CONFIG_DIR, getCurrentDeltaMdFilename());
 }
 
 function getProjectMemoryFilePath(): string {
-  return path.join(process.cwd(), getCurrentGeminiMdFilename());
+  return path.join(process.cwd(), getCurrentDeltaMdFilename());
 }
 
 function getMemoryFilePath(scope: 'global' | 'project' = 'global'): string {

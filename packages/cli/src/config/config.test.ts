@@ -60,11 +60,11 @@ vi.mock('@delta-code/delta-code-core', async () => {
     ),
     DEFAULT_MEMORY_FILE_FILTERING_OPTIONS: {
       respectGitIgnore: false,
-      respectGeminiIgnore: true,
+      respectDeltaIgnore: true,
     },
     DEFAULT_FILE_FILTERING_OPTIONS: {
       respectGitIgnore: true,
-      respectGeminiIgnore: true,
+      respectDeltaIgnore: true,
     },
   };
 });
@@ -608,14 +608,14 @@ describe('Hierarchical Memory Loading (config.ts) - Placeholder Suite', () => {
       'tree',
       {
         respectGitIgnore: false,
-        respectGeminiIgnore: true,
+        respectDeltaIgnore: true,
       },
       undefined, // maxDirs
     );
   });
 
   // NOTE TO FUTURE DEVELOPERS:
-  // To re-enable tests for loadHierarchicalGeminiMemory, ensure that:
+  // To re-enable tests for loadHierarchicalDeltaMemory, ensure that:
   // 1. os.homedir() is reliably mocked *before* the config.ts module is loaded
   //    and its functions (which use os.homedir()) are called.
   // 2. fs/promises and fs mocks correctly simulate file/directory existence,
@@ -624,12 +624,12 @@ describe('Hierarchical Memory Loading (config.ts) - Placeholder Suite', () => {
   // Example of a previously failing test structure:
   /*
   it('should correctly use mocked homedir for global path', async () => {
-    const MOCK_GEMINI_DIR_LOCAL = path.join('/mock/home/user', '.delta');
-    const MOCK_GLOBAL_PATH_LOCAL = path.join(MOCK_GEMINI_DIR_LOCAL, 'DELTA.md');
+    const MOCK_DELTA_DIR_LOCAL = path.join('/mock/home/user', '.delta');
+    const MOCK_GLOBAL_PATH_LOCAL = path.join(MOCK_DELTA_DIR_LOCAL, 'DELTA.md');
     mockFs({
       [MOCK_GLOBAL_PATH_LOCAL]: { type: 'file', content: 'GlobalContentOnly' }
     });
-    const memory = await loadHierarchicalGeminiMemory("/some/other/cwd", false);
+    const memory = await loadHierarchicalDeltaMemory("/some/other/cwd", false);
     expect(memory).toBe('GlobalContentOnly');
     expect(vi.mocked(os.homedir)).toHaveBeenCalled();
     expect(fsPromises.readFile).toHaveBeenCalledWith(MOCK_GLOBAL_PATH_LOCAL, 'utf-8');
@@ -1342,7 +1342,7 @@ describe('loadCliConfig model selection', () => {
     expect(config.getModel()).toBe('delta3-coder-plus');
   });
 
-  it('uses the default gemini model if nothing is set', async () => {
+  it('uses the default model if nothing is set', async () => {
     process.argv = ['node', 'script.js']; // No model set.
     const argv = await parseArguments();
     const config = await loadCliConfig(

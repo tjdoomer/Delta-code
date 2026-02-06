@@ -11,7 +11,7 @@ import {
   ToolRegistry,
   shutdownTelemetry,
   isTelemetrySdkInitialized,
-  GeminiEventType,
+  DeltaEventType,
   ToolErrorType,
   parseAndFormatApiError,
 } from '@delta-code/delta-code-core';
@@ -39,7 +39,7 @@ export async function runNonInteractive(
       }
     });
 
-    const geminiClient = config.getGeminiClient();
+    const deltaClient = config.getDeltaClient();
     const toolRegistry: ToolRegistry = await config.getToolRegistry();
 
     const abortController = new AbortController();
@@ -60,7 +60,7 @@ export async function runNonInteractive(
       }
       const functionCalls: FunctionCall[] = [];
 
-      const responseStream = geminiClient.sendMessageStream(
+      const responseStream = deltaClient.sendMessageStream(
         currentMessages[0]?.parts || [],
         abortController.signal,
         prompt_id,
@@ -72,9 +72,9 @@ export async function runNonInteractive(
           return;
         }
 
-        if (event.type === GeminiEventType.Content) {
+        if (event.type === DeltaEventType.Content) {
           process.stdout.write(event.value);
-        } else if (event.type === GeminiEventType.ToolCallRequest) {
+        } else if (event.type === DeltaEventType.ToolCallRequest) {
           const toolCallRequest = event.value;
           const fc: FunctionCall = {
             name: toolCallRequest.name,

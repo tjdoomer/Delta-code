@@ -37,7 +37,7 @@ describe('directoryCommand', () => {
     mockConfig = {
       getWorkspaceContext: () => mockWorkspaceContext,
       isRestrictiveSandbox: vi.fn().mockReturnValue(false),
-      getGeminiClient: vi.fn().mockReturnValue({
+      getDeltaClient: vi.fn().mockReturnValue({
         addDirectoryContext: vi.fn(),
       }),
       getWorkingDir: () => '/test/dir',
@@ -47,7 +47,7 @@ describe('directoryCommand', () => {
       getExtensionContextFilePaths: () => [],
       getFileFilteringOptions: () => ({ ignore: [], include: [] }),
       setUserMemory: vi.fn(),
-      setGeminiMdFileCount: vi.fn(),
+      setDeltaMdFileCount: vi.fn(),
     } as unknown as Config;
 
     mockContext = {

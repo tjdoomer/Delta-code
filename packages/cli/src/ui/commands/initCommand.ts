@@ -12,7 +12,7 @@ import {
   SlashCommandActionReturn,
   CommandKind,
 } from './types.js';
-import { getCurrentGeminiMdFilename } from '@delta-code/delta-code-core';
+import { getCurrentDeltaMdFilename } from '@delta-code/delta-code-core';
 
 export const initCommand: SlashCommand = {
   name: 'init',
@@ -30,7 +30,7 @@ export const initCommand: SlashCommand = {
       };
     }
     const targetDir = context.services.config.getTargetDir();
-    const contextFileName = getCurrentGeminiMdFilename();
+    const contextFileName = getCurrentDeltaMdFilename();
     const contextFilePath = path.join(targetDir, contextFileName);
 
     try {

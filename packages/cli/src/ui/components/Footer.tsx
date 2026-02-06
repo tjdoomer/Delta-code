@@ -101,7 +101,7 @@ export const Footer: React.FC<FooterProps> = ({
       >
         {process.env.SANDBOX && process.env.SANDBOX !== 'sandbox-exec' ? (
           <Text color="green">
-            {process.env.SANDBOX.replace(/^gemini-(?:cli-)?/, '')}
+            {process.env.SANDBOX.replace(/^delta-(?:cli-)?/, '')}
           </Text>
         ) : process.env.SANDBOX === 'sandbox-exec' ? (
           <Text color={theme.status.warning}>
@@ -117,7 +117,7 @@ export const Footer: React.FC<FooterProps> = ({
         )}
       </Box>
 
-      {/* Right Section: Gemini Label and Console Summary */}
+      {/* Right Section: Model Label and Console Summary */}
       <Box alignItems="center" paddingTop={isNarrow ? 1 : 0}>
         <Text color={theme.text.accent}>
           {isNarrow ? '' : ' '}

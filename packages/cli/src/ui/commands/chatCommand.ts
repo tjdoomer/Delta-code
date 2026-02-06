@@ -27,19 +27,19 @@ const getSavedChatTags = async (
   context: CommandContext,
   mtSortDesc: boolean,
 ): Promise<ChatDetail[]> => {
-  const geminiDir = context.services.config?.getProjectTempDir();
-  if (!geminiDir) {
+  const tempDir = context.services.config?.getProjectTempDir();
+  if (!tempDir) {
     return [];
   }
   try {
     const file_head = 'checkpoint-';
     const file_tail = '.json';
-    const files = await fsPromises.readdir(geminiDir);
+    const files = await fsPromises.readdir(tempDir);
     const chatDetails: Array<{ name: string; mtime: Date }> = [];
 
     for (const file of files) {
       if (file.startsWith(file_head) && file.endsWith(file_tail)) {
-        const filePath = path.join(geminiDir, file);
+        const filePath = path.join(tempDir, file);
         const stats = await fsPromises.stat(filePath);
         chatDetails.push({
           name: file.slice(file_head.length, -file_tail.length),
@@ -132,7 +132,7 @@ const saveCommand: SlashCommand = {
       }
     }
 
-    const chat = await config?.getGeminiClient()?.getChat();
+    const chat = await config?.getDeltaClient()?.getChat();
     if (!chat) {
       return {
         type: 'message',
@@ -189,7 +189,7 @@ const resumeCommand: SlashCommand = {
 
     const rolemap: { [key: string]: MessageType } = {
       user: MessageType.USER,
-      model: MessageType.GEMINI,
+      model: MessageType.DELTA,
     };
 
     const uiHistory: HistoryItemWithoutId[] = [];
@@ -211,7 +211,7 @@ const resumeCommand: SlashCommand = {
       }
       if (i > 2 || !hasSystemPrompt) {
         uiHistory.push({
-          type: (item.role && rolemap[item.role]) || MessageType.GEMINI,
+          type: (item.role && rolemap[item.role]) || MessageType.DELTA,
           text,
         } as HistoryItemWithoutId);
       }

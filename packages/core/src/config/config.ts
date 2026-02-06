@@ -24,12 +24,12 @@ import { WebFetchTool } from '../tools/web-fetch.js';
 import { ReadManyFilesTool } from '../tools/read-many-files.js';
 import {
   MemoryTool,
-  setGeminiMdFilename,
-  GEMINI_CONFIG_DIR as GEMINI_DIR,
+  setDeltaMdFilename,
+  DELTA_CONFIG_DIR,
 } from '../tools/memoryTool.js';
 import { TodoWriteTool } from '../tools/todoWrite.js';
 import { WebSearchTool } from '../tools/web-search.js';
-import { GeminiClient } from '../core/client.js';
+import { DeltaClient } from '../core/client.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { GitService } from '../services/gitService.js';
 import { getProjectTempDir } from '../utils/paths.js';
@@ -92,7 +92,7 @@ export interface GitCoAuthorSettings {
   email?: string;
 }
 
-export interface GeminiCLIExtension {
+export interface DeltaCLIExtension {
   name: string;
   version: string;
   isActive: boolean;
@@ -100,17 +100,17 @@ export interface GeminiCLIExtension {
 }
 export interface FileFilteringOptions {
   respectGitIgnore: boolean;
-  respectGeminiIgnore: boolean;
+  respectDeltaIgnore: boolean;
 }
 // For memory files
 export const DEFAULT_MEMORY_FILE_FILTERING_OPTIONS: FileFilteringOptions = {
   respectGitIgnore: false,
-  respectGeminiIgnore: true,
+  respectDeltaIgnore: true,
 };
 // For all other files
 export const DEFAULT_FILE_FILTERING_OPTIONS: FileFilteringOptions = {
   respectGitIgnore: true,
-  respectGeminiIgnore: true,
+  respectDeltaIgnore: true,
 };
 export class MCPServerConfig {
   constructor(
@@ -171,7 +171,7 @@ export interface ConfigParameters {
   mcpServerCommand?: string;
   mcpServers?: Record<string, MCPServerConfig>;
   userMemory?: string;
-  geminiMdFileCount?: number;
+  deltaMdFileCount?: number;
   approvalMode?: ApprovalMode;
   showMemoryUsage?: boolean;
   contextFileName?: string | string[];
@@ -181,7 +181,7 @@ export interface ConfigParameters {
   usageStatisticsEnabled?: boolean;
   fileFiltering?: {
     respectGitIgnore?: boolean;
-    respectGeminiIgnore?: boolean;
+    respectDeltaIgnore?: boolean;
     enableRecursiveFileSearch?: boolean;
   };
   checkpointing?: boolean;
@@ -196,7 +196,7 @@ export interface ConfigParameters {
   sessionTokenLimit?: number;
   experimentalZedIntegration?: boolean;
   listExtensions?: boolean;
-  extensions?: GeminiCLIExtension[];
+  extensions?: DeltaCLIExtension[];
   blockedMcpServers?: Array<{ name: string; extensionName: string }>;
   noBrowser?: boolean;
   summarizeToolOutput?: Record<string, SummarizeToolOutputSettings>;
@@ -245,17 +245,17 @@ export class Config {
   private readonly mcpServerCommand: string | undefined;
   private readonly mcpServers: Record<string, MCPServerConfig> | undefined;
   private userMemory: string;
-  private geminiMdFileCount: number;
+  private deltaMdFileCount: number;
   private approvalMode: ApprovalMode;
   private readonly showMemoryUsage: boolean;
   private readonly accessibility: AccessibilitySettings;
   private readonly telemetrySettings: TelemetrySettings;
   private readonly gitCoAuthor: GitCoAuthorSettings;
   private readonly usageStatisticsEnabled: boolean;
-  private geminiClient!: GeminiClient;
+  private deltaClient!: DeltaClient;
   private readonly fileFiltering: {
     respectGitIgnore: boolean;
-    respectGeminiIgnore: boolean;
+    respectDeltaIgnore: boolean;
     enableRecursiveFileSearch: boolean;
   };
   private fileDiscoveryService: FileDiscoveryService | null = null;
@@ -280,7 +280,7 @@ export class Config {
   private readonly maxSessionTurns: number;
   private readonly sessionTokenLimit: number;
   private readonly listExtensions: boolean;
-  private readonly _extensions: GeminiCLIExtension[];
+  private readonly _extensions: DeltaCLIExtension[];
   private readonly _blockedMcpServers: Array<{
     name: string;
     extensionName: string;
@@ -326,7 +326,7 @@ export class Config {
     this.mcpServerCommand = params.mcpServerCommand;
     this.mcpServers = params.mcpServers;
     this.userMemory = params.userMemory ?? '';
-    this.geminiMdFileCount = params.geminiMdFileCount ?? 0;
+    this.deltaMdFileCount = params.deltaMdFileCount ?? 0;
     this.approvalMode = params.approvalMode ?? ApprovalMode.DEFAULT;
     this.showMemoryUsage = params.showMemoryUsage ?? false;
     this.accessibility = params.accessibility ?? {};
@@ -346,7 +346,7 @@ export class Config {
 
     this.fileFiltering = {
       respectGitIgnore: params.fileFiltering?.respectGitIgnore ?? true,
-      respectGeminiIgnore: params.fileFiltering?.respectGeminiIgnore ?? true,
+      respectDeltaIgnore: params.fileFiltering?.respectDeltaIgnore ?? true,
       enableRecursiveFileSearch:
         params.fileFiltering?.enableRecursiveFileSearch ?? true,
     };
@@ -386,7 +386,7 @@ export class Config {
     this.tavilyApiKey = params.tavilyApiKey;
 
     if (params.contextFileName) {
-      setGeminiMdFilename(params.contextFileName);
+      setDeltaMdFilename(params.contextFileName);
     }
 
     if (this.telemetrySettings.enabled) {
@@ -422,8 +422,8 @@ export class Config {
   async refreshAuth(authMethod: AuthType) {
     // Save the current conversation history before creating a new client
     let existingHistory: Content[] = [];
-    if (this.geminiClient && this.geminiClient.isInitialized()) {
-      existingHistory = this.geminiClient.getHistory();
+    if (this.deltaClient && this.deltaClient.isInitialized()) {
+      existingHistory = this.deltaClient.getHistory();
     }
 
     // Create new content generator config
@@ -433,8 +433,8 @@ export class Config {
     );
 
     // Create and initialize new client in local variable first
-    const newGeminiClient = new GeminiClient(this);
-    await newGeminiClient.initialize(newContentGeneratorConfig);
+    const newDeltaClient = new DeltaClient(this);
+    await newDeltaClient.initialize(newContentGeneratorConfig);
 
     // Vertex and Genai have incompatible encryption and sending history with
     // throughtSignature from Genai to Vertex will fail, we need to strip them
@@ -444,11 +444,11 @@ export class Config {
 
     // Only assign to instance properties after successful initialization
     this.contentGeneratorConfig = newContentGeneratorConfig;
-    this.geminiClient = newGeminiClient;
+    this.deltaClient = newDeltaClient;
 
     // Restore the conversation history to the new client
     if (existingHistory.length > 0) {
-      this.geminiClient.setHistory(existingHistory, {
+      this.deltaClient.setHistory(existingHistory, {
         stripThoughts: fromGenaiToVertex,
       });
     }
@@ -592,12 +592,12 @@ export class Config {
     this.userMemory = newUserMemory;
   }
 
-  getGeminiMdFileCount(): number {
-    return this.geminiMdFileCount;
+  getDeltaMdFileCount(): number {
+    return this.deltaMdFileCount;
   }
 
-  setGeminiMdFileCount(count: number): void {
-    this.geminiMdFileCount = count;
+  setDeltaMdFileCount(count: number): void {
+    this.deltaMdFileCount = count;
   }
 
   getApprovalMode(): ApprovalMode {
@@ -640,12 +640,12 @@ export class Config {
     return this.gitCoAuthor;
   }
 
-  getGeminiClient(): GeminiClient {
-    return this.geminiClient;
+  getDeltaClient(): DeltaClient {
+    return this.deltaClient;
   }
 
-  getGeminiDir(): string {
-    return path.join(this.targetDir, GEMINI_DIR);
+  getDeltaDir(): string {
+    return path.join(this.targetDir, DELTA_CONFIG_DIR);
   }
 
   getProjectTempDir(): string {
@@ -659,14 +659,14 @@ export class Config {
   getFileFilteringRespectGitIgnore(): boolean {
     return this.fileFiltering.respectGitIgnore;
   }
-  getFileFilteringRespectGeminiIgnore(): boolean {
-    return this.fileFiltering.respectGeminiIgnore;
+  getFileFilteringRespectDeltaIgnore(): boolean {
+    return this.fileFiltering.respectDeltaIgnore;
   }
 
   getFileFilteringOptions(): FileFilteringOptions {
     return {
       respectGitIgnore: this.fileFiltering.respectGitIgnore,
-      respectGeminiIgnore: this.fileFiltering.respectGeminiIgnore,
+      respectDeltaIgnore: this.fileFiltering.respectDeltaIgnore,
     };
   }
 
@@ -709,7 +709,7 @@ export class Config {
     return this.listExtensions;
   }
 
-  getExtensions(): GeminiCLIExtension[] {
+  getExtensions(): DeltaCLIExtension[] {
     return this._extensions;
   }
 

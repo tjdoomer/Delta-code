@@ -12,7 +12,7 @@ import {
   clearCachedCredentialFile,
   Config,
   convertToFunctionResponse,
-  GeminiChat,
+  DeltaChat,
   getErrorMessage,
   getErrorStatus,
   isNodeError,
@@ -52,13 +52,13 @@ export async function runZedIntegration(
 
   new acp.AgentSideConnection(
     (client: acp.Client) =>
-      new GeminiAgent(config, settings, extensions, argv, client),
+      new DeltaAgent(config, settings, extensions, argv, client),
     stdout,
     stdin,
   );
 }
 
-class GeminiAgent {
+class DeltaAgent {
   private sessions: Map<string, Session> = new Map();
 
   constructor(
@@ -129,8 +129,8 @@ class GeminiAgent {
       throw acp.RequestError.authRequired();
     }
 
-    const geminiClient = config.getGeminiClient();
-    const chat = await geminiClient.startChat();
+    const deltaClient = config.getDeltaClient();
+    const chat = await deltaClient.startChat();
     const session = new Session(sessionId, chat, config, this.client);
     this.sessions.set(sessionId, session);
 
@@ -190,7 +190,7 @@ class Session {
 
   constructor(
     private readonly id: string,
-    private readonly chat: GeminiChat,
+    private readonly chat: DeltaChat,
     private readonly config: Config,
     private readonly client: acp.Client,
   ) {}

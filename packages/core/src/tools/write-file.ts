@@ -445,7 +445,7 @@ export class WriteFileTool
           new_string: proposedContent,
           file_path: filePath,
         },
-        this.config.getGeminiClient(),
+        this.config.getDeltaClient(),
         abortSignal,
       );
       correctedContent = correctedParams.new_string;
@@ -453,7 +453,7 @@ export class WriteFileTool
       // This implies new file (ENOENT)
       correctedContent = await ensureCorrectFileContent(
         proposedContent,
-        this.config.getGeminiClient(),
+        this.config.getDeltaClient(),
         abortSignal,
       );
     }

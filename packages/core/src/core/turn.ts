@@ -24,7 +24,7 @@ import {
   UnauthorizedError,
   toFriendlyError,
 } from '../utils/errors.js';
-import { GeminiChat } from './geminiChat.js';
+import { DeltaChat } from './deltaChat.js';
 
 // Define a structure for tools passed to the server
 export interface ServerTool {
@@ -41,7 +41,7 @@ export interface ServerTool {
   ): Promise<ToolCallConfirmationDetails | false>;
 }
 
-export enum GeminiEventType {
+export enum DeltaEventType {
   Content = 'content',
   ToolCallRequest = 'tool_call_request',
   ToolCallResponse = 'tool_call_response',
@@ -61,7 +61,7 @@ export interface StructuredError {
   status?: number;
 }
 
-export interface GeminiErrorEventValue {
+export interface DeltaErrorEventValue {
   error: StructuredError;
 }
 
@@ -97,38 +97,38 @@ export type ThoughtSummary = {
   description: string;
 };
 
-export type ServerGeminiContentEvent = {
-  type: GeminiEventType.Content;
+export type ServerDeltaContentEvent = {
+  type: DeltaEventType.Content;
   value: string;
 };
 
-export type ServerGeminiThoughtEvent = {
-  type: GeminiEventType.Thought;
+export type ServerDeltaThoughtEvent = {
+  type: DeltaEventType.Thought;
   value: ThoughtSummary;
 };
 
-export type ServerGeminiToolCallRequestEvent = {
-  type: GeminiEventType.ToolCallRequest;
+export type ServerDeltaToolCallRequestEvent = {
+  type: DeltaEventType.ToolCallRequest;
   value: ToolCallRequestInfo;
 };
 
-export type ServerGeminiToolCallResponseEvent = {
-  type: GeminiEventType.ToolCallResponse;
+export type ServerDeltaToolCallResponseEvent = {
+  type: DeltaEventType.ToolCallResponse;
   value: ToolCallResponseInfo;
 };
 
-export type ServerGeminiToolCallConfirmationEvent = {
-  type: GeminiEventType.ToolCallConfirmation;
+export type ServerDeltaToolCallConfirmationEvent = {
+  type: DeltaEventType.ToolCallConfirmation;
   value: ServerToolCallConfirmationDetails;
 };
 
-export type ServerGeminiUserCancelledEvent = {
-  type: GeminiEventType.UserCancelled;
+export type ServerDeltaUserCancelledEvent = {
+  type: DeltaEventType.UserCancelled;
 };
 
-export type ServerGeminiErrorEvent = {
-  type: GeminiEventType.Error;
-  value: GeminiErrorEventValue;
+export type ServerDeltaErrorEvent = {
+  type: DeltaEventType.Error;
+  value: DeltaErrorEventValue;
 };
 
 export interface ChatCompressionInfo {
@@ -136,43 +136,43 @@ export interface ChatCompressionInfo {
   newTokenCount: number;
 }
 
-export type ServerGeminiChatCompressedEvent = {
-  type: GeminiEventType.ChatCompressed;
+export type ServerDeltaChatCompressedEvent = {
+  type: DeltaEventType.ChatCompressed;
   value: ChatCompressionInfo | null;
 };
 
-export type ServerGeminiMaxSessionTurnsEvent = {
-  type: GeminiEventType.MaxSessionTurns;
+export type ServerDeltaMaxSessionTurnsEvent = {
+  type: DeltaEventType.MaxSessionTurns;
 };
 
-export type ServerGeminiSessionTokenLimitExceededEvent = {
-  type: GeminiEventType.SessionTokenLimitExceeded;
+export type ServerDeltaSessionTokenLimitExceededEvent = {
+  type: DeltaEventType.SessionTokenLimitExceeded;
   value: SessionTokenLimitExceededValue;
 };
 
-export type ServerGeminiFinishedEvent = {
-  type: GeminiEventType.Finished;
+export type ServerDeltaFinishedEvent = {
+  type: DeltaEventType.Finished;
   value: FinishReason;
 };
 
-export type ServerGeminiLoopDetectedEvent = {
-  type: GeminiEventType.LoopDetected;
+export type ServerDeltaLoopDetectedEvent = {
+  type: DeltaEventType.LoopDetected;
 };
 
 // The original union type, now composed of the individual types
-export type ServerGeminiStreamEvent =
-  | ServerGeminiContentEvent
-  | ServerGeminiToolCallRequestEvent
-  | ServerGeminiToolCallResponseEvent
-  | ServerGeminiToolCallConfirmationEvent
-  | ServerGeminiUserCancelledEvent
-  | ServerGeminiErrorEvent
-  | ServerGeminiChatCompressedEvent
-  | ServerGeminiThoughtEvent
-  | ServerGeminiMaxSessionTurnsEvent
-  | ServerGeminiSessionTokenLimitExceededEvent
-  | ServerGeminiFinishedEvent
-  | ServerGeminiLoopDetectedEvent;
+export type ServerDeltaStreamEvent =
+  | ServerDeltaContentEvent
+  | ServerDeltaToolCallRequestEvent
+  | ServerDeltaToolCallResponseEvent
+  | ServerDeltaToolCallConfirmationEvent
+  | ServerDeltaUserCancelledEvent
+  | ServerDeltaErrorEvent
+  | ServerDeltaChatCompressedEvent
+  | ServerDeltaThoughtEvent
+  | ServerDeltaMaxSessionTurnsEvent
+  | ServerDeltaSessionTokenLimitExceededEvent
+  | ServerDeltaFinishedEvent
+  | ServerDeltaLoopDetectedEvent;
 
 // A turn manages the agentic loop turn within the server context.
 export class Turn {
@@ -181,7 +181,7 @@ export class Turn {
   finishReason: FinishReason | undefined;
 
   constructor(
-    private readonly chat: GeminiChat,
+    private readonly chat: DeltaChat,
     private readonly prompt_id: string,
   ) {
     this.pendingToolCalls = [];
@@ -192,7 +192,7 @@ export class Turn {
   async *run(
     req: PartListUnion,
     signal: AbortSignal,
-  ): AsyncGenerator<ServerGeminiStreamEvent> {
+  ): AsyncGenerator<ServerDeltaStreamEvent> {
     try {
       const responseStream = await this.chat.sendMessageStream(
         {
@@ -206,7 +206,7 @@ export class Turn {
 
       for await (const resp of responseStream) {
         if (signal?.aborted) {
-          yield { type: GeminiEventType.UserCancelled };
+          yield { type: DeltaEventType.UserCancelled };
           // Do not add resp to debugResponses if aborted before processing
           return;
         }
@@ -228,7 +228,7 @@ export class Turn {
           };
 
           yield {
-            type: GeminiEventType.Thought,
+            type: DeltaEventType.Thought,
             value: thought,
           };
           continue;
@@ -236,7 +236,7 @@ export class Turn {
 
         const text = getResponseText(resp);
         if (text) {
-          yield { type: GeminiEventType.Content, value: text };
+          yield { type: DeltaEventType.Content, value: text };
         }
 
         // Handle function calls (requesting tool execution)
@@ -254,7 +254,7 @@ export class Turn {
         if (finishReason) {
           this.finishReason = finishReason;
           yield {
-            type: GeminiEventType.Finished,
+            type: DeltaEventType.Finished,
             value: finishReason as FinishReason,
           };
         }
@@ -265,7 +265,7 @@ export class Turn {
         throw error;
       }
       if (signal.aborted) {
-        yield { type: GeminiEventType.UserCancelled };
+        yield { type: DeltaEventType.UserCancelled };
         // Regular cancellation error, fail gracefully.
         return;
       }
@@ -273,7 +273,7 @@ export class Turn {
       const contextForReport = [...this.chat.getHistory(/*curated*/ true), req];
       await reportError(
         error,
-        'Error when talking to Gemini API',
+        'Error when talking to API',
         contextForReport,
         'Turn.run-sendMessageStream',
       );
@@ -289,14 +289,14 @@ export class Turn {
         status,
       };
       await this.chat.maybeIncludeSchemaDepthContext(structuredError);
-      yield { type: GeminiEventType.Error, value: { error: structuredError } };
+      yield { type: DeltaEventType.Error, value: { error: structuredError } };
       return;
     }
   }
 
   private handlePendingFunctionCall(
     fnCall: FunctionCall,
-  ): ServerGeminiStreamEvent | null {
+  ): ServerDeltaStreamEvent | null {
     const callId =
       fnCall.id ??
       `${fnCall.name}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -314,7 +314,7 @@ export class Turn {
     this.pendingToolCalls.push(toolCallRequest);
 
     // Yield a request for the tool call, not the pending/confirming status
-    return { type: GeminiEventType.ToolCallRequest, value: toolCallRequest };
+    return { type: DeltaEventType.ToolCallRequest, value: toolCallRequest };
   }
 
   getDebugResponses(): GenerateContentResponse[] {

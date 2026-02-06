@@ -30,7 +30,7 @@ async function restoreAction(
     return {
       type: 'message',
       messageType: 'error',
-      content: 'Could not determine the .gemini directory path.',
+      content: 'Could not determine the .delta directory path.',
     };
   }
 
@@ -91,7 +91,7 @@ async function restoreAction(
     }
 
     if (toolCallData.clientHistory) {
-      await config?.getGeminiClient()?.setHistory(toolCallData.clientHistory);
+      await config?.getDeltaClient()?.setHistory(toolCallData.clientHistory);
     }
 
     if (toolCallData.commitHash) {

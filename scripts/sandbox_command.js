@@ -32,27 +32,27 @@ const argv = yargs(hideBin(process.argv)).option('q', {
   default: false,
 }).argv;
 
-let geminiSandbox = process.env.GEMINI_SANDBOX;
+let deltaSandbox = process.env.DELTA_SANDBOX;
 
-if (!geminiSandbox) {
+if (!deltaSandbox) {
   const userSettingsFile = join(os.homedir(), '.delta', 'settings.json');
   if (existsSync(userSettingsFile)) {
     const settings = JSON.parse(
       stripJsonComments(readFileSync(userSettingsFile, 'utf-8')),
     );
     if (settings.sandbox) {
-      geminiSandbox = settings.sandbox;
+      deltaSandbox = settings.sandbox;
     }
   }
 }
 
-if (!geminiSandbox) {
+if (!deltaSandbox) {
   let currentDir = process.cwd();
   while (true) {
-    const geminiEnv = join(currentDir, '.delta', '.env');
+    const deltaEnv = join(currentDir, '.delta', '.env');
     const regularEnv = join(currentDir, '.env');
-    if (existsSync(geminiEnv)) {
-      dotenv.config({ path: geminiEnv, quiet: true });
+    if (existsSync(deltaEnv)) {
+      dotenv.config({ path: deltaEnv, quiet: true });
       break;
     } else if (existsSync(regularEnv)) {
       dotenv.config({ path: regularEnv, quiet: true });
@@ -64,10 +64,10 @@ if (!geminiSandbox) {
     }
     currentDir = parentDir;
   }
-  geminiSandbox = process.env.GEMINI_SANDBOX;
+  deltaSandbox = process.env.DELTA_SANDBOX;
 }
 
-geminiSandbox = (geminiSandbox || '').toLowerCase();
+deltaSandbox = (deltaSandbox || '').toLowerCase();
 
 const commandExists = (cmd) => {
   const checkCommand = os.platform() === 'win32' ? 'where' : 'command -v';
@@ -88,23 +88,23 @@ const commandExists = (cmd) => {
 };
 
 let command = '';
-if (['1', 'true'].includes(geminiSandbox)) {
+if (['1', 'true'].includes(deltaSandbox)) {
   if (commandExists('docker')) {
     command = 'docker';
   } else if (commandExists('podman')) {
     command = 'podman';
   } else {
     console.error(
-      'ERROR: install docker or podman or specify command in GEMINI_SANDBOX',
+      'ERROR: install docker or podman or specify command in DELTA_SANDBOX',
     );
     process.exit(1);
   }
-} else if (geminiSandbox && !['0', 'false'].includes(geminiSandbox)) {
-  if (commandExists(geminiSandbox)) {
-    command = geminiSandbox;
+} else if (deltaSandbox && !['0', 'false'].includes(deltaSandbox)) {
+  if (commandExists(deltaSandbox)) {
+    command = deltaSandbox;
   } else {
     console.error(
-      `ERROR: missing sandbox command '${geminiSandbox}' (from GEMINI_SANDBOX)`,
+      `ERROR: missing sandbox command '${deltaSandbox}' (from DELTA_SANDBOX)`,
     );
     process.exit(1);
   }

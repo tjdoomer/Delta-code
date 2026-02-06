@@ -24,7 +24,7 @@ Delta Code uses `settings.json` files for persistent configuration. There are th
   - **Location:** `.delta/settings.json` within your project's root directory.
   - **Scope:** Applies only when running Delta Code from that specific project. Project settings override user settings.
 - **System settings file:**
-  - **Location:** `/etc/gemini-cli/settings.json` (Linux), `C:\ProgramData\gemini-cli\settings.json` (Windows) or `/Library/Application Support/GeminiCli/settings.json` (macOS). The path can be overridden using the `GEMINI_CLI_SYSTEM_SETTINGS_PATH` environment variable.
+  - **Location:** `/etc/delta-code/settings.json` (Linux), `C:\ProgramData\delta-code\settings.json` (Windows) or `/Library/Application Support/DeltaCode/settings.json` (macOS). The path can be overridden using the `DELTA_CLI_SYSTEM_SETTINGS_PATH` environment variable.
   - **Scope:** Applies to all Delta Code sessions on the system, for all users. System settings override user and project settings. May be useful for system administrators at enterprises to have controls over users' Delta Code setups.
 
 **Note on environment variables in settings:** String values within your `settings.json` files can reference environment variables using either `$VAR_NAME` or `${VAR_NAME}` syntax. These variables will be automatically resolved when the settings are loaded. For example, if you have an environment variable `MY_API_TOKEN`, you could use it in `settings.json` like this: `"apiKey": "$MY_API_TOKEN"`.
@@ -380,7 +380,7 @@ The CLI automatically loads environment variables from an `.env` file. The loadi
   - Your Google Cloud Project Location (e.g., us-central1).
   - Required for using Vertex AI in non express mode.
   - Example: `export GOOGLE_CLOUD_LOCATION="YOUR_PROJECT_LOCATION"`.
-- **`GEMINI_SANDBOX`**:
+- **`DELTA_SANDBOX`**:
   - Alternative to the `sandbox` setting in `settings.json`.
   - Accepts `true`, `false`, `docker`, `podman`, or a custom command string.
 - **`SEATBELT_PROFILE`** (macOS specific):
@@ -538,7 +538,7 @@ Delta Code can execute potentially unsafe operations (like shell commands and fi
 Sandboxing is disabled by default, but you can enable it in a few ways:
 
 - Using `--sandbox` or `-s` flag.
-- Setting `GEMINI_SANDBOX` environment variable.
+- Setting `DELTA_SANDBOX` environment variable.
 - Sandbox is enabled when using `--yolo` or `--approval-mode=yolo` by default.
 
 By default, it uses a pre-built `delta-code-sandbox` Docker image.

@@ -2,7 +2,7 @@
 
 ## 0.0.9
 
-- Synced upstream `gemini-cli` to v0.1.21.
+- Synced upstream `delta-code` to v0.1.21.
 - Fixed token synchronization among multiple Delta sessions.
 - Improved tool execution with early stop on invalid tool calls.
 - Added explicit `is_background` parameter for shell tool.
@@ -24,18 +24,18 @@
 
 ## 0.0.8
 
-- Synced upstream `gemini-cli` to v0.1.19.
-- Updated documentation branding from **Gemini CLI** to **Delta Code**.
+- Synced upstream `delta-code` to v0.1.19.
+- Updated documentation branding from **Delta Code** to **Delta Code**.
 - Added multilingual docs links in `README.md`.
 - Added deterministic cache control for the DashScope provider.
 - Added option to choose a project-level or global save location.
 - Limited `grep` results to 25 items by default.
-- `grep` now respects `.geminiignore`.
+- `grep` now respects `.deltaignore`.
 - Miscellaneous improvements and bug fixes.
 
 ## 0.0.7
 
-- Synced upstream `gemini-cli` to v0.1.18.
+- Synced upstream `delta-code` to v0.1.18.
 - Fixed MCP tools.
 - Fixed Web Fetch tool.
 - Fixed Web Search tool by switching from Google/Gemini to the Tavily API.
@@ -55,5 +55,5 @@
 ## 0.0.5
 
 - Added Delta OAuth login and up to 2,000 free requests per day.
-- Synced upstream `gemini-cli` to v0.1.17.
+- Synced upstream `delta-code` to v0.1.17.
 - Added the `systemPromptMappings` configuration option.

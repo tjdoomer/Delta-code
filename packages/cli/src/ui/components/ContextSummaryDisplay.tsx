@@ -15,7 +15,7 @@ import { useTerminalSize } from '../hooks/useTerminalSize.js';
 import { isNarrowWidth } from '../utils/isNarrowWidth.js';
 
 interface ContextSummaryDisplayProps {
-  geminiMdFileCount: number;
+  deltaMdFileCount: number;
   contextFileNames: string[];
   mcpServers?: Record<string, MCPServerConfig>;
   blockedMcpServers?: Array<{ name: string; extensionName: string }>;
@@ -24,7 +24,7 @@ interface ContextSummaryDisplayProps {
 }
 
 export const ContextSummaryDisplay: React.FC<ContextSummaryDisplayProps> = ({
-  geminiMdFileCount,
+  deltaMdFileCount,
   contextFileNames,
   mcpServers,
   blockedMcpServers,
@@ -38,7 +38,7 @@ export const ContextSummaryDisplay: React.FC<ContextSummaryDisplayProps> = ({
   const openFileCount = ideContext?.workspaceState?.openFiles?.length ?? 0;
 
   if (
-    geminiMdFileCount === 0 &&
+    deltaMdFileCount === 0 &&
     mcpServerCount === 0 &&
     blockedMcpServerCount === 0 &&
     openFileCount === 0
@@ -55,14 +55,14 @@ export const ContextSummaryDisplay: React.FC<ContextSummaryDisplayProps> = ({
     } (ctrl+e to view)`;
   })();
 
-  const geminiMdText = (() => {
-    if (geminiMdFileCount === 0) {
+  const deltaMdText = (() => {
+    if (deltaMdFileCount === 0) {
       return '';
     }
     const allNamesTheSame = new Set(contextFileNames).size < 2;
     const name = allNamesTheSame ? contextFileNames[0] : 'context';
-    return `${geminiMdFileCount} ${name} file${
-      geminiMdFileCount > 1 ? 's' : ''
+    return `${deltaMdFileCount} ${name} file${
+      deltaMdFileCount > 1 ? 's' : ''
     }`;
   })();
 
@@ -97,7 +97,7 @@ export const ContextSummaryDisplay: React.FC<ContextSummaryDisplayProps> = ({
     return text;
   })();
 
-  const summaryParts = [openFilesText, geminiMdText, mcpText].filter(Boolean);
+  const summaryParts = [openFilesText, deltaMdText, mcpText].filter(Boolean);
 
   if (isNarrow) {
     return (

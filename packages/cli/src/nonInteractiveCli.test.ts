@@ -10,8 +10,8 @@ import {
   ToolRegistry,
   ToolErrorType,
   shutdownTelemetry,
-  GeminiEventType,
-  ServerGeminiStreamEvent,
+  DeltaEventType,
+  ServerDeltaStreamEvent,
 } from '@delta-code/delta-code-core';
 import { Part } from '@google/genai';
 import { runNonInteractive } from './nonInteractiveCli.js';
@@ -37,7 +37,7 @@ describe('runNonInteractive', () => {
   let consoleErrorSpy: vi.SpyInstance;
   let processExitSpy: vi.SpyInstance;
   let processStdoutSpy: vi.SpyInstance;
-  let mockGeminiClient: {
+  let mockDeltaClient: {
     sendMessageStream: vi.Mock;
   };
 
@@ -58,13 +58,13 @@ describe('runNonInteractive', () => {
       getFunctionDeclarations: vi.fn().mockReturnValue([]),
     } as unknown as ToolRegistry;
 
-    mockGeminiClient = {
+    mockDeltaClient = {
       sendMessageStream: vi.fn(),
     };
 
     mockConfig = {
       initialize: vi.fn().mockResolvedValue(undefined),
-      getGeminiClient: vi.fn().mockReturnValue(mockGeminiClient),
+      getDeltaClient: vi.fn().mockReturnValue(mockDeltaClient),
       getToolRegistry: vi.fn().mockResolvedValue(mockToolRegistry),
       getMaxSessionTurns: vi.fn().mockReturnValue(10),
       getIdeMode: vi.fn().mockReturnValue(false),
@@ -79,25 +79,25 @@ describe('runNonInteractive', () => {
   });
 
   async function* createStreamFromEvents(
-    events: ServerGeminiStreamEvent[],
-  ): AsyncGenerator<ServerGeminiStreamEvent> {
+    events: ServerDeltaStreamEvent[],
+  ): AsyncGenerator<ServerDeltaStreamEvent> {
     for (const event of events) {
       yield event;
     }
   }
 
   it('should process input and write text output', async () => {
-    const events: ServerGeminiStreamEvent[] = [
-      { type: GeminiEventType.Content, value: 'Hello' },
-      { type: GeminiEventType.Content, value: ' World' },
+    const events: ServerDeltaStreamEvent[] = [
+      { type: DeltaEventType.Content, value: 'Hello' },
+      { type: DeltaEventType.Content, value: ' World' },
     ];
-    mockGeminiClient.sendMessageStream.mockReturnValue(
+    mockDeltaClient.sendMessageStream.mockReturnValue(
       createStreamFromEvents(events),
     );
 
     await runNonInteractive(mockConfig, 'Test input', 'prompt-id-1');
 
-    expect(mockGeminiClient.sendMessageStream).toHaveBeenCalledWith(
+    expect(mockDeltaClient.sendMessageStream).toHaveBeenCalledWith(
       [{ text: 'Test input' }],
       expect.any(AbortSignal),
       'prompt-id-1',
@@ -109,8 +109,8 @@ describe('runNonInteractive', () => {
   });
 
   it('should handle a single tool call and respond', async () => {
-    const toolCallEvent: ServerGeminiStreamEvent = {
-      type: GeminiEventType.ToolCallRequest,
+    const toolCallEvent: ServerDeltaStreamEvent = {
+      type: DeltaEventType.ToolCallRequest,
       value: {
         callId: 'tool-1',
         name: 'testTool',
@@ -122,25 +122,25 @@ describe('runNonInteractive', () => {
     const toolResponse: Part[] = [{ text: 'Tool response' }];
     mockCoreExecuteToolCall.mockResolvedValue({ responseParts: toolResponse });
 
-    const firstCallEvents: ServerGeminiStreamEvent[] = [toolCallEvent];
-    const secondCallEvents: ServerGeminiStreamEvent[] = [
-      { type: GeminiEventType.Content, value: 'Final answer' },
+    const firstCallEvents: ServerDeltaStreamEvent[] = [toolCallEvent];
+    const secondCallEvents: ServerDeltaStreamEvent[] = [
+      { type: DeltaEventType.Content, value: 'Final answer' },
     ];
 
-    mockGeminiClient.sendMessageStream
+    mockDeltaClient.sendMessageStream
       .mockReturnValueOnce(createStreamFromEvents(firstCallEvents))
       .mockReturnValueOnce(createStreamFromEvents(secondCallEvents));
 
     await runNonInteractive(mockConfig, 'Use a tool', 'prompt-id-2');
 
-    expect(mockGeminiClient.sendMessageStream).toHaveBeenCalledTimes(2);
+    expect(mockDeltaClient.sendMessageStream).toHaveBeenCalledTimes(2);
     expect(mockCoreExecuteToolCall).toHaveBeenCalledWith(
       mockConfig,
       expect.objectContaining({ name: 'testTool' }),
       mockToolRegistry,
       expect.any(AbortSignal),
     );
-    expect(mockGeminiClient.sendMessageStream).toHaveBeenNthCalledWith(
+    expect(mockDeltaClient.sendMessageStream).toHaveBeenNthCalledWith(
       2,
       [{ text: 'Tool response' }],
       expect.any(AbortSignal),
@@ -151,8 +151,8 @@ describe('runNonInteractive', () => {
   });
 
   it('should handle error during tool execution', async () => {
-    const toolCallEvent: ServerGeminiStreamEvent = {
-      type: GeminiEventType.ToolCallRequest,
+    const toolCallEvent: ServerDeltaStreamEvent = {
+      type: DeltaEventType.ToolCallRequest,
       value: {
         callId: 'tool-1',
         name: 'errorTool',
@@ -165,7 +165,7 @@ describe('runNonInteractive', () => {
       error: new Error('Tool execution failed badly'),
       errorType: ToolErrorType.UNHANDLED_EXCEPTION,
     });
-    mockGeminiClient.sendMessageStream.mockReturnValue(
+    mockDeltaClient.sendMessageStream.mockReturnValue(
       createStreamFromEvents([toolCallEvent]),
     );
 
@@ -180,7 +180,7 @@ describe('runNonInteractive', () => {
 
   it('should exit with error if sendMessageStream throws initially', async () => {
     const apiError = new Error('API connection failed');
-    mockGeminiClient.sendMessageStream.mockImplementation(() => {
+    mockDeltaClient.sendMessageStream.mockImplementation(() => {
       throw apiError;
     });
 
@@ -193,8 +193,8 @@ describe('runNonInteractive', () => {
   });
 
   it('should not exit if a tool is not found, and should send error back to model', async () => {
-    const toolCallEvent: ServerGeminiStreamEvent = {
-      type: GeminiEventType.ToolCallRequest,
+    const toolCallEvent: ServerDeltaStreamEvent = {
+      type: DeltaEventType.ToolCallRequest,
       value: {
         callId: 'tool-1',
         name: 'nonexistentTool',
@@ -207,14 +207,14 @@ describe('runNonInteractive', () => {
       error: new Error('Tool "nonexistentTool" not found in registry.'),
       resultDisplay: 'Tool "nonexistentTool" not found in registry.',
     });
-    const finalResponse: ServerGeminiStreamEvent[] = [
+    const finalResponse: ServerDeltaStreamEvent[] = [
       {
-        type: GeminiEventType.Content,
+        type: DeltaEventType.Content,
         value: "Sorry, I can't find that tool.",
       },
     ];
 
-    mockGeminiClient.sendMessageStream
+    mockDeltaClient.sendMessageStream
       .mockReturnValueOnce(createStreamFromEvents([toolCallEvent]))
       .mockReturnValueOnce(createStreamFromEvents(finalResponse));
 
@@ -229,7 +229,7 @@ describe('runNonInteractive', () => {
       'Error executing tool nonexistentTool: Tool "nonexistentTool" not found in registry.',
     );
     expect(processExitSpy).not.toHaveBeenCalled();
-    expect(mockGeminiClient.sendMessageStream).toHaveBeenCalledTimes(2);
+    expect(mockDeltaClient.sendMessageStream).toHaveBeenCalledTimes(2);
     expect(processStdoutSpy).toHaveBeenCalledWith(
       "Sorry, I can't find that tool.",
     );

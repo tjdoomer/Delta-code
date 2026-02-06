@@ -183,7 +183,7 @@ jobs:
           RELEASE_BRANCH: '${{ steps.release_branch.outputs.BRANCH_NAME }}'
         run: |
           # Build the gh release create command with appropriate options
-          RELEASE_CMD="gh release create ${{ steps.version.outputs.RELEASE_TAG }} bundle/gemini.js --target \"$RELEASE_BRANCH\" --title \"Release ${{ steps.version.outputs.RELEASE_TAG }}\""
+          RELEASE_CMD="gh release create ${{ steps.version.outputs.RELEASE_TAG }} bundle/delta.js --target \"$RELEASE_BRANCH\" --title \"Release ${{ steps.version.outputs.RELEASE_TAG }}\""
 
           # Add previous tag for release notes if available
           if [[ -n "${{ steps.version.outputs.PREVIOUS_TAG }}" ]]; then

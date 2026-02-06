@@ -160,7 +160,7 @@ export const setupGithubCommand: SlashCommand = {
       toolName: 'run_shell_command',
       toolArgs: {
         description:
-          'Setting up GitHub Actions to triage issues and review PRs with Gemini.',
+          'Setting up GitHub Actions to triage issues and review PRs with Delta.',
         command,
       },
     };

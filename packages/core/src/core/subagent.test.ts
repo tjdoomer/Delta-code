@@ -16,12 +16,12 @@ import {
   ToolConfig,
 } from './subagent.js';
 import { Config, ConfigParameters } from '../config/config.js';
-import { GeminiChat } from './geminiChat.js';
+import { DeltaChat } from './deltaChat.js';
 import { createContentGenerator } from './contentGenerator.js';
 import { getEnvironmentContext } from '../utils/environmentContext.js';
 import { executeToolCall } from './nonInteractiveToolExecutor.js';
 import { ToolRegistry } from '../tools/tool-registry.js';
-import { DEFAULT_GEMINI_MODEL } from '../config/models.js';
+import { DEFAULT_QWEN_MODEL } from '../config/models.js';
 import {
   Content,
   FunctionCall,
@@ -31,7 +31,7 @@ import {
 } from '@google/genai';
 import { ToolErrorType } from '../tools/tool-error.js';
 
-vi.mock('./geminiChat.js');
+vi.mock('./deltaChat.js');
 vi.mock('./contentGenerator.js');
 vi.mock('../utils/environmentContext.js');
 vi.mock('./nonInteractiveToolExecutor.js');
@@ -42,7 +42,7 @@ async function createMockConfig(
 ): Promise<{ config: Config; toolRegistry: ToolRegistry }> {
   const configParams: ConfigParameters = {
     sessionId: 'test-session',
-    model: DEFAULT_GEMINI_MODEL,
+    model: DEFAULT_QWEN_MODEL,
     targetDir: '.',
     debugMode: false,
     cwd: process.cwd(),
@@ -128,11 +128,11 @@ describe('subagent.ts', () => {
 
       mockSendMessageStream = vi.fn();
       // We mock the implementation of the constructor.
-      vi.mocked(GeminiChat).mockImplementation(
+      vi.mocked(DeltaChat).mockImplementation(
         () =>
           ({
             sendMessageStream: mockSendMessageStream,
-          }) as unknown as GeminiChat,
+          }) as unknown as DeltaChat,
       );
     });
 
@@ -144,7 +144,7 @@ describe('subagent.ts', () => {
     const getGenerationConfigFromMock = (
       callIndex = 0,
     ): GenerateContentConfig & { systemInstruction?: string | Content } => {
-      const callArgs = vi.mocked(GeminiChat).mock.calls[callIndex];
+      const callArgs = vi.mocked(DeltaChat).mock.calls[callIndex];
       const generationConfig = callArgs?.[2];
       // Ensure it's defined before proceeding
       expect(generationConfig).toBeDefined();
@@ -277,10 +277,10 @@ describe('subagent.ts', () => {
     });
 
     describe('runNonInteractive - Initialization and Prompting', () => {
-      it('should correctly template the system prompt and initialize GeminiChat', async () => {
+      it('should correctly template the system prompt and initialize DeltaChat', async () => {
         const { config } = await createMockConfig();
 
-        vi.mocked(GeminiChat).mockClear();
+        vi.mocked(DeltaChat).mockClear();
 
         const promptConfig: PromptConfig = {
           systemPrompt: 'Hello ${name}, your task is ${task}.',
@@ -302,9 +302,9 @@ describe('subagent.ts', () => {
 
         await scope.runNonInteractive(context);
 
-        // Check if GeminiChat was initialized correctly by the subagent
-        expect(GeminiChat).toHaveBeenCalledTimes(1);
-        const callArgs = vi.mocked(GeminiChat).mock.calls[0];
+        // Check if DeltaChat was initialized correctly by the subagent
+        expect(DeltaChat).toHaveBeenCalledTimes(1);
+        const callArgs = vi.mocked(DeltaChat).mock.calls[0];
 
         // Check Generation Config
         const generationConfig = getGenerationConfigFromMock();
@@ -331,7 +331,7 @@ describe('subagent.ts', () => {
 
       it('should include output instructions in the system prompt when outputs are defined', async () => {
         const { config } = await createMockConfig();
-        vi.mocked(GeminiChat).mockClear();
+        vi.mocked(DeltaChat).mockClear();
 
         const promptConfig: PromptConfig = { systemPrompt: 'Do the task.' };
         const outputConfig: OutputConfig = {
@@ -370,7 +370,7 @@ describe('subagent.ts', () => {
 
       it('should use initialMessages instead of systemPrompt if provided', async () => {
         const { config } = await createMockConfig();
-        vi.mocked(GeminiChat).mockClear();
+        vi.mocked(DeltaChat).mockClear();
 
         const initialMessages: Content[] = [
           { role: 'user', parts: [{ text: 'Hi' }] },
@@ -391,7 +391,7 @@ describe('subagent.ts', () => {
 
         await scope.runNonInteractive(context);
 
-        const callArgs = vi.mocked(GeminiChat).mock.calls[0];
+        const callArgs = vi.mocked(DeltaChat).mock.calls[0];
         const generationConfig = getGenerationConfigFromMock();
         const history = callArgs[3];
 

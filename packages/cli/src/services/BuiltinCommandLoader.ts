@@ -37,7 +37,7 @@ import { terminalSetupCommand } from '../ui/commands/terminalSetupCommand.js';
 
 /**
  * Loads the core, hard-coded slash commands that are an integral part
- * of the Gemini CLI application.
+ * of the Delta Code application.
  */
 export class BuiltinCommandLoader implements ICommandLoader {
   constructor(private config: Config | null) {}

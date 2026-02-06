@@ -37,7 +37,7 @@ import {
 } from './shellCommandProcessor.js';
 import {
   type Config,
-  type GeminiClient,
+  type DeltaClient,
   type ShellExecutionResult,
   type ShellOutputEvent,
 } from '@delta-code/delta-code-core';
@@ -53,7 +53,7 @@ describe('useShellCommandProcessor', () => {
   let onExecMock: Mock;
   let onDebugMessageMock: Mock;
   let mockConfig: Config;
-  let mockGeminiClient: GeminiClient;
+  let mockDeltaClient: DeltaClient;
 
   let mockShellOutputCallback: (event: ShellOutputEvent) => void;
   let resolveExecutionPromise: (result: ShellExecutionResult) => void;
@@ -66,7 +66,7 @@ describe('useShellCommandProcessor', () => {
     onExecMock = vi.fn();
     onDebugMessageMock = vi.fn();
     mockConfig = { getTargetDir: () => '/test/dir' } as Config;
-    mockGeminiClient = { addHistory: vi.fn() } as unknown as GeminiClient;
+    mockDeltaClient = { addHistory: vi.fn() } as unknown as DeltaClient;
 
     vi.mocked(os.platform).mockReturnValue('linux');
     vi.mocked(os.tmpdir).mockReturnValue('/tmp');
@@ -95,7 +95,7 @@ describe('useShellCommandProcessor', () => {
         onExecMock,
         onDebugMessageMock,
         mockConfig,
-        mockGeminiClient,
+        mockDeltaClient,
       ),
     );
 
@@ -173,7 +173,7 @@ describe('useShellCommandProcessor', () => {
         ],
       }),
     );
-    expect(mockGeminiClient.addHistory).toHaveBeenCalled();
+    expect(mockDeltaClient.addHistory).toHaveBeenCalled();
   });
 
   it('should handle command failure and display error status', async () => {

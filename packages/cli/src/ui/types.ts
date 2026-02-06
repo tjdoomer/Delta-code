@@ -17,7 +17,7 @@ export enum StreamingState {
 }
 
 // Copied from server/src/core/turn.ts for CLI usage
-export enum GeminiEventType {
+export enum DeltaEventType {
   Content = 'content',
   ToolCallRequest = 'tool_call_request',
   // Add other event types if the UI hook needs to handle them
@@ -67,13 +67,13 @@ export type HistoryItemUser = HistoryItemBase & {
   text: string;
 };
 
-export type HistoryItemGemini = HistoryItemBase & {
-  type: 'gemini';
+export type HistoryItemDelta = HistoryItemBase & {
+  type: 'delta';
   text: string;
 };
 
-export type HistoryItemGeminiContent = HistoryItemBase & {
-  type: 'gemini_content';
+export type HistoryItemDeltaContent = HistoryItemBase & {
+  type: 'delta_content';
   text: string;
 };
 
@@ -142,8 +142,8 @@ export type HistoryItemCompression = HistoryItemBase & {
 export type HistoryItemWithoutId =
   | HistoryItemUser
   | HistoryItemUserShell
-  | HistoryItemGemini
-  | HistoryItemGeminiContent
+  | HistoryItemDelta
+  | HistoryItemDeltaContent
   | HistoryItemInfo
   | HistoryItemError
   | HistoryItemAbout
@@ -168,7 +168,7 @@ export enum MessageType {
   MODEL_STATS = 'model_stats',
   TOOL_STATS = 'tool_stats',
   QUIT = 'quit',
-  GEMINI = 'gemini',
+  DELTA = 'delta',
   COMPRESSION = 'compression',
 }
 
@@ -231,7 +231,7 @@ export interface ConsoleMessageItem {
 
 /**
  * Result type for a slash command that should immediately result in a prompt
- * being submitted to the Gemini model.
+ * being submitted to the model.
  */
 export interface SubmitPromptResult {
   type: 'submit_prompt';
@@ -239,7 +239,7 @@ export interface SubmitPromptResult {
 }
 
 /**
- * Defines the result of the slash command processor for its consumer (useGeminiStream).
+ * Defines the result of the slash command processor for its consumer (useDeltaStream).
  */
 export type SlashCommandProcessorResult =
   | {

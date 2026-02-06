@@ -24,7 +24,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
-const bundlePath = join(root, 'bundle', 'gemini.js');
+const bundlePath = join(root, 'bundle', 'delta.js');
 
 try {
   // Ensure generated commit info exists before any bundling attempts

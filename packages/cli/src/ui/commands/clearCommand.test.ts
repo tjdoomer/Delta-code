@@ -20,7 +20,7 @@ vi.mock('@delta-code/delta-code-core', async () => {
   };
 });
 
-import { GeminiClient, uiTelemetryService } from '@delta-code/delta-code-core';
+import { DeltaClient, uiTelemetryService } from '@delta-code/delta-code-core';
 
 describe('clearCommand', () => {
   let mockContext: CommandContext;
@@ -33,10 +33,10 @@ describe('clearCommand', () => {
     mockContext = createMockCommandContext({
       services: {
         config: {
-          getGeminiClient: () =>
+          getDeltaClient: () =>
             ({
               resetChat: mockResetChat,
-            }) as unknown as GeminiClient,
+            }) as unknown as DeltaClient,
         },
       },
     });

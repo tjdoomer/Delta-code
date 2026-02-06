@@ -51,10 +51,10 @@ describe('handleAtCommand', () => {
       isSandboxed: () => false,
       getFileService: () => new FileDiscoveryService(testRootDir),
       getFileFilteringRespectGitIgnore: () => true,
-      getFileFilteringRespectGeminiIgnore: () => true,
+      getFileFilteringRespectDeltaIgnore: () => true,
       getFileFilteringOptions: () => ({
         respectGitIgnore: true,
-        respectGeminiIgnore: true,
+        respectDeltaIgnore: true,
       }),
       getEnableRecursiveFileSearch: vi.fn(() => true),
       getWorkspaceContext: () => ({
@@ -583,17 +583,17 @@ describe('handleAtCommand', () => {
     });
   });
 
-  describe('gemini-ignore filtering', () => {
-    it('should skip gemini-ignored files in @ commands', async () => {
+  describe('delta-ignore filtering', () => {
+    it('should skip delta-ignored files in @ commands', async () => {
       await createTestFile(
-        path.join(testRootDir, '.geminiignore'),
+        path.join(testRootDir, '.deltaignore'),
         'build/output.js',
       );
-      const geminiIgnoredFile = await createTestFile(
+      const deltaIgnoredFile = await createTestFile(
         path.join(testRootDir, 'build', 'output.js'),
         'console.log("Hello");',
       );
-      const query = `@${geminiIgnoredFile}`;
+      const query = `@${deltaIgnoredFile}`;
 
       const result = await handleAtCommand({
         query,
@@ -609,16 +609,16 @@ describe('handleAtCommand', () => {
         shouldProceed: true,
       });
       expect(mockOnDebugMessage).toHaveBeenCalledWith(
-        `Path ${geminiIgnoredFile} is gemini-ignored and will be skipped.`,
+        `Path ${deltaIgnoredFile} is delta-ignored and will be skipped.`,
       );
       expect(mockOnDebugMessage).toHaveBeenCalledWith(
-        `Ignored 1 files:\nGemini-ignored: ${geminiIgnoredFile}`,
+        `Ignored 1 files:\nDelta-ignored: ${deltaIgnoredFile}`,
       );
     });
   });
-  it('should process non-ignored files when .geminiignore is present', async () => {
+  it('should process non-ignored files when .deltaignore is present', async () => {
     await createTestFile(
-      path.join(testRootDir, '.geminiignore'),
+      path.join(testRootDir, '.deltaignore'),
       'build/output.js',
     );
     const validFile = await createTestFile(
@@ -648,20 +648,20 @@ describe('handleAtCommand', () => {
     });
   });
 
-  it('should handle mixed gemini-ignored and valid files', async () => {
+  it('should handle mixed delta-ignored and valid files', async () => {
     await createTestFile(
-      path.join(testRootDir, '.geminiignore'),
+      path.join(testRootDir, '.deltaignore'),
       'dist/bundle.js',
     );
     const validFile = await createTestFile(
       path.join(testRootDir, 'src', 'main.ts'),
       '// Main application entry',
     );
-    const geminiIgnoredFile = await createTestFile(
+    const deltaIgnoredFile = await createTestFile(
       path.join(testRootDir, 'dist', 'bundle.js'),
       'console.log("bundle");',
     );
-    const query = `@${validFile} @${geminiIgnoredFile}`;
+    const query = `@${validFile} @${deltaIgnoredFile}`;
 
     const result = await handleAtCommand({
       query,
@@ -674,7 +674,7 @@ describe('handleAtCommand', () => {
 
     expect(result).toEqual({
       processedQuery: [
-        { text: `@${validFile} @${geminiIgnoredFile}` },
+        { text: `@${validFile} @${deltaIgnoredFile}` },
         { text: '\n--- Content from referenced files ---' },
         { text: `\nContent from @${validFile}:\n` },
         { text: '// Main application entry' },
@@ -683,10 +683,10 @@ describe('handleAtCommand', () => {
       shouldProceed: true,
     });
     expect(mockOnDebugMessage).toHaveBeenCalledWith(
-      `Path ${geminiIgnoredFile} is gemini-ignored and will be skipped.`,
+      `Path ${deltaIgnoredFile} is delta-ignored and will be skipped.`,
     );
     expect(mockOnDebugMessage).toHaveBeenCalledWith(
-      `Ignored 1 files:\nGemini-ignored: ${geminiIgnoredFile}`,
+      `Ignored 1 files:\nDelta-ignored: ${deltaIgnoredFile}`,
     );
   });
 

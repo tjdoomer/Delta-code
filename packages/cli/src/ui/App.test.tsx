@@ -14,13 +14,13 @@ import {
   ToolRegistry,
   AccessibilitySettings,
   SandboxConfig,
-  GeminiClient,
+  DeltaClient,
   ideContext,
   type AuthType,
 } from '@delta-code/delta-code-core';
 import { LoadedSettings, SettingsFile, Settings } from '../config/settings.js';
 import process from 'node:process';
-import { useGeminiStream } from './hooks/useGeminiStream.js';
+import { useDeltaStream } from './hooks/useDeltaStream.js';
 import { useConsoleMessages } from './hooks/useConsoleMessages.js';
 import { StreamingState, ConsoleMessageItem } from './types.js';
 import { Tips } from './components/Tips.js';
@@ -46,7 +46,7 @@ interface MockServerConfig {
   mcpServers?: Record<string, MCPServerConfig>; // Use imported MCPServerConfig
   userAgent: string;
   userMemory: string;
-  geminiMdFileCount: number;
+  deltaMdFileCount: number;
   approvalMode: ApprovalMode;
   vertexai?: boolean;
   showMemoryUsage?: boolean;
@@ -75,16 +75,16 @@ interface MockServerConfig {
   getUserAgent: Mock<() => string>;
   getUserMemory: Mock<() => string>;
   setUserMemory: Mock<(newUserMemory: string) => void>;
-  getGeminiMdFileCount: Mock<() => number>;
-  setGeminiMdFileCount: Mock<(count: number) => void>;
+  getDeltaMdFileCount: Mock<() => number>;
+  setDeltaMdFileCount: Mock<(count: number) => void>;
   getApprovalMode: Mock<() => ApprovalMode>;
   setApprovalMode: Mock<(skip: ApprovalMode) => void>;
   getVertexAI: Mock<() => boolean | undefined>;
   getShowMemoryUsage: Mock<() => boolean>;
   getAccessibility: Mock<() => AccessibilitySettings>;
   getProjectRoot: Mock<() => string | undefined>;
-  getAllGeminiMdFilenames: Mock<() => string[]>;
-  getGeminiClient: Mock<() => GeminiClient | undefined>;
+  getAllDeltaMdFilenames: Mock<() => string[]>;
+  getDeltaClient: Mock<() => DeltaClient | undefined>;
   getUserTier: Mock<() => Promise<string | undefined>>;
   getIdeClient: Mock<() => { getCurrentIde: Mock<() => string | undefined> }>;
 }
@@ -113,7 +113,7 @@ vi.mock('@delta-code/delta-code-core', async (importOriginal) => {
         mcpServers: opts.mcpServers,
         userAgent: opts.userAgent || 'test-agent',
         userMemory: opts.userMemory || '',
-        geminiMdFileCount: opts.geminiMdFileCount || 0,
+        deltaMdFileCount: opts.deltaMdFileCount || 0,
         approvalMode: opts.approvalMode ?? ApprovalMode.DEFAULT,
         vertexai: opts.vertexai,
         showMemoryUsage: opts.showMemoryUsage ?? false,
@@ -139,19 +139,19 @@ vi.mock('@delta-code/delta-code-core', async (importOriginal) => {
         getUserAgent: vi.fn(() => opts.userAgent || 'test-agent'),
         getUserMemory: vi.fn(() => opts.userMemory || ''),
         setUserMemory: vi.fn(),
-        getGeminiMdFileCount: vi.fn(() => opts.geminiMdFileCount || 0),
-        setGeminiMdFileCount: vi.fn(),
+        getDeltaMdFileCount: vi.fn(() => opts.deltaMdFileCount || 0),
+        setDeltaMdFileCount: vi.fn(),
         getApprovalMode: vi.fn(() => opts.approvalMode ?? ApprovalMode.DEFAULT),
         setApprovalMode: vi.fn(),
         getVertexAI: vi.fn(() => opts.vertexai),
         getShowMemoryUsage: vi.fn(() => opts.showMemoryUsage ?? false),
         getAccessibility: vi.fn(() => opts.accessibility ?? {}),
         getProjectRoot: vi.fn(() => opts.targetDir),
-        getGeminiClient: vi.fn(() => ({
+        getDeltaClient: vi.fn(() => ({
           getUserTier: vi.fn(),
         })),
         getCheckpointingEnabled: vi.fn(() => opts.checkpointing ?? true),
-        getAllGeminiMdFilenames: vi.fn(() => ['DELTA.md']),
+        getAllDeltaMdFilenames: vi.fn(() => ['DELTA.md']),
         setFlashFallbackHandler: vi.fn(),
         getSessionId: vi.fn(() => 'test-session-id'),
         getUserTier: vi.fn().mockResolvedValue(undefined),
@@ -175,15 +175,15 @@ vi.mock('@delta-code/delta-code-core', async (importOriginal) => {
     ...actualCore,
     Config: ConfigClassMock,
     MCPServerConfig: actualCore.MCPServerConfig,
-    getAllGeminiMdFilenames: vi.fn(() => ['DELTA.md']),
+    getAllDeltaMdFilenames: vi.fn(() => ['DELTA.md']),
     ideContext: ideContextMock,
     isGitRepository: vi.fn(),
   };
 });
 
 // Mock heavy dependencies or those with side effects
-vi.mock('./hooks/useGeminiStream', () => ({
-  useGeminiStream: vi.fn(() => ({
+vi.mock('./hooks/useDeltaStream', () => ({
+  useDeltaStream: vi.fn(() => ({
     streamingState: 'Idle',
     submitQuery: vi.fn(),
     initError: null,
@@ -229,7 +229,7 @@ vi.mock('../config/config.js', async (importOriginal) => {
   return {
     // @ts-expect-error - this is fine
     ...actual,
-    loadHierarchicalGeminiMemory: vi
+    loadHierarchicalDeltaMemory: vi
       .fn()
       .mockResolvedValue({ memoryContent: '', fileCount: 0 }),
   };
@@ -284,7 +284,7 @@ describe('App UI', () => {
       settings: settings.user || {},
     };
     const workspaceSettingsFile: SettingsFile = {
-      path: '/workspace/.gemini/settings.json',
+      path: '/workspace/.delta/settings.json',
       settings: settings.workspace || {},
     };
     return new LoadedSettings(
@@ -308,7 +308,7 @@ describe('App UI', () => {
       targetDir: '/test/dir',
       debugMode: false,
       userMemory: '',
-      geminiMdFileCount: 0,
+      deltaMdFileCount: 0,
       showMemoryUsage: false,
       sessionId: 'test-session-id',
       cwd: '/tmp',
@@ -354,7 +354,7 @@ describe('App UI', () => {
     });
 
     afterEach(() => {
-      delete process.env.GEMINI_CLI_DISABLE_AUTOUPDATER;
+      delete process.env.DELTA_CLI_DISABLE_AUTOUPDATER;
     });
 
     it('should not start the update process when running from git', async () => {
@@ -476,9 +476,9 @@ describe('App UI', () => {
       );
     });
 
-    it('should not auto-update if GEMINI_CLI_DISABLE_AUTOUPDATER is true', async () => {
+    it('should not auto-update if DELTA_CLI_DISABLE_AUTOUPDATER is true', async () => {
       mockedIsGitRepository.mockResolvedValue(false);
-      process.env.GEMINI_CLI_DISABLE_AUTOUPDATER = 'true';
+      process.env.DELTA_CLI_DISABLE_AUTOUPDATER = 'true';
       const info: UpdateObject = {
         update: {
           name: '@delta-code/delta-code',
@@ -599,8 +599,8 @@ describe('App UI', () => {
         ],
       },
     });
-    mockConfig.getGeminiMdFileCount.mockReturnValue(1);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue(['DELTA.md']);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(1);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue(['DELTA.md']);
 
     const { lastFrame, unmount } = render(
       <App
@@ -617,8 +617,8 @@ describe('App UI', () => {
   });
 
   it('should display default "DELTA.md" in footer when contextFileName is not set and count is 1', async () => {
-    mockConfig.getGeminiMdFileCount.mockReturnValue(1);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue(['DELTA.md']);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(1);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue(['DELTA.md']);
     // For this test, ensure showMemoryUsage is false or debugMode is false if it relies on that
     mockConfig.getDebugMode.mockReturnValue(false);
     mockConfig.getShowMemoryUsage.mockReturnValue(false);
@@ -636,8 +636,8 @@ describe('App UI', () => {
   });
 
   it('should display default "DELTA.md" with plural when contextFileName is not set and count is > 1', async () => {
-    mockConfig.getGeminiMdFileCount.mockReturnValue(2);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue(['DELTA.md', 'DELTA.md']);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(2);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue(['DELTA.md', 'DELTA.md']);
     mockConfig.getDebugMode.mockReturnValue(false);
     mockConfig.getShowMemoryUsage.mockReturnValue(false);
 
@@ -657,8 +657,8 @@ describe('App UI', () => {
     mockSettings = createMockSettings({
       workspace: { contextFileName: 'AGENTS.md', theme: 'Default' },
     });
-    mockConfig.getGeminiMdFileCount.mockReturnValue(1);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue(['AGENTS.md']);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(1);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue(['AGENTS.md']);
     mockConfig.getDebugMode.mockReturnValue(false);
     mockConfig.getShowMemoryUsage.mockReturnValue(false);
 
@@ -681,8 +681,8 @@ describe('App UI', () => {
         theme: 'Default',
       },
     });
-    mockConfig.getGeminiMdFileCount.mockReturnValue(2);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue([
+    mockConfig.getDeltaMdFileCount.mockReturnValue(2);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue([
       'AGENTS.md',
       'CONTEXT.md',
     ]);
@@ -705,8 +705,8 @@ describe('App UI', () => {
     mockSettings = createMockSettings({
       workspace: { contextFileName: 'MY_NOTES.TXT', theme: 'Default' },
     });
-    mockConfig.getGeminiMdFileCount.mockReturnValue(3);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue([
+    mockConfig.getDeltaMdFileCount.mockReturnValue(3);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue([
       'MY_NOTES.TXT',
       'MY_NOTES.TXT',
       'MY_NOTES.TXT',
@@ -730,8 +730,8 @@ describe('App UI', () => {
     mockSettings = createMockSettings({
       workspace: { contextFileName: 'ANY_FILE.MD', theme: 'Default' },
     });
-    mockConfig.getGeminiMdFileCount.mockReturnValue(0);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue([]);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(0);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue([]);
     mockConfig.getDebugMode.mockReturnValue(false);
     mockConfig.getShowMemoryUsage.mockReturnValue(false);
 
@@ -748,8 +748,8 @@ describe('App UI', () => {
   });
 
   it('should display DELTA.md and MCP server count when both are present', async () => {
-    mockConfig.getGeminiMdFileCount.mockReturnValue(2);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue(['DELTA.md', 'DELTA.md']);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(2);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue(['DELTA.md', 'DELTA.md']);
     mockConfig.getMcpServers.mockReturnValue({
       server1: {} as MCPServerConfig,
     });
@@ -769,8 +769,8 @@ describe('App UI', () => {
   });
 
   it('should display only MCP server count when DELTA.md count is 0', async () => {
-    mockConfig.getGeminiMdFileCount.mockReturnValue(0);
-    mockConfig.getAllGeminiMdFilenames.mockReturnValue([]);
+    mockConfig.getDeltaMdFileCount.mockReturnValue(0);
+    mockConfig.getAllDeltaMdFilenames.mockReturnValue([]);
     mockConfig.getMcpServers.mockReturnValue({
       server1: {} as MCPServerConfig,
       server2: {} as MCPServerConfig,
@@ -933,7 +933,7 @@ describe('App UI', () => {
   });
 
   it('should render correctly with the prompt input box', () => {
-    vi.mocked(useGeminiStream).mockReturnValue({
+    vi.mocked(useDeltaStream).mockReturnValue({
       streamingState: StreamingState.Idle,
       submitQuery: vi.fn(),
       initError: null,
@@ -958,7 +958,7 @@ describe('App UI', () => {
 
       mockConfig.getQuestion = vi.fn(() => 'hello from prompt-interactive');
 
-      vi.mocked(useGeminiStream).mockReturnValue({
+      vi.mocked(useDeltaStream).mockReturnValue({
         streamingState: StreamingState.Idle,
         submitQuery: mockSubmitQuery,
         initError: null,
@@ -966,10 +966,10 @@ describe('App UI', () => {
         thought: null,
       });
 
-      mockConfig.getGeminiClient.mockReturnValue({
+      mockConfig.getDeltaClient.mockReturnValue({
         isInitialized: vi.fn(() => true),
         getUserTier: vi.fn(),
-      } as unknown as GeminiClient);
+      } as unknown as DeltaClient);
 
       const { unmount, rerender } = render(
         <App

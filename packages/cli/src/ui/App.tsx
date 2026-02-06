@@ -16,7 +16,7 @@ import {
 } from 'ink';
 import { StreamingState, type HistoryItem, MessageType } from './types.js';
 import { useTerminalSize } from './hooks/useTerminalSize.js';
-import { useGeminiStream } from './hooks/useGeminiStream.js';
+import { useDeltaStream } from './hooks/useDeltaStream.js';
 import { useLoadingIndicator } from './hooks/useLoadingIndicator.js';
 import { useThemeCommand } from './hooks/useThemeCommand.js';
 import { useAuthCommand } from './hooks/useAuthCommand.js';
@@ -41,7 +41,7 @@ import { FolderTrustDialog } from './components/FolderTrustDialog.js';
 import { ShellConfirmationDialog } from './components/ShellConfirmationDialog.js';
 import { RadioButtonSelect } from './components/shared/RadioButtonSelect.js';
 import { Colors } from './colors.js';
-import { loadHierarchicalGeminiMemory } from '../config/config.js';
+import { loadHierarchicalDeltaMemory } from '../config/config.js';
 import { LoadedSettings, SettingScope } from '../config/settings.js';
 import { Tips } from './components/Tips.js';
 import { ConsolePatcher } from './utils/ConsolePatcher.js';
@@ -54,7 +54,7 @@ import process from 'node:process';
 import {
   getErrorMessage,
   type Config,
-  getAllGeminiMdFilenames,
+  getAllDeltaMdFilenames,
   ApprovalMode,
   isEditorAvailable,
   EditorType,
@@ -166,7 +166,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     setStaticKey((prev) => prev + 1);
   }, [setStaticKey, stdout]);
 
-  const [geminiMdFileCount, setGeminiMdFileCount] = useState<number>(0);
+  const [deltaMdFileCount, setDeltaMdFileCount] = useState<number>(0);
   const [debugMessage, setDebugMessage] = useState<string>('');
   const [themeError, setThemeError] = useState<string | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
@@ -295,7 +295,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
   useEffect(() => {
     // Only sync when not currently authenticating
     if (!isAuthenticating) {
-      setUserTier(config.getGeminiClient()?.getUserTier());
+      setUserTier(config.getDeltaClient()?.getUserTier());
     }
   }, [config, isAuthenticating]);
 
@@ -340,7 +340,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
       Date.now(),
     );
     try {
-      const { memoryContent, fileCount } = await loadHierarchicalGeminiMemory(
+      const { memoryContent, fileCount } = await loadHierarchicalDeltaMemory(
         process.cwd(),
         settings.merged.loadMemoryFromIncludeDirectories
           ? config.getWorkspaceContext().getDirectories()
@@ -354,8 +354,8 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
       );
 
       config.setUserMemory(memoryContent);
-      config.setGeminiMdFileCount(fileCount);
-      setGeminiMdFileCount(fileCount);
+      config.setDeltaMdFileCount(fileCount);
+      setDeltaMdFileCount(fileCount);
 
       addItem(
         {
@@ -552,7 +552,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     openSettingsDialog,
     toggleVimEnabled,
     setIsProcessing,
-    setGeminiMdFileCount,
+    setDeltaMdFileCount,
   );
 
   const buffer = useTextBuffer({
@@ -577,11 +577,11 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     streamingState,
     submitQuery,
     initError,
-    pendingHistoryItems: pendingGeminiHistoryItems,
+    pendingHistoryItems: pendingDeltaHistoryItems,
     thought,
     cancelOngoingRequest,
-  } = useGeminiStream(
-    config.getGeminiClient(),
+  } = useDeltaStream(
+    config.getDeltaClient(),
     history,
     addItem,
     config,
@@ -635,7 +635,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
 
   const { handleInput: vimHandleInput } = useVim(buffer, handleFinalSubmit);
   const pendingHistoryItems = [...pendingSlashCommandHistoryItems];
-  pendingHistoryItems.push(...pendingGeminiHistoryItems);
+  pendingHistoryItems.push(...pendingDeltaHistoryItems);
 
   const { elapsedTime, currentLoadingPhrase } =
     useLoadingIndicator(streamingState);
@@ -741,9 +741,9 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
 
   useEffect(() => {
     if (config) {
-      setGeminiMdFileCount(config.getGeminiMdFileCount());
+      setDeltaMdFileCount(config.getDeltaMdFileCount());
     }
-  }, [config, config.getGeminiMdFileCount]);
+  }, [config, config.getDeltaMdFileCount]);
 
   const logger = useLogger();
 
@@ -848,11 +848,11 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     if (fromSettings) {
       return Array.isArray(fromSettings) ? fromSettings : [fromSettings];
     }
-    return getAllGeminiMdFilenames();
+    return getAllDeltaMdFilenames();
   }, [settings.merged.contextFileName]);
 
   const initialPrompt = useMemo(() => config.getQuestion(), [config]);
-  const geminiClient = config.getGeminiClient();
+  const deltaClient = config.getDeltaClient();
 
   useEffect(() => {
     if (
@@ -863,7 +863,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
       !isThemeDialogOpen &&
       !isEditorDialogOpen &&
       !showPrivacyNotice &&
-      geminiClient?.isInitialized?.()
+      deltaClient?.isInitialized?.()
     ) {
       submitQuery(initialPrompt);
       initialPromptSubmitted.current = true;
@@ -876,7 +876,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
     isThemeDialogOpen,
     isEditorDialogOpen,
     showPrivacyNotice,
-    geminiClient,
+    deltaClient,
   ]);
 
   if (quittingMessages) {
@@ -1149,7 +1149,7 @@ const App = ({ config, settings, startupWarnings = [], version }: AppProps) => {
                   ) : (
                     <ContextSummaryDisplay
                       ideContext={ideContextState}
-                      geminiMdFileCount={geminiMdFileCount}
+                      deltaMdFileCount={deltaMdFileCount}
                       contextFileNames={contextFileNames}
                       mcpServers={config.getMcpServers()}
                       blockedMcpServers={config.getBlockedMcpServers()}

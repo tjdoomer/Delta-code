@@ -30,7 +30,7 @@ describe('copyCommand', () => {
     mockContext = createMockCommandContext({
       services: {
         config: {
-          getGeminiClient: () => ({
+          getDeltaClient: () => ({
             getChat: mockGetChat,
           }),
         },

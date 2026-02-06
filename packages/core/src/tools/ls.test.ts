@@ -52,7 +52,7 @@ describe('LSTool', () => {
     // Mock FileService
     mockFileService = {
       shouldGitIgnoreFile: vi.fn().mockReturnValue(false),
-      shouldGeminiIgnoreFile: vi.fn().mockReturnValue(false),
+      shouldDeltaIgnoreFile: vi.fn().mockReturnValue(false),
     } as unknown as FileDiscoveryService;
 
     // Mock Config
@@ -62,7 +62,7 @@ describe('LSTool', () => {
       getFileService: vi.fn().mockReturnValue(mockFileService),
       getFileFilteringOptions: vi.fn().mockReturnValue({
         respectGitIgnore: true,
-        respectGeminiIgnore: true,
+        respectDeltaIgnore: true,
       }),
     } as unknown as Config;
 
@@ -246,7 +246,7 @@ describe('LSTool', () => {
       expect(result.returnDisplay).toBe('Listed 2 item(s). (1 git-ignored)');
     });
 
-    it('should respect geminiignore patterns', async () => {
+    it('should respect deltaignore patterns', async () => {
       const testPath = '/home/user/project/src';
       const mockFiles = ['file1.js', 'file2.js', 'private.js'];
 
@@ -262,7 +262,7 @@ describe('LSTool', () => {
         } as fs.Stats;
       });
       vi.mocked(fs.readdirSync).mockReturnValue(mockFiles as any);
-      (mockFileService.shouldGeminiIgnoreFile as any).mockImplementation(
+      (mockFileService.shouldDeltaIgnoreFile as any).mockImplementation(
         (path: string) => path.includes('private.js'),
       );
 
@@ -272,7 +272,7 @@ describe('LSTool', () => {
       expect(result.llmContent).toContain('file1.js');
       expect(result.llmContent).toContain('file2.js');
       expect(result.llmContent).not.toContain('private.js');
-      expect(result.returnDisplay).toBe('Listed 2 item(s). (1 gemini-ignored)');
+      expect(result.returnDisplay).toBe('Listed 2 item(s). (1 delta-ignored)');
     });
 
     it('should handle non-directory paths', async () => {

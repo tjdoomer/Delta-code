@@ -21,7 +21,7 @@ import {
 } from './types.js';
 import { createMockCommandContext } from '../../test-utils/mockCommandContext.js';
 import { Content } from '@google/genai';
-import { GeminiClient } from '@delta-code/delta-code-core';
+import { DeltaClient } from '@delta-code/delta-code-core';
 
 import * as fsPromises from 'fs/promises';
 import { chatCommand } from './chatCommand.js';
@@ -67,11 +67,11 @@ describe('chatCommand', () => {
     mockContext = createMockCommandContext({
       services: {
         config: {
-          getProjectTempDir: () => '/tmp/gemini',
-          getGeminiClient: () =>
+          getProjectTempDir: () => '/tmp/delta',
+          getDeltaClient: () =>
             ({
               getChat: mockGetChat,
-            }) as unknown as GeminiClient,
+            }) as unknown as DeltaClient,
         },
         logger: {
           saveCheckpoint: mockSaveCheckpoint,
@@ -302,7 +302,7 @@ describe('chatCommand', () => {
         type: 'load_history',
         history: [
           { type: 'user', text: 'hello gemini' },
-          { type: 'gemini', text: 'hello world' },
+          { type: 'delta', text: 'hello world' },
         ] as HistoryItemWithoutId[],
         clientHistory: conversation,
       });

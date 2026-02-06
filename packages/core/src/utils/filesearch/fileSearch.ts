@@ -17,7 +17,7 @@ export type FileSearchOptions = {
   projectRoot: string;
   ignoreDirs: string[];
   useGitignore: boolean;
-  useGeminiignore: boolean;
+  useDeltaignore: boolean;
   cache: boolean;
   cacheTtl: number;
   maxDepth?: number;
@@ -85,7 +85,7 @@ export type SearchOptions = {
 
 /**
  * Provides a fast and efficient way to search for files within a project,
- * respecting .gitignore and .geminiignore rules, and utilizing caching
+ * respecting .gitignore and .deltaignore rules, and utilizing caching
  * for improved performance.
  */
 export class FileSearch {
@@ -196,7 +196,7 @@ export class FileSearch {
   }
 
   /**
-   * Loads ignore rules from .gitignore and .geminiignore files, and applies
+   * Loads ignore rules from .gitignore and .deltaignore files, and applies
    * any additional ignore directories specified in the options.
    */
   private loadIgnoreRules(): void {
@@ -207,10 +207,10 @@ export class FileSearch {
       }
     }
 
-    if (this.options.useGeminiignore) {
-      const geminiignorePath = path.join(this.absoluteDir, '.geminiignore');
-      if (fs.existsSync(geminiignorePath)) {
-        this.ignore.add(fs.readFileSync(geminiignorePath, 'utf8'));
+    if (this.options.useDeltaignore) {
+      const deltaignorePath = path.join(this.absoluteDir, '.deltaignore');
+      if (fs.existsSync(deltaignorePath)) {
+        this.ignore.add(fs.readFileSync(deltaignorePath, 'utf8'));
       }
     }
 

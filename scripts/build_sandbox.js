@@ -74,7 +74,7 @@ const customDockerfile = argv.f;
 
 if (!baseImage?.length) {
   console.warn(
-    'No default image tag specified in gemini-cli/packages/cli/package.json',
+    'No default image tag specified in delta-code/packages/cli/package.json',
   );
 }
 
@@ -150,7 +150,7 @@ function buildImage(imageName, dockerfile) {
   ).version;
 
   const imageTag =
-    process.env.GEMINI_SANDBOX_IMAGE_TAG || imageName.split(':')[1];
+    process.env.DELTA_SANDBOX_IMAGE_TAG || imageName.split(':')[1];
   const finalImageName = `${imageName.split(':')[0]}:${imageTag}`;
 
   try {

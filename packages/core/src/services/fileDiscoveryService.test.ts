@@ -53,12 +53,12 @@ describe('FileDiscoveryService', () => {
       expect(service.shouldGitIgnoreFile('node_modules/foo.js')).toBe(false);
     });
 
-    it('should load .geminiignore patterns even when not in a git repo', async () => {
-      await createTestFile('.geminiignore', 'secrets.txt');
+    it('should load .deltaignore patterns even when not in a git repo', async () => {
+      await createTestFile('.deltaignore', 'secrets.txt');
       const service = new FileDiscoveryService(projectRoot);
 
-      expect(service.shouldGeminiIgnoreFile('secrets.txt')).toBe(true);
-      expect(service.shouldGeminiIgnoreFile('src/index.js')).toBe(false);
+      expect(service.shouldDeltaIgnoreFile('secrets.txt')).toBe(true);
+      expect(service.shouldDeltaIgnoreFile('src/index.js')).toBe(false);
     });
   });
 
@@ -66,10 +66,10 @@ describe('FileDiscoveryService', () => {
     beforeEach(async () => {
       await fs.mkdir(path.join(projectRoot, '.git'));
       await createTestFile('.gitignore', 'node_modules/\n.git/\ndist');
-      await createTestFile('.geminiignore', 'logs/');
+      await createTestFile('.deltaignore', 'logs/');
     });
 
-    it('should filter out git-ignored and gemini-ignored files by default', () => {
+    it('should filter out git-ignored and delta-ignored files by default', () => {
       const files = [
         'src/index.ts',
         'node_modules/package/index.js',
@@ -98,7 +98,7 @@ describe('FileDiscoveryService', () => {
 
       const filtered = service.filterFiles(files, {
         respectGitIgnore: false,
-        respectGeminiIgnore: true, // still respect this one
+        respectDeltaIgnore: true, // still respect this one
       });
 
       expect(filtered).toEqual(
@@ -108,7 +108,7 @@ describe('FileDiscoveryService', () => {
       );
     });
 
-    it('should not filter files when respectGeminiIgnore is false', () => {
+    it('should not filter files when respectDeltaIgnore is false', () => {
       const files = [
         'src/index.ts',
         'node_modules/package/index.js',
@@ -119,7 +119,7 @@ describe('FileDiscoveryService', () => {
 
       const filtered = service.filterFiles(files, {
         respectGitIgnore: true,
-        respectGeminiIgnore: false,
+        respectDeltaIgnore: false,
       });
 
       expect(filtered).toEqual(
@@ -136,11 +136,11 @@ describe('FileDiscoveryService', () => {
     });
   });
 
-  describe('shouldGitIgnoreFile & shouldGeminiIgnoreFile', () => {
+  describe('shouldGitIgnoreFile & shouldDeltaIgnoreFile', () => {
     beforeEach(async () => {
       await fs.mkdir(path.join(projectRoot, '.git'));
       await createTestFile('.gitignore', 'node_modules/');
-      await createTestFile('.geminiignore', '*.log');
+      await createTestFile('.deltaignore', '*.log');
     });
 
     it('should return true for git-ignored files', () => {
@@ -161,19 +161,19 @@ describe('FileDiscoveryService', () => {
       ).toBe(false);
     });
 
-    it('should return true for gemini-ignored files', () => {
+    it('should return true for delta-ignored files', () => {
       const service = new FileDiscoveryService(projectRoot);
 
       expect(
-        service.shouldGeminiIgnoreFile(path.join(projectRoot, 'debug.log')),
+        service.shouldDeltaIgnoreFile(path.join(projectRoot, 'debug.log')),
       ).toBe(true);
     });
 
-    it('should return false for non-gemini-ignored files', () => {
+    it('should return false for non-delta-ignored files', () => {
       const service = new FileDiscoveryService(projectRoot);
 
       expect(
-        service.shouldGeminiIgnoreFile(path.join(projectRoot, 'src/index.ts')),
+        service.shouldDeltaIgnoreFile(path.join(projectRoot, 'src/index.ts')),
       ).toBe(false);
     });
   });

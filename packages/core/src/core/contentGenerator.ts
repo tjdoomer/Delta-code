@@ -14,7 +14,7 @@ import {
   GoogleGenAI,
 } from '@google/genai';
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
-import { DEFAULT_GEMINI_MODEL, DEFAULT_QWEN_MODEL } from '../config/models.js';
+import { DEFAULT_QWEN_MODEL } from '../config/models.js';
 import { Config } from '../config/config.js';
 
 import { UserTierId } from '../code_assist/types.js';
@@ -94,7 +94,7 @@ export function createContentGeneratorConfig(
   const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
 
   // Use runtime model from config if available; otherwise, fall back to parameter or default
-  const effectiveModel = config.getModel() || DEFAULT_GEMINI_MODEL;
+  const effectiveModel = config.getModel() || DEFAULT_QWEN_MODEL;
 
   const contentGeneratorConfig: ContentGeneratorConfig = {
     model: effectiveModel,
@@ -170,7 +170,7 @@ export async function createContentGenerator(
   const version = gcConfig.getCliVersion() || 'unknown';
   const httpOptions = {
     headers: {
-      'User-Agent': `GeminiCLI/${version} (${process.platform}; ${process.arch})`,
+      'User-Agent': `DeltaCLI/${version} (${process.platform}; ${process.arch})`,
     },
   };
   if (

@@ -14,10 +14,10 @@ import { mcpCommand } from '../commands/mcp.js';
 import {
   Config,
   loadServerHierarchicalMemory,
-  setGeminiMdFilename as setServerGeminiMdFilename,
-  getCurrentGeminiMdFilename,
+  setDeltaMdFilename as setServerDeltaMdFilename,
+  getCurrentDeltaMdFilename,
   ApprovalMode,
-  DEFAULT_GEMINI_MODEL,
+  DEFAULT_QWEN_MODEL,
   DEFAULT_GEMINI_EMBEDDING_MODEL,
   DEFAULT_MEMORY_FILE_FILTERING_OPTIONS,
   FileDiscoveryService,
@@ -287,9 +287,9 @@ export async function parseArguments(): Promise<CliArgs> {
 // This function is now a thin wrapper around the server's implementation.
 // It's kept in the CLI for now as App.tsx directly calls it for memory refresh.
 // TODO: Consider if App.tsx should get memory via a server call or if Config should refresh itself.
-export async function loadHierarchicalGeminiMemory(
+export async function loadHierarchicalDeltaMemory(
   currentWorkingDirectory: string,
-  includeDirectoriesToReadGemini: readonly string[] = [],
+  includeDirectoriesToReadDelta: readonly string[] = [],
   debugMode: boolean,
   fileService: FileDiscoveryService,
   settings: Settings,
@@ -315,7 +315,7 @@ export async function loadHierarchicalGeminiMemory(
   // Directly call the server function with the corrected path.
   return loadServerHierarchicalMemory(
     effectiveCwd,
-    includeDirectoriesToReadGemini,
+    includeDirectoriesToReadDelta,
     debugMode,
     fileService,
     extensionContextFilePaths,
@@ -372,13 +372,13 @@ export async function loadCliConfig(
 
   // Set the context filename in the server's memoryTool module BEFORE loading memory
   // TODO(b/343434939): This is a bit of a hack. The contextFileName should ideally be passed
-  // directly to the Config constructor in core, and have core handle setGeminiMdFilename.
-  // However, loadHierarchicalGeminiMemory is called *before* createServerConfig.
+  // directly to the Config constructor in core, and have core handle setDeltaMdFilename.
+  // However, loadHierarchicalDeltaMemory is called *before* createServerConfig.
   if (settings.contextFileName) {
-    setServerGeminiMdFilename(settings.contextFileName);
+    setServerDeltaMdFilename(settings.contextFileName);
   } else {
     // Reset to default if not provided in settings.
-    setServerGeminiMdFilename(getCurrentGeminiMdFilename());
+    setServerDeltaMdFilename(getCurrentDeltaMdFilename());
   }
 
   const extensionContextFilePaths = activeExtensions.flatMap(
@@ -396,8 +396,8 @@ export async function loadCliConfig(
     .map(resolvePath)
     .concat((argv.includeDirectories || []).map(resolvePath));
 
-  // Call the (now wrapper) loadHierarchicalGeminiMemory which calls the server's version
-  const { memoryContent, fileCount } = await loadHierarchicalGeminiMemory(
+  // Call the (now wrapper) loadHierarchicalDeltaMemory which calls the server's version
+  const { memoryContent, fileCount } = await loadHierarchicalDeltaMemory(
     cwd,
     settings.loadMemoryFromIncludeDirectories ? includeDirectories : [],
     debugMode,
@@ -514,7 +514,7 @@ export async function loadCliConfig(
     mcpServerCommand: settings.mcpServerCommand,
     mcpServers,
     userMemory: memoryContent,
-    geminiMdFileCount: fileCount,
+    deltaMdFileCount: fileCount,
     approvalMode,
     showMemoryUsage:
       argv.showMemoryUsage ||
@@ -537,7 +537,7 @@ export async function loadCliConfig(
     // Git-aware file filtering settings
     fileFiltering: {
       respectGitIgnore: settings.fileFiltering?.respectGitIgnore,
-      respectGeminiIgnore: settings.fileFiltering?.respectGeminiIgnore,
+      respectDeltaIgnore: settings.fileFiltering?.respectDeltaIgnore,
       enableRecursiveFileSearch:
         settings.fileFiltering?.enableRecursiveFileSearch,
     },
@@ -551,7 +551,7 @@ export async function loadCliConfig(
     cwd,
     fileDiscoveryService: fileService,
     bugCommand: settings.bugCommand,
-    model: argv.model || settings.model || DEFAULT_GEMINI_MODEL,
+    model: argv.model || settings.model || DEFAULT_QWEN_MODEL,
     extensionContextFilePaths,
     maxSessionTurns: settings.maxSessionTurns ?? -1,
     sessionTokenLimit: settings.sessionTokenLimit ?? -1,

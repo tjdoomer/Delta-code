@@ -228,7 +228,7 @@ describe('parseAndFormatApiError', () => {
       'You have reached your daily gemini-2.5-pro quota limit',
     );
     expect(result).toContain(
-      'We appreciate you for choosing Gemini Code Assist and the Gemini CLI',
+      'We appreciate you for choosing Gemini Code Assist and the Delta Code',
     );
     expect(result).not.toContain(
       'upgrade to a Gemini Code Assist Standard or Enterprise plan',
@@ -252,7 +252,7 @@ describe('parseAndFormatApiError', () => {
       'You have reached your daily gemini-2.5-pro quota limit',
     );
     expect(result).toContain(
-      'We appreciate you for choosing Gemini Code Assist and the Gemini CLI',
+      'We appreciate you for choosing Gemini Code Assist and the Delta Code',
     );
     expect(result).not.toContain(
       'upgrade to a Gemini Code Assist Standard or Enterprise plan',
@@ -347,7 +347,7 @@ describe('parseAndFormatApiError', () => {
     );
     expect(result).toContain('You have reached your daily quota limit');
     expect(result).toContain(
-      'We appreciate you for choosing Gemini Code Assist and the Gemini CLI',
+      'We appreciate you for choosing Gemini Code Assist and the Delta Code',
     );
     expect(result).not.toContain(
       'upgrade to a Gemini Code Assist Standard or Enterprise plan',
@@ -366,7 +366,7 @@ describe('parseAndFormatApiError', () => {
     );
     expect(result).toContain('[API Error: Rate limit exceeded');
     expect(result).toContain(
-      'We appreciate you for choosing Gemini Code Assist and the Gemini CLI',
+      'We appreciate you for choosing Gemini Code Assist and the Delta Code',
     );
     expect(result).not.toContain(
       'upgrade to a Gemini Code Assist Standard or Enterprise plan',

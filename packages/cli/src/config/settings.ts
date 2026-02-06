@@ -9,7 +9,7 @@ import * as path from 'path';
 import { homedir, platform } from 'os';
 import * as dotenv from 'dotenv';
 import {
-  GEMINI_CONFIG_DIR as GEMINI_DIR,
+  DELTA_CONFIG_DIR,
   getErrorMessage,
 } from '@delta-code/delta-code-core';
 import stripJsonComments from 'strip-json-comments';
@@ -25,8 +25,8 @@ export const USER_SETTINGS_PATH = path.join(USER_SETTINGS_DIR, 'settings.json');
 export const DEFAULT_EXCLUDED_ENV_VARS = ['DEBUG', 'DEBUG_MODE'];
 
 export function getSystemSettingsPath(): string {
-  if (process.env.GEMINI_CLI_SYSTEM_SETTINGS_PATH) {
-    return process.env.GEMINI_CLI_SYSTEM_SETTINGS_PATH;
+  if (process.env.DELTA_CLI_SYSTEM_SETTINGS_PATH) {
+    return process.env.DELTA_CLI_SYSTEM_SETTINGS_PATH;
   }
   if (platform() === 'darwin') {
     return '/Library/Application Support/DeltaCode/settings.json';
@@ -201,10 +201,10 @@ function resolveEnvVarsInObject<T>(obj: T): T {
 function findEnvFile(startDir: string): string | null {
   let currentDir = path.resolve(startDir);
   while (true) {
-    // prefer gemini-specific .env under GEMINI_DIR
-    const geminiEnvPath = path.join(currentDir, GEMINI_DIR, '.env');
-    if (fs.existsSync(geminiEnvPath)) {
-      return geminiEnvPath;
+    // prefer delta-specific .env under DELTA_CONFIG_DIR
+    const deltaEnvPath = path.join(currentDir, DELTA_CONFIG_DIR, '.env');
+    if (fs.existsSync(deltaEnvPath)) {
+      return deltaEnvPath;
     }
     const envPath = path.join(currentDir, '.env');
     if (fs.existsSync(envPath)) {
@@ -212,10 +212,10 @@ function findEnvFile(startDir: string): string | null {
     }
     const parentDir = path.dirname(currentDir);
     if (parentDir === currentDir || !parentDir) {
-      // check .env under home as fallback, again preferring gemini-specific .env
-      const homeGeminiEnvPath = path.join(homedir(), GEMINI_DIR, '.env');
-      if (fs.existsSync(homeGeminiEnvPath)) {
-        return homeGeminiEnvPath;
+      // check .env under home as fallback, again preferring delta-specific .env
+      const homeDeltaEnvPath = path.join(homedir(), DELTA_CONFIG_DIR, '.env');
+      if (fs.existsSync(homeDeltaEnvPath)) {
+        return homeDeltaEnvPath;
       }
       const homeEnvPath = path.join(homedir(), '.env');
       if (fs.existsSync(homeEnvPath)) {
@@ -286,7 +286,7 @@ export function loadEnvironment(settings?: Settings): void {
 
       const excludedVars =
         resolvedSettings?.excludedProjectEnvVars || DEFAULT_EXCLUDED_ENV_VARS;
-      const isProjectEnvFile = !envFilePath.includes(GEMINI_DIR);
+      const isProjectEnvFile = !envFilePath.includes(DELTA_CONFIG_DIR);
 
       for (const key in parsedEnv) {
         if (Object.hasOwn(parsedEnv, key)) {

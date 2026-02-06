@@ -56,7 +56,7 @@ describe('docsCommand', () => {
     }
 
     // Simulate a sandbox environment
-    process.env.SANDBOX = 'gemini-sandbox';
+    process.env.SANDBOX = 'delta-sandbox';
     const docsUrl = 'https://deltalm.github.io/delta-code-docs/en';
 
     await docsCommand.action(mockContext, '');

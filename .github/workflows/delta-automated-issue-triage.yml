@@ -91,7 +91,7 @@ jobs:
             - Causes data loss or corruption with no workaround.
             - Crashes the application or makes a core feature completely unusable for all or most users in a production environment. Will it cause severe quality degration? Is it preventing contributors from contributing to the repository or is it a release blocker?
             Qualifier: Is the main function of the software broken?
-            Example: The gemini auth login command fails with an unrecoverable error, preventing any user from authenticating and using the rest of the CLI.
+            Example: The delta auth login command fails with an unrecoverable error, preventing any user from authenticating and using the rest of the CLI.
             P1: High
             - A P1 bug is a serious issue that significantly degrades the user experience or impacts a core feature. While not a complete blocker, it's a major problem that needs a fast resolution. Feature requests are almost never P1.
             Impact:
@@ -100,7 +100,7 @@ jobs:
             - Severe performance degradation making the application frustratingly slow.
             - No straightforward workaround exists, or the workaround is difficult and non-obvious.
             Qualifier: Is a key feature unusable or giving very wrong results?
-            Example: The gemini -p "..." command consistently returns a malformed JSON response or an empty result, making the CLI's primary generation feature unreliable.
+            Example: The delta -p "..." command consistently returns a malformed JSON response or an empty result, making the CLI's primary generation feature unreliable.
             P2: Medium
             - A P2 bug is a moderately impactful issue. It's a noticeable problem but doesn't prevent the use of the software's main functionality.
             Impact:
@@ -122,7 +122,7 @@ jobs:
             Definition of Areas
             area/ux:
             - Issues concerning user-facing elements like command usability, interactive features, help docs, and perceived performance.
-            - I am seeing my screen flicker when using Gemini CLI
+            - I am seeing my screen flicker when using Delta Code
             - I am seeing the output malformed
             - Theme changes aren't taking effect
             - My keyboard inputs arent' being recognzied
@@ -137,7 +137,7 @@ jobs:
             - built-in tools (e.g., web search, code interpreter, read file, writefile, etc..),
             - Function calling issues should be under this area
             - i am getting responses from the model that are malformed.
-            - Issues concerning Gemini quality of response and inference,
+            - Issues concerning model quality of response and inference,
             - Issues talking about unnecessary token consumption.
             - Issues talking about Model getting stuck in a loop be watchful as this could be the root cause for issues that otherwise seem like model performance issues.
             - Memory compression

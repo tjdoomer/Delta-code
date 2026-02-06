@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GeminiClient } from '@delta-code/delta-code-core';
+import { DeltaClient } from '@delta-code/delta-code-core';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { compressCommand } from './compressCommand.js';
 import { createMockCommandContext } from '../../test-utils/mockCommandContext.js';
@@ -19,10 +19,10 @@ describe('compressCommand', () => {
     context = createMockCommandContext({
       services: {
         config: {
-          getGeminiClient: () =>
+          getDeltaClient: () =>
             ({
               tryCompressChat: mockTryCompressChat,
-            }) as unknown as GeminiClient,
+            }) as unknown as DeltaClient,
         },
       },
     });

@@ -11,7 +11,7 @@ import {
   ContentGeneratorConfig,
   EditTool,
   ErroredToolCall,
-  GeminiClient,
+  DeltaClient,
   ToolConfirmationOutcome,
   ToolErrorType,
   ToolRegistry,
@@ -385,7 +385,7 @@ describe('loggers', () => {
     const cfg1 = {
       getSessionId: () => 'test-session-id',
       getTargetDir: () => 'target-dir',
-      getGeminiClient: () => mockGeminiClient,
+      getDeltaClient: () => mockDeltaClient,
     } as Config;
     const cfg2 = {
       getSessionId: () => 'test-session-id',
@@ -414,11 +414,11 @@ describe('loggers', () => {
       getUserMemory: () => 'user-memory',
     } as unknown as Config;
 
-    const mockGeminiClient = new GeminiClient(cfg2);
+    const mockDeltaClient = new DeltaClient(cfg2);
     const mockConfig = {
       getSessionId: () => 'test-session-id',
       getTargetDir: () => 'target-dir',
-      getGeminiClient: () => mockGeminiClient,
+      getDeltaClient: () => mockDeltaClient,
       getUsageStatisticsEnabled: () => true,
       getTelemetryEnabled: () => true,
       getTelemetryLogPromptsEnabled: () => true,

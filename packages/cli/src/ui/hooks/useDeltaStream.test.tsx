@@ -7,7 +7,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { renderHook, act, waitFor } from '@testing-library/react';
-import { useGeminiStream, mergePartListUnions } from './useGeminiStream.js';
+import { useDeltaStream, mergePartListUnions } from './useDeltaStream.js';
 import { useKeypress } from './useKeypress.js';
 import {
   useReactToolScheduler,
@@ -20,7 +20,7 @@ import {
   Config,
   EditorType,
   AuthType,
-  GeminiEventType as ServerGeminiEventType,
+  DeltaEventType as ServerDeltaEventType,
   AnyToolInvocation,
 } from '@delta-code/delta-code-core';
 import { Part, PartListUnion } from '@google/genai';
@@ -39,7 +39,7 @@ const mockSendMessageStream = vi
   .mockReturnValue((async function* () {})());
 const mockStartChat = vi.fn();
 
-const MockedGeminiClientClass = vi.hoisted(() =>
+const MockedDeltaClientClass = vi.hoisted(() =>
   vi.fn().mockImplementation(function (this: any, _config: any) {
     // _config
     this.startChat = mockStartChat;
@@ -58,7 +58,7 @@ vi.mock('@delta-code/delta-code-core', async (importOriginal) => {
   return {
     ...actualCoreModule,
     GitService: vi.fn(),
-    GeminiClient: MockedGeminiClientClass,
+    DeltaClient: MockedDeltaClientClass,
     UserPromptEvent: MockedUserPromptEvent,
     parseAndFormatApiError: mockParseAndFormatApiError,
   };
@@ -250,8 +250,8 @@ describe('mergePartListUnions', () => {
   });
 });
 
-// --- Tests for useGeminiStream Hook ---
-describe('useGeminiStream', () => {
+// --- Tests for useDeltaStream Hook ---
+describe('useDeltaStream', () => {
   let mockAddItem: Mock;
   let mockConfig: Config;
   let mockOnDebugMessage: Mock;
@@ -264,11 +264,11 @@ describe('useGeminiStream', () => {
     vi.clearAllMocks(); // Clear mocks before each test
 
     mockAddItem = vi.fn();
-    // Define the mock for getGeminiClient
-    const mockGetGeminiClient = vi.fn().mockImplementation(() => {
-      // MockedGeminiClientClass is defined in the module scope by the previous change.
+    // Define the mock for getDeltaClient
+    const mockGetDeltaClient = vi.fn().mockImplementation(() => {
+      // MockedDeltaClientClass is defined in the module scope by the previous change.
       // It will use the mockStartChat and mockSendMessageStream that are managed within beforeEach.
-      const clientInstance = new MockedGeminiClientClass(mockConfig);
+      const clientInstance = new MockedDeltaClientClass(mockConfig);
       return clientInstance;
     });
 
@@ -294,7 +294,7 @@ describe('useGeminiStream', () => {
       mcpServers: undefined,
       userAgent: 'test-agent',
       userMemory: '',
-      geminiMdFileCount: 0,
+      deltaMdFileCount: 0,
       alwaysSkipModificationConfirmation: false,
       vertexai: false,
       showMemoryUsage: false,
@@ -304,7 +304,7 @@ describe('useGeminiStream', () => {
       ),
       getProjectRoot: vi.fn(() => '/test/dir'),
       getCheckpointingEnabled: vi.fn(() => false),
-      getGeminiClient: mockGetGeminiClient,
+      getDeltaClient: mockGetDeltaClient,
       getUsageStatisticsEnabled: () => true,
       getDebugMode: () => false,
       addHistory: vi.fn(),
@@ -334,11 +334,11 @@ describe('useGeminiStream', () => {
       mockMarkToolsAsSubmitted,
     ]);
 
-    // Reset mocks for GeminiClient instance methods (startChat and sendMessageStream)
-    // The GeminiClient constructor itself is mocked at the module level.
+    // Reset mocks for DeltaClient instance methods (startChat and sendMessageStream)
+    // The DeltaClient constructor itself is mocked at the module level.
     mockStartChat.mockClear().mockResolvedValue({
       sendMessageStream: mockSendMessageStream,
-    } as unknown as any); // GeminiChat -> any
+    } as unknown as any); // DeltaChat -> any
     mockSendMessageStream
       .mockClear()
       .mockReturnValue((async function* () {})());
@@ -355,7 +355,7 @@ describe('useGeminiStream', () => {
 
   const renderTestHook = (
     initialToolCalls: TrackedToolCall[] = [],
-    geminiClient?: any,
+    deltaClient?: any,
   ) => {
     let currentToolCalls = initialToolCalls;
     const setToolCalls = (newToolCalls: TrackedToolCall[]) => {
@@ -369,7 +369,7 @@ describe('useGeminiStream', () => {
       mockMarkToolsAsSubmitted,
     ]);
 
-    const client = geminiClient || mockConfig.getGeminiClient();
+    const client = deltaClient || mockConfig.getDeltaClient();
 
     const { result, rerender } = renderHook(
       (props: {
@@ -389,7 +389,7 @@ describe('useGeminiStream', () => {
         if (props.toolCalls) {
           setToolCalls(props.toolCalls);
         }
-        return useGeminiStream(
+        return useDeltaStream(
           props.client,
           props.history,
           props.addItem,
@@ -442,7 +442,7 @@ describe('useGeminiStream', () => {
           prompt_id: 'prompt-id-1',
         },
         status: 'success',
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         response: {
           callId: 'call1',
           responseParts: [{ text: 'tool 1 response' }],
@@ -470,7 +470,7 @@ describe('useGeminiStream', () => {
           prompt_id: 'prompt-id-1',
         },
         status: 'executing',
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         tool: {
           name: 'tool2',
           displayName: 'tool2',
@@ -512,7 +512,7 @@ describe('useGeminiStream', () => {
           prompt_id: 'prompt-id-2',
         },
         status: 'success',
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         response: { callId: 'call1', responseParts: toolCall1ResponseParts },
         tool: {
           displayName: 'MockTool',
@@ -530,7 +530,7 @@ describe('useGeminiStream', () => {
           prompt_id: 'prompt-id-2',
         },
         status: 'error',
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         response: { callId: 'call2', responseParts: toolCall2ResponseParts },
       } as TrackedCompletedToolCall, // Treat error as a form of completion for submission
     ];
@@ -546,8 +546,8 @@ describe('useGeminiStream', () => {
     });
 
     renderHook(() =>
-      useGeminiStream(
-        new MockedGeminiClientClass(mockConfig),
+      useDeltaStream(
+        new MockedDeltaClientClass(mockConfig),
         [],
         mockAddItem,
         mockConfig,
@@ -599,7 +599,7 @@ describe('useGeminiStream', () => {
         },
         status: 'cancelled',
         response: { callId: '1', responseParts: [{ text: 'cancelled' }] },
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         tool: {
           displayName: 'mock tool',
         },
@@ -608,7 +608,7 @@ describe('useGeminiStream', () => {
         } as unknown as AnyToolInvocation,
       } as TrackedCancelledToolCall,
     ];
-    const client = new MockedGeminiClientClass(mockConfig);
+    const client = new MockedDeltaClientClass(mockConfig);
 
     // Capture the onComplete callback
     let capturedOnComplete:
@@ -621,7 +621,7 @@ describe('useGeminiStream', () => {
     });
 
     renderHook(() =>
-      useGeminiStream(
+      useDeltaStream(
         client,
         [],
         mockAddItem,
@@ -685,7 +685,7 @@ describe('useGeminiStream', () => {
         error: undefined,
         errorType: undefined,
       },
-      responseSubmittedToGemini: false,
+      responseSubmittedToDelta: false,
     };
     const cancelledToolCall2: TrackedCancelledToolCall = {
       request: {
@@ -714,10 +714,10 @@ describe('useGeminiStream', () => {
         error: undefined,
         errorType: undefined,
       },
-      responseSubmittedToGemini: false,
+      responseSubmittedToDelta: false,
     };
     const allCancelledTools = [cancelledToolCall1, cancelledToolCall2];
-    const client = new MockedGeminiClientClass(mockConfig);
+    const client = new MockedDeltaClientClass(mockConfig);
 
     let capturedOnComplete:
       | ((completedTools: TrackedToolCall[]) => Promise<void>)
@@ -729,7 +729,7 @@ describe('useGeminiStream', () => {
     });
 
     renderHook(() =>
-      useGeminiStream(
+      useDeltaStream(
         client,
         [],
         mockAddItem,
@@ -793,7 +793,7 @@ describe('useGeminiStream', () => {
           prompt_id: 'prompt-id-4',
         },
         status: 'executing',
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         tool: {
           name: 'tool1',
           displayName: 'tool1',
@@ -838,8 +838,8 @@ describe('useGeminiStream', () => {
     });
 
     const { result, rerender } = renderHook(() =>
-      useGeminiStream(
-        new MockedGeminiClientClass(mockConfig),
+      useDeltaStream(
+        new MockedDeltaClientClass(mockConfig),
         [],
         mockAddItem,
         mockConfig,
@@ -967,8 +967,8 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(mockStream);
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          mockConfig.getGeminiClient(),
+        useDeltaStream(
+          mockConfig.getDeltaClient(),
           [],
           mockAddItem,
           mockConfig,
@@ -1048,7 +1048,7 @@ describe('useGeminiStream', () => {
 
       // The text should not have been updated with " Canceled"
       const lastCall = mockAddItem.mock.calls.find(
-        (call) => call[0].type === 'gemini',
+        (call) => call[0].type === 'delta',
       );
       expect(lastCall?.[0].text).toBe('Initial');
 
@@ -1061,7 +1061,7 @@ describe('useGeminiStream', () => {
         {
           request: { callId: 'call1', name: 'tool1', args: {} },
           status: 'executing',
-          responseSubmittedToGemini: false,
+          responseSubmittedToDelta: false,
           tool: {
             name: 'tool1',
             description: 'desc1',
@@ -1121,7 +1121,7 @@ describe('useGeminiStream', () => {
       });
     });
 
-    it('should stop processing and not call Gemini when a command is handled without a tool call', async () => {
+    it('should stop processing and not call model when a command is handled without a tool call', async () => {
       const uiOnlyCommandResult: SlashCommandProcessorResult = {
         type: 'handled',
       };
@@ -1140,7 +1140,7 @@ describe('useGeminiStream', () => {
       });
     });
 
-    it('should call Gemini with prompt content when slash command returns a `submit_prompt` action', async () => {
+    it('should call model with prompt content when slash command returns a `submit_prompt` action', async () => {
       const customCommandResult: SlashCommandProcessorResult = {
         type: 'submit_prompt',
         content: 'This is the actual prompt from the command file.',
@@ -1212,7 +1212,7 @@ describe('useGeminiStream', () => {
           prompt_id: 'prompt-id-6',
         },
         status: 'success',
-        responseSubmittedToGemini: false,
+        responseSubmittedToDelta: false,
         response: {
           callId: 'save-mem-call-1',
           responseParts: [{ text: 'Memory saved' }],
@@ -1242,8 +1242,8 @@ describe('useGeminiStream', () => {
       });
 
       renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1295,8 +1295,8 @@ describe('useGeminiStream', () => {
       } as unknown as Config;
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(testConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(testConfig),
           [],
           mockAddItem,
           testConfig,
@@ -1337,16 +1337,16 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'This is a truncated response...',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'MAX_TOKENS' };
+          yield { type: ServerDeltaEventType.Finished, value: 'MAX_TOKENS' };
         })(),
       );
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1385,16 +1385,16 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'Complete response',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+          yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
         })(),
       );
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1431,19 +1431,19 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'Response with unspecified finish',
           };
           yield {
-            type: ServerGeminiEventType.Finished,
+            type: ServerDeltaEventType.Finished,
             value: 'FINISH_REASON_UNSPECIFIED',
           };
         })(),
       );
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1523,16 +1523,16 @@ describe('useGeminiStream', () => {
         mockSendMessageStream.mockReturnValue(
           (async function* () {
             yield {
-              type: ServerGeminiEventType.Content,
+              type: ServerDeltaEventType.Content,
               value: `Response for ${reason}`,
             };
-            yield { type: ServerGeminiEventType.Finished, value: reason };
+            yield { type: ServerDeltaEventType.Finished, value: reason };
           })(),
         );
 
         const { result } = renderHook(() =>
-          useGeminiStream(
-            new MockedGeminiClientClass(mockConfig),
+          useDeltaStream(
+            new MockedDeltaClientClass(mockConfig),
             [],
             mockAddItem,
             mockConfig,
@@ -1572,23 +1572,23 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Thought,
+            type: ServerDeltaEventType.Thought,
             value: {
               subject: 'Previous thought',
               description: 'Old description',
             },
           };
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'Some response content',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+          yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
         })(),
       );
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1614,7 +1614,7 @@ describe('useGeminiStream', () => {
       await waitFor(() => {
         expect(mockAddItem).toHaveBeenCalledWith(
           expect.objectContaining({
-            type: 'gemini',
+            type: 'delta',
             text: 'Some response content',
           }),
           expect.any(Number),
@@ -1625,10 +1625,10 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'New response content',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+          yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
         })(),
       );
 
@@ -1644,7 +1644,7 @@ describe('useGeminiStream', () => {
       await waitFor(() => {
         expect(mockAddItem).toHaveBeenCalledWith(
           expect.objectContaining({
-            type: 'gemini',
+            type: 'delta',
             text: 'New response content',
           }),
           expect.any(Number),
@@ -1657,16 +1657,16 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Thought,
+            type: ServerDeltaEventType.Thought,
             value: { subject: 'Some thought', description: 'Description' },
           };
-          yield { type: ServerGeminiEventType.UserCancelled };
+          yield { type: ServerDeltaEventType.UserCancelled };
         })(),
       );
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1708,19 +1708,19 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Thought,
+            type: ServerDeltaEventType.Thought,
             value: { subject: 'Some thought', description: 'Description' },
           };
           yield {
-            type: ServerGeminiEventType.Error,
+            type: ServerDeltaEventType.Error,
             value: { error: { message: 'Test error' } },
           };
         })(),
       );
 
       const { result } = renderHook(() =>
-        useGeminiStream(
-          new MockedGeminiClientClass(mockConfig),
+        useDeltaStream(
+          new MockedDeltaClientClass(mockConfig),
           [],
           mockAddItem,
           mockConfig,
@@ -1779,21 +1779,21 @@ describe('useGeminiStream', () => {
       // Mock a long-running stream for the first call
       const firstStream = (async function* () {
         yield {
-          type: ServerGeminiEventType.Content,
+          type: ServerDeltaEventType.Content,
           value: 'First call content',
         };
         await firstCallPromise; // Wait until we manually resolve
-        yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+        yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
       })();
 
       // Mock a stream for the second call (should not be used)
       const secondStream = (async function* () {
         yield {
-          type: ServerGeminiEventType.Content,
+          type: ServerDeltaEventType.Content,
           value: 'Second call content',
         };
         await secondCallPromise;
-        yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+        yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
       })();
 
       let callCount = 0;
@@ -1849,19 +1849,19 @@ describe('useGeminiStream', () => {
         .mockReturnValueOnce(
           (async function* () {
             yield {
-              type: ServerGeminiEventType.Content,
+              type: ServerDeltaEventType.Content,
               value: 'First response',
             };
-            yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+            yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
           })(),
         )
         .mockReturnValueOnce(
           (async function* () {
             yield {
-              type: ServerGeminiEventType.Content,
+              type: ServerDeltaEventType.Content,
               value: 'Second response',
             };
-            yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+            yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
           })(),
         );
 
@@ -1905,10 +1905,10 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'Valid response',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+          yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
         })(),
       );
 
@@ -1934,11 +1934,11 @@ describe('useGeminiStream', () => {
       // Mock a stream that can be cancelled
       const cancelledStream = (async function* () {
         yield {
-          type: ServerGeminiEventType.Content,
+          type: ServerDeltaEventType.Content,
           value: 'Cancelled content',
         };
         await cancelledStreamPromise;
-        yield { type: ServerGeminiEventType.UserCancelled };
+        yield { type: ServerDeltaEventType.UserCancelled };
       })();
 
       mockSendMessageStream.mockReturnValueOnce(cancelledStream);
@@ -1959,10 +1959,10 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'Second response',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+          yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
         })(),
       );
 
@@ -1978,7 +1978,7 @@ describe('useGeminiStream', () => {
       // Mock a stream that throws an error
       mockSendMessageStream.mockReturnValueOnce(
         (async function* () {
-          yield { type: ServerGeminiEventType.Content, value: 'Error content' };
+          yield { type: ServerDeltaEventType.Content, value: 'Error content' };
           throw new Error('Stream error');
         })(),
       );
@@ -1994,10 +1994,10 @@ describe('useGeminiStream', () => {
       mockSendMessageStream.mockReturnValue(
         (async function* () {
           yield {
-            type: ServerGeminiEventType.Content,
+            type: ServerDeltaEventType.Content,
             value: 'Success response',
           };
-          yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+          yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
         })(),
       );
 
@@ -2018,11 +2018,11 @@ describe('useGeminiStream', () => {
       // Mock a long-running stream
       const longStream = (async function* () {
         yield {
-          type: ServerGeminiEventType.Content,
+          type: ServerDeltaEventType.Content,
           value: 'Long running content',
         };
         await streamPromise;
-        yield { type: ServerGeminiEventType.Finished, value: 'STOP' };
+        yield { type: ServerDeltaEventType.Finished, value: 'STOP' };
       })();
 
       mockSendMessageStream.mockReturnValue(longStream);

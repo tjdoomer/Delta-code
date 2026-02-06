@@ -7,9 +7,9 @@
 import { vi, describe, it, expect, beforeEach, afterEach, Mock } from 'vitest';
 import {
   MemoryTool,
-  setGeminiMdFilename,
-  getCurrentGeminiMdFilename,
-  getAllGeminiMdFilenames,
+  setDeltaMdFilename,
+  getCurrentDeltaMdFilename,
+  getAllDeltaMdFilenames,
   DEFAULT_CONTEXT_FILENAME,
 } from './memoryTool.js';
 import * as fs from 'fs/promises';
@@ -58,30 +58,30 @@ describe('MemoryTool', () => {
   afterEach(() => {
     vi.restoreAllMocks();
     // Reset GEMINI_MD_FILENAME to its original value after each test
-    setGeminiMdFilename(DEFAULT_CONTEXT_FILENAME);
+    setDeltaMdFilename(DEFAULT_CONTEXT_FILENAME);
   });
 
-  describe('setGeminiMdFilename', () => {
-    it('should update currentGeminiMdFilename when a valid new name is provided', () => {
+  describe('setDeltaMdFilename', () => {
+    it('should update currentDeltaMdFilename when a valid new name is provided', () => {
       const newName = 'CUSTOM_CONTEXT.md';
-      setGeminiMdFilename(newName);
-      expect(getCurrentGeminiMdFilename()).toBe(newName);
+      setDeltaMdFilename(newName);
+      expect(getCurrentDeltaMdFilename()).toBe(newName);
     });
 
-    it('should not update currentGeminiMdFilename if the new name is empty or whitespace', () => {
-      const initialName = getCurrentGeminiMdFilename(); // Get current before trying to change
-      setGeminiMdFilename('  ');
-      expect(getCurrentGeminiMdFilename()).toBe(initialName);
+    it('should not update currentDeltaMdFilename if the new name is empty or whitespace', () => {
+      const initialName = getCurrentDeltaMdFilename(); // Get current before trying to change
+      setDeltaMdFilename('  ');
+      expect(getCurrentDeltaMdFilename()).toBe(initialName);
 
-      setGeminiMdFilename('');
-      expect(getCurrentGeminiMdFilename()).toBe(initialName);
+      setDeltaMdFilename('');
+      expect(getCurrentDeltaMdFilename()).toBe(initialName);
     });
 
     it('should handle an array of filenames', () => {
       const newNames = ['CUSTOM_CONTEXT.md', 'ANOTHER_CONTEXT.md'];
-      setGeminiMdFilename(newNames);
-      expect(getCurrentGeminiMdFilename()).toBe('CUSTOM_CONTEXT.md');
-      expect(getAllGeminiMdFilenames()).toEqual(newNames);
+      setDeltaMdFilename(newNames);
+      expect(getCurrentDeltaMdFilename()).toBe('CUSTOM_CONTEXT.md');
+      expect(getAllDeltaMdFilenames()).toEqual(newNames);
     });
   });
 
@@ -207,11 +207,11 @@ describe('MemoryTool', () => {
       const invocation = memoryTool.build(params);
       const result = await invocation.execute(mockAbortSignal);
 
-      // Use getCurrentGeminiMdFilename for the default expectation before any setGeminiMdFilename calls in a test
+      // Use getCurrentDeltaMdFilename for the default expectation before any setDeltaMdFilename calls in a test
       const expectedFilePath = path.join(
         os.homedir(),
         '.delta',
-        getCurrentGeminiMdFilename(), // This will be DEFAULT_CONTEXT_FILENAME unless changed by a test
+        getCurrentDeltaMdFilename(), // This will be DEFAULT_CONTEXT_FILENAME unless changed by a test
       );
 
       // For this test, we expect the actual fs methods to be passed
@@ -241,7 +241,7 @@ describe('MemoryTool', () => {
       // For project scope, expect the file to be in current working directory
       const expectedFilePath = path.join(
         process.cwd(),
-        getCurrentGeminiMdFilename(),
+        getCurrentDeltaMdFilename(),
       );
 
       // For this test, we expect the actual fs methods to be passed
@@ -373,7 +373,7 @@ describe('MemoryTool', () => {
       const memoryFilePath = path.join(
         os.homedir(),
         '.delta',
-        getCurrentGeminiMdFilename(),
+        getCurrentDeltaMdFilename(),
       );
 
       const invocation = memoryTool.build(params);
@@ -390,7 +390,7 @@ describe('MemoryTool', () => {
       const params = { fact: 'Test fact', scope: 'project' as const };
       const memoryFilePath = path.join(
         process.cwd(),
-        getCurrentGeminiMdFilename(),
+        getCurrentDeltaMdFilename(),
       );
 
       const invocation = memoryTool.build(params);
@@ -410,7 +410,7 @@ describe('MemoryTool', () => {
       const memoryFilePath = path.join(
         os.homedir(),
         '.delta',
-        getCurrentGeminiMdFilename(),
+        getCurrentDeltaMdFilename(),
       );
 
       const invocation = memoryTool.build(params);
@@ -437,7 +437,7 @@ describe('MemoryTool', () => {
       const params = { fact: 'Test fact', scope: 'project' as const };
       const memoryFilePath = path.join(
         process.cwd(),
-        getCurrentGeminiMdFilename(),
+        getCurrentDeltaMdFilename(),
       );
 
       const invocation = memoryTool.build(params);
@@ -465,7 +465,7 @@ describe('MemoryTool', () => {
       const memoryFilePath = path.join(
         os.homedir(),
         '.delta',
-        getCurrentGeminiMdFilename(),
+        getCurrentDeltaMdFilename(),
       );
 
       const invocation = memoryTool.build(params);
