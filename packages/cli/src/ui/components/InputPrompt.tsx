@@ -254,6 +254,7 @@ export const InputPrompt: React.FC<InputPromptProps> = ({
 
       if (
         key.sequence === '!' &&
+        !key.kittyProtocol &&
         buffer.text === '' &&
         !completion.showSuggestions
       ) {

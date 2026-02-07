@@ -120,14 +120,31 @@ export function useKeypress(
 
     // Parse Kitty protocol sequences
     const parseKittySequence = (sequence: string): Key | null => {
-      // Match CSI <number> ; <modifiers> u or ~
-      // Format: ESC [ <keycode> ; <modifiers> u/~
-      const kittyPattern = new RegExp(`^${ESC}\\[(\\d+)(;(\\d+))?([u~])$`);
+      // Match CSI <number> ; <modifiers> [:<event_type>] u or ~
+      // Format: ESC [ <keycode> ; <modifiers> [:<event_type>] u/~
+      // Event types: 1=press, 2=repeat, 3=release (Kitty protocol extension)
+      const kittyPattern = new RegExp(
+        `^${ESC}\\[(\\d+)(;(\\d+)(:(\\d+))?)?([u~])$`,
+      );
       const match = sequence.match(kittyPattern);
       if (!match) return null;
 
       const keyCode = parseInt(match[1], 10);
       const modifiers = match[3] ? parseInt(match[3], 10) : 1;
+      const eventType = match[5] ? parseInt(match[5], 10) : 1;
+
+      // Ignore key release events (event_type 3)
+      if (eventType === 3) {
+        return {
+          name: '',
+          ctrl: false,
+          meta: false,
+          shift: false,
+          paste: false,
+          sequence: '',
+          kittyProtocol: true,
+        };
+      }
 
       // Decode modifiers (subtract 1 as per Kitty protocol spec)
       const modifierBits = modifiers - 1;
@@ -232,8 +249,18 @@ export function useKeypress(
         };
       }
 
-      // Unrecognized Kitty sequence
-      return null;
+      // Unrecognized keycode (e.g., function keys, special keys not yet
+      // handled above). Return an empty key to drain the buffer so it
+      // doesn't get stuck.
+      return {
+        name: '',
+        ctrl,
+        meta: alt,
+        shift,
+        paste: false,
+        sequence: '',
+        kittyProtocol: true,
+      };
     };
 
     const handleKeypress = (_: unknown, key: Key) => {
@@ -428,9 +455,19 @@ export function useKeypress(
         // Then continue processing the current key normally
       }
 
-      // If readline has already identified an arrow key, pass it through
-      // immediately, bypassing the Kitty protocol sequence buffering.
-      if (['up', 'down', 'left', 'right'].includes(key.name)) {
+      // If readline has already identified a named key (arrows, home, end,
+      // page up/down, delete, insert, function keys, etc.), pass it through
+      // immediately. These are standard ANSI sequences that readline already
+      // parsed; they must not enter the Kitty sequence buffer.
+      if (
+        [
+          'up', 'down', 'left', 'right',
+          'home', 'end', 'pageup', 'pagedown',
+          'delete', 'insert', 'clear',
+          'f1', 'f2', 'f3', 'f4', 'f5', 'f6',
+          'f7', 'f8', 'f9', 'f10', 'f11', 'f12',
+        ].includes(key.name)
+      ) {
         onKeypressRef.current(key);
         return;
       }
