@@ -20,6 +20,7 @@ import {
 import { LoadedSettings, SettingScope } from '../../config/settings.js';
 import { Colors } from '../colors.js';
 import { useKeypress } from '../hooks/useKeypress.js';
+import { useKittyKeyboardProtocol } from '../hooks/useKittyKeyboardProtocol.js';
 import { OpenAIKeyPrompt } from './OpenAIKeyPrompt.js';
 import { RadioButtonSelect } from './shared/RadioButtonSelect.js';
 
@@ -41,6 +42,7 @@ export function AuthDialog({
   const [providerMode, setProviderMode] = useState<
     'openai' | 'google' | 'azure' | 'bedrock' | 'claude'
   >('openai');
+  const kittyProtocolStatus = useKittyKeyboardProtocol();
 
   // Two options: OpenAI-compatible or Anthropic via OpenAI-compatible provider
   type ProviderChoice = {
@@ -127,10 +129,6 @@ export function AuthDialog({
 
   useKeypress(
     (key) => {
-      if (showOpenAIKeyPrompt) {
-        return;
-      }
-
       if (key.name === 'escape') {
         // Prevent exit if there is an error message.
         // This means they user is not authenticated yet.
@@ -147,7 +145,10 @@ export function AuthDialog({
         onSelect(undefined, SettingScope.User);
       }
     },
-    { isActive: true },
+    {
+      isActive: !showOpenAIKeyPrompt,
+      kittyProtocolEnabled: kittyProtocolStatus.enabled,
+    },
   );
 
   if (showOpenAIKeyPrompt) {

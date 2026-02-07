@@ -5,9 +5,11 @@
  */
 
 import React, { useState } from 'react';
-import { Box, Text, useInput } from 'ink';
+import { Box, Text } from 'ink';
 import { Colors } from '../colors.js';
 import { ClaudeModelSelector, CLAUDE_MODELS, ClaudeModel } from './ClaudeModelSelector.js';
+import { useKeypress, Key } from '../hooks/useKeypress.js';
+import { useKittyKeyboardProtocol } from '../hooks/useKittyKeyboardProtocol.js';
 
 interface OpenAIKeyPromptProps {
   onSubmit: (apiKey: string, baseUrl: string, model: string) => void;
@@ -36,6 +38,7 @@ export function OpenAIKeyPrompt({
     'apiKey' | 'baseUrl' | 'model'
   >('apiKey');
   const [showModelSelector, setShowModelSelector] = useState(false);
+  const kittyProtocolStatus = useKittyKeyboardProtocol();
 
   const handleModelSelect = (selectedModel: ClaudeModel) => {
     setModel(selectedModel.id);
@@ -53,109 +56,113 @@ export function OpenAIKeyPrompt({
     // Stay on model field
   };
 
-  useInput((input, key) => {
-    // Filter paste-related control sequences
-    let cleanInput = (input || '')
-      // Filter ESC-led control sequences (e.g., \u001b[200~, \u001b[201~)
-      .replace(/\u001b\[[0-9;]*[a-zA-Z]/g, '') // eslint-disable-line no-control-regex
-      // Filter paste start marker [200~
-      .replace(/\[200~/g, '')
-      // Filter paste end marker [201~
-      .replace(/\[201~/g, '')
-      // Filter stray '[' and '~' characters (leftover paste markers)
-      .replace(/^\[|~$/g, '');
-
-    // Then filter all non-printable ASCII (< 32), except carriage return/newline
-    cleanInput = cleanInput
-      .split('')
-      .filter((ch) => ch.charCodeAt(0) >= 32)
-      .join('');
-
-    if (cleanInput.length > 0) {
-      if (currentField === 'apiKey') {
-        setApiKey((prev) => prev + cleanInput);
-      } else if (currentField === 'baseUrl') {
-        setBaseUrl((prev) => prev + cleanInput);
-      } else if (currentField === 'model') {
-        setModel((prev) => prev + cleanInput);
-      }
-      return;
+  const insertText = (text: string) => {
+    if (currentField === 'apiKey') {
+      setApiKey((prev) => prev + text);
+    } else if (currentField === 'baseUrl') {
+      setBaseUrl((prev) => prev + text);
+    } else if (currentField === 'model') {
+      setModel((prev) => prev + text);
     }
+  };
 
-    // Check for Enter (by detecting newline characters)
-    if (input.includes('\n') || input.includes('\r')) {
-      if (currentField === 'apiKey') {
-        // Allow empty API key to advance; user can return later to edit
-        setCurrentField('baseUrl');
+  useKeypress(
+    (key: Key) => {
+      if (showModelSelector) return;
+
+      // Handle paste
+      if (key.paste) {
+        const text = key.sequence
+          .split('')
+          .filter((ch) => ch.charCodeAt(0) >= 32)
+          .join('');
+        if (text) insertText(text);
         return;
-      } else if (currentField === 'baseUrl') {
-        setCurrentField('model');
-        return;
-      } else if (currentField === 'model') {
-        if (mode === 'claude') {
-          // Show model selector for Claude
-          setShowModelSelector(true);
-        } else {
-          // Validate API key only on final submit
-          if (apiKey.trim()) {
+      }
+
+      // Handle Enter
+      if (key.name === 'return') {
+        if (currentField === 'apiKey') {
+          setCurrentField('baseUrl');
+        } else if (currentField === 'baseUrl') {
+          setCurrentField('model');
+        } else if (currentField === 'model') {
+          if (mode === 'claude') {
+            setShowModelSelector(true);
+          } else if (apiKey.trim()) {
             onSubmit(apiKey.trim(), baseUrl.trim(), model.trim());
           } else {
-            // If API key is empty, return focus to the API key field
             setCurrentField('apiKey');
           }
         }
+        return;
       }
-      return;
-    }
 
-    if (key.escape) {
-      onCancel();
-      return;
-    }
-
-    // Handle Tab key for field navigation
-    if (key.tab) {
-      if (currentField === 'apiKey') {
-        setCurrentField('baseUrl');
-      } else if (currentField === 'baseUrl') {
-        setCurrentField('model');
-      } else if (currentField === 'model') {
-        setCurrentField('apiKey');
+      if (key.name === 'escape') {
+        onCancel();
+        return;
       }
-      return;
-    }
 
-    // Handle arrow keys for field navigation
-    if (key.upArrow) {
-      if (currentField === 'baseUrl') {
-        setCurrentField('apiKey');
-      } else if (currentField === 'model') {
-        setCurrentField('baseUrl');
+      // Handle Tab key for field navigation
+      if (key.name === 'tab') {
+        if (currentField === 'apiKey') {
+          setCurrentField('baseUrl');
+        } else if (currentField === 'baseUrl') {
+          setCurrentField('model');
+        } else if (currentField === 'model') {
+          setCurrentField('apiKey');
+        }
+        return;
       }
-      return;
-    }
 
-    if (key.downArrow) {
-      if (currentField === 'apiKey') {
-        setCurrentField('baseUrl');
-      } else if (currentField === 'baseUrl') {
-        setCurrentField('model');
+      // Handle arrow keys for field navigation
+      if (key.name === 'up') {
+        if (currentField === 'baseUrl') {
+          setCurrentField('apiKey');
+        } else if (currentField === 'model') {
+          setCurrentField('baseUrl');
+        }
+        return;
       }
-      return;
-    }
 
-    // Handle backspace - check both key.backspace and delete key
-    if (key.backspace || key.delete) {
-      if (currentField === 'apiKey') {
-        setApiKey((prev) => prev.slice(0, -1));
-      } else if (currentField === 'baseUrl') {
-        setBaseUrl((prev) => prev.slice(0, -1));
-      } else if (currentField === 'model') {
-        setModel((prev) => prev.slice(0, -1));
+      if (key.name === 'down') {
+        if (currentField === 'apiKey') {
+          setCurrentField('baseUrl');
+        } else if (currentField === 'baseUrl') {
+          setCurrentField('model');
+        }
+        return;
       }
-      return;
-    }
-  });
+
+      // Handle backspace and delete
+      if (key.name === 'backspace' || key.name === 'delete') {
+        if (currentField === 'apiKey') {
+          setApiKey((prev) => prev.slice(0, -1));
+        } else if (currentField === 'baseUrl') {
+          setBaseUrl((prev) => prev.slice(0, -1));
+        } else if (currentField === 'model') {
+          setModel((prev) => prev.slice(0, -1));
+        }
+        return;
+      }
+
+      // Skip control/meta combos
+      if (key.ctrl || key.meta) return;
+
+      // Insert printable characters
+      if (key.sequence) {
+        const printable = key.sequence
+          .split('')
+          .filter((ch) => ch.charCodeAt(0) >= 32)
+          .join('');
+        if (printable) insertText(printable);
+      }
+    },
+    {
+      isActive: !showModelSelector,
+      kittyProtocolEnabled: kittyProtocolStatus.enabled,
+    },
+  );
 
   // Show model selector for Claude mode
   if (showModelSelector && mode === 'claude') {
