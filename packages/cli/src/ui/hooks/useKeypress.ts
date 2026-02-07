@@ -158,7 +158,59 @@ export function useKeypress(
         };
       }
 
-      // Handle other keys as needed
+      // Handle Tab key (code 9)
+      if (keyCode === 9) {
+        return {
+          name: 'tab',
+          ctrl,
+          meta: alt,
+          shift,
+          paste: false,
+          sequence,
+          kittyProtocol: true,
+        };
+      }
+
+      // Handle Backspace key (code 127)
+      if (keyCode === 127) {
+        return {
+          name: 'backspace',
+          ctrl,
+          meta: alt,
+          shift,
+          paste: false,
+          sequence,
+          kittyProtocol: true,
+        };
+      }
+
+      // Handle Delete key (code 57348 in Kitty protocol)
+      if (keyCode === 57348) {
+        return {
+          name: 'delete',
+          ctrl,
+          meta: alt,
+          shift,
+          paste: false,
+          sequence,
+          kittyProtocol: true,
+        };
+      }
+
+      // Handle printable ASCII characters (space through tilde)
+      if (keyCode >= 32 && keyCode <= 126) {
+        return {
+          name: '',
+          ctrl,
+          meta: alt,
+          shift,
+          paste: false,
+          sequence: String.fromCharCode(keyCode),
+          kittyProtocol: true,
+        };
+      }
+
+      // Unrecognized Kitty sequence
       return null;
     };
 
