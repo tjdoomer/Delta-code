@@ -100,6 +100,24 @@ export function useKeypress(
     // use this counter to suppress those next key events after detection in raw data
     let suppressFocusIOCount = 0;
 
+    // US keyboard shift map for symbols: base char → shifted char
+    const shiftMap: Record<string, string> = {
+      '1': '!', '2': '@', '3': '#', '4': '$', '5': '%',
+      '6': '^', '7': '&', '8': '*', '9': '(', '0': ')',
+      '-': '_', '=': '+', '[': '{', ']': '}', '\\': '|',
+      ';': ':', "'": '"', ',': '<', '.': '>', '/': '?', '`': '~',
+    };
+
+    // Apply shift to a base character from a Kitty protocol keyCode.
+    // The Kitty spec always reports the base/lowercase keyCode; we must
+    // derive the actual typed character when Shift is held.
+    const applyShift = (char: string): string => {
+      // Letters: just uppercase
+      if (char >= 'a' && char <= 'z') return char.toUpperCase();
+      // Symbols: use US keyboard map (fallback to base char)
+      return shiftMap[char] ?? char;
+    };
+
     // Parse Kitty protocol sequences
     const parseKittySequence = (sequence: string): Key | null => {
       // Match CSI <number> ; <modifiers> u or ~
@@ -198,14 +216,18 @@ export function useKeypress(
       }
 
       // Handle printable ASCII characters (space through tilde)
+      // The Kitty protocol always reports the base/lowercase keyCode;
+      // when Shift is held we must produce the actual shifted character.
       if (keyCode >= 32 && keyCode <= 126) {
+        const baseChar = String.fromCharCode(keyCode);
+        const typedChar = shift ? applyShift(baseChar) : baseChar;
         return {
           name: '',
           ctrl,
           meta: alt,
           shift,
           paste: false,
-          sequence: String.fromCharCode(keyCode),
+          sequence: typedChar,
           kittyProtocol: true,
         };
       }
