@@ -50,7 +50,7 @@ describe('useSlashCompletion', () => {
   describe('Top-Level Commands', () => {
     it('should suggest all top-level commands for the root slash', async () => {
       const slashCommands = [
-        { name: 'help', altNames: ['?'], description: 'Show help' },
+        { name: 'help', altNames: ['h'], description: 'Show help' },
         {
           name: 'stats',
           altNames: ['usage'],
@@ -145,7 +145,7 @@ describe('useSlashCompletion', () => {
         const mockSlashCommands = [
           {
             name: 'help',
-            altNames: ['?'],
+            altNames: ['h'],
             description: 'Show help',
             action: vi.fn(),
           },

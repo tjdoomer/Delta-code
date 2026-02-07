@@ -84,6 +84,7 @@ describe('getEnvironmentContext', () => {
       ...global.Intl,
       DateTimeFormat: vi.fn().mockImplementation(() => ({
         format: vi.fn().mockReturnValue('Tuesday, August 5, 2025'),
+        resolvedOptions: vi.fn().mockReturnValue({ timeZone: 'UTC' }),
       })),
     });
 
@@ -117,6 +118,7 @@ describe('getEnvironmentContext', () => {
 
     // Use a more flexible date assertion that works with different locales
     expect(context).toMatch(/Today's date is .*2025.*/);
+    expect(context).toMatch(/The current time is .* \(UTC\)/);
     expect(context).toContain(`My operating system is: ${process.platform}`);
     expect(context).toContain(
       "I'm currently working in the directory: /test/dir",

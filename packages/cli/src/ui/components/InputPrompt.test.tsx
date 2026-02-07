@@ -585,7 +585,7 @@ describe('InputPrompt', () => {
     props.slashCommands = [
       {
         name: 'help',
-        altNames: ['?'],
+        altNames: ['h'],
         kind: CommandKind.BUILT_IN,
         description: '...',
       },

@@ -51,18 +51,25 @@ ${folderStructure}`;
  * @returns A promise that resolves to an array of `Part` objects containing environment information.
  */
 export async function getEnvironmentContext(config: Config): Promise<Part[]> {
-  const today = new Date().toLocaleDateString(undefined, {
+  const now = new Date();
+  const today = now.toLocaleDateString(undefined, {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
+  const currentTime = now.toLocaleTimeString(undefined, {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const platform = process.platform;
   const directoryContext = await getDirectoryContextString(config);
 
   const context = `
 This is the Delta Code. We are setting up the context for our chat.
-Today's date is ${today}.
+Today's date is ${today}. The current time is ${currentTime} (${timezone}).
 My operating system is: ${platform}
 ${directoryContext}
         `.trim();
