@@ -772,9 +772,9 @@ describe('useSlashCommandProcessor', () => {
       const result = setupProcessorHook([command]);
       await waitFor(() => expect(result.current.slashCommands).toHaveLength(1));
 
-      const processResult = await act(async () => {
-        return result.current.handleSlashCommand('?help');
-      });
+      const processResult = await act(async () =>
+        result.current.handleSlashCommand('?help'),
+      );
 
       expect(action).not.toHaveBeenCalled();
       expect(processResult).toBe(false);

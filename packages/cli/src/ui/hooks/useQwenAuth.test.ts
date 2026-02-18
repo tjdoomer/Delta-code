@@ -416,7 +416,7 @@ describe('useDeltaAuth', () => {
     // Test with other auth types
     const apiKeySettings = createMockSettings(AuthType.USE_GEMINI);
     const { result: apiKeyResult } = renderHook(() =>
-      useDeltaAuth(geminiSettings, false),
+      useDeltaAuth(apiKeySettings, false),
     );
     expect(apiKeyResult.current.isDeltaAuth).toBe(false);
 

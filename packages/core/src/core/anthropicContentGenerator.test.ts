@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { AnthropicContentGenerator } from './anthropicContentGenerator.js';
 import { ContentGeneratorConfig } from './contentGenerator.js';

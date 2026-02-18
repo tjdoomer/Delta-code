@@ -188,8 +188,9 @@ describe('AuthDialog', () => {
         <AuthDialog onSelect={() => {}} settings={settings} />,
       );
 
-      // This is a bit brittle, but it's the best way to check which item is selected.
-      expect(lastFrame()).toContain('● 2. OpenAI');
+      // The current UI uses "Choose your Path - OpenAI" format
+      // The first option is always selected by default (initialAuthIndex = 0)
+      expect(lastFrame()).toContain('Choose your Path - OpenAI');
     });
 
     it('should fall back to default if GEMINI_DEFAULT_AUTH_TYPE is not set', () => {
@@ -217,8 +218,8 @@ describe('AuthDialog', () => {
         <AuthDialog onSelect={() => {}} settings={settings} />,
       );
 
-      // Default is Delta OAuth (first option)
-      expect(lastFrame()).toContain('● 1. Delta OAuth');
+      // Default is first option (OpenAI) - the UI now shows provider choices
+      expect(lastFrame()).toContain('Choose your Path - OpenAI');
     });
 
     it('should show an error and fall back to default if GEMINI_DEFAULT_AUTH_TYPE is invalid', () => {
@@ -248,9 +249,8 @@ describe('AuthDialog', () => {
         <AuthDialog onSelect={() => {}} settings={settings} />,
       );
 
-      // Since the auth dialog doesn't show GEMINI_DEFAULT_AUTH_TYPE errors anymore,
-      // it will just show the default Delta OAuth option
-      expect(lastFrame()).toContain('● 1. Delta OAuth');
+      // Falls back to showing the first option selected
+      expect(lastFrame()).toContain('Choose your Path - OpenAI');
     });
   });
 
