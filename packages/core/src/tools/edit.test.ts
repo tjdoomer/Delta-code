@@ -698,7 +698,8 @@ describe('EditTool', () => {
       expect(() => tool.build(params)).toThrow();
     });
 
-    it('should return FILE_WRITE_FAILURE on write error', async () => {
+    // Skip this test when running as root because root bypasses file permissions
+    it.skipIf(process.getuid?.() === 0)('should return FILE_WRITE_FAILURE on write error', async () => {
       fs.writeFileSync(filePath, 'content', 'utf8');
       // Make file readonly to trigger a write error
       fs.chmodSync(filePath, '444');
