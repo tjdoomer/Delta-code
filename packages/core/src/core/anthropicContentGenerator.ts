@@ -203,7 +203,6 @@ export class AnthropicContentGenerator implements ContentGenerator {
 
       return this.streamGenerator(response.body, userPromptId, startTime);
     } catch (error) {
-      // const durationMs = Date.now() - startTime;
       const errorMessage = error instanceof Error ? error.message : String(error);
 
       console.error('Anthropic API Streaming Error:', errorMessage);
@@ -219,8 +218,6 @@ export class AnthropicContentGenerator implements ContentGenerator {
     const reader = stream.getReader();
     const decoder = new TextDecoder();
     let buffer = '';
-    let currentContent = '';
-    // let currentToolCalls: AnthropicContentBlock[] = [];
 
     try {
       while (true) {
@@ -240,8 +237,6 @@ export class AnthropicContentGenerator implements ContentGenerator {
               const event = JSON.parse(data) as AnthropicStreamEvent;
               
               if (event.type === 'content_block_delta' && event.delta?.text) {
-                currentContent += event.delta.text;
-                
                 const response = new GenerateContentResponse();
                 response.candidates = [{
                   content: {
@@ -297,20 +292,19 @@ export class AnthropicContentGenerator implements ContentGenerator {
     return { totalTokens };
   }
 
-  async embedContent(request: EmbedContentParameters): Promise<EmbedContentResponse> {
+  async embedContent(_request: EmbedContentParameters): Promise<EmbedContentResponse> {
     throw new Error('Anthropic does not support embedding generation. Use a different provider for embeddings.');
   }
-
-  private sanitizeAnthropicParams(config: any): { temperature?: number; top_p?: number } {
+  private sanitizeAnthropicParams(config: Record<string, unknown> | undefined): { temperature?: number; top_p?: number } {
     const params: { temperature?: number; top_p?: number } = {};
     
     // Get temperature from request config or content generator config
-    const requestTemp = config?.temperature;
+    const requestTemp = config?.temperature as number | undefined;
     const configTemp = this.contentGeneratorConfig.samplingParams?.temperature;
     const temperature = requestTemp ?? configTemp;
     
     // Get top_p from request config or content generator config  
-    const requestTopP = config?.topP;
+    const requestTopP = config?.topP as number | undefined;
     const configTopP = this.contentGeneratorConfig.samplingParams?.top_p;
     const topP = requestTopP ?? configTopP;
 
@@ -435,7 +429,7 @@ export class AnthropicContentGenerator implements ContentGenerator {
     }
 
     // Sanitize parameters to avoid Anthropic API conflicts
-    const sanitizedParams = this.sanitizeAnthropicParams(request.config);
+    const sanitizedParams = this.sanitizeAnthropicParams(request.config as Record<string, unknown> | undefined);
     
     const anthropicRequest: AnthropicRequest = {
       model: this.model,

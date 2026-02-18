@@ -120,16 +120,14 @@ const showCommand: SlashCommand = {
   },
 };
 
-export const summaryCommand = (config: Config | null): SlashCommand => ({
+export const summaryCommand = (_config: Config | null): SlashCommand => ({
   name: 'summary',
   description: 'Generate or view a project summary.',
   kind: CommandKind.BUILT_IN,
-  action: async (): Promise<SlashCommandActionReturn> => {
-    return {
-      type: 'submit_prompt',
-      content:
-        'Summarize the work done in this conversation as a structured project summary with sections: Overview, Changes Made, Files Modified, Key Decisions, and Next Steps.',
-    };
-  },
+  action: async (): Promise<SlashCommandActionReturn> => ({
+    type: 'submit_prompt',
+    content:
+      'Summarize the work done in this conversation as a structured project summary with sections: Overview, Changes Made, Files Modified, Key Decisions, and Next Steps.',
+  }),
   subCommands: [saveCommand, showCommand],
 });

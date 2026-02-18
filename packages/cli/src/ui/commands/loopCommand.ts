@@ -217,13 +217,11 @@ export const loopCommand: SlashCommand = {
   name: 'loop',
   description: 'Manage the PRD-driven agent loop.',
   kind: CommandKind.BUILT_IN,
-  action: async (): Promise<MessageActionReturn> => {
-    return {
-      type: 'message',
-      messageType: 'info',
-      content:
-        'Usage:\n  /loop init             — Create a PRD template\n  /loop start <prd-file> — Start the agent loop\n  /loop status           — Check loop progress\n  /loop stop             — Stop the loop',
-    };
-  },
+  action: async (): Promise<MessageActionReturn> => ({
+    type: 'message',
+    messageType: 'info',
+    content:
+      'Usage:\n  /loop init             — Create a PRD template\n  /loop start <prd-file> — Start the agent loop\n  /loop status           — Check loop progress\n  /loop stop             — Stop the loop',
+  }),
   subCommands: [initCommand, startCommand, statusCommand, stopCommand],
 };

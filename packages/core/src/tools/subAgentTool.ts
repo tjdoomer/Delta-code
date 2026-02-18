@@ -58,7 +58,7 @@ class SubAgentToolInvocation extends BaseToolInvocation<
     return `Running subagent (${this.params.type}): ${this.params.prompt.substring(0, 80)}...`;
   }
 
-  async execute(signal: AbortSignal): Promise<ToolResult> {
+  async execute(_signal: AbortSignal): Promise<ToolResult> {
     const { prompt, type, tools: customTools } = this.params;
 
     // Determine tools based on type

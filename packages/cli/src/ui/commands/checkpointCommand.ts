@@ -212,15 +212,12 @@ export const checkpointCommand = (config: Config | null): SlashCommand | null =>
     altNames: ['cp'],
     description: 'Manage workspace checkpoints.',
     kind: CommandKind.BUILT_IN,
-    action: async (context): Promise<MessageActionReturn> => {
-      // No args: show help
-      return {
-        type: 'message',
-        messageType: 'info',
-        content:
-          'Usage:\n  /checkpoint save [label]  — Save a checkpoint\n  /checkpoint list          — List checkpoints\n  /checkpoint restore <id>  — Restore a checkpoint',
-      };
-    },
+    action: async (_context): Promise<MessageActionReturn> => ({
+      type: 'message',
+      messageType: 'info',
+      content:
+        'Usage:\n  /checkpoint save [label]  — Save a checkpoint\n  /checkpoint list          — List checkpoints\n  /checkpoint restore <id>  — Restore a checkpoint',
+    }),
     subCommands: [saveCommand, listCommand, restoreSubCommand],
   };
 };
