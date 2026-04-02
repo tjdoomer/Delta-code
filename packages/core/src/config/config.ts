@@ -37,6 +37,7 @@ import { LintTool } from '../tools/lint.js';
 import { RunTestsTool } from '../tools/runTests.js';
 import { CheckpointSaveTool, CheckpointRestoreTool, CheckpointListTool } from '../tools/checkpoint.js';
 import { FileSummaryTool } from '../tools/fileSummary.js';
+import { RepoMapTool } from '../tools/repoMap.js';
 import { DeltaClient } from '../core/client.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { GitService } from '../services/gitService.js';
@@ -932,6 +933,7 @@ export class Config {
     registerCoreTool(CheckpointRestoreTool, this);
     registerCoreTool(CheckpointListTool, this);
     registerCoreTool(FileSummaryTool);
+    registerCoreTool(RepoMapTool, this);
 
     await registry.discoverAllTools();
     return registry;
