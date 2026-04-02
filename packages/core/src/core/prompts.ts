@@ -18,6 +18,7 @@ import process from 'node:process';
 import { isGitRepository } from '../utils/gitUtils.js';
 import { MemoryTool, DELTA_CONFIG_DIR } from '../tools/memoryTool.js';
 import { TodoWriteTool } from '../tools/todoWrite.js';
+import { getActivePersonaPrompt } from '../personas/personaManager.js';
 
 export interface ModelTemplateMapping {
   baseUrls?: string[];
@@ -468,12 +469,18 @@ Your core function is efficient and safe assistance. Balance extreme conciseness
     }
   }
 
+  // Inject active persona voice modifier (if any) between base prompt and memory
+  const personaPrompt = getActivePersonaPrompt();
+  const personaSuffix = personaPrompt
+    ? `\n\n---\n\n# Active Persona\n${personaPrompt}`
+    : '';
+
   const memorySuffix =
     userMemory && userMemory.trim().length > 0
       ? `\n\n---\n\n${userMemory.trim()}`
       : '';
 
-  return `${basePrompt}${memorySuffix}`;
+  return `${basePrompt}${personaSuffix}${memorySuffix}`;
 }
 
 /**

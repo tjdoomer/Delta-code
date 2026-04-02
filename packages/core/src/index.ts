@@ -55,6 +55,10 @@ export * from './providers/localModelDiscovery.js';
 // Export diagnostics
 export * from './diagnostics/providerDoctor.js';
 
+// Export persona system
+export * from './personas/builtinPersonas.js';
+export * from './personas/personaManager.js';
+
 // Export IDE specific logic
 export * from './ide/ide-client.js';
 export * from './ide/ideContext.js';

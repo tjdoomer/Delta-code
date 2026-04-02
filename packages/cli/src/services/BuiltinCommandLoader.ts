@@ -36,6 +36,7 @@ import { setupGithubCommand } from '../ui/commands/setupGithubCommand.js';
 import { terminalSetupCommand } from '../ui/commands/terminalSetupCommand.js';
 import { modelCommand } from '../ui/commands/modelCommand.js';
 import { doctorCommand } from '../ui/commands/doctorCommand.js';
+import { personaCommand } from '../ui/commands/personaCommand.js';
 import { shortcutsCommand } from '../ui/commands/shortcutsCommand.js';
 import { summaryCommand } from '../ui/commands/summaryCommand.js';
 import { approvalModeCommand } from '../ui/commands/approvalModeCommand.js';
@@ -88,6 +89,7 @@ export class BuiltinCommandLoader implements ICommandLoader {
       terminalSetupCommand,
       modelCommand,
       doctorCommand,
+      personaCommand,
       shortcutsCommand,
       summaryCommand(this.config),
       approvalModeCommand,
