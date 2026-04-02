@@ -30,6 +30,7 @@ import {
 import { TodoWriteTool } from '../tools/todoWrite.js';
 import { WebSearchTool } from '../tools/web-search.js';
 import { SubAgentTool } from '../tools/subAgentTool.js';
+import { ThinkTool } from '../tools/think.js';
 import { DeltaClient } from '../core/client.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { GitService } from '../services/gitService.js';
@@ -916,6 +917,7 @@ export class Config {
       registerCoreTool(WebSearchTool, this);
     }
     registerCoreTool(SubAgentTool, this);
+    registerCoreTool(ThinkTool);
 
     await registry.discoverAllTools();
     return registry;
