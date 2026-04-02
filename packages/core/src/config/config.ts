@@ -35,6 +35,7 @@ import { DiffPreviewTool } from '../tools/diffPreview.js';
 import { MultiEditTool } from '../tools/multiEdit.js';
 import { LintTool } from '../tools/lint.js';
 import { RunTestsTool } from '../tools/runTests.js';
+import { CheckpointSaveTool, CheckpointRestoreTool, CheckpointListTool } from '../tools/checkpoint.js';
 import { DeltaClient } from '../core/client.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { GitService } from '../services/gitService.js';
@@ -926,6 +927,9 @@ export class Config {
     registerCoreTool(MultiEditTool);
     registerCoreTool(LintTool);
     registerCoreTool(RunTestsTool);
+    registerCoreTool(CheckpointSaveTool, this);
+    registerCoreTool(CheckpointRestoreTool, this);
+    registerCoreTool(CheckpointListTool, this);
 
     await registry.discoverAllTools();
     return registry;
