@@ -3504,8 +3504,8 @@ describe('OpenAIContentGenerator', () => {
     });
   });
 
-  describe('think tag filtering', () => {
-    it('should filter complete <think> blocks from non-streaming responses', async () => {
+  describe('think tag handling', () => {
+    it('should extract <think> blocks as thought parts from non-streaming responses', async () => {
       const mockResponse = {
         id: 'test-id',
         object: 'chat.completion',
@@ -3533,11 +3533,13 @@ describe('OpenAIContentGenerator', () => {
       };
 
       const response = await generator.generateContent(request, 'test-prompt');
-      const text = response.candidates?.[0]?.content?.parts?.[0];
-      expect(text).toEqual({ text: 'Here is my answer.' });
+      const parts = response.candidates?.[0]?.content?.parts;
+      // Think content becomes a thought part, visible text is separate
+      expect(parts?.[0]).toEqual({ thought: true, text: 'I need to think about this...' });
+      expect(parts?.[1]).toEqual({ text: 'Here is my answer.' });
     });
 
-    it('should filter <think> blocks from streaming responses', async () => {
+    it('should extract <think> blocks as thought parts from streaming responses', async () => {
       const chunks = [
         {
           id: 'test-id',
@@ -3597,14 +3599,19 @@ describe('OpenAIContentGenerator', () => {
         responses.push(response);
       }
 
-      // Collect all text parts
-      const allText = responses
-        .flatMap((r) => r.candidates?.[0]?.content?.parts || [])
-        .filter((p) => 'text' in p && p.text)
+      // Collect all parts
+      const allParts = responses.flatMap((r) => r.candidates?.[0]?.content?.parts || []);
+
+      // Visible text should not include think content
+      const visibleText = allParts
+        .filter((p) => 'text' in p && p.text && !('thought' in p && p.thought))
         .map((p) => ('text' in p ? p.text : ''))
         .join('');
+      expect(visibleText).toBe('Hello world');
 
-      expect(allText).toBe('Hello world');
+      // Think content should be surfaced as thought parts
+      const thoughtParts = allParts.filter((p) => 'thought' in p && p.thought);
+      expect(thoughtParts.length).toBeGreaterThan(0);
     });
 
     it('should pass through text with no think tags unchanged', async () => {
@@ -3638,7 +3645,7 @@ describe('OpenAIContentGenerator', () => {
       expect(text).toEqual({ text: 'Just a normal response with no tags.' });
     });
 
-    it('should filter multiple <think> blocks from non-streaming responses', async () => {
+    it('should extract multiple <think> blocks as a combined thought part', async () => {
       const mockResponse = {
         id: 'test-id',
         object: 'chat.completion',
@@ -3666,8 +3673,11 @@ describe('OpenAIContentGenerator', () => {
       };
 
       const response = await generator.generateContent(request, 'test-prompt');
-      const text = response.candidates?.[0]?.content?.parts?.[0];
-      expect(text).toEqual({ text: 'First part. Second part.' });
+      const parts = response.candidates?.[0]?.content?.parts;
+      // Thought part comes first with combined think content
+      expect(parts?.[0]).toEqual({ thought: true, text: 'thought 1\n\nthought 2' });
+      // Visible text follows
+      expect(parts?.[1]).toEqual({ text: 'First part. Second part.' });
     });
   });
 });

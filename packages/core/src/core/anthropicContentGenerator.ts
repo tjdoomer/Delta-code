@@ -213,6 +213,16 @@ export class AnthropicContentGenerator implements ContentGenerator {
                 FinishReason.FINISH_REASON_UNSPECIFIED,
                 responseId,
               );
+            } else if (delta?.type === 'thinking_delta' && 'thinking' in delta) {
+              // Extended thinking chunk — surface as thought part
+              const thinkText = (delta as { thinking?: string }).thinking;
+              if (thinkText) {
+                yield this.makeStreamResponse(
+                  [{ thought: true, text: thinkText }],
+                  FinishReason.FINISH_REASON_UNSPECIFIED,
+                  responseId,
+                );
+              }
             } else if (delta?.type === 'input_json_delta' && 'partial_json' in delta) {
               // Tool call argument fragment — append to the accumulator.
               // We don't yield yet because the JSON is incomplete.
@@ -539,8 +549,14 @@ export class AnthropicContentGenerator implements ContentGenerator {
           },
         });
       }
-      // thinking blocks are intentionally not surfaced yet — branch 6
-      // (feature/think-passthrough) will handle that
+      else if (block.type === 'thinking' && 'thinking' in block) {
+        // Anthropic's extended thinking — surface as a thought part so the
+        // Turn system renders it as DeltaEventType.Thought
+        const thinkText = (block as { thinking?: string }).thinking;
+        if (thinkText) {
+          parts.push({ thought: true, text: thinkText });
+        }
+      }
     }
 
     response.responseId = message.id;
