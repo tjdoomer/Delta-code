@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type PartListUnion } from '@google/genai';
+import {
+  PartListUnion,
+} from '../types/delta.js';
 import { partToString } from '../utils/partUtils.js';
 
 /**

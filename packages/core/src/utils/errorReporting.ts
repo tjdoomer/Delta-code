@@ -4,10 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  Content,
+} from '../types/delta.js';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { Content } from '@google/genai';
 
 interface ErrorReportData {
   error: { message: string; stack?: string } | { message: string };

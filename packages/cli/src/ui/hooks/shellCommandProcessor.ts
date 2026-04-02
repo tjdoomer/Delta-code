@@ -5,6 +5,9 @@
  */
 
 import {
+  PartListUnion,
+} from '../../../../core/src/types/delta.js';
+import {
   HistoryItemWithoutId,
   IndividualToolCallDisplay,
   ToolCallStatus,
@@ -17,7 +20,7 @@ import {
   ShellExecutionResult,
   ShellExecutionService,
 } from '@delta-code/delta-code-core';
-import { type PartListUnion } from '@google/genai';
+
 import { UseHistoryManagerReturn } from './useHistoryManager.js';
 import { SHELL_COMMAND_NAME } from '../constants.js';
 import { formatMemoryUsage } from '../utils/formatters.js';

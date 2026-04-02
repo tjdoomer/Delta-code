@@ -11,10 +11,12 @@ import {
   GenerateContentResponse,
   Content,
   GenerateContentConfig,
-  SendMessageParameters,
-  createUserContent,
   Part,
   Tool,
+} from '../types/delta.js';
+import {
+  SendMessageParameters,
+  createUserContent,
 } from '@google/genai';
 import { retryWithBackoff } from '../utils/retry.js';
 import { isFunctionResponse } from '../utils/messageInspectors.js';

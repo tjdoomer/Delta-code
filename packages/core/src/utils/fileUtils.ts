@@ -4,9 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  PartUnion,
+} from '../types/delta.js';
 import fs from 'node:fs';
 import path from 'node:path';
-import { PartUnion } from '@google/genai';
+
 import mime from 'mime-types';
 
 // Constants for text file processing

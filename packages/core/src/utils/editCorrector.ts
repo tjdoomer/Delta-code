@@ -4,7 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Content, GenerateContentConfig } from '@google/genai';
+import {
+  Content,
+  GenerateContentConfig,
+} from '../types/delta.js';
 import { DeltaClient } from '../core/client.js';
 import { EditToolParams, EditTool } from '../tools/edit.js';
 import { WriteFileTool } from '../tools/write-file.js';

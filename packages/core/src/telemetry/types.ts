@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GenerateContentResponseUsageMetadata } from '@google/genai';
+import {
+  GenerateContentResponseUsageMetadata,
+} from '../types/delta.js';
 import { Config } from '../config/config.js';
 import { CompletedToolCall } from '../core/coreToolScheduler.js';
 import { FileDiff } from '../tools/tools.js';

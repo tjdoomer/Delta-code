@@ -3,12 +3,15 @@
  */
 
 import {
+  FunctionDeclaration,
+} from '../types/delta.js';
+import {
   BaseDeclarativeTool,
   BaseToolInvocation,
   Kind,
   ToolResult,
 } from './tools.js';
-import { FunctionDeclaration } from '@google/genai';
+
 import { execSync } from 'node:child_process';
 import { detectProjectCommands } from './diagnostics/projectDetector.js';
 import { parseGenericDiagnostics, formatDiagnostics } from './diagnostics/outputParsers.js';

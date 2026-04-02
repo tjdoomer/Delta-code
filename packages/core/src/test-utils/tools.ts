@@ -4,6 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  Schema,
+  Type,
+} from '../types/delta.js';
 import { vi } from 'vitest';
 import {
   BaseTool,
@@ -11,7 +15,6 @@ import {
   ToolResult,
   Kind,
 } from '../tools/tools.js';
-import { Schema, Type } from '@google/genai';
 
 /**
  * A highly configurable mock tool for testing purposes.

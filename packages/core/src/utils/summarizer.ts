@@ -4,12 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { ToolResult } from '../tools/tools.js';
 import {
   Content,
   GenerateContentConfig,
   GenerateContentResponse,
-} from '@google/genai';
+} from '../types/delta.js';
+import { ToolResult } from '../tools/tools.js';
+
 import { DeltaClient } from '../core/client.js';
 import { DEFAULT_GEMINI_FLASH_LITE_MODEL } from '../config/models.js';
 import { getResponseText, partToString } from './partUtils.js';

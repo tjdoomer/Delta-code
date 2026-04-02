@@ -4,9 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  PartListUnion,
+  PartUnion,
+} from '../../../../core/src/types/delta.js';
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { PartListUnion, PartUnion } from '@google/genai';
+
 import {
   AnyToolInvocation,
   Config,

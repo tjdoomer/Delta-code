@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Part } from '@google/genai';
+import {
+  Part,
+} from '../types/delta.js';
 import { Config } from '../config/config.js';
 import { getFolderStructure } from './getFolderStructure.js';
 

@@ -4,9 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  Content,
+} from '../types/delta.js';
 import path from 'node:path';
 import { promises as fs } from 'node:fs';
-import { Content } from '@google/genai';
+
 import { getProjectTempDir } from '../utils/paths.js';
 
 const LOG_FILE_NAME = 'logs.json';
