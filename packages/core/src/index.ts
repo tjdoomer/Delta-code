@@ -48,6 +48,10 @@ export * from './utils/errorParsing.js';
 export * from './services/fileDiscoveryService.js';
 export * from './services/gitService.js';
 
+// Export provider registry and local model discovery
+export * from './config/providerRegistry.js';
+export * from './providers/localModelDiscovery.js';
+
 // Export IDE specific logic
 export * from './ide/ide-client.js';
 export * from './ide/ideContext.js';
