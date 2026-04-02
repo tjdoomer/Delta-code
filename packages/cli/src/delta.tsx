@@ -52,6 +52,7 @@ import {
   logIdeConnection,
   IdeConnectionEvent,
   IdeConnectionType,
+  getProviderRegistry,
 } from '@delta-code/delta-code-core';
 import { validateAuthMethod } from './config/auth.js';
 import { setMaxSizedBoxDebugging } from './ui/components/shared/MaxSizedBox.js';
@@ -201,7 +202,6 @@ export async function main() {
 
     if (needsAuth) {
       try {
-        const { getProviderRegistry } = await import('@delta-code/delta-code-core');
         const registry = getProviderRegistry();
         const provConfig = await registry.load();
         const defaultId = provConfig.defaultConnection;
