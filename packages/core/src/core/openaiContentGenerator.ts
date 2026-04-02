@@ -32,6 +32,7 @@ import { Config } from '../config/config.js';
 import { openaiLogger } from '../utils/openaiLogger.js';
 import { safeJsonParse } from '../utils/safeJsonParse.js';
 import { normalizeSchemaForProvider, type ProviderType } from '../tools/schemaNormalizer.js';
+import { extractThinkBlocks, StreamingThinkExtractor } from '../utils/thinkBlockParser.js';
 
 // Extended types to support cache_control
 interface ChatCompletionContentPartTextWithCache
@@ -104,8 +105,7 @@ export class OpenAIContentGenerator implements ContentGenerator {
       arguments: string;
     }
   > = new Map();
-  private insideThinkBlock: boolean = false;
-  private thinkTagBuffer: string = '';
+  private thinkExtractor: StreamingThinkExtractor = new StreamingThinkExtractor();
 
   constructor(
     contentGeneratorConfig: ContentGeneratorConfig,
@@ -551,72 +551,15 @@ export class OpenAIContentGenerator implements ContentGenerator {
     }
   }
 
-  /**
-   * Filter <think>...</think> tags from streaming text chunks.
-   * Handles tags that span multiple chunks using stateful buffering.
-   */
-  private filterThinkTags(text: string): string {
-    let result = '';
-    let i = 0;
-
-    while (i < text.length) {
-      if (this.insideThinkBlock) {
-        // Look for closing </think> tag
-        const closeIdx = text.indexOf('</think>', i);
-        if (closeIdx !== -1) {
-          // Found closing tag, skip everything up to and including it
-          this.insideThinkBlock = false;
-          i = closeIdx + '</think>'.length;
-        } else {
-          // No closing tag in this chunk, check if a partial </think> is at the end
-          // Buffer up to 8 chars (length of "</think>") to handle split tags
-          const tailLen = Math.min(text.length - i, 8);
-          const tail = text.substring(text.length - tailLen);
-          if ('</think>'.startsWith(tail) && tail.length < '</think>'.length) {
-            this.thinkTagBuffer = tail;
-          }
-          // Skip all remaining text (we're inside a think block)
-          break;
-        }
-      } else {
-        // Look for opening <think> tag
-        const openIdx = text.indexOf('<think>', i);
-        if (openIdx !== -1) {
-          // Emit text before the tag
-          result += text.substring(i, openIdx);
-          this.insideThinkBlock = true;
-          i = openIdx + '<think>'.length;
-        } else {
-          // Check if a partial <think> tag might be at the end of the chunk
-          let partialMatch = false;
-          for (let len = Math.min(7, text.length - i); len >= 1; len--) {
-            const candidate = text.substring(text.length - len);
-            if ('<think>'.startsWith(candidate)) {
-              // Potential partial opening tag at end of chunk
-              result += text.substring(i, text.length - len);
-              this.thinkTagBuffer = candidate;
-              partialMatch = true;
-              break;
-            }
-          }
-          if (!partialMatch) {
-            result += text.substring(i);
-          }
-          break;
-        }
-      }
-    }
-
-    return result;
-  }
+  // filterThinkTags removed — replaced by StreamingThinkExtractor in thinkBlockParser.ts
+  // which extracts think content as thought parts instead of discarding it.
 
   private async *streamGenerator(
     stream: AsyncIterable<OpenAI.Chat.ChatCompletionChunk>,
   ): AsyncGenerator<GenerateContentResponse> {
-    // Reset the accumulator for each new stream
+    // Reset accumulators for each new stream
     this.streamingToolCalls.clear();
-    this.insideThinkBlock = false;
-    this.thinkTagBuffer = '';
+    this.thinkExtractor.reset();
 
     for await (const chunk of stream) {
       yield this.convertStreamChunkToGenAIFormat(chunk);
@@ -1374,11 +1317,15 @@ export class OpenAIContentGenerator implements ContentGenerator {
 
     const parts: Part[] = [];
 
-    // Handle text content (filter out <think>...</think> tags from local models)
+    // Extract <think> blocks from local models as thought parts instead of stripping them.
+    // The Turn system surfaces these as DeltaEventType.Thought events in the UI.
     if (choice.message.content) {
-      const filtered = choice.message.content.replace(/<think>[\s\S]*?<\/think>/g, '');
-      if (filtered) {
-        parts.push({ text: filtered });
+      const { text: visibleText, thinkContent } = extractThinkBlocks(choice.message.content);
+      if (thinkContent) {
+        parts.push({ thought: true, text: thinkContent });
+      }
+      if (visibleText) {
+        parts.push({ text: visibleText });
       }
     }
 
@@ -1462,18 +1409,17 @@ export class OpenAIContentGenerator implements ContentGenerator {
     if (choice) {
       const parts: Part[] = [];
 
-      // Handle text content (filter out <think>...</think> tags from local models)
+      // Extract <think> blocks from streaming content instead of stripping them.
+      // Completed think blocks become { thought: true } parts that the Turn
+      // system surfaces as DeltaEventType.Thought events.
       if (choice.delta?.content) {
         if (typeof choice.delta.content === 'string') {
-          // Prepend any buffered partial tag from previous chunk
-          let textToFilter = choice.delta.content;
-          if (this.thinkTagBuffer) {
-            textToFilter = this.thinkTagBuffer + textToFilter;
-            this.thinkTagBuffer = '';
+          const { visibleText, completedThink } = this.thinkExtractor.process(choice.delta.content);
+          if (completedThink) {
+            parts.push({ thought: true, text: completedThink });
           }
-          const filtered = this.filterThinkTags(textToFilter);
-          if (filtered) {
-            parts.push({ text: filtered });
+          if (visibleText) {
+            parts.push({ text: visibleText });
           }
         }
       }
