@@ -31,6 +31,7 @@ import { ApiErrorEvent, ApiResponseEvent } from '../telemetry/types.js';
 import { Config } from '../config/config.js';
 import { openaiLogger } from '../utils/openaiLogger.js';
 import { safeJsonParse } from '../utils/safeJsonParse.js';
+import { normalizeSchemaForProvider, type ProviderType } from '../tools/schemaNormalizer.js';
 
 // Extended types to support cache_control
 interface ChatCompletionContentPartTextWithCache
@@ -212,6 +213,23 @@ export class OpenAIContentGenerator implements ContentGenerator {
       baseUrl === 'https://dashscope.aliyuncs.com/compatible-mode/v1' ||
       baseUrl === 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1'
     );
+  }
+
+  /**
+   * Detect the schema normalization provider type from the base URL and auth type.
+   * Used by convertGenAIToolsToOpenAI to adapt tool schemas for the target backend.
+   */
+  private getSchemaProviderType(): ProviderType {
+    const baseUrl = (this.contentGeneratorConfig.baseUrl || '').toLowerCase();
+
+    if (baseUrl.includes('localhost:11434') || baseUrl.includes('ollama')) {
+      return 'ollama';
+    }
+    if (baseUrl.includes('localhost:1234') || baseUrl.includes('lmstudio')) {
+      return 'lmstudio';
+    }
+    // Default OpenAI-compatible: use non-strict mode (doesn't force all into required)
+    return 'openai';
   }
 
   /**
@@ -868,12 +886,18 @@ export class OpenAIContentGenerator implements ContentGenerator {
               );
             }
 
+            // Normalize schema for the target provider — handles differences
+            // in strict mode, required fields, and additionalProperties support
+            const normalizedParams = parameters
+              ? normalizeSchemaForProvider(parameters, this.getSchemaProviderType())
+              : undefined;
+
             openAITools.push({
               type: 'function',
               function: {
                 name: func.name,
                 description: func.description,
-                parameters,
+                parameters: normalizedParams,
               },
             });
           }

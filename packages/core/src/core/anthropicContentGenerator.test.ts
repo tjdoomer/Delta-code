@@ -315,7 +315,7 @@ describe('AnthropicContentGenerator', () => {
     it('should convert functionCall parts to tool_use blocks', async () => {
       mockCreate.mockResolvedValueOnce(makeMockResponse());
 
-      const request: GenerateContentParameters = {
+      const request = {
         model: 'claude-3-sonnet-20240229',
         contents: [{
           role: 'model',
@@ -336,7 +336,7 @@ describe('AnthropicContentGenerator', () => {
             },
           }],
         }],
-      };
+      } as GenerateContentParameters;
 
       await generator.generateContent(request, 'test-prompt');
 

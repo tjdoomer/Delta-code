@@ -33,6 +33,7 @@ import {
 import { logApiError, logApiResponse } from '../telemetry/loggers.js';
 import { ApiErrorEvent, ApiResponseEvent } from '../telemetry/types.js';
 import { Config } from '../config/config.js';
+import { normalizeSchemaForProvider } from '../tools/schemaNormalizer.js';
 
 // tiktoken is used for accurate token counting instead of the old char/4 heuristic.
 // cl100k_base covers Claude's tokenizer closely enough for compression threshold
@@ -376,10 +377,16 @@ export class AnthropicContentGenerator implements ContentGenerator {
                 inputSchema = func.parameters as unknown as AnthropicTool.InputSchema;
               }
 
+              // Normalize schema for Anthropic — strips invalid required entries
+              const normalized = normalizeSchemaForProvider(
+                inputSchema as unknown as Record<string, unknown>,
+                'anthropic',
+              ) as unknown as AnthropicTool.InputSchema;
+
               tools.push({
                 name: func.name,
                 description: func.description,
-                input_schema: inputSchema,
+                input_schema: normalized,
               });
             }
           }

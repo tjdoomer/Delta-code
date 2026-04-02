@@ -1191,6 +1191,7 @@ describe('OpenAIContentGenerator', () => {
                 description: 'Test function',
                 parameters: {
                   type: 'object',
+                  additionalProperties: false,
                   properties: {
                     count: { type: 'integer', minimum: 1, maximum: 100 },
                     name: { type: 'string', minLength: 1, maxLength: 50 },
@@ -1353,9 +1354,11 @@ describe('OpenAIContentGenerator', () => {
                 description: 'Function with nested parameters',
                 parameters: {
                   type: 'object',
+                  additionalProperties: false,
                   properties: {
                     config: {
                       type: 'object',
+                      additionalProperties: false,
                       properties: {
                         nested_count: { type: 'integer' },
                         nested_array: {
