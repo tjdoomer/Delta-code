@@ -192,6 +192,55 @@ export async function main() {
     process.exit(0);
   }
 
+  // Auto-connect from provider registry before falling through to auth dialog.
+  // If a default connection is saved and its credentials aren't already set via
+  // env vars, inject them now. This makes /model add persistent across restarts.
+  {
+    const needsAuth = !settings.merged.selectedAuthType
+      || (!process.env.OPENAI_API_KEY && !process.env.ANTHROPIC_API_KEY && !process.env.GEMINI_API_KEY);
+
+    if (needsAuth) {
+      try {
+        const { getProviderRegistry } = await import('@delta-code/delta-code-core');
+        const registry = getProviderRegistry();
+        const provConfig = await registry.load();
+        const defaultId = provConfig.defaultConnection;
+
+        if (defaultId) {
+          const conn = provConfig.connections.find((c: { id: string }) => c.id === defaultId);
+          if (conn) {
+            let authType: AuthType | undefined;
+
+            if (conn.type === 'openai-compatible' || conn.type === 'openai') {
+              process.env.OPENAI_API_KEY = conn.apiKey || 'not-needed';
+              if (conn.baseUrl) process.env.OPENAI_BASE_URL = conn.baseUrl;
+              authType = AuthType.USE_OPENAI;
+            } else if (conn.type === 'anthropic') {
+              process.env.ANTHROPIC_API_KEY = conn.apiKey || '';
+              authType = AuthType.USE_CLAUDE;
+            } else if (conn.type === 'gemini') {
+              process.env.GEMINI_API_KEY = conn.apiKey || '';
+              authType = AuthType.USE_GEMINI;
+            }
+
+            if (provConfig.defaultModel && !process.env.OPENAI_MODEL) {
+              process.env.OPENAI_MODEL = provConfig.defaultModel;
+            }
+
+            if (authType) {
+              // Persist via settings.setValue so both settings.merged AND
+              // the persisted file are updated. This is what the auth dialog
+              // does internally — we're just doing it from the registry.
+              settings.setValue(SettingScope.User, 'selectedAuthType', authType);
+            }
+          }
+        }
+      } catch {
+        // Registry not available — fall through to normal auth flow
+      }
+    }
+  }
+
   // Set a default auth type if one isn't set.
   if (!settings.merged.selectedAuthType) {
     if (process.env.CLOUD_SHELL === 'true') {
