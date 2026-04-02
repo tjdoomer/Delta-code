@@ -32,6 +32,7 @@ import { WebSearchTool } from '../tools/web-search.js';
 import { SubAgentTool } from '../tools/subAgentTool.js';
 import { ThinkTool } from '../tools/think.js';
 import { DiffPreviewTool } from '../tools/diffPreview.js';
+import { MultiEditTool } from '../tools/multiEdit.js';
 import { DeltaClient } from '../core/client.js';
 import { FileDiscoveryService } from '../services/fileDiscoveryService.js';
 import { GitService } from '../services/gitService.js';
@@ -920,6 +921,7 @@ export class Config {
     registerCoreTool(SubAgentTool, this);
     registerCoreTool(ThinkTool);
     registerCoreTool(DiffPreviewTool);
+    registerCoreTool(MultiEditTool);
 
     await registry.discoverAllTools();
     return registry;
