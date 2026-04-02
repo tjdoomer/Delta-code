@@ -365,6 +365,48 @@ export async function loadCliConfig(
     process.env.OPENAI_BASE_URL = argv.openaiBaseUrl;
   }
 
+  // Auto-inject credentials from saved provider registry if no env vars are set.
+  // This is what makes /model add persistent — saved connections auto-apply on startup.
+  if (!process.env.OPENAI_API_KEY && !process.env.ANTHROPIC_API_KEY && !process.env.GEMINI_API_KEY) {
+    try {
+      const { getProviderRegistry } = await import('@delta-code/delta-code-core');
+      const registry = getProviderRegistry();
+      const config = await registry.load();
+      const defaultId = config.defaultConnection;
+
+      if (defaultId) {
+        const conn = config.connections.find(c => c.id === defaultId);
+        if (conn) {
+          if (conn.type === 'openai-compatible' || conn.type === 'openai') {
+            process.env.OPENAI_API_KEY = conn.apiKey || 'not-needed';
+            if (conn.baseUrl) process.env.OPENAI_BASE_URL = conn.baseUrl;
+            // Auto-set auth type to OpenAI if not already set
+            if (!settings.selectedAuthType) {
+              settings.selectedAuthType = 'openai' as any;
+            }
+          } else if (conn.type === 'anthropic') {
+            process.env.ANTHROPIC_API_KEY = conn.apiKey || '';
+            if (!settings.selectedAuthType) {
+              settings.selectedAuthType = 'claude' as any;
+            }
+          } else if (conn.type === 'gemini') {
+            process.env.GEMINI_API_KEY = conn.apiKey || '';
+            if (!settings.selectedAuthType) {
+              settings.selectedAuthType = 'gemini-api-key' as any;
+            }
+          }
+
+          // Set the default model if saved
+          if (config.defaultModel && !process.env.OPENAI_MODEL) {
+            process.env.OPENAI_MODEL = config.defaultModel;
+          }
+        }
+      }
+    } catch {
+      // Registry not available or corrupt — continue with normal auth flow
+    }
+  }
+
   // Handle Tavily API key from command line
   if (argv.tavilyApiKey) {
     process.env.TAVILY_API_KEY = argv.tavilyApiKey;
