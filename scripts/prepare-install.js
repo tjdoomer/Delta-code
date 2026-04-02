@@ -29,14 +29,23 @@ const bundlePath = join(root, 'bundle', 'delta.js');
 try {
   // Ensure generated commit info exists before any bundling attempts
   try {
-    execSync('node scripts/generate-git-commit-info.js', { stdio: 'inherit', cwd: root });
+    execSync('node scripts/generate-git-commit-info.js', {
+      stdio: 'inherit',
+      cwd: root,
+    });
   } catch (e) {
-    console.warn('[delta] Failed to generate git commit info during prepare:', e?.message || e);
+    console.warn(
+      '[delta] Failed to generate git commit info during prepare:',
+      e?.message || e,
+    );
   }
 
   if (existsSync(bundlePath)) {
     // Bundle already present (committed). Just ensure assets are copied.
-    execSync('node scripts/copy_bundle_assets.js', { stdio: 'inherit', cwd: root });
+    execSync('node scripts/copy_bundle_assets.js', {
+      stdio: 'inherit',
+      cwd: root,
+    });
     process.exit(0);
   }
 
@@ -45,19 +54,26 @@ try {
     // Check if esbuild is resolvable before invoking the build script.
     await import('esbuild');
     execSync('node esbuild.config.js', { stdio: 'inherit', cwd: root });
-    execSync('node scripts/copy_bundle_assets.js', { stdio: 'inherit', cwd: root });
+    execSync('node scripts/copy_bundle_assets.js', {
+      stdio: 'inherit',
+      cwd: root,
+    });
     process.exit(0);
   } catch (e) {
     // esbuild missing or build failure: cannot build in this environment.
-    const reason = e && typeof e === 'object' && 'message' in e ? e.message : String(e);
+    const reason =
+      e && typeof e === 'object' && 'message' in e ? e.message : String(e);
     console.warn('[delta] Skipping bundle build during prepare:', reason);
-    console.warn('[delta] If installing from git, ensure the bundle is committed.');
+    console.warn(
+      '[delta] If installing from git, ensure the bundle is committed.',
+    );
     // Do not fail install; bin may be unavailable without bundle.
     process.exit(0);
   }
 } catch (err) {
-  console.warn('[delta] prepare-install encountered a non-fatal issue:', err?.message || err);
+  console.warn(
+    '[delta] prepare-install encountered a non-fatal issue:',
+    err?.message || err,
+  );
   process.exit(0);
 }
-
-

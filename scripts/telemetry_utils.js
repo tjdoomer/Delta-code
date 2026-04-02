@@ -242,7 +242,9 @@ export async function ensureBinary(
   }
 
   const downloadUrl = asset.browser_download_url;
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'delta-code-telemetry-'));
+  const tmpDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), 'delta-code-telemetry-'),
+  );
   const archivePath = path.join(tmpDir, asset.name);
 
   try {
