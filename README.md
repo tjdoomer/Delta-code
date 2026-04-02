@@ -1,5 +1,8 @@
 # Delta Code
 
+<img width="317" height="124" alt="Screenshot 2026-04-03 at 12 19 31 am" src="https://github.com/user-attachments/assets/49e20679-9214-48fd-be69-6bfd9f0ce25e" />
+
+
 AI-powered coding agent for the terminal. Any model. Every tool. Zero lock-in.
 
 Delta Code connects to any LLM provider — local models via LM Studio/Ollama, OpenAI, Anthropic, Google, Azure, or any OpenAI-compatible endpoint — and gives the model a rich set of coding tools: file editing, search, shell execution, linting, testing, codebase navigation, and more.
