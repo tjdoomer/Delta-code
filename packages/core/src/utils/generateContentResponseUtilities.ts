@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GenerateContentResponse, Part, FunctionCall } from '@google/genai';
-
+import {
+  GenerateContentResponse,
+  Part,
+  FunctionCall,
+} from '../types/delta.js';
 export function getResponseText(
   response: GenerateContentResponse,
 ): string | undefined {

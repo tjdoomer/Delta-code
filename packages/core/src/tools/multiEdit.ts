@@ -7,12 +7,15 @@
  */
 
 import {
+  FunctionDeclaration,
+} from '../types/delta.js';
+import {
   BaseDeclarativeTool,
   BaseToolInvocation,
   Kind,
   ToolResult,
 } from './tools.js';
-import { FunctionDeclaration } from '@google/genai';
+
 import * as fs from 'node:fs/promises';
 
 interface EditEntry {

@@ -4,12 +4,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { GenerateContentResponse, PartListUnion, Part } from '@google/genai';
-
 /**
  * Converts a PartListUnion into a string.
  * If verbose is true, includes summary representations of non-text parts.
  */
+import {
+  GenerateContentResponse,
+  PartListUnion,
+  Part,
+} from '../types/delta.js';
 export function partToString(
   value: PartListUnion,
   options?: { verbose?: boolean },

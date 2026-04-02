@@ -4,7 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { type Part, type PartListUnion, FinishReason } from '@google/genai';
+import {
+  Part,
+  PartListUnion,
+  FinishReason,
+} from '../../../../core/src/types/delta.js';
 import {
   Config,
   ServerDeltaContentEvent as ContentEvent,

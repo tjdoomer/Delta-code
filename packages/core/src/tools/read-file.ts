@@ -4,6 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  PartUnion,
+} from '../types/delta.js';
 import path from 'path';
 import { SchemaValidator } from '../utils/schemaValidator.js';
 import { makeRelative, shortenPath } from '../utils/paths.js';
@@ -16,7 +19,7 @@ import {
   ToolResult,
 } from './tools.js';
 import { ToolErrorType } from './tool-error.js';
-import { PartUnion } from '@google/genai';
+
 import {
   processSingleFileContent,
   getSpecificMimeType,

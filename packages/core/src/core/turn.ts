@@ -10,7 +10,7 @@ import {
   FunctionCall,
   FunctionDeclaration,
   FinishReason,
-} from '@google/genai';
+} from '../types/delta.js';
 import {
   ToolCallConfirmationDetails,
   ToolResult,

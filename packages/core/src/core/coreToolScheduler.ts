@@ -5,6 +5,10 @@
  */
 
 import {
+  Part,
+  PartListUnion,
+} from '../types/delta.js';
+import {
   ToolCallRequestInfo,
   ToolCallResponseInfo,
   ToolConfirmationOutcome,
@@ -23,7 +27,7 @@ import {
   AnyToolInvocation,
 } from '../index.js';
 import { HookManager } from '../hooks/hookManager.js';
-import { Part, PartListUnion } from '@google/genai';
+
 import { getResponseTextFromParts } from '../utils/generateContentResponseUtilities.js';
 import {
   isModifiableDeclarativeTool,

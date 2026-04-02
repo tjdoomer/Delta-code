@@ -4,9 +4,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  Content,
+  FunctionCall,
+  Part,
+  PartListUnion,
+} from '../../../core/src/types/delta.js';
 import { ReadableStream, WritableStream } from 'node:stream/web';
 
-import { Content, FunctionCall, Part, PartListUnion } from '@google/genai';
 import {
   AuthType,
   clearCachedCredentialFile,

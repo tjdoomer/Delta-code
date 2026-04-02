@@ -5,12 +5,15 @@
  */
 
 import {
+  FunctionDeclaration,
+} from '../types/delta.js';
+import {
   BaseDeclarativeTool,
   BaseToolInvocation,
   Kind,
   ToolResult,
 } from './tools.js';
-import { FunctionDeclaration } from '@google/genai';
+
 import * as fs from 'fs/promises';
 import * as fsSync from 'fs';
 import * as path from 'path';
@@ -128,7 +131,6 @@ The assistant used the todo list because:
 4. This approach prevents missing any occurrences and maintains code consistency
 </reasoning>
 </example>
-
 
 <example>
 User: I need to implement these features for my e-commerce site: user registration, product catalog, shopping cart, and checkout flow.

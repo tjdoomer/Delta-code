@@ -5,6 +5,9 @@
  */
 
 import {
+  PartListUnion,
+} from '../types/delta.js';
+import {
   BaseDeclarativeTool,
   BaseToolInvocation,
   Kind,
@@ -22,7 +25,7 @@ import {
   DEFAULT_ENCODING,
   getSpecificMimeType,
 } from '../utils/fileUtils.js';
-import { PartListUnion } from '@google/genai';
+
 import { Config, DEFAULT_FILE_FILTERING_OPTIONS } from '../config/config.js';
 import {
   recordFileOperationMetric,

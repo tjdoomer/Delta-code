@@ -4,13 +4,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { reportError } from '../utils/errorReporting.js';
-import { ToolRegistry } from '../tools/tool-registry.js';
-import { Config } from '../config/config.js';
-import { ToolCallRequestInfo } from './turn.js';
-import { executeToolCall } from './nonInteractiveToolExecutor.js';
-import { createContentGenerator } from './contentGenerator.js';
-import { getEnvironmentContext } from '../utils/environmentContext.js';
 import {
   Content,
   Part,
@@ -18,7 +11,15 @@ import {
   GenerateContentConfig,
   FunctionDeclaration,
   Type,
-} from '@google/genai';
+} from '../types/delta.js';
+import { reportError } from '../utils/errorReporting.js';
+import { ToolRegistry } from '../tools/tool-registry.js';
+import { Config } from '../config/config.js';
+import { ToolCallRequestInfo } from './turn.js';
+import { executeToolCall } from './nonInteractiveToolExecutor.js';
+import { createContentGenerator } from './contentGenerator.js';
+import { getEnvironmentContext } from '../utils/environmentContext.js';
+
 import { DeltaChat } from './deltaChat.js';
 
 /**

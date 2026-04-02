@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Content } from '@google/genai';
+import {
+  Content,
+} from '../types/delta.js';
 import { DeltaClient } from '../core/client.js';
 import { DeltaChat } from '../core/deltaChat.js';
 import { isFunctionResponse } from './messageInspectors.js';

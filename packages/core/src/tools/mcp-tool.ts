@@ -5,6 +5,11 @@
  */
 
 import {
+  CallableTool,
+  FunctionCall,
+  Part,
+} from '../types/delta.js';
+import {
   BaseDeclarativeTool,
   BaseToolInvocation,
   Kind,
@@ -14,7 +19,6 @@ import {
   ToolMcpConfirmationDetails,
   ToolResult,
 } from './tools.js';
-import { CallableTool, FunctionCall, Part } from '@google/genai';
 
 type ToolParams = Record<string, unknown>;
 

@@ -5,6 +5,11 @@
  */
 
 import {
+  Content,
+  Part,
+  FunctionCall,
+} from '../../core/src/types/delta.js';
+import {
   Config,
   ToolCallRequestInfo,
   executeToolCall,
@@ -15,7 +20,6 @@ import {
   ToolErrorType,
   parseAndFormatApiError,
 } from '@delta-code/delta-code-core';
-import { Content, Part, FunctionCall } from '@google/genai';
 
 import { ConsolePatcher } from './ui/utils/ConsolePatcher.js';
 

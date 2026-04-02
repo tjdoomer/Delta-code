@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import {
+  Content,
+} from '../../../../core/src/types/delta.js';
 import { type ReactNode } from 'react';
-import { Content } from '@google/genai';
+
 import { HistoryItemWithoutId } from '../types.js';
 import { Config, GitService, Logger } from '@delta-code/delta-code-core';
 import { LoadedSettings } from '../../config/settings.js';

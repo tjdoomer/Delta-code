@@ -13,7 +13,7 @@ import {
   GenerateContentResponse,
   FunctionDeclaration,
   Schema,
-} from '@google/genai';
+} from '../types/delta.js';
 import {
   getDirectoryContextString,
   getEnvironmentContext,

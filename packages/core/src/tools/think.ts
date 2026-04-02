@@ -10,12 +10,14 @@
  */
 
 import {
+  FunctionDeclaration,
+} from '../types/delta.js';
+import {
   BaseDeclarativeTool,
   BaseToolInvocation,
   Kind,
   ToolResult,
 } from './tools.js';
-import { FunctionDeclaration } from '@google/genai';
 
 interface ThinkParams {
   reasoning: string;

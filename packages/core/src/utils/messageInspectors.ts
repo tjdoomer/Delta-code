@@ -4,8 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Content } from '@google/genai';
-
+import {
+  Content,
+} from '../types/delta.js';
 export function isFunctionResponse(content: Content): boolean {
   return (
     content.role === 'user' &&
