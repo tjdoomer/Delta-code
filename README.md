@@ -1,135 +1,171 @@
 # Delta Code
 
-![Delta Code Screenshot](./docs/assets/Delta-screenshot.png)
+AI-powered coding agent for the terminal. Any model. Every tool. Zero lock-in.
 
-AI-powered CLI for developers, adapted from Gemini CLI and optimized for use with any foundation model.
+Delta Code connects to any LLM provider — local models via LM Studio/Ollama, OpenAI, Anthropic, Google, Azure, or any OpenAI-compatible endpoint — and gives the model a rich set of coding tools: file editing, search, shell execution, linting, testing, codebase navigation, and more.
+
+Switch providers mid-conversation. Plan with a cloud model, implement with a local one. Your context carries over.
 
 ## Install
 
-Requires Node.js ≥ 20.
+Requires Node.js >= 20.
 
 ```bash
-# Clone and enter the repo (your fork)
 git clone https://github.com/tjdoomer/Delta-code.git
 cd Delta-code
-
-# Build
-npm ci
-npm run build
-
-# Install the CLI globally
+npm ci && npm run build
 npm install -g .
+```
+
+## Quick Start
+
+```bash
+# First run — add your provider
+delta
+> /model add lmstudio openai-compatible http://localhost:1234/v1
+
+# Every run after — auto-connects to your saved provider
 delta
 ```
 
-## Quick start
+Or use environment variables:
 
 ```bash
-delta
+OPENAI_API_KEY="lm-studio" OPENAI_BASE_URL="http://localhost:1234/v1" delta
 ```
 
-## Authentication
+## Provider Registry
 
-You can authenticate in two ways:
-
-- Interactive (recommended): run `delta`, pick a provider from the menu, and follow the prompts. If a required key is missing, the CLI will ask for it and store it in the current process environment.
-- Environment variables: define the variables below (e.g., in a `.env` file) and run `delta`. The CLI will detect them and skip the prompts.
-
-### OpenAI
-
-- Best path: choose “OpenAI” in the menu and paste your API key (and optionally a custom base URL/model).
-- Environment variables:
+Save connections once, switch between them anytime. Credentials persist in `~/.delta/providers.json`.
 
 ```bash
-OPENAI_API_KEY="sk-..."
-# Optional if using a custom endpoint
-OPENAI_BASE_URL="https://api.openai.com/v1"
-# Optional; set a default model name for your workflow
-OPENAI_MODEL="gpt-4o-mini"
+# Add connections
+/model add lmstudio openai-compatible http://localhost:1234/v1
+/model add ollama openai-compatible http://localhost:11434/v1
+/model add openai openai https://api.openai.com/v1 sk-your-key
+/model add anthropic anthropic https://api.anthropic.com/v1 sk-ant-your-key
+
+# Discover local models
+/model refresh
+
+# List everything
+/model list
+
+# Switch provider mid-conversation (history preserved)
+/switch lmstudio
+/switch anthropic
 ```
 
-### Google (Gemini API key)
+## Tools
 
-- Best path: choose “Google (Gemini API key)” and paste your Google AI Studio key.
-- Environment variables:
+Delta ships with 20+ tools the model can invoke:
+
+| Tool | What it does |
+|------|-------------|
+| `read_file` | Read file contents with pagination |
+| `write_file` | Create or overwrite files |
+| `replace` | Precise text replacement with context matching |
+| `multi_edit` | Atomic edits across multiple files |
+| `diff_preview` | Preview an edit as a unified diff before applying |
+| `glob` | Find files by pattern |
+| `search_file_content` | Regex search across the codebase |
+| `read_file_summary` | Structural skeleton — signatures only, ~95% fewer tokens |
+| `repo_map` | Ranked codebase map with dependency graph and PageRank |
+| `run_shell_command` | Execute shell commands |
+| `lint` | Auto-detect and run project linter with structured output |
+| `run_tests` | Auto-detect and run project tests |
+| `think` | Structured reasoning before acting (no side effects) |
+| `checkpoint_save` | Save workspace state before risky changes |
+| `checkpoint_restore` | Revert to a saved checkpoint |
+| `checkpoint_list` | List saved checkpoints |
+| `save_memory` | Persist facts across sessions |
+| `todo_write` | Track tasks within a session |
+| `web_search` | Search the web (requires Tavily API key) |
+| `web_fetch` | Fetch and parse URL content |
+| `sub_agent` | Spawn autonomous sub-agents for complex tasks |
+
+## Commands
+
+| Command | What it does |
+|---------|-------------|
+| `/model list` | Show all available models across connections |
+| `/model set <name>` | Change the active model |
+| `/model add` | Save a new provider connection |
+| `/model refresh` | Re-discover models from local servers |
+| `/switch <id>` | Swap provider mid-conversation |
+| `/doctor` | Provider health check — env vars, connectivity, model |
+| `/persona set <id>` | Change writing style (see Personas below) |
+| `/checkpoint save` | Save a workspace checkpoint |
+| `/checkpoint restore` | Restore a checkpoint |
+| `/chat save` | Save conversation |
+| `/chat list` | List saved conversations |
+| `/theme` | Change color theme |
+| `/help` | Show all commands |
+
+## Personas
+
+Easter egg — change Delta's personality without affecting technical capability.
 
 ```bash
-GEMINI_API_KEY="your-google-ai-studio-key"
+/persona list                # Show all personas
+/persona set noir            # Hardboiled detective investigating bugs
+/persona set salaryman       # Dedicated Japanese office worker
+/persona set 1950s           # Mid-century company man
+/persona set pirate          # Seafaring programmer
+/persona set shakespeare     # The Bard writes your pull requests
+/persona set drill-sergeant  # WILL NOT tolerate sloppy code
+/persona set corporate       # Synergize the codebase
+/persona set default         # Back to normal
 ```
 
-### Azure OpenAI
+Custom personas: drop a `.md` file in `~/.delta/personas/` — filename becomes the ID, content becomes the voice.
 
-- Best path: choose “Azure OpenAI” and paste:
-  - API Key
-  - Full base URL to your deployment’s chat completions endpoint
-  - Deployment name (used as the model id)
-- Environment variables (what the CLI sets under the hood):
+## Diagnostics
 
 ```bash
-OPENAI_API_KEY="your-azure-openai-key"
-OPENAI_BASE_URL="https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-08-01-preview"
-OPENAI_MODEL="{deployment}"
+/doctor
 ```
 
-### AWS Bedrock (Claude)
+Validates your setup: API keys (detects placeholders), local server reachability (LM Studio, Ollama), saved connection health, and active model configuration.
 
-- Best path: choose “AWS Bedrock (Claude)” and enter:
-  - Access Key ID (as the API Key field)
-  - Secret Access Key (as the Base URL field)
-  - Region (as the Model field)
-- Environment variables:
+## Supported Providers
 
-```bash
-AWS_ACCESS_KEY_ID="AKIA..."
-AWS_SECRET_ACCESS_KEY="..."
-AWS_REGION="us-east-1"
-```
+| Provider | Connection Type | Local |
+|----------|----------------|-------|
+| LM Studio | `openai-compatible` | Yes |
+| Ollama | `openai-compatible` | Yes |
+| OpenAI | `openai` | No |
+| Anthropic Claude | `anthropic` | No |
+| Google Gemini | `gemini` | No |
+| Azure OpenAI | `openai-compatible` | No |
+| AWS Bedrock | `openai-compatible` | No |
+| Any OpenAI-compatible | `openai-compatible` | Depends |
 
-### Claude (Anthropic)
+## Architecture
 
-- Best path: choose "Claude", paste your Anthropic API key, and select from available models (Claude Opus 4.1, Claude Opus 4, Claude Sonnet 4, Claude 3.7 Sonnet, Claude 3.5 Sonnet).
-- Environment variables:
+Monorepo with npm workspaces:
 
-```bash
-ANTHROPIC_API_KEY="your-anthropic-key"
-# Optional: specify a default model
-CLAUDE_MODEL="claude-opus-4-1-20250805"
-```
+- `packages/core` — content generators, tools, indexing, provider registry
+- `packages/cli` — Ink/React terminal UI, slash commands, auth flow
+- `packages/vscode-ide-companion` — VS Code extension
 
-### Using a .env file
-
-Place a `.env` file in your working directory and add the variables for the provider you use. Example with multiple providers configured (only the ones you use are required):
-
-```bash
-# OpenAI
-OPENAI_API_KEY=sk-...
-OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_MODEL=gpt-4o-mini
-
-# Google Gemini
-GEMINI_API_KEY=...
-
-# Azure OpenAI
-# OPENAI_API_KEY=...
-# OPENAI_BASE_URL=https://{resource}.openai.azure.com/openai/deployments/{deployment}/chat/completions?api-version=2024-08-01-preview
-# OPENAI_MODEL={deployment}
-
-# AWS Bedrock
-AWS_ACCESS_KEY_ID=...
-AWS_SECRET_ACCESS_KEY=...
-AWS_REGION=us-east-1
-
-# Anthropic Claude
-ANTHROPIC_API_KEY=...
-CLAUDE_MODEL=claude-opus-4-1-20250805  # Optional: specify Claude model
-```
+Key internals:
+- **Provider adapters** convert between a canonical type system and each provider's API (OpenAI, Anthropic, Google)
+- **Schema normalization** adapts tool declarations per-provider (strict mode for OpenAI, permissive for Gemini)
+- **Repo indexing** uses regex-based symbol extraction, import dependency graph, and PageRank for codebase navigation
+- **Think block passthrough** surfaces reasoning traces from models like DeepSeek-R1, QwQ, Qwen3 instead of stripping them
 
 ## Docs
 
-- Getting started and commands: ./docs/
-- Authentication details: ./docs/cli/authentication.md
-- Troubleshooting: ./docs/troubleshooting.md
+- [Commands](./docs/cli/commands.md)
+- [Authentication](./docs/cli/authentication.md)
+- [Configuration](./docs/cli/configuration.md)
+- [Tools](./docs/tools/index.md)
+- [Architecture](./docs/architecture.md)
+- [Troubleshooting](./docs/troubleshooting.md)
 
-## License & credits
+## License
 
-See ./LICENSE. Based on Google’s Gemini CLI with adaptations for Delta‑Coder models.
+Apache-2.0. See [LICENSE](./LICENSE).
+
+Based on [Gemini CLI](https://github.com/google-gemini/gemini-cli) via [QwenLM/qwen-code](https://github.com/QwenLM/qwen-code).
